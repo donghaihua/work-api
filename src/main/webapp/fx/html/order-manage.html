@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>订单管理</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<link href="../icomoon/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/global.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<script src="../js/jquery-1.11.0.min.js"></script>
+	</head>
+
+	<body>
+		<div class="md">
+			<div class="header"><span class="goback"><i class="icon-back"></i></span>订单管理</div>
+
+			<div class="tab-nav ">
+				<ul class="tab-nav-menu tab-3">
+					<li class="active" id="li_1" data_id="1">本店订单</li>
+					<li id="li_2" data_id="2">一级订单</li>
+					<li id="li_3" data_id="3">二级订单</li>
+				</ul>
+			</div>
+
+
+
+		</div>
+
+	</body>
+	<script>
+		$(document).ready(function() {
+			/*var url = window.location.search;
+			var shopId;
+			if (url.match('shopId=')) {
+				shopId = url.split('shopId=')[1];
+			} else {
+				window.location.href = 'http://uhaou.cn/m/error.html';
+			}*/
+			$('span.goback').click(function () {
+				window.location.href = 'sale-center.html';
+			});
+
+			var level = 1;
+			getOrderList();
+			$('ul.tab-3>li').click(function () {
+				$(this).siblings().removeClass('active');
+				$(this).addClass('active');
+				level = $(this).attr('data_id');
+				getOrderList();
+			});
+
+			//获取订单
+			function getOrderList() {
+				$.ajax({
+					type: 'GET',
+					url: '../../uiserver/distribution/getFxOrderList',
+					data: {'level': level},
+					success: function (res) {
+						setOrderList(res.datas);
+					}
+				});
+			}
+
+
+			function setOrderList(orderList) {
+				$('div.md').find('div.order-list').remove();
+				var dataHtml = '';
+
+				for(var i = 0; i < orderList.length; i++) {
+					var order = orderList[i];
+					var state_word = getStateWord(order.state);
+
+					dataHtml += '<div class="order-list"><div class="order-head"><span>订单编号：' + order.orderNo + '</span>';
+					dataHtml += '<span class="pullright order-status-success">' + state_word + '</span></div>';
+					dataHtml += '<div class="order-head"><span><i class="fa fa-clock-o"></i></span><span class="order-date">' + order.dealDate + '</span>';
+					dataHtml += '<span class="pullright order-price">￥' + order.totalPrice + '</span></div><div class="order-body"><ul class="order-list-ul">';
+
+					for(var j = 0; j < order.saleOrderDetails.length; j++) {
+						var orderDetail = order.saleOrderDetails[j];
+						var spec = orderDetail.saleItemSpec;
+						dataHtml += '<li><div class="good-img"><img src="'+orderDetail.lightItem.avatar+'" alt="" /></div>';
+						dataHtml += '<div class="good-info"><p class="good-name">' + orderDetail.lightItem.name + '</p>';
+						dataHtml += '<p class="good-guige">规格：' + orderDetail.saleItemSpec.specName + '</p></div>';
+						dataHtml += '<p class="good-price"><b>￥' + orderDetail.unitPrice + ' x ' + orderDetail.quantity + '</b></P></li>';
+
+					}
+					//TODO 下单用户
+					dataHtml += '</ul></div><div class="order-head" style="margin-top:10px;"><span>下单用户</span><span class="pullright ">'+order.nickname+'</span>';
+					dataHtml += '</div><div class="order-head"><span>利润</span><span class="pullright order-status-success">￥';
+					if(level == 1) {
+						dataHtml += order.fxProfit;
+					} else if (level == 2) {
+						dataHtml += order.fxProfitUp;
+					} else if (level == 3) {
+						dataHtml += order.fxProfitUpUp;
+					}
+					dataHtml += '</span></div></div>';
+				}
+
+				$('div.md').append(dataHtml);
+			}
+
+			function getStateWord(state) {
+				if(parseInt(state) == 0) {
+					return '已发货';
+				} else if(parseInt(state) == 1) {
+					return '已评价';
+				} else if(parseInt(state) == 2) {
+					return '待付款';
+				} else if(parseInt(state) == 3) {
+					return '等待发货';
+				} else if(parseInt(state) == 4) {
+					return '已取消';
+				} else if(parseInt(state) == 5) {
+					return '待退款';
+				} else if(parseInt(state) == 6) {
+					return '已退款';
+				}
+			}
+		})
+	</script>
+
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>客服管理</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/console.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/bshopweb.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body>
+	<header>
+		<div class="wrapper">
+			<div class="logo">
+				<img src="img/uhaoulogo.png" alt="logo">
+			</div>
+			<div class="breadcrumb">
+			</div>
+			<div class="userinfo">
+				<img src="img/avatar_preview_default.png" alt="avatar">
+				<span class="username"><span class="un"></span><span class="icon-arrow-down"></span></span>
+			</div>
+			<span class="icon-notif new"><span class="icon-dot"></span></span>
+			<span class="icon-mail new"><span class="icon-dot"></span></span>
+			<ul class="ddlist">
+			</ul>
+		</div>
+	</header>
+	<div class="wrapper">
+		<div id="sidebar" data-index="nav13">
+		</div>
+		<div id="content">
+			<div class="board">
+				<div class="boardt">客服管理</div>
+				<input class="addbtn bluer" type="button" id="addService" value="添加">
+				<hr class="boardhr">
+				<div class="services">
+					
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="sidebarb">
+			<div class="up">
+				<div class="icon-arrow-up"></div>
+			</div>
+			<div class="copyright" id="site_record">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/a_general.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.ajax({
+				type: 'GET',
+				url: './passport/service',
+				success: function(data) {
+					if(data.success == 0) {
+						console.log(data);
+						if(data.datas && data.datas.length > 0) {
+							setData(data.datas, false);
+							bindEvent($('div[name=service]'));
+						}
+					} else {
+						if(data.error == 401) {
+							window.location.href = 'error.html';
+						}
+					}
+				}
+			});
+			
+			$('#addService').click(function() {
+				if($('div[name=newService]').length > 0) {
+					return;
+				}
+				var accountArray = [];
+				accountArray.push({
+					'id': 0,
+					'userName': '',
+					'password': '',
+					'servierPwd': '',
+					'userQQ': '',
+					'telephone': '',
+					'email': ''
+				});
+				setData(accountArray, true);
+				removeDisable($('div[name=newService]'));
+				bindEvent($('div[name=newService]'));
+			});
+			
+			function setData(dataArray, isAdd) {
+				var divName = 'service';
+				var editName = '编辑';
+				var ckIndex = 1;
+				if(isAdd) {
+					divName = 'newService';
+					editName = '保存';
+					ckIndex = 0;
+				}
+				for(var i = 0; i < dataArray.length; i++) {
+					
+					var account = dataArray[i];
+					//<tr><th>密码</th><td><input type="password" name="userPwd" value="'account.'" disabled="disabled"></td>
+					var inner_html = '<div name="'+divName+'" id="'+account.id+'"><table><thead><tr>';
+					inner_html += '<th>客服</th><td>';
+					inner_html += '<input class="delete" type="button" name="delUser" value="移除">';
+					inner_html += '<input class="edit" type="button" ckIndex="'+ckIndex+'" name="editUser" value="'+editName+'">';
+					inner_html += '</td></tr></thead><tbody><tr><th>名称</th>';
+					inner_html += '<td><input type="text" name="userName" value="'+account.userName+'" disabled="disabled"></td></tr>';
+					inner_html += '<tr><th>手机号</th>';
+					inner_html += '<td><input type="text" name="telephone" value="'+account.telephone+'" disabled="disabled"></td></tr>';	
+					inner_html += '<tr><th>QQ号</th>';
+					inner_html += '<td><input type="text" name="qq" value="'+account.userQQ+'" disabled="disabled"></td></tr>';	
+					inner_html += '<tr><th>邮箱</th>';
+					inner_html += '<td><input type="text" name="email" value="'+account.email+'" disabled="disabled"></td></tr>';
+					inner_html += '<tr name="userPwd"><th>密码</th><td><input type="password" name="userPwd" value="' + account.password + '" disabled="disabled"></td></tr>';
+					if(isAdd) {
+
+
+					}
+					inner_html += '</tbody></table></div>';
+					$('div.services').append(inner_html);
+				}
+			}
+			
+			function bindEvent(jq_parent) {
+				jq_parent.find('input[name=editUser]').bind('click', function() {
+					var thisBtn = $(this);
+					var ckIndex = parseInt(thisBtn.attr('ckIndex'));
+					ckIndex = ckIndex + 1;
+					thisBtn.attr('ckIndex', ckIndex);
+					var this_parent = thisBtn.parents('div:eq(0)');
+					//console.log(this_parent);
+					if(ckIndex % 2 == 0) {
+						thisBtn.val('保存');
+						removeDisable(this_parent);
+						//this_parent.children('table').append('<tr name="userPwd"><th>密码</th><td><input type="password" name="userPwd"></td></tr>');
+					} else {
+						thisBtn.attr('disabled', true);
+						var id = this_parent.attr('id');
+						if(!id) {
+							id = 0;
+						}
+						var userName = this_parent.find('input[name=userName]').val();
+						var telephone = this_parent.find('input[name=telephone]').val();
+						var qq = this_parent.find('input[name=qq]').val();
+						var email = this_parent.find('input[name=email]').val();
+						var password = this_parent.find('input[name=userPwd]').val();
+						
+						//此处应该加验证，如果是update，密码可以为空，为空代表不修改密码，如果是add，
+						var parent_name = this_parent.attr('name');
+						if(parent_name == 'newService') { // 代表添加, 此处添加验证， 密码不能为空
+							
+						} else if(parent_name == 'service') { //代表update, 此处添加验证， 密码可以为空
+							
+						}
+						
+						var update_service = {
+							'id': id,
+							'userName': userName,
+							'servierPwd': password,
+							'userQQ': qq,
+							'telephone': telephone,
+							'email': email
+						};
+						
+						$.ajax({
+							type: 'POST',
+							url: './passport/service',
+							dataType: "json",      
+							contentType: 'application/json;',
+							data: JSON.stringify(update_service),
+							success: function(data) {
+								if(data.success == 0) {
+									thisBtn.val('编辑');
+									//this_parent.children('table').find('tr[name=userPwd]').remove();
+									addDisable(this_parent);
+								} else if(data.success == 1) {
+									if(data.error == 401) {
+										window.location.href = 'error.html';
+									} else if(data.error == 5) {
+										alert("名称不能为空");
+									} else if(data.error == 6) {
+										alert("手机号格式不正确");
+									} else if(data.error == 7) {
+										alert("QQ不能为空");
+									} else if(data.error == 8) {
+										alert("邮箱格式错误");
+									} else if(data.error == 9) {
+										alert("密码不能为空");
+									} else {
+										ckIndex = ckIndex - 1;
+										thisBtn.attr('ckIndex', ckIndex);
+									}
+								}
+								thisBtn.attr('disabled', false);
+							}
+						});
+					}
+				});
+				
+				
+				// 移除用户
+				jq_parent.find('input[name=delUser]').bind('click', function() {
+					var thisBtn = $(this);
+					if(confirm("确认删除？")) {
+						var this_parent = thisBtn.parents('div:eq(0)');
+						var id = this_parent.attr('id');
+						//console.log(id);
+						$.ajax({
+							type: 'PUT',
+							url: './passport/service',
+							data: {'accountId': id},
+							success: function(data) {
+								if(data.success == 0) {
+									$().popupTip("操作成功");
+									setTimeout(window.location.reload(), 4000);
+								} else if(data.success == 1) {
+									if(data.error == 401) {
+										window.location.href = 'error.html';
+									} else {
+										$().popupTip("操作失败");
+									}
+								}
+							}
+						});
+					}
+				});
+			}
+			
+			function removeDisable(jq_parent) {
+				jq_parent.find('input[name=userName]').attr('disabled', false);
+				jq_parent.find('input[name=telephone]').attr('disabled', false);
+				jq_parent.find('input[name=qq]').attr('disabled', false);
+				jq_parent.find('input[name=email]').attr('disabled', false);
+				jq_parent.find('input[name=userPwd]').attr('disabled', false);
+			}
+			
+			function addDisable(jq_parent) {
+				jq_parent.find('input[name=userName]').attr('disabled', true);
+				jq_parent.find('input[name=telephone]').attr('disabled', true);
+				jq_parent.find('input[name=qq]').attr('disabled', true);
+				jq_parent.find('input[name=email]').attr('disabled', true);
+				jq_parent.find('input[name=userPwd]').attr('disabled', true);
+			}
+		})
+	</script>
+</body>
+</html>

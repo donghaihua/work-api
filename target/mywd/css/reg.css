@@ -1,0 +1,508 @@
+footer{
+	margin-top: 0px;
+}
+
+input[type=button]{
+	border: none;
+	background-color: #e36655;
+	color: #fff;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+input[type=button]:hover{
+	background-color: #ce4836;
+}
+
+input.inactive[type=button]{
+	background-color: #b1b1b1;
+}
+
+input.inactive[type=button]:hover{
+	background-color: #b1b1b1;
+}
+
+.error{
+	position: absolute;
+	padding: 5px 30px 5px 10px;
+	color: #fff;
+	font-size: 14px;
+	background-color: #c25546;
+	border-radius: 3px;
+	z-index: 1;
+	line-height: 18px;
+	display: none;
+}
+
+.error div{
+	position: absolute;
+	bottom: -7px;
+	left: 10px;
+	border-top: 8px solid #c25546;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+}
+
+.login{
+	background: url(../img/loginbg1280.png);
+}
+
+.login .box{
+	padding: 60px 0px;
+	color: #fff;
+}
+
+.lb{
+	position: absolute;
+	top: -2px;
+	right: 0px;
+	background-color: #fff;
+	opacity: 0.2;
+	width: 4px;
+	height: 320px;
+}
+
+.ll{
+	position: relative;
+	margin-left: 60px;
+	padding-right: 40px;
+	width: 654px;
+}
+
+.ll p{
+	position: relative;
+	margin-top: 15px;
+	font-size: 18px;
+}
+
+.ll p span{
+	position: absolute;
+	top: -10px;
+	margin-left: -6px;
+	font-size: 30px;
+	color: #e36655;
+}
+
+.ll input[type=text], .ll input[type=password]{
+	margin: 15px 0px;
+	width: 626px;
+	height: 42px;
+	padding: 0px 10px;
+	border: 4px solid #9c9c9e;
+	font-size: 18px;
+}
+
+.ll input[name=capt]{
+	width: 480px;
+}
+
+.ll .captcha{
+	display: none;
+}
+
+.ll .captcha img{
+	margin: 20px 0px 20px 10px;
+}
+
+.ll .rem{
+	padding-left: 32px;
+	line-height: 24px;
+}
+
+.ll .checkbox{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #9c9c9e;
+	cursor: pointer;
+}
+
+.ll .checkbox:before{
+	font-size: 20px;
+	display: none;
+}
+
+.ll .checkbox.checked{
+	border: 2px solid #abcf58;
+	background-color: #abcf58;
+}
+
+.ll .checkbox.checked:before{
+	display: inline;
+}
+
+.ll .forget{
+	float: right;
+	line-height: 24px;
+	color: #fff;
+}
+
+#login{
+	width: 654px;
+	height: 52px;
+	margin: 15px 0px;
+}
+
+.ll .error{
+	margin: -8px 0px 0px 200px;
+}
+
+.lr{
+	margin-right: 60px;
+	float: right;
+}
+
+.lr h3{
+	font-size: 24px;
+	height: 96px;
+	line-height: 96px;
+}
+
+.lr p{
+	height: 26px;
+	line-height: 26px;
+}
+
+.lr input{
+	margin-top: 62px;
+	width: 146px;
+	height: 46px;
+}
+
+.loginerror{
+	position: absolute;
+	color: #e36655;
+	display: none;
+}
+
+@media (min-width:1280px) {
+	.login{
+		background: url(../img/loginbg1920.png);
+	}
+}
+
+.reg, .forg{
+	background: url(../img/regbg.png);
+}
+
+.rl{
+	float: left;
+	width: 470px;
+	height: 658px;
+}
+
+.rl h3{
+	margin: 146px 0px 124px 0px;
+	font-size: 24px;
+	color: #fff;
+	text-align: center;
+}
+
+.rl p{
+	text-align: center;
+}
+
+.rl input{
+	width: 146px;
+	height: 46px;
+	margin: 0 auto;
+}
+
+.rr{
+	width: 580px;
+	padding: 30px 60px 26px 30px;
+	height: 602px;
+	margin-left: 470px;
+	background-color: #fff;
+}
+
+.rb1{
+	width: 572px;
+	height: 80px;
+	border: 4px solid #f0f0f0;
+}
+
+.rb1 .rt{
+	position: absolute;
+	padding-left: 76px;
+	width: 66px;
+	height: 80px;
+	line-height: 80px;
+	border-right: 4px solid #f0f0f0;
+	font-size: 24px;
+	color: #fff;
+	background-color: #303134;
+	font-weight: bold;
+}
+
+.forg .rt{
+	padding-left: 0px;
+	width: 142px;
+	font-weight: lighter;
+	text-align: center;
+}
+
+.forgnav{
+	margin-top: 30px;
+	height: 44px;
+	border: 4px solid #f0f0f0;
+}
+
+.forgnav li{
+	float: left;
+	width: 50%;
+	text-align: center;
+	line-height: 44px;
+	font-size: 20px;
+	color: #b1b1b1;
+	cursor: pointer;
+}
+
+.forgnav li:hover{
+	color: #303134;
+}
+
+.forgnav li.active{
+	background-color: #abcf58;
+	color: #fff;
+}
+
+.rb1 .rt:before{
+	position: absolute;
+	left: 16px;
+	font-size: 60px;
+	font-weight: normal;
+}
+
+.rb1 .rc{
+	position: relative;
+	margin-left: 146px;
+	height: 80px;
+}
+
+.rb1 .rc ul{
+	margin-left: 24px;
+}
+
+.rb1 .rc li{
+	float: left;
+	padding: 14px 24px 6px 24px;
+	font-size: 20px;
+	color: #b1b1b1;
+}
+
+.rb1 .rc li:before{
+	position: absolute;
+	margin: 23px 0px 0px 19px;
+	font-size: 36px;
+}
+
+.rb1 .rc li.active{
+	color: #303134;
+}
+
+.rb1 .rc li.active:before{
+	color: #abcf58;
+}
+
+.rb1 .rc .bd{
+	position: absolute;
+	left: 30px;
+	top: 54px;
+	width: 368px;
+	height: 4px;
+	background-color: #f0f0f0;
+}
+
+.rb2{
+	padding-top: 20px;
+}
+
+.rb2 .f{
+	position: relative;
+	margin-bottom: 20px;
+	padding-left: 20px;
+	height: 48px;
+	line-height: 48px;
+	font-size: 18px;
+	background-color: #f0f0f0;
+}
+
+.rb2 .f .ipr{
+	position: relative;
+	float: right;
+	border-left: 4px solid #fff;
+	width: 390px;
+	height: 48px;
+}
+
+.rb2 .f input[type=text], .rb2 .f input[type=password]{
+	position: absolute;
+	left: 4px;
+	top: 4px;
+	padding: 0px 10px;
+	width: 362px;
+	height: 40px;
+	font-size: 18px;
+}
+
+.rb2 .f input[name=capt]{
+	padding: 0px 10px;
+	width: 204px;
+	margin-right: 158px;
+}
+
+.rb2 .f input[name=captget]{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	border-left: 4px solid #fff;
+	width: 158px;
+	height: 48px;
+	cursor: pointer;
+}
+
+.rb2 .f input[name=capti]{
+	padding: 0px 10px;
+	width: 200px;
+	margin-right: 158px;
+}
+
+.rb2 .captimg{
+	position: absolute;
+	height: 48px;
+	top: 0px;
+	right: 0px;
+	border-left: 4px solid #fff;
+	width: 158px;
+	height: 48px;
+}
+
+.rb2 .error{
+	margin: -30px 0px 0px 0px;
+}
+
+.rb2 .cgerror{
+	position: absolute;
+	top: -20px;
+	right: 0px;
+	
+	line-height: 16px;
+	color: #e36655;
+	display: none;
+}
+
+.rb2 .checkbox{
+	position: absolute;
+	margin: 5px 12px 5px 0px;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #f0f0f0;
+	cursor: pointer;
+}
+
+.rb2 .checkbox:before{
+	position: absolute;
+	font-size: 20px;
+	color: #fff;
+}
+
+.rb2 .checkbox.checked{
+	border: 2px solid #abcf58;
+	background-color: #abcf58;
+}
+
+.rb2 .agm{
+	padding-left: 34px;
+	line-height: 34px;
+}
+
+.rb2 .agm a{
+	color: #388bc2;
+}
+
+.rb2 .suerror{
+	position: absolute;
+	right: 0px;
+	margin-right: 60px;
+	color: #e36655;
+	display: none;
+}
+
+.rb2 .emvlerror{
+	position: absolute;
+	margin-top: -80px;
+	color: #e36655;
+	display: none;
+}
+
+input[name=submit]{
+	margin-top: 34px;
+	width: 580px;
+	height: 52px;
+}
+
+.skip{
+	float: right;
+	position: relative;
+	top: -10px;
+	color: #388bc2;
+}
+
+.rb2 .sent, .rb2 .success{
+	padding: 24px 0px;
+	width: 580px;
+	background-color: #f0f0f0;
+	border-radius: 5px;
+}
+
+
+.rb2 .sent p{
+	color: #a0484e;
+	font-size: 18px;
+	text-align: center;
+}
+
+.rb2 .sent p.tip{
+	color: #000;
+	margin-bottom: 20px;
+	font-size: 20px;
+}
+
+.rb2 .success p{
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	font-size: 18px;
+}
+
+.rb2 .emodify{
+	float: right;
+	margin-top: 30px;
+	font-size: 16px;
+	color: #388bc2;
+	cursor: pointer;
+}
+
+.rb2 .eresend{
+	float: right;
+	margin-top: 30px;
+	margin-right: 20px;
+	font-size: 16px;
+	color: #388bc2;
+	cursor: pointer;
+}
+
+.rb2 .regtip{
+	color: #ababab;
+	line-height: 36px;
+}
+
+#step2{
+	display: none;
+}
+
+.bdsharebuttonbox{
+	position: absolute;
+	right: 60px;
+}

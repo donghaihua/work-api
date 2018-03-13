@@ -1,0 +1,305 @@
+.container{
+	background-color: #fff;
+	width: 1140px;
+	margin: 0 auto;
+	padding: 5px 0px;
+}
+
+.acctcontent{
+	padding-bottom: 66px;
+}
+
+hr{
+	margin: 30px 0px 20px 26px;
+	height:1px;
+	width: 734px;
+	border:none;
+	border-top:1px dashed #000;
+}
+
+.addresstip{
+	position: fixed;
+	margin: -20px 0px 0px 70px;
+	width: 362px;
+	text-align: center;
+	padding: 20px;
+	background-color: #fff;
+	border-top: 1px solid #87aa66;
+	box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.1);
+	z-index: 10;
+	display: none;
+}
+
+.addresstip .icon-wrong{
+	color: #e1e1e1;
+	float: right;
+	cursor: pointer;
+}
+
+.addresstip p{
+	clear: both;
+	text-align: center;
+	line-height: 26px;
+	font-size: 18px;
+	margin: 50px 0px 30px 0px;
+}
+
+.addresstip input{
+	text-align: center;
+	width: 140px;
+	height: 40px;
+	line-height: 40px;
+	border: 1px solid #87aa66;
+	background-color: #87aa66;
+	
+	color: #fff;
+	cursor: pointer;
+}
+
+.addresstip input:hover{
+	color: #87aa66;
+	background-color: #fff;
+}
+
+.addrtip{
+	margin-left: 40px;
+	
+}
+
+span#now, span#total{
+	color: #87aa66;
+	font-size: 22px;
+}
+
+#addaddr{
+	display: block;
+	margin: 26px 0px 0px 40px;
+	width: 194px;
+	height: 54px;
+	border: 1px solid #87aa66;
+	background-color: #87aa66;
+	font-size: 22px;
+	color: #fff;
+	cursor: pointer;
+}
+
+#addaddr:hover{
+	color: #87aa66;
+	background-color: #f2f0ef;
+}
+
+#addaddr.disabled{
+	background-color: #c6c6c6;
+	color: #e8e8e8;
+	border: 1px solid #c6c6c6;
+}
+
+#addaddr.disabled:hover{
+	background-color: #c6c6c6;
+	color: #e8e8e8;
+	border: 1px solid #c6c6c6;
+}
+
+.editaddr{
+	position: absolute;
+	top: -50px;
+	left: 10px;
+	width: 680px;
+	background-color: #fff;
+	border-top: 1px solid #87aa66;
+	box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.1);
+	z-index: 10;
+	display: none;
+}
+
+#submtip{
+	position: absolute;
+	margin-top: 50px;
+	margin-left: 420px;
+	color: #a0484e;
+	display: none;
+}
+
+.editaddr p{
+	font-size: 20px;
+	line-height: 60px;
+	height: 60px;
+	margin: 0px 20px;
+	padding: 0px 10px;
+	border-bottom: 1px dashed #000;
+}
+
+.editaddr p .tip{
+	font-size: 14px;
+	color: #ababab;
+	padding: 0px 30px;
+}
+
+.editaddr p .icon-wrong{
+	color: #e1e1e1;
+	float: right;
+	line-height: 60px;
+	cursor: pointer;
+}
+
+.editaddr table{
+	margin-top: 20px;
+}
+
+.editaddr table tr td:first-child{
+	height: 50px;
+	line-height: 50px;
+	width: 150px;
+	padding-right: 30px;
+	text-align: right;
+}
+
+.naddrtip{
+	position: absolute;
+	padding: 0px 20px 0px 5px;
+	margin-top: 30px;
+	min-width: 60px;
+	left: 400px;
+	height: 26px;
+	line-height: 26px;
+	background-color: #ffe9eb;
+	border: 1px solid #a0484e;
+	color: #a0484e;
+	font-size: 14px;
+	display: none;
+}
+
+#addrtip{
+	margin-top: 70px;
+}
+
+.naddrtip .icon-arrow-up{
+	position: absolute;
+	top: -10px;
+	left: 2px;
+	color: #a0484e;
+}
+
+.editaddr input{
+	background-color: #f2f0ef;
+	width: 300px;
+	height: 30px;
+	padding: 0px 10px;
+	
+	border: 2px solid #f2f0ef;
+}
+
+.editaddr select{
+	min-width: 100px;
+	margin-right: 8px;
+	height: 30px;
+}
+
+.editaddr textarea{
+	width: 300px;
+	height: 50px;
+	background-color: #f2f0ef;
+	border: 2px solid #f2f0ef;
+	resize: none;
+	padding: 10px;
+	
+	margin-top: 8px;
+}
+
+.editaddr input:focus, .editaddr textarea:focus{
+	background-color: #fff;
+}
+
+.editaddr #submit{
+	width: 206px;
+	height: 60px;
+	color: #fff;
+	background-color: #87aa66;
+	border: 1px solid #87aa66;
+	font-size: 18px;
+	margin: 30px 0px 44px 190px;
+	cursor: pointer;
+}
+
+.editaddr #submit:hover{
+	color: #87aa66;
+	background-color: #fff;
+}
+
+.addr{
+	width: 724px;
+	background-color: #fff;
+	margin: 30px auto;
+	padding: 26px 0px 54px 0px;
+}
+
+.addr h4{
+	display: inline;
+	font-size: 30px;
+	margin: 0px 16px 0px 43px;
+}
+
+input.default, input.setdefault{
+	display: inline;
+	position: relative;
+	top: -6px;
+	
+	width: 120px;
+	height: 36px;
+	color: #87aa66;
+	background-color: #fff;
+	border: 1px solid #fff;
+	text-align: left;
+}
+
+input.setdefault{
+	color: #fff;
+	background-color: #87aa66;
+	border: 1px solid #87aa66;
+	cursor: pointer;
+	text-align: center;
+}
+
+input.setdefault:hover{
+	color: #87aa66;
+	background-color: #fff;
+	border: 1px solid #87aa66;
+}
+
+input.edit, input.delete{
+	float: right;
+	background-color: #fff;
+	color: #6b9aae;
+	
+	margin-right: 30px;
+	cursor: pointer;
+}
+
+input.edit{
+	margin-right: 20px;
+}
+
+.addr table tr td:first-child{
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	text-align: right;
+	padding-right: 20px;
+}
+
+.addr table tr td:first-child:after{
+	content: ":";
+}
+
+.addr table tr td:last-child{
+	width: 480px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px dashed #000;
+	padding-left: 10px;
+}
+
+#location input{
+	width: 120px;
+	margin-right: 4px;
+}

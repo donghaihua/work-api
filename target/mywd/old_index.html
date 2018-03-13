@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb">
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="">
+	<meta property="wb:webmaster" content="15045191b8afbf27" />
+	
+	<title>首页</title>
+
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/styleguide.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/flexslider.css">
+
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body>
+	<!-- <div class="customservice">
+		<div class="cs">
+			<div class="csh">
+				<h4>欢迎咨询</h4>
+				<p>AM9:00PM6:00</p>
+			</div>
+			<table class="csb">
+				<tr>
+					<td>
+						<a href="http://wpa.qq.com/msgrd?v=3&uin=3235417592&site=qq&menu=yes" target="_blank"><span class="icon-call37"></span>客服1
+					</td>
+				</tr>
+			</table>
+			<div class="csf">
+				<input type="button" value="邮件咨询">
+			</div>
+		</div>
+		<div class="close">
+			&times;
+		</div>
+	</div>
+	<div class="csbar">
+		咨<br>询
+	</div> -->
+	<header class="h2">
+		<div class="h2b">
+			<div class="sesearch">
+				<input type="text">
+				<span class="icon-magnifier13"></span>
+			</div>
+			<div class="logo">
+				<img src="img/logo.png" alt="logo">
+			</div>
+			<div class="index">
+				<a href="index.html">首页</a>
+				<div class="dd2">
+					<ul>
+						<li><a href="culture.html">山茶文化</a></li>
+						<li><a href="brand.html">品牌故事</a></li>
+						<li><a href="packagedesign.html">私人定制</a></li>
+						<li><a href="item_list.html">商品系列</a></li>
+						<li><a href="contact.html">联系我们</a></li>
+					</ul>
+					<div class="lan">
+						简
+					</div>
+					<div class="r">
+						<a href="c_orderlist.html">我的订单</a>
+						<a href="login.html">登录</a>|<a href="reg.html">注册</a>
+					</div>
+				</div>
+			</div>
+			<div class="secart">
+				<a href="cart.html">
+					购物车
+					<div class="cartn">0</div>
+				</a>
+			</div>
+		</div>
+	</header>
+	<header class="h1">
+		<div class="box">
+			<div class="logo">
+				<img src="img/logo.png" alt="logo">
+			</div>
+			<div class="ul1">
+				<ul>
+					<!-- <li class="pinfo">
+						<span>130****0000</span>
+						<img src="img/avatar_preview_default.png" alt="avatar">
+						<ul class="dd1">
+							<li><a href="account.html">我的账户</a></li>
+							<li>登出</li>
+						</ul>
+					</li> -->
+					<li class="pinfo"><a href="login.html">登录</a>|<a href="reg.html">注册</a></li>
+					<li id="backstage">
+						<a href="a_orderlist.html">
+							<input type="button" value="进入后台">
+						</a>
+					</li>
+					<li><a href="c_orderlist.html">我的订单</a></li>
+					<li>
+						<div class="bgm mute">
+							<span class="icon-volume-medium"></span>
+							<span class="icon-volume-mute"></span>
+						</div>
+					</li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="bbs"><a href="bbs/forum.html">论坛</a></div>
+			<div class="ul2">
+				<ul>
+					<li><a href="contact.html">联系我们</a></li>
+					<li><a href="item_list.html">商品系列</a></li>
+					<li><a href="packagedesign.html">私人定制</a></li>
+					<li><a href="brand.html">品牌故事</a></li>
+					<li><a href="culture.html">山茶文化</a></li>
+					<li class="active"><a href="index.html">首页</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="boxw se">
+		<div class="box">
+			<ul><li class="active">中</li><li>繁</li><li>JP</li><li>EN</li></ul>
+			<div class="sesearch">
+				<input type="text" name="seinput">
+				<input type="button" name="sebtn" value="搜索">
+			</div>
+			<div class="secart">
+				<a href="cart.html">
+					购物车
+					<div class="cartn">0</div>
+					<span class="icon-arrow-down2"></span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="clear waypoint"></div>
+	<div class="box hcl">
+		<div class="hcartlist">
+			<div class="list">
+				<table>
+					<!-- <tr>
+						<td class="td1">
+							<div class="img">
+								<img src="img/listitem.png" alt="img">
+							</div>
+							<p>
+								<span class="n">红天果冷压榨特级初榨茶籽油</span><br>
+								<span class="s">500ML</span>
+							</p>
+						</td>
+						<td class="td2">1</td>
+						<td class="td3">&yen;200</td>
+						<td class="td4">
+							<span class="icon-cross"></span>
+						</td>
+					</tr> -->
+				</table>
+			</div>
+			<div class="b">
+				<span class="ttn">共<span>0</span>件商品</span>
+				<span class="ttp">总价<span>&yen;0</span></span>
+				<input type="button" id="carthtml" value="结算">
+			</div>
+		</div>
+	</div>
+	<div class="cartpp">
+		<div class="pph">
+			选择商品规格数量		
+		</div>
+		<div class="ppb">
+			<table>
+				<tr>
+					<th class="td1">规格</th>
+					<th class="td2">单价</th>
+					<th class="td3">操作</th>
+				</tr>
+				<tr>
+					<td class="td1">0.5L</td>
+					<td class="td2">&yen;43</td>
+					<td class="td3"><div class="icon-checkmark active"></div></td>
+				</tr>
+				<tr>
+					<td class="td1">1L</td>
+					<td class="td2">&yen;90</td>
+					<td class="td3"><div class="icon-checkmark"></div></td>
+				</tr>
+				<tr>
+					<td class="td1">2L</td>
+					<td class="td2">&yen;200</td>
+					<td class="td3"><div class="icon-checkmark"></div></td>
+				</tr>
+			</table>
+			<div class="ppbt">数量
+				<div class="quantt">
+					<div class="icon-minus"></div>
+					<div class="num"><input type="text" value="1"></div>
+					<div class="icon-plus"></div>
+				</div>
+			</div>
+		</div>
+		<div class="ppf">
+			<input type="button" name="cancel" value="取消">
+			<input type="button" name="addtc" value="加入购物车">
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="boxw banner" data-imgtype="1">
+		<div class="flexslider">
+			<ul class="slides">
+				<!-- <li>
+					<a href=""><img src="img/PC_banner.jpg" alt=""></a>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="boxw title">
+		<div>
+			<span class="icon-square"></span>
+			<span class="icon-square"></span>
+			新品上市
+			<span class="icon-square"></span>
+			<span class="icon-square"></span>
+		</div>
+	</div>
+	<div class="boxw block2" data-imgtype="2">
+<!-- 		<a href=""><img src="img/PC_new_item_show1920px552px.jpg"></a> -->
+	</div>
+	<div class="boxw title">
+		<div>
+			<span class="icon-square"></span>
+			<span class="icon-square"></span>
+			每日推荐
+			<span class="icon-square"></span>
+			<span class="icon-square"></span>
+		</div>
+	</div>
+	<div class="boxw block3" data-imgtype="3">
+<!-- 		<a href=""><img src="img/PC_new_item_show1920px552px.jpg"></a> -->
+	</div>
+	<div class="boxw title">
+		<div>
+			<span class="icon-square"></span>
+			<span class="icon-square"></span>
+			商品系列
+			<span class="icon-square"></span>
+			<span class="icon-square"></span>
+		</div>
+	</div>
+	<div class="box block4">
+		<ul class="brand">
+			
+		</ul>
+		<div class="itemlist">
+			<ul class="iteml" id="searchlist">
+				<li name="li_item" data-itemid="1">
+					<div class="addtcart">加入购物车</div>
+				</li>
+			</ul>
+			<div class="clear"></div>
+			<input type="button" id="seeAll" value="查看全部">
+		</div>
+	</div>
+	<div class="boxw title">
+		<div>
+			<span class="icon-square"></span>
+			<span class="icon-square"></span>
+			品牌故事
+			<span class="icon-square"></span>
+			<span class="icon-square"></span>
+		</div>
+	</div>
+	<div class="boxw block5">
+		<div>
+			<p style='color:#000;'>
+				<span class="l">“</span>
+				红天果的天使投资人，来自山茶油产区，年少时放山茶假的时光历历在目：摘茶子，找茶苞，吸一口，清又甜；榨油坊，木头撞，滴滴亮，清又香。可如今，每每回家探亲，由于村里人都外出打工，山茶林这一优质资源早已荆棘丛生，深感痛心。老油坊已不见踪影，有的是惆怅和失落。
+				<br>
+                <span class="m">创业者都有一个梦，我们的梦就是从这里萌芽。</span>
+				<span class="r">”</span>
+			</p>
+			<a href="brand.html"><span><input type="button" value="了解我们"></span></a>
+		</div>
+	</div>
+	<div class="boxw title">
+		<div>
+			<span class="icon-square"></span>
+			<span class="icon-square"></span>
+			山茶文化
+			<span class="icon-square"></span>
+			<span class="icon-square"></span>
+		</div>
+	</div>
+	<div class="boxw block6">
+<!-- 		<img src="img/teaculture.png" alt=""> -->
+	</div>
+	<footer>
+		<div class="box">
+			<div class="l">
+				<p>
+					客户服务<br>
+					<span id="site_phone"></span>
+				</p>
+				<p>
+					地址<br>
+					<span id="site_address"></span>
+				</p>
+				<p>
+					邮箱<br>
+					<span id="site_email"></span>
+				</p>
+				<p>
+					<a href="userguide.html">用户指南</a><br>
+					<a href="userguide.html"><span>快速了解网站流程及功能</span></a>
+				</p>
+				<p>
+					<wb:share-button appkey="2178187039" addition="simple" count="n" type="button" size="big"
+									 default_text="我在有好油呢，你也来吧！"
+									 pic="http%3A%2F%2Fwww.uhaou.cn%2Fimg%2Flogo.png"
+									 url="http%3A%2F%2Fwww.uhaou.cn">
+					</wb:share-button>
+				</p>
+			</div>
+			<div class="m">
+				<p>订阅有好油，加入我们</p>
+				<div class="rss">
+					<input type="text" placeholder="请输入您的邮箱" id="rssemail">
+					<input type="button" value="发送" id="subscribe">
+				</div>
+			</div>
+			<div class="r">
+				<p>扫一扫有惊喜</p>
+				<img id="site_2dcode" src="img/2dcode.jpg" alt="code">
+				<div class="site">UHAOU.CN</div>
+				<div class="cr" id="site_record">
+				</div>
+			</div>
+		</div>
+	</footer>
+	<audio id="player" src="fonts/snowstort.mp3" hidden="true" loop="true"></audio>
+	<script src="js/jquery.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script src="js/jquery.flexslider.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$(".bgm").click(function(){
+			var audio = document.getElementById('player');
+			if (!audio.paused) {
+				audio.pause();
+				$(".bgm").addClass("mute");
+			}else{
+				audio.play();
+				$(".bgm").removeClass("mute");
+			}
+		});
+
+		if (loginData && loginData.success != 1) {
+			for (var i = 0; i < loginData.roles.length; i++) {
+				if (loginData.roles[i] == 2 || loginData.roles[i] == 3) {
+					$("#backstage").show();
+				}
+			}
+		}
+
+		var browserheight = $(window).height();
+		
+		/*$("#subscribe").click(function(){
+			var emailaddr = $("#rssemail").val();
+			if(!emailaddr){
+				alert("请输入邮箱");
+			}else if(!$().emailvalidate(emailaddr)){
+				alert("邮箱格式不正确");
+			}else{
+				$.ajax({
+					type:"POST",
+					url:'./s/subscription',
+					data:{email: emailaddr},
+					cache: false,
+					error:function(){
+						alert("网络连接错误，请重试");
+					},
+					success:function(data){
+						if(data.success == 0){
+							alert("订阅成功");
+						}else{
+							alert("订阅失败，请检查输入内容后重试");
+						}
+					}
+				});
+			}
+		});*/
+		
+
+		$("#seeAll").click(function() {
+			window.location.href = "item_list.html";
+		});
+
+		$(".title").waypoint(function(down){
+			$(this).children("div").fadeTo(0.001,0).fadeTo(1000,1);
+		},{ offset: browserheight });
+		
+		function bannerGet(){
+			var type = [1,2,3];
+			for(var i in type){
+				$.ajax({
+					type: 'GET',
+					url: './s/index_1',
+					async: false,
+					cache: false,
+					data: {"type": type[i], "device":1, "state":0},
+					success: function(data){
+						if(data.success == 0){
+							if(type[i] == 1){
+								for(var j = 0;j < data.datas.length;j++){
+									if(data.datas[j].item_bg){
+										var str = '';
+										if(data.datas[j].item_url){
+											str = '<li><a href="'+(data.datas[j].item_url||'')+'"><img src="'+data.datas[j].item_bg+'" alt=""></a></li>';
+										}else{
+											str = '<li><img src="'+data.datas[j].item_bg+'" alt=""></li>';
+										}
+										$('ul.slides').append(str);
+										$('.flexslider').flexslider({
+											animation: "slide",
+										});
+									}
+								}
+							}else{
+								if(data.datas[0].item_bg){
+										var str = '';
+										if(data.datas[0].item_url){
+											str = '<a href="'+(data.datas[0].item_url||'')+'"><img src="'+data.datas[0].item_bg+'" alt=""></a>';
+										}else{
+											str = '<img src="'+data.datas[0].item_bg+'" alt="">';
+										}
+										$(".block"+type[i]).append(str);
+								/* 	var url = $(".block"+type[i]+"[data-imgtype="+type[i]+"] a");
+									var img = url.children("img");
+									url.attr("href",data.datas[0].item_url||"");
+									img.attr("src",data.datas[0].item_bg||""); */
+								}
+							}
+						}
+					}
+				});
+			}
+		}
+		bannerGet();
+
+		setItemData(1, 1);
+		
+		$.ajax({
+			type: 'GET',
+			url: './s/index_1',
+			async: false,
+			cache: false,
+			data: {"type": 6, "device":1, "state":0},
+			success: function(data){
+			/* 	var str = '<a href="brand.html"><img src="'+data.datas[0].item_bg+'" alt=""></a>';
+				$('.block5 div').append(str); */
+				$('.block5 div').css("background", "url('"+data.datas[0].item_bg+"')");
+			}
+		});
+		
+		$.ajax({
+			type: 'GET',
+			url: './s/index_1',
+			async: false,
+			cache: false,
+			data: {"type": 7, "device":1, "state":0},
+			success: function(data){
+				var str = '';
+				//console.log("url('"+data.datas[0].item_bg+"') center center");
+				$('.block6').css("background", "url('"+data.datas[0].item_bg+"')");
+				if(data.datas[1].item_url){
+					str += '<a href="'+(data.datas[1].item_url||'')+'"><img id="img1" src="'+data.datas[1].item_bg+'" alt=""></a>';
+				}else{
+					str += '<img id="img1" src="'+data.datas[1].item_bg+'" alt="">';
+				}
+				
+				$('.block6').append(str);
+			}
+		});
+		
+		$.ajax({
+			type: 'GET',
+			url: './sale/indexBrand',
+			success: function(data) {
+				var inner = '';
+				for(var i = 0; i < data.datas.length; i++) {
+					inner += '<li name="li_shop" data_id="'+data.datas[i].id+'"><ul>';
+					var seriesArray = data.datas[i].saleShopSeries;
+					for(var j = 0; j < seriesArray.length; j++) {
+						var seriesObj = seriesArray[j];
+						if(j == 0) {
+							inner += '<li name="li_series" data_id="'+seriesObj.id+'"><div></div>'+seriesObj.name+'</li>';
+						} else {
+							inner += '<li name="li_series" data_id="'+seriesObj.id+'">'+seriesObj.name+'</li>';
+						}
+					}
+					inner += '</ul>'+data.datas[i].brandName+'<span class="icon-arrow-right2"></span></li>';
+				}
+				$('.brand').html(inner);
+				
+				$('li[name=li_shop]').click(function(e) {
+					e.stopPropagation();
+					var shopId = $(this).attr('data_id');
+					setItemData(shopId, 1);
+				});
+				
+				$('li[name=li_series]').click(function(e) {
+					e.stopPropagation();
+					var seriesId = $(this).attr('data_id');
+					setItemData(seriesId);
+				});
+			}
+		});
+		
+		function setItemData(id, type) {
+			var ajax_data = {"seriesId": id};
+			if(type == 1) {
+				ajax_data = {"shopId": id};
+			}
+			$.ajax({
+				type: 'GET',
+				url: './sale/indexItem',
+				data: ajax_data,
+				success: function(data) {
+					var itemArray = data.datas;
+					$('.iteml').html('');
+					var inner = '';
+					for(var i = 0; i < itemArray.length; i++) {
+						var item = itemArray[i];
+
+						if(item.minDiscountPrice == item.minOriginalPrice
+								|| !item.minDiscountPrice) {
+							inner += '<li name="li_item" data-itemid="'+item.id+'">';
+							inner += '<div class="itemimg"><img src="'+item.avatar+'" alt="img"></div>';
+							inner += '<div class="idetail"><p>';
+							inner += '<span class="n">'+item.name+'</span><br>';
+							inner += '<span class="dp">'+item.minOriginalPrice+'</span></p></div>';
+							inner += '<div class="addtcart">加入购物车</div></li>';
+						} else {
+							inner += '<li name="li_item" data-itemid="'+item.id+'"><div class="gp">特惠<div></div></div>';
+							inner += '<div class="itemimg"><img src="'+item.avatar+'" alt="img"></div>';
+							inner += '<div class="idetail"><p>';
+							inner += '<span class="n">'+item.name+'</span><br>';
+							inner += '<span class="dp">'+item.minDiscountPrice+'</span><span class="p">'+item.minOriginalPrice+'</span></p></div>';
+							inner += '<div class="addtcart">加入购物车</div></li>';
+						}
+					}
+					$('.iteml').html(inner);
+					
+					$('li[name=li_item]>div:not(.addtcart)').click(function() {
+						var itemId = $(this).parent().attr('data-itemid');
+						window.location.href = './item/' + itemId + '.html';
+					});
+				}
+			});
+		}
+		
+		$(".cartpp .ppb table tr").live('click',function(){
+			$(".cartpp .ppb table .icon-checkmark").removeClass("active");
+			$(this).children("td.td3").children(".icon-checkmark").addClass("active");
+		});
+
+		$(".cartpp .icon-minus").click(function(){
+			var input = $(this).siblings(".num").children("input[type=text]");
+			var v = input.val();
+			input.val(parseInt(v)-1);
+			input.blur();
+		});
+
+		$(".cartpp .icon-plus").click(function(){
+			var input = $(this).siblings(".num").children("input[type=text]");
+			var v = input.val();
+			input.val(parseInt(v)+1);
+			input.blur();
+		});
+
+		$(".cartpp .ppb .ppbt input[type=text]").blur(function(){
+			if (isNaN($(this).val())) {
+				$(this).val("1");
+			}else if($(this).val() <= 0){
+				$(this).val("1");
+			}else if(parseInt($(this).val()) != $(this).val()){
+				$(this).val(parseInt($(this).val()));
+			}else if($(this).val() >= 99){
+				$(this).val("99");
+			}
+		});
+
+		$(".cartpp .ppf input[name=cancel]").click(function(){
+			$(".cover, .cartpp").hide();
+		});
+		
+		$(".cartpp .ppf input[name=addtc]").removeAttr("disabled");
+		$(".cartpp .ppf input[name=addtc]").click(function(){
+			var itemid = $(".cartpp .ppb").attr("data-itemid");
+			var specid = $(".cartpp .ppb .icon-checkmark.active").parents("tr").attr("data-specid");
+			var quantity = $(".cartpp .quantt input[type=text]").val();
+			var cartpost = {
+				"lightItem":{"id":itemid},
+				"saleItemSpec":{"id":specid},
+				"quantity":quantity
+			};
+			
+			$.ajax({
+				type:"post",
+				data:JSON.stringify(cartpost),
+				contentType: 'application/json',
+				dataType: 'json',
+				async:false,
+				cache:false,
+				url:"./sale/cart",
+				success:function(data){
+					if (data.success == 0) {
+						$(".cartpp .ppf input[name=cancel]").click();
+						$().cartpost(itemid,specid,quantity);
+						$().ddcartget();
+						$().ddcartlistt();
+					} else if(data.success == 55) {
+						alert('库存不足，无法加入购物车');
+					}
+				}
+			});
+			$().ddcartget();
+			$(".cartpp .ppf input[name=addtc]").removeAttr("disabled");
+		});
+
+		$("#searchlist li .addtcart").removeAttr("disabled");
+		$("#searchlist li .addtcart").live("click",function(){
+			$(this).attr("disabled","disabled");
+			var itemid = $(this).parents("li").attr("data-itemid");
+
+			$.ajax({
+				type:"GET",
+				data:{"itemId":itemid},
+				url:"./sale/itemSpec",
+				error:function(){
+					$(this).removeAttr("disabled","disabled");
+				},
+				success:function(jsondata){
+					if (jsondata.success == 0) {
+						$(".cartpp .quantt input[type=text]").val(1);
+						$(".cartpp .ppb table td").parents("tr").remove();
+
+						$(".cartpp .ppb").attr("data-itemid",itemid);
+
+						for (var i = 0; i < jsondata.datas.length; i++) {
+							var spec = jsondata.datas[i];
+							$(".cartpp .ppb table").append('<tr data-specid="'+spec.id+'"><td class="td1">'+spec.specName+'</td><td class="td2">&yen;'+spec.discountPrice+'</td><td class="td3"><div class="icon-checkmark"></div></td></tr>');
+						}
+
+						$(".cartpp .ppb table .icon-checkmark:eq(0)").addClass("active");
+						$(".cover, .cartpp").show();
+					}
+					$(this).removeAttr("disabled","disabled");
+				}
+			});
+		});
+	});
+	</script>
+</body>
+</html>

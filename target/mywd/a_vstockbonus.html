@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>虚拟股管理</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/console.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/cashcoupon.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body>
+	<div class="cover">
+	</div>
+	<header>
+		<div class="wrapper">
+			<div class="logo">
+				<img src="img/uhaoulogo.png" alt="logo">
+			</div>
+			<div class="breadcrumb">
+			</div>
+			<div class="userinfo">
+				<img src="img/avatar_preview_default.png" alt="avatar">
+				<span class="username"><span class="un"></span><span class="icon-arrow-down"></span></span>
+			</div>
+			<span class="icon-notif new"><span class="icon-dot"></span></span>
+			<span class="icon-mail new"><span class="icon-dot"></span></span>
+			<ul class="ddlist">
+			</ul>
+		</div>
+	</header>
+	<div class="wrapper">
+		<div id="sidebar" data-index="nav73">
+		</div>
+		<div id="content">
+			<div class="counav">
+				<ul>
+					<li class="active" name="dt1">分红金额</li>
+				</ul>
+				<div class="search">
+					<input type="text" id="keywords"><button type="button" class="red" id="searchYear">查询年份</button>
+				</div>
+			</div>
+			<div class="ccoupon dt1">
+				<table>
+					<thead>
+						<tr>
+							<th class="td1">年份</th>
+							<th class="td2">用户名</th>
+							<th class="td3">股数</th>
+							<th class="td4">分红</th>
+						</tr>
+					</thead>
+					<tbody id="epslist">
+						<!-- <tr>
+							<td class="td1">2015</td>
+							<td class="td2">用户名</td>
+							<td class="td3">1000</td>
+							<td class="td4">100</td>
+						</tr> -->
+					</tbody>
+				</table>
+			</div>
+			<div class="pager">
+				<span class="page">
+					<!-- <a>1</a>
+					<a class="current">2</a>
+					<a>3</a>
+					<a>4</a>
+					<a>5</a>
+					<span>&hellip;</span>
+					<a>8</a>
+					<span class="nextpage">下一页<span class="icon-arrow-right2"></span></span> -->
+				</span>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="sidebarb">
+			<div class="up">
+				<div class="icon-arrow-up"></div>
+			</div>
+			<div class="copyright" id="site_record">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/a_general.js"></script>
+	<script type="text/javascript">
+	$().ready(function(){
+		/* 查询分红金额
+		./s/stock/getEpsData     GET
+		page,limit,keyWords */
+		function getEpsData(page,keywords){
+			$.ajax({
+				type:"GET",
+				url:"./s/stock/getEpsData",
+				data:{
+					page: page,
+					limit: 10,
+					keyWords: keywords
+				},
+				async: false,
+				cache: false,
+				success:function(data){
+					if(data.success == 0){
+						var str = "";
+						for(var i = 0; i<data.datas.length; i++){
+							str+='<tr>'
+								+'<td class="td1">'+data.datas[i].recordYear+'</td>'
+								+'<td class="td2">'+data.datas[i].account.userName+'</td>'
+								+'<td class="td3">'+data.datas[i].stockNumber+'</td>'
+								+'<td class="td4">'+data.datas[i].eps+'</td>'
+								+'</tr>';
+						}
+						if(str){
+							$("#epslist").html("").append(str);
+							$().pagegenerator(data.lastPage, page);
+						}else{
+							$("#epslist").html("").append('<tr><td colspan="4">暂无数据</td></tr>');
+						}
+					}
+				}
+			});
+		}
+		getEpsData(1,"");
+		
+		$("#searchYear").click(function(){
+			var keywords = $("#keywords").val();
+			if(keywords){
+				getEpsData(1,keywords);
+			}
+		});
+		
+		$(".page a:not(.current)").live("click",function(){
+			var page = $(this).attr("class").split("pageid")[1];
+			var keywords = $("#keywords").val();
+			getEpsData(parseInt(page),keywords);
+		});
+
+		$(".page .nextpage").live("click",function(){
+			var page = $(this).siblings("a.current").attr("class").split(" ")[0].split("pageid")[1];
+			var keywords = $("#keywords").val();
+			getEpsData(parseInt(page)+1,keywords);
+		});
+	});
+	</script>
+</body>
+</html>

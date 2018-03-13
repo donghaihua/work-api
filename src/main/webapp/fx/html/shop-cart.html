@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<link href="../icomoon/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/global.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<script src="../js/jquery-1.11.0.min.js"></script>
+	</head>
+
+	<body>
+		<div class="md">
+			<div class="header"><span class="goback"><i class="icon-back"></i></span>购物车（4）<span class="right-btn" data-type="edit" onclick="changeEdit(this);">编辑</span></div>
+			<!--第二行-->
+			<div class="row">
+				<div class="row-content">
+					<!--checkbox-->
+					<div class="row-checkbox">
+						<img src="../images/ticknone.png" data-value="1" data-price="460" data-num="1" data-checked="false" class="cb-box" />
+					</div>
+					<!-- 商品图片 -->
+					<div class="row-good">
+						<img src="../images/good.jpg" />
+						<div class="goodinfo">
+							<p class="goodname">贵族油500ml</p>
+							<p class="goodprice">￥460</p>
+						</div>
+						<span class="goodnum">x 1</span>
+						<div class="numgroup">
+							<button type="button" name="number-minus"><i class="fa fa-minus"></i></button>
+							<div data-number="10" name="goodnumber">10</div>
+							<button type="button" name="number-plus"><i class="fa fa-plus"></i></button>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<!--第二行-->
+			<div class="row ">
+				<div class="row-content">
+					<!--checkbox-->
+					<div class="row-checkbox">
+						<img src="../images/ticknone.png" data-value="2" data-price="460" data-num="1" data-checked="false" class="cb-box" />
+					</div>
+					<!-- 商品图片 -->
+					<div class="row-good">
+						<img src="../images/good.jpg" />
+						<div class="goodinfo">
+							<p class="goodname">贵族油500ml</p>
+							<p class="goodprice">￥460</p>
+						</div>
+						<span class="goodnum">x 1</span>
+						<div class="numgroup">
+							<button type="button" name="number-minus"><i class="fa fa-minus"></i></button>
+							<div data-number="10" name="goodnumber">10</div>
+							<button type="button" name="number-plus"><i class="fa fa-plus"></i></button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!--第二行-->
+			<div class="row ">
+				<div class="row-content">
+					<!--checkbox-->
+					<div class="row-checkbox">
+						<img src="../images/ticknone.png" data-value="3" data-price="460" data-num="1" data-checked="false" class="cb-box" />
+					</div>
+					<!-- 商品图片 -->
+					<div class="row-good">
+						<img src="../images/good.jpg" />
+						<div class="goodinfo">
+							<p class="goodname">贵族油500ml</p>
+							<p class="goodprice">￥460</p>
+						</div>
+						<span class="goodnum">x 1</span>
+						<div class="numgroup">
+							<button type="button" name="number-minus"><i class="fa fa-minus"></i></button>
+							<div data-number="10" name="goodnumber">10</div>
+							<button type="button" name="number-plus"><i class="fa fa-plus"></i></button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!--第二行-->
+			<div class="row ">
+				<div class="row-content">
+					<!--checkbox-->
+					<div class="row-checkbox">
+						<img src="../images/ticknone.png" data-value="4" data-price="460" data-num="1" data-checked="false" class="cb-box" />
+					</div>
+					<!-- 商品图片 -->
+					<div class="row-good">
+						<img src="../images/good.jpg" />
+						<div class="goodinfo">
+							<p class="goodname">贵族油500ml</p>
+							<p class="goodprice">￥460</p>
+						</div>
+						<span class="goodnum">x 1</span>
+						<div class="numgroup">
+							<button type="button" name="number-minus"><i class="fa fa-minus"></i></button>
+							<div data-number="10" name="goodnumber">10</div>
+							<button type="button" name="number-plus"><i class="fa fa-plus"></i></button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<footer class="footer">
+			<div class="menu pright cart">
+				<img src="../images/ticknone.png" data-checked="true" id="check-all" /> <span>全选</span>
+				<button class="btn btn-orange" id="affirm-btn">结算</button>
+				<span class="total-price-number" id="total-price">￥0</span>
+				<span class="total-price">合计：</span>
+			</div>
+		</footer>
+	</body>
+	<script>
+		$(document).ready(function() {
+			//			checkbox
+			$(".cb-box").on("click", function() {
+				if ($(this).attr("data-checked") == "false") {
+					$(this).attr("data-checked", "true");
+					$(this).attr("src", "../images/tick.png");
+				} else {
+					$(this).attr("data-checked", "false");
+					$(this).attr("src", "../images/ticknone.png");
+				}
+				_getTotal();
+			});
+			//			全选
+			$("#check-all").on("click", function() {
+				var checked = $(this).attr("data-checked");
+				if (checked == "false") {
+					$(this).attr("data-checked", "true");
+					$(this).attr("src", "../images/ticknone.png");
+					$(".cb-box").each(function() {
+						$(this).attr("data-checked", "false");
+						$(this).attr("src", "../images/ticknone.png");
+					});
+				} else {
+					$(this).attr("data-checked", "false");
+					$(this).attr("src", "../images/tick.png");
+					$(".cb-box").each(function() {
+						$(this).attr("data-checked", "true");
+						$(this).attr("src", "../images/tick.png");
+					});
+				}
+				_getTotal();
+			});
+			//			结算
+			$("#affirm-btn").click(function() {
+				var goodNum = "";
+				$("[data-checked='true']").each(function() {
+					goodNum += $(this).attr("data-value") + ",";
+				});
+				alert(goodNum);
+			});
+		});
+		//获取总价格
+		function _getTotal() {
+			var totalPrice = 0;
+			$(".md [data-checked='true']").each(function() {
+				totalPrice += parseFloat($(this).attr("data-price")) * parseInt($(this).attr("data-num"));
+			});
+			$("#total-price").html("￥" + totalPrice);
+		}
+
+		function changeEdit(obj) {
+			var type=$(obj).attr("data-type");
+//			alert(type);
+			if( type== "edit") {
+				$(obj).attr("data-type", "save");
+				$(obj).html("完成");
+				$(".numgroup").each(function() {
+					$(this).show();
+				});
+				$(".goodnum").each(function() {
+					$(this).hide();
+				});
+			} else {
+				$(obj).html("编辑");
+				$(obj).attr("data-type", "edit");
+				$(".goodnum").each(function() {
+					$(this).show();
+				});
+				$(".numgroup").each(function() {
+					$(this).hide();
+				});
+			}
+		}
+	</script>
+
+</html>

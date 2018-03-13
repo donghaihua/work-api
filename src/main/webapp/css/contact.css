@@ -1,0 +1,52 @@
+.contact h3{
+	text-align: center;
+	padding-top: 36px;
+	padding-bottom: 21px;
+	border-bottom: 2px solid #f3f3f3;
+}
+
+.contact h3 span.t{
+	font-size: 36px;
+	padding: 0px 10px 20px 10px;
+	border-bottom: 4px solid #e36655;
+}
+
+.contact p{
+	margin: 56px 0px 20px 0px;
+	font-size: 36px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.contact table{
+	margin: 0 auto;
+	border-collapse: separate;
+	border-spacing: 30px 18px;
+}
+
+.contact table th{
+	font-size: 18px;
+	line-height: 26px;
+	color: #7e7e7e;
+	text-align: left;
+	vertical-align: top;
+}
+
+.contact table td{
+	width: 260px;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+.contact table td .link{
+	padding-right: 5px;
+}
+
+.contact table td .link img{
+	width: 12px;
+}
+
+.contact table td a:hover{
+	color: #707379;
+}
+

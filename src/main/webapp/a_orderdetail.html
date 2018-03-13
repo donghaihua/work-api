@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>订单详情</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/console.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/borderdetail.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body>
+	<div class="cover"></div>
+	<header>
+		<div class="wrapper">
+			<div class="logo">
+				<img src="img/uhaoulogo.png" alt="logo">
+			</div>
+			<div class="breadcrumb">
+			</div>
+			<div class="userinfo">
+				<img src="img/avatar_preview_default.png" alt="avatar">
+				<span class="username"><span class="un"></span><span class="icon-arrow-down"></span></span>
+			</div>
+			<span class="icon-notif new"><span class="icon-dot"></span></span>
+			<span class="icon-mail new"><span class="icon-dot"></span></span>
+			<ul class="ddlist">
+			</ul>
+		</div>
+	</header>
+	<div class="wrapper">
+		<div class="popup" id="popup" style="display: none;">
+			<div class="cancel"></div>
+			<div class="icon-cross"></div>
+			<h3>
+				<span class="icon-square">收货信息</span>
+				<div class="error" style="display:none"></div>
+				<input type="button" id="send" value="发货">
+			</h3>
+			<div class="addr">
+				<span class="recpt"></span>
+				<span class="tel"></span><br>
+				<span class="addrd"></span>
+			</div>
+			<h3>
+				<span class="icon-square">物流信息</span>
+			</h3>
+			<p>物流公司</p>
+			<select>
+				<option>顺丰速递</option>
+			</select>
+			<p>物流单号</p>
+			<input id="express" type="text">
+		</div>
+		<div id="sidebar" data-index="nav21">
+		</div>
+		<div id="content">
+			<div class="block block1">
+				<div class="otitle">
+					<span>
+						<span class="icon-dot"></span>
+						订单编号:
+						<span class="on"></span>
+						下单时间:
+						<span class="ot"></span>
+						订单总额:
+						<span class="op">&yen;<span></span></span>
+						<input type="button" value="发货" id="sendItem" name="send">
+						<input type="button" value="处理退款" id="processRefund" name="return">
+					</span>
+				</div>
+				<h3><span>订单详情</span></h3>
+				<table>
+					<tr>
+						<th class="td1">商品名称</th>
+						<th class="td2">单价</th>
+						<th class="td3">数量</th>
+						<th class="td4">金额</th>
+						<th class="td5">买家备注</th>
+					</tr>
+				</table>
+			</div>
+			<div class="block block7">
+								
+			</div>
+			<div class="block block2">
+				<h3><span>订单状态</span></h3>
+				<p><span class="time" id="time">2014-07-09 17:07:09</span></p>
+				<ul id="ul_orderState">
+					<li><div><div></div></div>提交订单</li>
+					<li><div><div></div></div>客户付款</li>
+					<li><div><div></div></div>订单发货</li>
+					<li><div><div></div></div>客户评价</li>
+					<li>完成</li>
+				</ul>
+			</div>
+			<div class="block block3">
+				<h3><span>收货详情</span></h3>
+				<p><span>收货人</span><input id="inp_recipient" type="text"></p>
+				<p><span>联系方式</span><input id="inp_telephone" type="text"></p>
+				<p><span>收货地址</span><input id="inp_address" type="text"></p>
+				<input type="button" id="editAddress" value="完成">
+			</div>
+			<div class="block block4">
+				<h3><span>物流详情</span></h3>
+				<p><span class="expsc"></span>运单编号:<span class="expsn"></span></p>
+				<div class="exps">
+					<iframe name="kuaidi100_order" src="" width="100%" height="280"
+							marginwidth="0" marginheight="0" hspace="0" vspace="0" 
+							frameborder="0" scrolling="no"></iframe>
+				</div>
+			</div>
+			<div class="block block5">
+				<h3><span>评价详情</span></h3>
+				<div class="cmt">
+					<div class="img">
+						<img src="img/listitem.png" alt="img">
+					</div>
+					<p>
+						<span class="b"></span><br>
+						<span class="n"></span><br>
+						<span class="s"></span>
+					</p>
+					<div class="cmtd">
+						<div class="icon-dot" name="spec_comment"></div>
+						<div class="d"></div>
+					</div>
+				</div>
+				<div class="page"></div>
+			</div>
+			<div class="block block6">
+				<h3><span>退款详情</span></h3>
+				<table>
+					<tr>
+						<th><div>是否退货</div></th>
+						<td name="r_type"></td>
+					</tr>
+					<tr>
+						<th><div>退款金额</div></th>
+						<td class="td2"><span name="r_amount"></span>元</td>
+					</tr>
+					<tr>
+						<th><div>退款原因</div></th>
+						<td class="td3">
+							<p name="r_reason"></p>
+							<p name="r_reason_detail"></p>
+							<ul>
+								<li>
+									<img name="r_img1" src="img/listitem.png" alt="img">
+								</li>
+								<li>
+									<img name="r_img2" src="img/listitem.png" alt="img">
+								</li>
+								<li>
+									<img name="r_img3" src="img/listitem.png" alt="img">
+								</li>
+							</ul>
+							<div class="clear"></div>
+						</td>
+					</tr>
+					<tr>
+						<th><div>退货物流</div></th>
+						<td class="td4">
+							<p>
+								<span name="r_express" class="exp">顺丰快递</span>
+								运单编号:
+								<span name="r_express_no" class="expn"></span>
+							</p>
+							<div class="exps">
+								<iframe name="kuaidi100_refund" src="" width="600" height="380" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="sidebarb">
+			<div class="up">
+				<div class="icon-arrow-up"></div>
+			</div>
+			<div class="copyright" id="site_record">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/a_general.js"></script>
+	<script type="text/javascript" src="js/jquery.DatePicker.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#popup').find('div.icon-cross').click(function() {
+			$('#popup').hide();
+			$('.cover').hide();
+		});
+		
+		$('div.block6').hide(); // 退款
+		
+		var url = window.location.search;
+		var paramArray = url.split('?val=');
+		var orderNo = paramArray[1];
+		var order = null;
+		var commentArray = {};
+		var limit_order = 10;
+		var limit_comment = 10;
+		
+		setOrderHtml();
+		
+		function setOrderHtml() {
+			//加载订单信息
+			$.ajax({
+				type: 'GET',
+				url: './sale/order',
+				data: {
+					'page': 1, 
+					'limit': limit_order, 
+					'back': 0, 
+					'orderNo': orderNo
+				},
+				success: function(data) {
+					if(data.datas && data.datas.length > 0) {
+						order = data.datas[0];
+						
+						if(order.state == 5 || order.state == 6) {
+							$('div.block6').show();
+						}
+						setSendItem(order);
+						setOrderData(order); // block1
+						setOrderStepLine(order.state); // bolck2
+						setBlock3(order);
+						
+						loadDelivery(order, 1);
+						setComment(1, limit_comment);
+					}
+				}
+			});
+			
+			//加载退款单
+			$.ajax({
+				type: 'GET',
+				url: './sale/order/refund',
+				data: {
+					'back': 0, 
+					'orderNo': orderNo, 
+				},
+				success: function(data) {
+					if(data.datas) {
+						setBlock6(data.datas);
+					}
+				}
+			});
+
+		}
+		
+		//发货按钮
+		function setSendItem(order) {
+			if(order.state != 3) {
+				return;
+			}
+			$('#sendItem').show();
+			$('#sendItem').click(function() {
+				$('#popup').show();
+				$('.cover').show();
+				$('#popup').find('.recpt').text(order.recipient);
+				$('#popup').find('.tel').text(order.address);
+				$('#popup').find('.addrd').text(order.telephone);
+			});
+			// 发货
+			$('#send').click(function() {
+				var express_no = $('#express').val();
+				$('#popup').find('.error').show();
+				if(express_no.trim().length == 0) {
+					$('#popup').find('.error').text('请填写物流单号！');
+					return;
+				}
+				if(/^\d+$/.test(express_no) == false) {
+					$('#popup').find('.error').text('物流单号只能由数字组成！');
+					return;
+				}
+				
+				if(order.state != 3) {
+					$('#popup').find('.error').text('该订单未付款，无法发货！');
+				} else {
+					$.ajax({
+						type: 'POST',
+						url: './sale/order/send',
+						data: {'orderNo': orderNo, 'express': express_no},
+						success: function(data) {
+							if(data.success == 1) {
+								if(data.error == 101) {
+									$('#popup').find('.error').text('请确认订单是否存在！');
+								} else if (data.error == 401) { // 跳错误页面
+									
+								} else if (data.error == 201) {
+									$('#popup').find('.error').text('单号填写不正确');
+								} else if (data.error == 1) { // 跳错误页面
+									$('#popup').find('.error').text('订单未付款，无法发货');
+								}
+							} else if(data.success == 0) { // 发货成功
+								$('#popup').find('div.icon-cross').click();
+								window.location.reload();
+							}
+						}
+					});
+				}
+			});
+		}
+		
+		
+		function setOrderData(order) {
+			$('#sendItem').hide();
+			$('#processRefund').hide();
+			$('#processRefund').click(function() {
+				window.location.href='./a_refund.html?val=' + order.orderNo;
+			});
+			$('#time').text(order.dealDate);
+			$('div.otitle').find('span.on').text(order.orderNo); //订单编号
+			$('div.otitle').find('span.ot').text(order.dealDate); // 订单日期
+			$('div.otitle').find('span.op>span').text(order.totalPrice); //总价
+			
+			var fapiao = '<h3><span>发票信息</span></h3><p>';
+			
+			if(order.invoiceType == 0) {
+				fapiao += '不需要发票';
+			} else if(order.invoiceType == 1) {
+				fapiao += '个人发票';
+			} else if(order.invoiceType == 2) {
+				fapiao += '公司发票，抬头：' + order.invoiceTitle;
+			}
+			fapiao += '</p>';
+			$('div.block7').html(fapiao);
+			
+			
+			for(var i = 0; i < order.saleOrderDetails.length; i++) {
+				var orderDetail = order.saleOrderDetails[i];
+				var row_span = order.saleOrderDetails.length;
+				var spec = orderDetail.saleItemSpec;
+				
+				var tr_html = '<tr><td class="td1"><div class="img">';
+				tr_html += '<img src="'+orderDetail.lightItem.avatar+'" alt="img"></div><p>';
+				tr_html += '<span class="b">'+order.lightShop.brandName+'</span><br>';
+				tr_html += '<span class="n">'+orderDetail.lightItem.name+'</span><br>';
+				tr_html += '<span class="s">'+spec.specName+'</span>';
+				
+				tr_html += '</p></td><td class="td2">';
+				tr_html += '&yen;' + spec.discountPrice;
+				
+				tr_html += '</td><td class="td3">';
+				tr_html += orderDetail.quantity;
+				
+				tr_html += '</td><td class="td4">';
+				tr_html += '&yen;' + (spec.discountPrice * orderDetail.quantity) + "</td>";
+				
+				if(i == 0) {
+					tr_html += '<td class="td5" rowspan="'+row_span+'"><p>';
+					tr_html += order.remarks + '</p></td>';
+				}
+				
+				tr_html += '</tr>';
+				
+				$('div.block1').find('table:eq(0)').append(tr_html);
+				
+				if(order.state == 3) {
+					$('#sendItem').show();
+				} else if(order.state == 5) {
+					$('#processRefund').show();
+				}
+			}
+		}
+		
+		function setOrderStepLine(orderState) {
+			var refund_step_1 = '<li><div><div></div></div>提交订单</li>';
+			var refund_step_2 = '<li><div><div></div></div>客户付款</li>';
+			var refund_step_3 = '<li><div><div></div></div>申请退款</li>';
+			var refund_step_4 = '<li><div><div></div></div>待退款</li>';
+			var refund_step_5 = '<li><div><div></div></div>完成</li>';
+			
+			var close_step_1 = '<li><div><div></div></div>提交订单</li>';
+			var close_step_2 = '<li><div><div></div></div>取消订单</li>';
+			var close_step_3 = '<li><div><div></div></div>完成</li>';
+			
+			if(orderState == 5 || orderState == 6) {
+				$('#ul_orderState').html(refund_step_1 + refund_step_2 + refund_step_3 + refund_step_4 + refund_step_5);
+			} else if(orderState == 4) {
+				$('#ul_orderState').html(close_step_1 + close_step_2 + close_step_3);
+			}
+			
+			$('#ul_orderState').find('li').each(function(index) {
+				if(orderState == 0 || orderState == 5) {
+					if(index == 0 || index == 1 || index == 2) {
+						$(this).addClass('active');
+					}
+				} else if(orderState == 1  || orderState == 6 || orderState == 4) { //完成
+					$(this).addClass('active');
+				} else if(orderState == 2) { //完成
+					if(index == 0) {
+						$(this).addClass('active');
+					}
+				} else if(orderState == 3) { //完成
+					if(index == 0 || index == 1) {
+						$(this).addClass('active');
+					}
+				} else if(orderState == 3) { //完成
+					if(index == 0 || index == 1) {
+						$(this).addClass('active');
+					}
+				} else if(orderState == 4) { //完成
+					if(index == 0 || index == 1) {
+						$(this).addClass('active');
+					}
+				}
+			});
+		}
+		
+		function loadDelivery(data, index){
+			var nu;
+			if(index == 1) {
+				nu = data.logistics;
+				$('div.block4').find('span.expsc').text(data.logistics_name);
+				$('div.block4').find('span.expsn').text(nu);
+			} else {
+				nu = data.logistics_no;
+			}
+			if (nu == undefined) {
+				return;
+			}
+
+			$.ajax({
+				type: 'GET',
+				url: './sale/order/delivery',
+				data: {"kd_no": nu, "orderNo":orderNo},
+				async:false,
+				success: function(data) {
+					if(index == 1) {
+						$('iframe[name=kuaidi100_order]').attr('src', data.datas);
+					} else if(index == 2) {
+						$('iframe[name=kuaidi100_refund]').attr('src', data.datas);
+					}
+				}
+			});
+		}
+		
+		function setComment(page) {
+			$.ajax({
+				type: 'GET',
+				url: './sale/comment',
+				data: {'orderNo': orderNo, 'back': 0, "page": page, "limit": limit_comment},
+				success: function(data) {
+					if(data.datas && data.datas.length > 0) {
+						for(var i = 0; i < data.datas.length; i++) {
+							var sale_comment = {
+									'id': data.datas[i].id,
+									'type': data.datas[i].type,
+									'content': data.datas[i].content
+							}
+							commentArray[data.datas[i].saleItemSpec.id] = sale_comment;
+						}
+						setBlock5(order);
+						$().pagegenerator(data.lastPage,page);
+					} else {
+						$('div.block5').find('div.cmt').html('');
+					}
+				}
+				
+			});
+		}
+
+		$(".page a:not(.current)").live("click",function(){
+			var page = $(this).attr("class").split("pageid")[1];
+			setComment(parseInt(page));
+		});
+
+		$(".page .nextpage").live("click",function(){
+			var page = $(this).siblings("a.current").attr("class").split(" ")[0].split("pageid")[1];
+			setComment(parseInt(page)+1);
+		});
+		
+		function setBlock3(order) {
+			$('#inp_recipient').val(order.recipient);
+			$('#inp_telephone').val(order.telephone);
+			$('#inp_address').val(order.address);
+			
+			$('#editAddress').click(function() {
+				var reci = $('#inp_recipient').val();
+				var addr = $('#inp_address').val();
+				var telp = $('#inp_telephone').val();
+				if(reci.trim().length == 0 || telp.trim().length == 0) {
+					return;
+				}
+				if(!$().telvalidate(telp)){
+					//"手机号格式不正确";
+					return;
+				}
+				$.ajax({
+					type: 'PUT',
+					url: './sale/order/address',
+					data: {'orderNo': orderNo, 'recipient': reci, 'address': addr, 'telephone': telp},
+					success: function(data) {
+						if(data.success == 0 && data.datas) {
+							order = data.datas;
+							setBlock3(order);
+							setSendItem(order);
+						}
+					}
+				})
+			});
+		}
+		
+		function setBlock5(order) {
+			for(var i = 0; i < order.saleOrderDetails.length-1; i++) {
+				$('div.block5').append($('div.block5').find('div.cmt:eq(0)').clone());
+			}
+			
+			for(var i = 0; i < order.saleOrderDetails.length; i++) {
+				var div_cmt = $('div.block5').find('div.cmt:eq('+i+')');
+				
+				var orderDetail = order.saleOrderDetails[i];
+				var spec = orderDetail.saleItemSpec;
+				var specId = spec.id;
+				
+				div_cmt.find('div.img>img').attr('src', orderDetail.lightItem.avatar);// 品牌
+				div_cmt.find('span.b').text(order.lightShop.brandName);// 品牌
+				div_cmt.find('span.n').text(orderDetail.lightItem.name);// 商品名
+				div_cmt.find('span.s').text(spec.specName);// 规格
+				if(commentArray[specId]) {
+					if(commentArray[specId].type == 1) {
+						div_cmt.find('div[name=spec_comment]').html('好评');
+					} else if(commentArray[specId].type == 2) {
+						div_cmt.find('div[name=spec_comment]').html('中评');
+					} else if(commentArray[specId].type == 3) {
+						div_cmt.find('div[name=spec_comment]').html('差评');
+					}
+					div_cmt.find('div.d').html(commentArray[specId].content);
+				} else {
+					div_cmt.find('div[name=spec_comment]').hide();
+				}
+			}
+		}
+		
+		function setBlock6(refund) {
+			if(refund.refund_type == 1) {
+				$('div.block6').find('td[name=r_type]').html('退货退款');
+			} else if(refund.refund_type == 2) {
+				$('div.block6').find('td[name=r_type]').html('仅退款');
+			}
+			
+			$('div.block6').find('span[name=r_amount]').text(refund.amount);
+			$('div.block6').find('p[name=r_reason]').html(refund.reason);
+			$('div.block6').find('p[name=r_reason_detail]').html(refund.reason_detail);
+			if(refund.img1) {
+				$('div.block6').find('img[name=r_img1]').attr('src', refund.img1);
+			} else {
+				$('div.block6').find('img[name=r_img1]').parent().hide();
+			}
+			if(refund.img2) {
+				$('div.block6').find('img[name=r_img2]').attr('src', refund.img2);
+			} else {
+				$('div.block6').find('img[name=r_img2]').parent().hide();
+			}
+			if(refund.img3) {
+				$('div.block6').find('img[name=r_img3]').attr('src', refund.img3);
+			} else {
+				$('div.block6').find('img[name=r_img3]').parent().hide();
+			}
+			$('div.block6').find('span[name=r_express]').text(refund.logistics_name);
+			$('div.block6').find('span[name=r_express_no]').text(refund.logistics_no);
+
+			loadDelivery(refund, 2);
+		}
+	})
+	</script>
+</body>
+</html>

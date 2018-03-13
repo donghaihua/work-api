@@ -1,0 +1,355 @@
+.acctcont{
+	margin-left: 314px;
+	padding-top: 20px;
+	min-height: 500px;
+}
+
+.acctcont .pf{
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.acctcont .pf th{
+	position: relative;
+	height: 90px;
+	background-color: #303134;
+	color: #fff;
+}
+
+.acctcont .pf th .avatar{
+	left: 45px;
+	top: 15px;
+	position: absolute;
+	width: 52px;
+	height: 52px;
+	line-height: 52px;
+	text-align: center;
+	border-radius: 40px;
+	overflow: hidden;
+	border: 4px solid #c1c2c2;
+}
+
+.acctcont .pf th .avatar img{
+	max-width: 100%;
+	max-height: 100%;
+	vertical-align: middle;
+}
+
+.acctcont .pf th .un{
+	margin-left: 120px;
+	text-align: left;
+	font-size: 20px;
+}
+
+.acctcont .pf td{
+	height: 50px;
+	background-color: #f9f9f9;
+	border-top: 1px solid #9c9c9e;
+}
+
+.acctcont .pf td .icon-play14{
+	position: relative;
+	top: 5px;
+	padding-left: 14px;
+	font-size: 18px;
+}
+
+.acctcont .pf .td1{
+	width: 256px;
+}
+
+.acctcont .pf td.td1>div{
+	width: 116px;
+	text-align: right;
+	font-size: 18px;
+}
+
+.acctcont .pf .td2{
+	width: 312px;
+}
+
+.acctcont .pf .td3{
+	width: 193px;
+	padding-right: 20px;
+	text-align: right;
+}
+
+.acctcont .pf td.td3 input[type=button]{
+	padding: 4px 14px;
+	background-color: #388bc2;
+	color: #fff;
+	border: 3px solid #bed0e7;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+.acctcont .pf td.td3 input[type=button]:hover{
+	background-color: #3267a9;
+}
+
+.acctcont .pf td.td3 a{
+	color: #3267a9;
+	cursor: pointer;
+}
+
+.acctcont .pf td.td3 a:hover{
+	color: #ce4836;
+}
+
+.acctcont .cl{
+	width: 750px;
+	padding: 0px 16px 60px 16px;
+	margin-top: 60px;
+	border-top: 5px solid #0e0f0f;
+	border-radius: 8px;
+	background-color: #f9f9f9;
+}
+
+.acctcont .cl h3{
+	position: relative;
+	margin: -14px auto 0px auto;
+	width: 148px;
+	height: 38px;
+	background-color: #303134;
+	color: #fff;
+	line-height: 38px;
+	text-align: center;
+	font-size: 20px;
+}
+
+.acctcont .cl h3 div{
+	position: absolute;
+	left: -10px;
+	top: 0px;
+	width: 0px;
+	height: 0px;
+	border-top: 9px solid transparent;
+	border-right: 10px solid #0e0f0f;
+}
+
+.acctcont .cl .coupon li{
+	margin: 30px 6px 10px 6px;
+	float: left;
+	position: relative;
+	width: 237px;
+	height: 68px;
+	background-color: #e58555;
+	border-radius: 5px;
+}
+
+.acctcont .cl .coupon li img{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.acctcont .cl .coupon.expiredcoupon li img{
+	display: none;
+}
+
+.acctcont .cl .coupon.expiredcoupon{
+	display: none;
+}
+
+.acctcont .cl .coupon li .disc{
+	position: absolute;
+	top: 10px;
+	color: #fff;
+	width: 46px;
+	text-align: center;
+	font-size: 22px;
+	z-index: 1;
+}
+
+.acctcont .cl .coupon.expiredcoupon li{
+	background: #D5D5D5;
+}
+
+.acctcont .cl .coupon li .cpdetail{
+	position: absolute;
+	color: #fff;
+	left: 56px;
+	top: 6px;
+	font-size: 20px;
+}
+
+.acctcont .cl .coupon li .duedate,
+.acctcont .cl .coupon li .startdate{
+	position: absolute;
+	color: #fff;
+	top: 48px;
+	left: 56px;
+	font-size: 14px;
+}
+
+.acctcont .cl .coupon li .startdate{
+	top: 32px;
+}
+
+.acctcont .cl .coupon li .startdate span,
+.acctcont .cl .coupon li .duedate span{
+	font-size: inherit;
+}
+
+.acctcont .cl .expired{
+	margin-top: 40px;
+	background-color: transparent;
+	color: #3267a9;
+	padding-left: 5px;
+	cursor: pointer;
+}
+
+.acctcont .cl .expired:before{
+	content: "展示";
+}
+
+.acctcont .cl .expired.active:before{
+	content: "收起";
+}
+
+
+.acctcont .cl .expired.inactive{
+	color: #ababab;
+	cursor: default;
+}
+
+.acctcont .cl .expired.inactive:before{
+	content: "暂无";
+}
+
+.acctcont .cl .nocoupon{
+	margin-top: 30px;
+	font-size: 20px;
+	text-align: center;
+}
+
+.etip{
+	position: absolute;
+	right: 60px;
+	margin-top: 10px;
+	color: #e36655;
+	display: none;
+}
+
+.popup{
+	position: absolute;
+	left: 50%;
+	right: 50%;
+	top: 200px;
+	margin-left: -363px;
+	width: 726px;
+	height: 182px;
+	border-top: 5px solid #303134;
+	background-color: #f3f3f3;
+	z-index: 200;
+	box-shadow: 4px 4px 0px 1px rgba(0,0,0,0.1);
+	display: none;
+}
+
+.popup .cancel{
+	position: absolute;
+	top: -20px;
+	left: -18px;
+	width: 36px;
+	height: 36px;
+	border-radius: 20px;
+	opacity: 0.2;
+	background-color: #000;
+	cursor: pointer;
+}
+
+.popup .icon-cross{
+	position: absolute;
+	top: -16px;
+	left: -14px;
+	width: 28px;
+	height: 28px;
+	background-color: #303134;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+.popup .icon-cross:before{
+	position: absolute;
+	font-size: 12px;
+	line-height: 28px;
+	left: 8px;
+	color: #fff;
+}
+
+.popup h3{
+	background-color: #fff;
+	color: #303134;
+	height: 70px;
+	line-height: 70px;
+}
+
+.popup h3 .icon-square{
+	padding-left: 28px;
+	font-size: 20px;
+}
+
+.popup h3 .icon-square:before{
+	position: relative;
+	top: 2px;
+	padding-right: 4px;
+	font-size: 24px;
+}
+
+.popup h3 .tip{
+	position: absolute;
+	left: 160px;
+	color: #e36655;
+}
+
+.popup h3 input[type=button]{
+	position: absolute;
+	right: 38px;
+	top: 18px;
+	width: 110px;
+	height: 36px;
+	color: #fff;
+	background-color: #e36655;
+	cursor: pointer;
+	font-size: 18px;
+}
+
+.popup h3 input[type=button]:hover{
+	background-color: #ce4836;
+}
+
+.popup input[type=text]{
+	width: 526px;
+	height: 48px;
+	border: 1px solid #c5c5c5;
+	margin: 30px 0px 0px 30px;
+	padding: 0px 10px;
+	font-size: 18px;
+}
+
+.cret{
+	margin-top: 30px;
+	border-collapse: separate;
+	border-spacing: 0px;
+	width: 782px;
+}
+
+.cret thead tr{
+	height: 50px;
+	background-color: #303134;
+	color: #fff;
+}
+
+.cret tbody tr{
+	height: 90px;
+	background-color: #f9f9f9;
+}
+
+.cret tbody td{
+	border-bottom: 4px solid #fff;
+	text-align: center;
+}
+
+
+
+

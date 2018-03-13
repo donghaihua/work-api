@@ -1,0 +1,608 @@
+.addrbtn{
+	position: absolute;
+	left: 190px;
+	top: 140px;
+}
+
+.addrbtn:before{
+	content:"展开地址";
+}
+
+.addrbtn.fold:before{
+	content:"折叠地址"
+}
+
+.addrbook .addr{
+	display: none;
+}
+
+.addrbook.active .addr{
+	display: block;
+}
+
+.addrbook .addr.default,
+.addrbook .addr.selected{
+	display: block;
+}
+
+h3{
+	font-size: 22px;
+}
+
+.content{
+	position: relative;
+}
+
+.content .title{
+	float: left;
+	width: 308px;
+	height: 66px;
+	line-height: 66px;
+	background-color: #abcf58;
+	text-align: center;
+	color: #fff;
+	font-size: 28px;
+}
+
+.ordernav{
+	background-color: #000;
+}
+
+.content .step{
+	width: 712px;
+	height: 66px;
+	line-height: 66px;
+	margin-left: 308px;
+	padding: 0px 60px;
+	background-color: #000;
+	color: #fff;
+}
+
+.content .step li{
+	width: 33.3%;
+	float: left;
+	text-align: center;
+}
+
+.content .step li.active{
+	color: #abcf58;
+	cursor: pointer;
+}
+
+.content .step li span{
+	position: relative;
+	top: 5px;
+	font-size: 32px;
+	margin-right: 14px;
+}
+
+.content .step li span:before{
+	font-size: 28px;
+	margin-right: 10px;
+}
+
+.block{
+	position: relative;
+	padding: 30px 109px 0px 109px;
+}
+
+.blockt.active, .block .blockt:hover{
+	background-color: #d5d5d5;
+}
+
+.block h2{
+	height: 40px;
+	padding-left: 15px;
+	color: #fff;
+	background-color: #000;
+	line-height: 40px;
+	position: relative;
+}
+
+.block h2:after{
+	content: "";
+	position: absolute;
+	width: 662px;
+	height: 40px;
+	background-color: #d9d9d9;
+	right: 0;
+	top: 0;
+}
+
+.block h2 span.n{
+	font-size: 33px;
+	font-weight: bold;
+}
+
+.block h2 span.t{
+	position: relative;
+	top: -4px;
+	left: 6px;
+	font-size: 20px;
+}
+
+.block .blockc{
+	padding-top: 30px;
+	display: none;
+}
+
+.block.active .blockc{
+	display: block;
+}
+
+.block .blockc h3{
+	position: absolute;
+	left: 124px;
+}
+
+.block .blockc .checkbox{
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	background-color: #f3f3f3;
+	border: 1px solid #c5c5c5;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.block .blockc .checkbox:before{
+	display: none;
+}
+
+.block .blockc .checkbox.checked{
+	font-size: 22px;
+	color: #fff;
+	background-color: #abcf58;
+	border: 1px solid #abcf58;
+}
+
+.block .blockc .checkbox.checked:before{
+	display: inline;
+}
+
+.block .nextstep{
+	text-align: center;
+}
+
+.block .nextstep input{
+	width: 190px;
+	height: 46px;
+	background-color: #e36655;
+	color: #fff;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.block .nextstep input:hover{
+	background-color: #ce4836;
+}
+
+.block .r{
+	width: 790px;
+	margin-left: 212px;
+	padding-bottom: 30px;
+}
+
+.block1 .addr{
+	margin: 0px 70px 34px 0px;
+}
+
+.block1 .addr .checkbox{
+	cursor: pointer;
+}
+
+.block1 .addr p{
+	margin-left: 38px;
+}
+
+.block1 .addr p.recinfo{
+	height: 22px;
+	line-height: 22px;
+	font-size: 18px;
+}
+
+.block1 .addr p.address{
+	margin-top: 6px;
+	
+	line-height: 22px;
+	color: #6c6c6c;
+}
+
+.block1 .addr p.oper{
+	margin-top: 16px;
+}
+
+.block1 .addr input[name=default]{
+	width: 96px;
+	height: 30px;
+	background-color: #f3f3f3;
+	color: #9c9c9c;
+	display: none;
+}
+
+.block1 .addr input[name=setdefault]{
+	color: #427ac0;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.block1 .addr input[name=setdefault]:hover,
+.block1 .addr input[name=edit]:hover{
+	color: #c25546;
+	background-color: #fff;
+}
+
+.block1 .addr input[name=edit]{
+	margin-left: 18px;
+	color: #427ac0;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.block1 .addr.default input[name=default]{
+	display: inline;
+}
+
+.block1 .addr.default input[name=setdefault]{
+	display: none;
+}
+
+.block1 .newaddress .setnewaddr p{
+	margin-left: 38px;
+	line-height: 22px;
+	font-size: 20px;
+}
+
+.block1 .newaddress .form{
+	display: none;
+	margin-left: 38px;
+	margin-top: 18px;
+}
+
+.block1 .form{
+	position: relative;
+}
+
+.block1 .form p{
+	line-height: 36px;
+}
+
+.block1 .form .input{
+	padding-bottom: 15px;
+}
+
+.block1 .form .input.required p:after{
+	content: "*必填";
+	color:#ababab;
+	font-size:14px;
+	padding-left: 8px;
+}
+
+.block1 .form input{
+	width: 376px;
+	height: 36px;
+	padding: 0 10px;
+	border: 1px solid #c5c5c5;
+	font-size: 18px;
+}
+
+.block1 .form textarea{
+	width: 558px;
+	height: 54px;
+	padding: 5px 10px;
+	border: 1px solid #c5c5c5;
+	resize: none;
+}
+
+.block1 .form select{
+	width: 190px;
+	height: 38px;
+	margin-right: 10px;
+	border: 1px solid #c5c5c5;
+}
+
+.block1 .form .error{
+	position: absolute;
+	margin-top: 2px;
+	left: 102px;
+	font-size: 14px;
+	padding: 8px 30px 8px 8px;
+	color: #fff;
+	background-color: #c25546;
+	border-radius: 5px;
+	display: none;
+}
+
+.block1 .form .error:before{
+	content: "";
+	position: absolute;
+	top: -8px;
+	width: 0px;
+	height: 0px;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 9px solid #c25546;
+}
+
+.block1 .newaddress input[name=newaddr]{
+	margin-top: 15px;
+	width: 200px;
+	height: 46px;
+	color: #fff;
+	background-color: #e36655;
+	font-size: 18px;
+	border: none;
+	cursor: pointer;
+}
+
+.block1 .newaddress input[name=newaddr]:hover{
+	background-color: #ce4836;
+}
+
+.block1 .newaddress .addrerror{
+	padding-left: 0px;
+	line-height: 40px;
+	color: #c25546;
+	display: none;
+}
+
+.block2 select{
+	width: 200px;
+	height: 36px;
+	background-color: #f8f8f8;
+}
+
+.block2 .cashcou{
+	margin-left: 30px;
+}
+
+.block2 .cashcou span{
+	color: #bfdb81;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+.block2 .credit{
+	color: #565656;
+}
+
+.block2 .credit>span{
+	margin-right: 30px;
+}
+
+.block2 .credit .cretot span{
+	color: #bfdb81;
+}
+
+.block2 .credit .creuse input{
+	position: relative;
+	width: 46px;
+	height: 26px;
+	padding: 0px 10px;
+	margin: 0px 4px;
+	border: 1px solid #c5c5c5;
+	font-weight: normal;
+	text-align: center;
+}
+
+.block2 .credit .crecur span{
+	color: #bfdb81;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+.block2 .total{
+	line-height: 26px;
+}
+
+.block2 .total span{
+	color: #bfdb81;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+.block2 .total span.tip{
+	font-size: 14px;
+	color: #ababab;
+}
+
+.block7 .cart{
+	border-collapse: collapse;
+}
+
+.block7 .cart tr{
+	border-bottom: 4px solid #eaeaea;
+}
+
+.block7 .cart tr td{
+	height: 130px;
+}
+
+.block7 .cart th{
+	height: 48px;
+	line-height: 48px;
+	color: #777777;
+	text-align: left;
+}
+
+.block7 .cart th span{
+	margin-left: 15px;
+	font-size: 18px;
+}
+
+.block7 .cart .d1{
+	width: 286px;
+	position: relative;
+}
+
+.block7 .cart .d2{
+	width: 160px;
+}
+
+.block7 .cart .d3{
+	width: 158px;
+}
+
+.block7 .cart .d4{
+	width: 160px;
+}
+
+.block7 .cart .d5{
+	width: 160px;
+}
+
+.block7 .cart .d1 img{
+	position: absolute;
+	top: 20px;
+	max-width: 80px;
+	max-height: 80px;
+}
+
+.block7 .cart .d1 p{
+	margin-left: 97px;
+}
+
+.block7 .cart .d1 p .b{
+	font-size: 18px;
+	line-height: 24px;
+}
+
+.block7 .cart .d1 p .s{
+	font-size: 14px;
+	color: #ababab;
+	background-color: #f3f3f3;
+	color: #303134;
+	padding: 6px 8px;
+	line-height: 34px;
+	border-radius: 20px;
+}
+
+.block7 .cart td.d2 div{
+	padding-left: 5px;
+	font-size: 20px;
+}
+
+.block7 .cart td.d2 span{
+	padding-left: 6px;
+	font-size: 20px;
+}
+
+.block7 .cart td.d3 div{
+	width: 70px;
+	text-align: center;
+	font-size: 20px;
+}
+
+.block7 .cart td.d5 div{
+	width: 70px;
+	text-align: center;
+	color: #e36655;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+.block7 .cart td.d5 div span{
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+.block7 .plus{
+	margin: 20px 0px 20px 650px;
+	text-align: left;
+}
+
+.block7 .plus tr{
+	height: 40px;
+}
+
+.block7 .plus th{
+	width: 112px;
+	font-size: 20px;
+}
+
+.block7 .plus td{
+	color: #e36655;
+}
+
+.block7 .plus td div{
+	font-size: 20px;
+	font-weight: normal;
+}
+
+.block7 .plus td div span{
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+.block7 .plus td .transp{
+	margin-left: 12px;
+}
+
+.block7 .price{
+	position: relative;
+	height: 78px;
+	line-height: 78px;
+	padding-left: 650px;
+	border-top: 4px solid #eaeaea;
+	font-size: 22px;
+}
+
+.block7 .price>span{
+	position: absolute;
+	left: 780px;
+	font-size: 24px;
+	font-weight: normal;
+	color: #e36655;
+}
+
+.block7 .price>span>span{
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+.block7 .memo p{
+	line-height: 54px;
+	font-size: 20px;
+}
+
+.block7 .memo textarea{
+	width: 902px;
+	padding: 10px;
+	font-size: 18px;
+	height: 184px;
+	resize: none;
+	border: 1px solid #c5c5c5;
+}
+
+.block7 .btn{
+	position: relative;
+	margin-top: 30px;
+	height: 46px;
+}
+
+.block7 .btn input{
+	height: 46px;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.block7 .btn input[name=submit]{
+	width: 190px;
+	background-color: #e36655;
+	color: #fff;
+}
+
+.block7 .btn input[name=submit]:hover{
+	background-color: #ce4836;
+}
+
+.block7 .btn input[name=cancel]{
+	margin-left: 20px;
+	width: 100px;
+	background-color: #fff;
+	border: 1px solid #cacaca;
+}
+
+.block7 .btn input[name=cancel]:hover{
+	border-color: #303134;
+}

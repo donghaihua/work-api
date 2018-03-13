@@ -1,0 +1,230 @@
+.container{
+	background-color: #fff;
+	width: 1140px;
+	margin: 0 auto;
+	padding: 5px 0px;
+}
+
+.acctcontent{
+	min-height: 400px;
+}
+
+hr{
+	margin: 30px 0px 20px 26px;
+	height:1px;
+	width: 734px;
+	border:none;
+	border-top:1px dashed #000;
+}
+
+#hr2{
+	margin-bottom: 40px;
+}
+
+div.icon-speech66{
+	position: absolute;
+	margin: -24px 0px 0px 180px;
+	color: #a0484e;
+	font-size: 14px;
+	display: none;
+}
+
+.steptip{
+	position: absolute;
+	top: 44px;
+	left: 210px;
+}
+
+#stepnav{
+	width: 470px;
+	height: 34px;
+	margin-bottom: 30px;
+	position: relative;
+	margin-left: 32px;
+	overflow: hidden;
+}
+
+#stepnav .nav1, #stepnav .nav2, #stepnav .nav3{
+	position: absolute;
+	height: 34px;
+	line-height: 34px;
+	background-color: #dcdcdc;
+	color: #000;
+}
+
+#stepnav .nav1{
+	width: 176px;
+	text-indent: 10%;
+}
+
+#stepnav .nav2{
+	left: 178px;
+	width: 188px;
+	text-indent: 3%;
+}
+
+#stepnav .nav3{
+	left: 368px;
+	width: 100px;
+	text-indent: 4%;
+}
+
+#stepnav .nav1.active, #stepnav .nav2.active, #stepnav .nav3.active{
+	background-color: #87aa66;
+	color: #fff;
+}
+
+#bgbd1, #bgbd2{
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	border-right: 36px solid #f2f0ef;
+	border-top: 36px solid transparent;
+	top: -2px;
+	right: -2px;
+}
+
+#cln2, #cln3{
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	border-right: 34px solid #dcdcdc;
+	border-top: 34px solid transparent;
+	top: 0px;
+	right: -2px;
+}
+
+#cln2.active, #cln3.active{
+	border-right: 34px solid #87aa66;
+}
+
+span.validate{
+	line-height: 70px;
+	margin-left: 32px;
+}
+
+span.validate input{
+	width: 164px;
+	height: 36px;
+	padding: 0px 10px;
+	font-size: 18px;
+	border: 1px solid #fff;
+}
+
+#email{
+	width: 280px;
+}
+
+#captget{
+	width: 148px;
+	height: 48px;
+	margin-left: 40px;
+	background-color: #87aa66;
+	color: #fff;
+	border: 1px solid #87aa66;
+	
+	cursor: pointer;
+}
+
+input.validate.disabled{
+	color: #000;
+	background-color: #dcdcdc;
+	border: 1px solid #dcdcdc;
+	cursor: auto;
+}
+
+input.validate.disabled:hover{
+	color: #000;
+	background-color: #dcdcdc;
+	border: 1px solid #dcdcdc;
+}
+
+input.validate:hover{
+	background-color: #f2f0ef;
+	color: #87aa66;
+}
+
+form p{
+	position: relative;
+	line-height: 50px;
+	height: 50px;
+	width: 160px;
+	text-align: right;
+}
+
+#capt, #capti{
+	position: absolute;
+	top: 6px;
+	left: 176px;
+	width: 100px;
+	height: 34px;
+	background-color: #fff;
+	
+	padding: 0px 10px;
+}
+
+form p img{
+	position: absolute;
+	top: 2px;
+	left: 310px;
+	height: 34px;
+	line-height: 34px;
+	cursor: pointer;
+}
+
+#captchange{
+	position: absolute;
+	margin: 14px 0px 0px 90px;
+	width: 120px;
+	height: 20px;
+	font-size: 14px;
+	color: #117292;
+	top: 6px;
+	left: 346px;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+#submit, #cancel{
+	width: 152px;
+	height: 50px;
+	font-size: 18px;
+	border: 1px solid #87aa66;
+	border-radius: 5px;
+	background-color: #87aa66;
+	color: #fff;
+	cursor: pointer;
+}
+
+#submit:hover, #cancel:hover{
+	color: #87aa66;
+	background-color: #f2f0ef;
+}
+
+#submit{
+	margin: 30px 0px 0px 176px;
+}
+
+#cancel{
+	margin-left: 20px;
+}
+
+.success{
+	font-size: 20px;
+	padding-left: 32px;
+	line-height: 200px;
+	height: 200px;
+}
+
+.success a{
+	color: #6b9aae;
+	cursor: pointer;
+}
+
+#tel.correct, #email.correct, #capt.correct, #capti.correct, #pwd.correct, #pwd2.correct{
+	border: 1px solid #87aa66;
+}
+
+#tel.wrong, #email.wrong, #capt.wrong, #capti.wrong, #pwd.wrong, #pwd2.wrong{
+	border: 1px solid #a0484e;
+}

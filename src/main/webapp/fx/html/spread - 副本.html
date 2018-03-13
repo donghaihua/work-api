@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>推广</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=no, email=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="../icomoon/style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/jquery-1.11.0.min.js"></script>
+</head>
+
+<body class="">
+  <div class="md">
+    <div class="header"><span class="goback"><a href="shop-index.html"><i class="icon-back"></i></a></span>推广页</div>
+  </div>
+  <div class="spread-body">
+    <div class="spread-div">
+      <div class="photo"><img src="../images/touxiang.jpg"></div>
+      <div class="spread-name">
+        <p></p>
+      </div>
+      <div class="spread-QR-wrapper">
+        <div class="spread-QR-name">
+          <p>扫一扫，自己开店</p>
+        </div>
+        <div class="spread-QR"></div>
+        <div id="code" class="qrcode"></div>
+      </div>
+      <img src="../images/spread.jpg" />
+    </div>
+  </div>
+</body>
+<script src="../../js/jquery.qrcode.min.js"></script>
+<script>
+$(document).ready(function() {
+  var shortUrl = 'http://w.url.cn/s/AACx9V7';
+  $("#code").qrcode({
+    text: shortUrl
+  });
+
+  function convertCanvasToImage(canvas) {
+    var image = new Image();
+    image.src = canvas.toDataURL("image/png");
+    return image;
+  }
+  var img = convertCanvasToImage($('#code canvas').get(0));
+  $('#code').get(0).appendChild(img);
+
+  /*$.ajax({
+  	type: 'GET',
+  	url: '../../uiserver/distribution/getSpreadUrl',
+  	//data: {"shopId" : shopId},
+  	async: false,
+  	cache: false,
+  	success: function(res) {
+  		if(res.success == 0) {
+  			var shortUrl = res.shortUrl;
+  			$("#code").qrcode({width: 300, height: 300, text: shortUrl});
+  			$('div.photo > img').attr('src', res.avatar);
+  			$('div.spread-name > p').html('我是'+ res.fullname +'，我为微店代言');
+  		}
+  		console.log(res);
+  	}
+
+  });*/
+});
+</script>
+
+</html>

@@ -1,0 +1,194 @@
+.acctcont{
+	margin-left: 288px;
+	min-height: 500px;
+}
+
+.acctcont .block1{
+	position: relative;
+	height: 76px;
+	line-height: 76px;
+}
+
+.acctcont .block1 .b1t{
+	font-size: 20px;
+	padding: 0px 20px 0px 36px;
+}
+
+.acctcont .block1 .b1s{
+	position: absolute;
+	top: 22px;
+	left: 134px;
+	width: 88px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	background-color: #000;
+	color: #fff;
+	border-radius: 5px;
+}
+
+#sinput{
+	position: absolute;
+	left: 308px;
+	top: 21px;
+	width: 386px;
+	height: 34px;
+	padding: 0 10px;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	border: 1px solid #cbcbcc;
+}
+
+#sbtn{
+	position: absolute;
+	left: 714px;
+	top: 21px;
+	width: 88px;
+	height: 36px;
+	color: #fff;
+	background-color: #303134;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.block2{
+	margin-bottom: 28px;
+	width: 800px;
+	height: 42px;
+	line-height: 42px;
+	border: 4px solid #c9c9c9;
+	border-radius: 5px;
+}
+
+.block2 .b21{
+	padding: 0px 212px 0px 36px;
+}
+
+.block2 .b22{
+	padding-right: 88px;
+}
+
+.block2 .b23{
+	padding-right: 82px;
+}
+
+.block2 .b24{
+	padding-right: 122px;
+}
+
+.order .ordert{
+	width: 808px;
+	height: 44px;
+	line-height: 44px;
+	background-color: #e2e2e2;
+}
+
+.order .ordert .date{
+	padding: 0px 56px 0px 36px;
+	font-weight: normal;
+}
+
+.order .ordert .no{
+	font-weight: bold;
+}
+
+.order table{
+	border-collapse: collapse;
+	background-color: #f9f9f9;
+}
+
+.order table tr td{
+	height: 108px;
+}
+
+.order table .td1{
+	position: relative;
+	width: 312px;
+}
+
+.order table .td1 img{
+	position: absolute;
+	top: 22px;
+	left: 15px;
+	max-width: 64px;
+	max-height: 64px;
+}
+
+.order table .td1>div{
+	margin-left: 94px;
+}
+
+.order table .td1>div span{
+	
+}
+
+.order table .td1>div .b{
+	font-size: 18px;
+	line-height: 24px;
+}
+
+.order table .td1>div .s{
+	padding: 2px 8px;
+	line-height: 34px;
+	background-color: #e2e2e2;
+	border-radius: 10px;
+}
+
+.order table .td2{
+	width: 134px;
+	font-weight: normal;
+}
+
+.order table .td2 span{
+	font-weight: inherit;
+}
+
+.order table .td3{
+	width: 110px;
+}
+
+.order table .td4{
+	width: 144px;
+}
+
+.order table .td4>div{
+	font-weight: normal;
+	line-height: 24px;
+}
+
+.order table .td4>div .tp{
+	font-weight: inherit;
+}
+
+.order table .td4>div .su{
+	color:#5e5e5e;
+}
+
+.order table .td5{
+	width: 108px;
+}
+
+.order table .td5 input{
+	width: 100px;
+	height: 44px;
+	background-color: #e36655;
+	color: #fff;
+	cursor: pointer;
+}
+
+.order table .td5 input:hover{
+	background-color: #ce4836;
+}
+
+.order table .td5 input:first-child{
+	border-bottom: 1px solid #ce4836;
+}
+
+.pager{
+	margin-right: 44px;
+}
+
+
+
+
+

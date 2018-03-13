@@ -1,0 +1,104 @@
+h2{
+	height: 3.38rem;
+	line-height: 3.38rem;
+	background-color: #303134;
+	color: #fff;
+	text-align: center;
+	font-size: 1.15rem;
+	padding: 0px;
+}
+
+h2 span{
+	position: relative;
+	top: -0.12rem;
+	color: #e36655;
+	font-size: 0.77rem;
+}
+
+h2 span:first-child{
+	padding-right: 10px;
+}
+
+h2 span:nth-child(2){
+	padding-right: 4px;
+}
+
+h2 span:nth-child(3){
+	padding-left: 4px;
+}
+
+h2 span:nth-child(4){
+	padding-left: 10px;
+}
+
+ul.slides{
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+img.banner{
+	max-width: 100%;
+}
+
+.block4h{
+	position: relative;
+	height: 4.07rem;
+	background-color: #f7f7f7;
+	border-top: 1px solid #c5c5c5;
+	border-bottom: 1px solid #c5c5c5;
+}
+
+.block4h .brand, .block4h .series div{
+	display: inline-block;
+	height: 4.07rem;
+	line-height: 4.07rem;
+	text-align: center;
+	font-size: 1.23rem;
+}
+
+.block4h .brand{
+	width: 225px;
+	max-width: 35%;
+}
+
+.block4h .series{
+	position: absolute;
+	max-width: 60%;
+	top: 0px;
+	right: 3%;
+}
+
+.block4h .series div{
+	width: 98px;
+	max-width: 23%;
+	color: #757373;
+}
+
+.block4h .series div.active{
+	background-color: #e36655;
+	color: #fff;
+}
+
+.block4b{
+	padding: 17px 0px;
+}
+
+.block4b .ilhtml{
+	width: 92%;
+	height: 2.54rem;
+	margin: 1rem 0 2.3rem 0;
+	font-size: 1rem;
+	display: block;
+	margin: 0 auto;
+}
+
+.block4b>input[type=button]{
+	margin-top: -15px;
+}
+
+
+
+
+
+

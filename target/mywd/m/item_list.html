@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>商品系列</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/itemlist.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="shadow">
+	</div>
+	<div class="addtocart">
+		<div class="t">选择规格</div>
+		<div class="speclist">
+			<!-- <div class="active">
+				<div class="s">1L</div>
+				<div class="dp">&yen;20</div>
+			</div>
+			<div>
+				<div class="s">1.5L</div>
+				<div class="dp">&yen;2000</div>
+			</div> -->
+		</div>
+		<div class="clear"></div>
+		<div class="t">选择数量</div>
+		<div class="quantt">
+			<div class="plus">+</div>
+			<input type="text" value="1">
+			<div class="minus">&ndash;</div>
+		</div>
+		<div class="clear"></div>
+		<div class="btn">
+			<input type="button" name="cancel" value="取消">
+			<input type="button" name="addtc" value="加入购物车">
+		</div>
+	</div>
+	<header>
+		<div class="stick">
+			<div class="title">
+				商品系列
+			</div>
+		</div>
+	</header>
+	<div class="box content main">
+		<div class="itemlist">
+			<!-- <div class="item">
+				<div class="gp">特惠</div>
+				<img class="itemimg" src="img/itemimg.png" alt="img">
+				<p class="n">红天果食系列冷压榨特级初榨茶籽油</p>
+				<p class="p">
+					<span class="dp">&yen;2000</span>
+					<span class="op">市场价&yen;3900</span>
+				</p>
+				<input class="red" type="button" value="加入购物车">
+			</div> -->
+		</div>
+		<div class="nextpage">
+			<button>点击加载下一页</button>
+		</div>
+	</div>
+	<footer class="box">
+		<div class="ws">UHAOU.CN</div>
+		<div class="cr">&copy;2015 uhao.cn<br><a href="http://www.miitbeian.gov.cn/">苏ICP备15001958号-1</a></div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var url = window.location.search;
+		var nameDA = [];
+		nameDA[0] = {
+			"key": null,
+			"option": null,
+			"val": null,
+			"page": 1,
+			"limit": 5
+		};
+		if(url.split('?val=')[1]) {
+			var itemName = decodeURI(decodeURI(url.split('?val=')[1]));
+			if (itemName) {
+				nameDA[0].key = "name";
+				nameDA[0].option = 1;
+				nameDA[0].val = itemName;
+				$(".sesearch input[name=seinput]").val(itemName);
+				itemSearch(1, nameDA);
+			}
+		}else{
+			itemSearch(1, nameDA);
+		}
+
+
+		function itemSearch(page, dataArray){
+			dataArray[0].page = page;
+			$.ajax({
+				type: "POST",
+				dataType: "json",      
+				contentType : 'application/json',
+				url: '../sale/item/search',
+				data: JSON.stringify(dataArray),
+				success: function(data) {
+					if (data.success == 0) {
+						var str = "";
+						if (data.datas.length == 0) {
+							$(".nextpage").hide();
+						}else{
+							for (var i = 0; i < data.datas.length; i++) {
+
+								if(data.datas[i].minDiscountPrice == data.datas[i].minOriginalPrice
+										|| !data.datas[i].minDiscountPrice) {
+									str += '<div class="item" data-itemid="'+data.datas[i].id+'">'
+											+'<a href="item/'+ data.datas[i].id +'.html">'
+											+'<img class="itemimg" src="'+data.datas[i].avatar+'" alt="img">'
+											+'<p class="n">'+data.datas[i].name+'</p>'
+											+'<p class="p">'
+											+'<span class="dp">&yen;'+data.datas[i].minOriginalPrice+'</span>'
+											+'</p>'
+											+'</a>'
+											+'<button class="red">加入购物车</button>'
+											+'</div>';
+								} else {
+									str += '<div class="item" data-itemid="'+data.datas[i].id+'">'
+											+'<a href="item/'+ data.datas[i].id +'.html">'
+											+'<div class="gp">特惠</div>'
+											+'<img class="itemimg" src="'+data.datas[i].avatar+'" alt="img">'
+											+'<p class="n">'+data.datas[i].name+'</p>'
+											+'<p class="p">'
+											+'<span class="dp">&yen;'+data.datas[i].minDiscountPrice+'</span>'
+											+'<span class="op">市场价&yen;'+data.datas[i].minOriginalPrice+'</span>'
+											+'</p>'
+											+'</a>'
+											+'<button class="red">加入购物车</button>'
+											+'</div>';
+								}
+								
+							}
+							$(".itemlist").empty().append(str);
+							if(page == data.lastPage) {
+								$(".nextpage").hide();
+							}
+						}
+					}
+				}
+			});
+		}
+		var listPage = 1;
+		//itemSearch(listPage, nameDA);
+		$(".nextpage button").click(function(){
+			listPage++;
+			itemSearch(listPage, nameDA);
+		});
+
+		$(".item button").removeAttr("disabled");
+		$(".item button").live("click",function(){
+			$(this).attr("disabled","disabled");
+			var itemid = $(this).parents(".item").attr("data-itemid");
+			$.ajax({
+				type:"GET",
+				data:{"itemId":itemid},
+				url:"../sale/itemSpec",
+				success:function(jsondata){
+					if (jsondata.success == 0) {
+						$(".addtocart .quantt input[type=text]").val(1);
+						$(".addtocart .speclist").parents("tr").remove();
+						$(".addtocart").attr("data-itemid",itemid);
+
+						$(".addtocart .speclist").html('');
+						for (var i = 0; i < jsondata.datas.length; i++) {
+							var spec = jsondata.datas[i];
+							var str = '<div class="spec" data-specid="'+spec.id+'">'
+											+'<div class="s">'+spec.specName+'</div>'
+											+'<div class="dp">&yen;'+spec.discountPrice+'</div>'
+										+'</div>';
+							$(".addtocart .speclist").append(str);
+						}
+
+						$(".addtocart .spec:eq(0)").addClass("active");
+
+						$(".shadow, .addtocart").show();
+					}
+				}
+			});	
+			$(this).removeAttr("disabled","disabled");
+		});
+		
+		$(".addtocart").click(function(){
+			
+		});
+
+		$(".addtocart .spec").live('click',function(){
+			$(".addtocart .spec").removeClass("active");
+			$(this).addClass("active");
+			$(".addtocart .quantt input[type=text]").blur();
+		});
+
+		$(".addtocart .quantt input[type=text]").blur(function(){
+			if (isNaN($(this).val())) {
+				$(this).val("1");
+			}else if($(this).val() <= 0){
+				$(this).val("1");
+			}else if(parseInt($(this).val()) != $(this).val()){
+				$(this).val(parseInt($(this).val()));
+			}
+
+			var inventory;
+
+			$.ajax({
+				type:"get",
+				data:{
+					"specId":$(".addtocart .spec.active").attr("data-specid"),
+				},
+				url:"../sale/item/inventory",
+				success:function(data){
+					if (data.success == 0) {
+						inventory = data.inventory;
+					}
+				}
+			});
+
+			if ($(this).val() >= inventory) {
+				$(this).val(inventory);
+			}
+
+			if($(this).val()>99){
+				$(this).val(99);
+			}
+		});
+
+		$(".addtocart .quantt .plus").click(function(){
+			var quantt = $(this).siblings("input");
+			quantt.val(Number(quantt.val())+1);
+			quantt.blur();
+		});
+
+		$(".addtocart .quantt .minus").click(function(){
+			var quantt = $(this).siblings("input");
+			quantt.val(Number(quantt.val())-1);
+			quantt.blur();
+		});
+
+		$(".addtocart input[name=cancel]").click(function(){
+			$(".addtocart, .shadow").hide();
+		});
+
+		var url = window.location.search;
+		var shopId;
+		if(url.match('shopId=')) {
+			shopId = url.split('shopId=')[1];
+			if(shopId.match('&')) {
+				shopId = shopId.substring(0, shopId.indexOf('&'));
+			}
+		} else {
+			shopId = 1;
+		}
+
+		$(".addtocart input[name=addtc]").removeAttr("disabled");
+		$(".addtocart input[name=addtc]").click(function(){
+			$(this).attr("disabled","disabled");
+			var itemid = $(".addtocart").attr("data-itemid");
+			var specid = $(".addtocart .spec.active").attr("data-specid");
+			var quantity = $(".addtocart .quantt input[type=text]").val();
+			var cartpost = {
+				"shop": {"id":shopId},
+				"lightItem":{"id":itemid},
+				"saleItemSpec":{"id":specid},
+				"quantity":quantity
+			};
+			//console.log(cartpost);
+			$.ajax({
+				type:"post",
+				data:JSON.stringify(cartpost),
+				contentType: 'application/json',
+				dataType: 'json',
+				async:false,
+				cache:false,
+				url:"../sale/cart",
+				success:function(data){
+					if (data.success == 0) {
+						$(".addtocart input[name=addtc]").removeAttr("disabled");
+						$(".addtocart input[name=cancel]").click();
+						$().cartpost(itemid,specid,quantity);
+						$().ddcartlistt();
+						$().mcart();
+
+					} else if(data.success == 55) {
+						$(".addtocart input[name=addtc]").removeAttr("disabled");
+						alert('库存不足，无法加入购物车');
+					}
+				}
+			});
+		});
+	});
+	</script>
+</body>
+</html>

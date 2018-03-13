@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance http://www.springmodules.org/schema/cache/springmodules-cache.xsd"
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+		 version="3.0" metadata-complete="true">
+
+	<display-name>Copied Created Web Application</display-name>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:app-context.xml, classpath:app-task.xml
+		</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+ 	</listener>
+
+	<filter>
+		<filter-name>SetCharacterEncoding</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<async-supported>true</async-supported>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SetCharacterEncoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>mvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				classpath:mvc-config.xml
+			</param-value>
+		</init-param>
+		<multipart-config>
+			<!-- <location>/tmp</location> -->
+			<max-file-size>10485760</max-file-size><!--10MB -->
+			<max-request-size>31457280</max-request-size><!--30MB -->
+			<file-size-threshold>0</file-size-threshold>
+		</multipart-config>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>mvc</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+
+
+
+
+	<!--
+        <filter>
+            <filter-name>shiroFilter</filter-name>
+            <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+            <init-param>
+                <param-name>targetFilterLifecycle</param-name>
+                <param-value>true</param-value>
+            </init-param>
+        </filter>
+        <filter-mapping>
+            <filter-name>shiroFilter</filter-name>
+            <url-pattern>*.htm</url-pattern>
+        </filter-mapping>
+    -->
+<!--
+	<filter>
+		<filter-name>tokenFilter</filter-name>
+		<filter-class>com.tenmaker.pansheng.filter.TokenFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>tokenFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>-->
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+	<welcome-file-list>
+		<welcome-file>/index.html</welcome-file>
+	</welcome-file-list>
+</web-app>

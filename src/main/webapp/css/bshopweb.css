@@ -1,0 +1,521 @@
+#content{
+	padding-top: 30px;
+}
+
+.shadow{
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 3300px;
+	background-color: #000;
+	opacity: 0.4;
+	z-index: 1;
+}
+
+.boardtip{
+	position: absolute;
+	top: 28px;
+	left: 194px;
+}
+
+.addbtn{
+	position: absolute;
+	top: 22px;
+	right: 44px;
+	min-width: 72px;
+	padding: 0px 12px;
+	height: 30px;
+}
+
+.cates{
+	margin: 0px -10px;
+}
+
+.uploadl{
+	position: relative;
+	height: 38px;
+	margin-top: 20px;
+	line-height: 38px;
+	background-color: #f3f3f3;
+}
+
+.cates .uploadl{
+	float: left;
+	position: relative;
+	width: 410px;
+	height: 38px;
+	margin: 20px 10px 0px 10px;
+	line-height: 38px;
+}
+
+.uploadl input{
+	position: absolute;
+	width: 352px;
+	height: 38px;
+	padding-left: 14px;
+	color: #5e5e5e;
+	font-size: 18px;
+	background-color: transparent;
+}
+
+.uploadl .icon-delete{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 38px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	color: #fff;
+	background-color: #e36655;
+	border-left: #cacaca;
+	font-size: 22px;
+	cursor: pointer;
+}
+
+.uploadl .icon-delete:hover{
+	background-color: #ce4836;
+}
+
+.uploadl span{
+	margin-left: 16px;
+}
+
+.btn{
+	margin-bottom: 30px;
+}
+
+.btn .errortip{
+	font-size: 14px;
+	display: none;
+	padding-bottom: 15px;
+	color: #c25546;
+}
+
+.btn.error .errortip{
+	display: block;
+}
+
+.btn .redl{
+	height: 60px;
+}
+
+.newcert{
+	display: none;
+	position: fixed;
+	width: 800px;
+	height: 250px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	margin: auto;
+	padding: 36px 30px 58px 30px;
+	background-color: #fff;
+	border-top: 4px solid #303134;
+	box-shadow: 5px 5px 1px 1px rgba(0,0,0,0.1);
+	z-index: 1;
+}
+
+.newcert .failuremsg, .newcert .nullmsg{
+	position: absolute;
+	color: #a04545;
+	display: none;
+}
+
+.newcert .uploadingmsg{
+	position: absolute;
+	color: #87aa66;
+	display: none;
+}
+
+.newcert .certtitle{
+	color: #2b2b2b;
+	
+}
+
+.newcert .certt{
+	width: 780px;
+	height: 44px;
+	margin-top: 10px;
+	padding: 0 10px;
+	border: 1px solid #cacaca;
+	font-size: 18px;
+}
+
+.newcert .certf{
+	display: none;
+}
+
+.newcert .certb{
+	position: relative;
+	width: 670px;
+	height: 44px;
+	line-height: 44px;
+	margin: 30px 0px 60px 0px;
+	padding: 0px 120px 0px 10px;
+	background-color: #f3f3f3;
+	border: 1px solid #f3f3f3;
+}
+
+.newcert .certb input{
+	position: absolute;
+	right: 12px;
+	top: 7px;
+	width: 94px;
+	height: 30px;
+	border: 1px solid #e36655;
+	background-color: #e36655;
+	color: #fff;
+	
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.newcert .certb input:hover{
+	background-color: #ce4836;
+}
+
+.newcert .certsubmit, .newcert .certcancel{
+	position: absolute;
+	width: 134px;
+	height: 44px;
+	color:#fff;
+	font-size: 20px;
+	background-color: #e36655;
+	border: 1px solid #e36655;
+	cursor: pointer;
+}
+
+.newcert .certsubmit{
+	right: 196px;
+}
+
+.newcert .certcancel{
+	right: 30px;
+}
+
+.newcert .certsubmit:hover, .newcert .certcancel:hover{
+	background-color: #ce4836;
+}
+
+.newcate{
+	position: relative;
+	margin-top: 20px;
+	margin-right: 102px;
+	height: 40px;
+}
+
+.newcate input[type=text]{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	padding: 0px 10px;
+	border: 1px solid #cacaca;
+	height: 38px;
+	font-size: 18px;
+}
+
+.newcate input[type=button]{
+	position: absolute;
+	top: 0px;
+	right: -102px;
+	background-color: #e36655;
+	width: 80px;
+	height: 40px;
+	color: #fff;
+	font-size: 20px;
+}
+
+.newcate input[type=button]:hover{
+	background-color: #ce4836;
+}
+
+.services{
+	margin: 0px -15px;
+}
+
+.services>div{
+	float: left;
+	padding: 30px 15px 0px 15px;
+}
+
+.services table{
+	border-collapse: separate;
+	border-spacing: 1px;
+	font-size: 18px;
+}
+
+.services table tr{
+	height: 46px;
+}
+
+.services table th{
+	width: 100px;
+	text-align: center;
+}
+
+.services table thead td{
+	width: 302px;
+}
+
+.services table tbody td{
+	width: 282px;
+	padding: 0px 10px;
+}
+
+.services table thead tr{
+	color: #fff;
+	background-color: #303134;
+}
+
+.services input[type=button]{
+	float: right;
+	background-color: #e36655;
+	color: #fff;
+	width: 88px;
+	font-size: 20px;
+	cursor: pointer;
+	height: 46px;
+}
+
+.services input.edit, .services input.save{
+	border-right: 1px solid #ce4836;
+}
+
+.services input.save{
+	display: none;
+}
+
+.services table.active input.save{
+	display: inline;
+}
+
+.services table.active input.edit{
+	display: none;
+}
+
+.services input[type=button]:hover{
+	background-color: #ce4836;
+}
+
+.services table tbody tr{
+	background-color: #f3f3f3;
+}
+
+.services table tbody td input{
+	width: 100%;
+	height: 46px;
+	margin: 0px -10px;
+	padding: 0px 10px;
+	font-size: 18px;
+	background-color: #e2e2e2;
+}
+
+.services table tbody td input[disabled=disabled]{
+	background-color: #f3f3f3;
+}
+
+.shopset{
+	padding: 38px 40px;
+}
+
+.shopset>div{
+	position: relative;
+	height: 72px;
+	line-height: 72px;
+	border-top: 1px solid #d4d4d4;
+}
+
+.shopset>div>span.ssett{
+	padding: 8px 16px 8px 18px;
+	color: #fff;
+	border-top-left-radius: 18px;
+	border-bottom-left-radius: 18px;
+	
+}
+
+.shopset>div.shopd{
+	border-bottom: 1px solid #d4d4d4;
+}
+
+.shopset>div.shopb>span.ssett{
+	background-color: #617589;
+}
+
+.shopset>div.shopn>span.ssett{
+	background-color: #9ba59d;
+}
+
+.shopset>div.shopd>span.ssett{
+	background-color: #c35817;
+}
+
+.shopset>div.topbran>span.toptitle{
+	border-left: 1px solid #d4d4d4;
+	padding: 27px 20px;
+}
+
+.shopset>div>input{
+	position: relative;
+	padding: 0px 20px;
+	width: 580px;
+	top: 0px;
+	height: 72px;
+	border-left: 1px solid #d4d4d4;
+}
+
+.logoset input[type=file]{
+	display: none;
+}
+
+.logoset .logoname{
+	margin-top: 30px;
+	color: #5e5e5e;
+	height: 38px;
+	line-height: 38px;
+	padding-left: 14px;
+	background-color: #f3f3f3;
+}
+
+.seoset>div,.infoset>div{
+	margin: 20px 0px 10px 0px;
+}
+
+.infoset .input p{
+	padding: 20px 0px 10px 0px;
+}
+
+.infoset .uploadbtn{
+	display: none;
+}
+
+.infoset .input .errortip{
+	padding-top: 10px;
+	font-size: 14px;
+	color: #c25546;
+	display: none;
+}
+
+.infoset .input.error .errortip{
+	display: block;
+}
+
+.seoset textarea, .infoset input[type=text], .seoset input[type=text]{
+	border: 1px solid #d4d4d4;
+	resize: none;
+	padding: 10px;
+	width: 818px;
+	height: 94px;
+}
+
+.infoset input[type=text], .seoset input[type=text]{
+	padding: 0px 10px;
+	height: 46px;
+}
+
+.infoset .img{
+	width: 164px;
+	height: 164px;
+	border: 1px solid #d4d4d4;
+}
+
+.infoset .img img{
+	width: 100%;
+	height: 100%;
+}
+
+.infoset .bluer{
+	margin-left: 44px;
+	min-width: 72px;
+	padding: 0px 12px;
+	height: 30px;
+}
+
+.indexslider section{
+	position: relative;
+	padding-top: 15px;
+	margin-bottom: 20px;
+}
+
+.indexslider section.editsection{
+	margin: 10px 0;
+	background-color: #e8e8e8;
+	border-radius: 4px;
+	padding: 10px;
+	/* display: none; */
+}
+
+.indexslider section.editsection .save{
+	right: 0;
+}
+
+.indexslider section.editsection dt{
+	padding: 10px 0px 5px 0px;
+}
+
+.indexslider section.editsection dd{
+	line-height: 36px;
+	height: 36px;
+	background: #fff;
+	padding: 0 10px;
+}
+
+.indexslider input[type=button]{
+	position: absolute;
+	top: 8px;
+	right: 62px;
+	padding: 0 10px;
+	height: 26px;
+	background-color: #e36655;
+	color: #fff;
+	cursor: pointer;
+}
+
+.indexslider input[type=button].delete{
+	right: 0px;
+}
+
+.indexslider section p{
+	padding-left:10px;;
+	position: relative;
+	height: 38px;
+	margin-top: 10px;
+	line-height: 38px;
+	background-color: #f3f3f3;
+	font-size: 14px;
+}
+
+.indexslider section.editsection input[type=file]{
+	display: none;	
+}
+
+.indexslider section.editsection .imgselect{
+	color: #388bc2;
+	font-size: 14px;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+.indexslider section.editsection dd{
+	position: relative;
+}
+
+.indexslider section.editsection dd input[type=text]{
+	width: 100%;
+	height: 100%;
+}
+
+.indexslider section.editsection .imgupload{
+	padding: 0 10px;
+	height: 36px;
+	line-height: 36px;
+	background-color: #e36655;
+	color: #fff;
+	position:absolute;
+	top:0px;
+	right: 0px;
+	cursor: pointer;
+}
+

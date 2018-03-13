@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>退货详情</title>
+		<link rel="stylesheet" type="text/css" href="css/global.css">
+		<link rel="stylesheet" href="css/refunddetail.css">
+		<!-- ICON Files -->
+		<link rel="shortcut icon" href="ico/favicon.ico">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+		<script type="text/javascript">
+			var url = window.location.href;
+			var url_array = url.split('cn');
+			var final_url = url_array[1];
+			console.log(url_array);
+			//平台、设备和操作系统   
+			var system ={  
+				win : false,  
+				mac : false,  
+				xll : false  
+			};  
+			//检测平台   
+			var p = navigator.platform;  
+			//console.log(p);  
+			system.win = p.indexOf("Win") == 0;
+			system.mac = p.indexOf("Mac") == 0;
+			system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+			//跳转语句
+			if(system.win || system.mac || system.xll) { //转向电脑端
+				if(final_url.length == 0) {
+					console.log(url_array[0] + "cn/m/index.html");
+					window.location.href = url_array[0] + "cn/m/index.html";
+				} else if(final_url.indexOf("/m/") == 0) {
+					final_url = final_url.split('m/')[1];
+					console.log(url_array[0] + "cn/" + final_url);
+					window.location.href = url_array[0] + "cn/" + final_url;
+				}
+			} else {  // 转向手机端
+				if(final_url.indexOf("/m/") == -1) {
+					console.log(url_array[0] + "cn/m" + final_url);
+					window.location.href = url_array[0] + "cn/m" + final_url;
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<header class="removecart">
+			<div class="stick">
+				<div class="title">
+					<a>订单管理</a>
+					<a class="active">我的账户</a>
+				</div>
+			</div>
+		</header>
+		<div class="box content main">
+			<div class="top">
+				<h4>退货流程</h4>
+				<img src="img/tria.png" alt="triangle">
+			</div>
+			<div class="state">
+				<div class="state_act">买家申请退货</div>
+				<div>退货申请处理</div>
+				<div>退货完成</div>
+			</div>
+			<div class="orderinfo">
+				<span class="info_number" id="order_no">编号：860185917824494</span>
+				<span class="info_date">2014-09-14</span>
+			</div>
+			<div class="fill_in">
+				<div id="result">
+					<h5>退货结果</h5>
+
+				</div>
+				<div>
+					<h5>是否退货</h5>
+					<div>
+						<input type="radio" r_index="1" name="radio" checked /><span class="radiodescribe">退货退款</span>
+						<input type="radio" r_index="2" name="radio" /><span class="radiodescribe">仅退款</span>
+						<input id="refund_type" type="hidden">
+					</div>
+				</div>
+				<div>
+					<h5>退款金额</h5>
+					<div>
+					<input type="text" class="rejectmoney" id="amount" /><span class="yuan">元</span>
+					<span class="textdescribe" id="order_total"></span>
+					</div>
+				</div>
+				<div id="deliveryDiv">
+					<h5>退货物流</h5>
+					<div>
+						<select id="logistics_name">
+
+						</select>
+						<input type="text" class="logistics_number" id="logistics_number" placeholder="物流单号"/>
+					</div>
+				</div>
+				<div>
+					<h5>退货原因</h5>
+					<div>
+						<select id="reason">
+							<option>其他</option>
+							<option>商品与实物不符</option>
+							<option>缺货</option>
+							<option>订单信息错误</option>
+							<option>发票问题</option>
+							<option>七天无理由退货</option>
+							<option>未收到货</option>
+							<option>收到商品破损</option>
+							<option>商品错发漏发</option>
+							<option>商品质量问题</option>
+						</select>
+						<textarea id="reason_detail"></textarea>
+					</div>
+				</div>
+				<div>
+					<h5>
+						<iframe id='frameFilec' name='frameFilec' style='display: none;'></iframe>
+							<form id="imgUpload1" method="post" action="../sale/order/refund/upload" enctype="multipart/form-data" target='frameFilec'>
+								<button type="button">选择图片</button>
+								<input name="file_img" type="file"><br>
+							</form>
+						<!-- <input type="file">
+						<button type="button" id="imgselect">选择图片</button> -->
+					</h5>
+					<div>
+						<div class="place_picture"><img id="img1" /></div>
+						
+					</div>
+				</div>
+				<button type="button" id="sbmt">提交退货申请</button>
+			</div>
+		</div>
+		<footer class="box">
+			<div class="ws">UHAOU.CN</div>
+			<div class="cr">&copy;2015 uhao.cn
+				<br><a href="http://www.miitbeian.gov.cn/">苏ICP备15001958号-1</a></div>
+		</footer>
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/general.js"></script>
+		<script type="text/javascript">
+			var curr_fileImg = 1;
+			$(function(){
+				
+				
+				$(".fill_in>div>div>input[type=radio]").click(function(){
+					$(".fill_in>div>div>input[type=radio]").removeClass("input_act");
+					$(this).addClass("input_act");
+				});
+
+				$(".fill_in>div>h5 button").click(function(){
+					$(".fill_in>div>h5 input").click();
+				});
+
+				$('input[name=radio]').click(function() {
+					if($(this).attr('r_index') == 2) {
+						$('#deliveryDiv').hide();
+					} else if($(this).attr('r_index') == 1) {
+						$('#deliveryDiv').show();
+					}
+				});
+			})
+
+			$(document).ready(function(){
+				if (loginData) {
+					if (loginData.success != 0) {
+						window.location.href = "login.html";
+					}
+				}else{
+					//window.location.href = "login.html";
+				}
+
+				var url = window.location.search;
+				var paramArray = url.split('?val=');
+				var orderNo = '';
+				var order_totalPrice = 0;
+
+				if(paramArray) {
+					orderNo = paramArray[1];
+					$('#order_no').text("订单号：" + orderNo);
+				}
+				var data_add = false; // 只能修改，不可添加
+				$('#result').hide();
+
+				$(".cont .tab .td5 input[type=button]").click(function(){
+					$(this).siblings("input[type=file]").click();
+				});
+
+
+				var sel="";
+				$.ajax({
+					type: 'get',
+					url: '../s/delivery',
+					async: false,
+					success: function(data){
+						if(data.datas){
+							for(var i = 0; i<data.datas.length; i++){
+								sel +=	"<option value='"+data.datas[i].id+"'>"+data.datas[i].name+"</option>";
+							}
+						}
+						$('#logistics_name').append(sel);
+					}
+				});
+
+				$.ajax({
+					type: 'GET',
+					url: '../sale/order/refund',
+					data: {'orderNo': orderNo, 'back': 1},
+					success: function(data) {
+						if(data.success == 0) {
+							if(data.datas) {	// 已经发出了申请
+								data_add = false;
+								var refund = data.datas;
+								var r_state = refund.state;
+								$('.step1').hide();
+								if(r_state == 0) { // 已经发出了申请
+									$('div.state>div:eq(0)').addClass('state_act');
+									$('div.state>div:eq(1)').addClass('state_act');
+
+								} else if (r_state == 1) { // 退款已经完成
+									$('div.state>div:eq(0)').addClass('state_act');
+									$('div.state>div:eq(1)').addClass('state_act');
+									$('div.state>div:eq(2)').addClass('state_act');
+
+									$('#result').append('<div>已成功退款：<span class="hl">'+refund.amount_true+'</span>元！</div>');
+									$('#result').show();
+								} else if(r_state == 2) {
+									$('div.state>div:eq(0)').addClass('state_act');
+									$('div.state>div:eq(1)').addClass('state_act');
+									$('div.state>div:eq(2)').addClass('state_act');
+									if(refund.reject_reason) {
+										$('#result').append('<div>退款已被拒绝！原因：<span>' + refund.reject_reason+'</span></div>');
+										$('#result').show();
+									} else {
+										$('#result').append('<div>退款已被拒绝！</div>');
+										$('#result').show();
+									}
+								}
+								setData(refund);
+							} else {	// 还没有发起申请
+								$('#order_total').text("最多：" + data.order_total + "元");
+								order_totalPrice = data.order_total;
+								$('div.state>div:eq(0)').addClass('state_act');
+								data_add = true;
+							}
+						} else if(data.success == 1) {
+							if(data.error == 101 || data.error == 401) { // 单号不存在, 跳ERROR
+
+							}
+						}
+					}
+				});
+
+
+				function setData(refund) {
+					setDisable();
+					$('#sbmt').hide();
+					if(refund.refund_type == 2) {
+						console.log($('input[name=radio]:eq(1)'));
+						$('input[name=radio]:eq(1)').attr('checked', true);
+						$('#deliveryDiv').hide();
+					} else {
+						$('input[name=radio]:eq(0)').attr('checked', true);
+						$('#deliveryDiv').show();
+					}
+					$('span.info_date').text(refund.apply_date);
+					$('#amount').val(refund.amount);
+					$('#reason').val(refund.reason);
+					$('#logistics_name').val(refund.logistics_id);
+					$('#logistics_no').val(refund.logistics_no);
+					$('#reason_detail').val(refund.reason_detail);
+					$('#img1').attr('src', refund.img1);
+				}
+
+				function setDisable() {
+					$('#amount').attr("disabled", "true");
+					$('#reason').attr("disabled", "true");
+					$('#logistics_no').attr("disabled", "true");
+					$('#logistics_number').attr("disabled", "true");
+					$('#reason_detail').attr("disabled", "true");
+
+				}
+				function setAble() {
+					$('#amount').removeAttribute("disabled");
+					$('#reason').removeAttribute("disabled");
+					$('#logistics_no').removeAttribute("disabled");
+					$('#reason_detail').removeAttribute("disabled");
+				}
+
+				$('input[name=file_img]').each(function(index) {
+					$(this).change(function() {
+						curr_fileImg = index+1;
+						var form_id = '#imgUpload' + curr_fileImg;
+						$(form_id).submit();
+					})
+				});
+				var refundType = 1;
+				$('#sbmt').click(function() {
+					refundType = $(":radio:checked").attr('r_index');
+					console.log("1位小数测试:" +/^-?\d+\.?\d{1}$/.test($('#amount').val()));
+					console.log("2位数测试:" +/^-?\d+\.?\d{0,2}$/.test($('#amount').val()));
+					console.log("整数测试:" +/^\d+$/.test($('#amount').val()));
+					if(/^-?\d+\.?\d{0,2}$/.test($('#amount').val()) == false
+							&& /^-?\d+\.?\d{1}$/.test($('#amount').val()) == false
+							&& /^\d+$/.test($('#amount').val()) == false) {
+
+						alert('退款金额必须为整数，或者保留两位小数');
+						return;
+					}
+					if($('#amount').val() > order_totalPrice) { // 金额问题
+						alert('请不要超过最大退款金额');
+						return;
+					}
+					if($('#logistics_number').val().trim().length == 0 && refundType == 1) { //物流编号为空
+						alert('请输入物流单号');
+						return;
+					}
+					if(/^\d+$/.test($('#logistics_number').val()) == false && refundType == 1) {
+						alert('快递单号必须是纯数字');
+						return;
+					}
+
+					var ajax_type = 'PUT';
+					if(data_add == true) {
+						ajax_type = 'POST';
+					}
+
+					if($('input[name=radio]:eq(0)').attr('checked')){
+						refundType = 1;
+						var saleRefund = {
+							'orderNo': orderNo,
+							'refund_type': 1,
+							'amount': $('#amount').val(),
+							'logistics_id': $('#logistics_name').val(),
+							'logistics_name': $("#logistics_name").find("option:selected").text(),
+							'logistics_no': $('#logistics_number').val(),
+							'reason': $('#reason').val(),
+							'reason_detail': $('#reason_detail').val(),
+							'img1': $('#img1').attr('src')
+						};
+					}else {
+						refundType = 2;
+						var saleRefund = {
+							'orderNo': orderNo,
+							'refund_type': 2,
+							'amount': $('#amount').val(),
+							'reason': $('#reason').val(),
+							'reason_detail': $('#reason_detail').val(),
+							'img1': $('#img1').attr('src')
+						};
+					}
+
+					$.ajax({
+						type: ajax_type,
+						dataType: 'json',
+						contentType: 'application/json',
+						url: '../sale/order/refund',
+						data: JSON.stringify(saleRefund),
+						success: function(data) {
+							if(data.success == 0) {
+								alert('已提交，请等待审核');
+								window.location.reload();
+							}
+						}
+					});
+				})
+			});
+			function imgUploadSuccess(msg) {
+				console.log(msg);
+				if (msg.split('|')[0] == 0) {
+					$('#img1').attr('src', msg.split('|')[1]);
+				}
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>编辑话题</title>
+	<script src="../js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bbs.css">
+	<link rel="stylesheet" type="text/css" href="../css/font.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<header>
+		<div class="box">
+			<div class="hl">
+				<span class="ll">UHAOU.</span>
+				<span class="lm">CN</span>
+				<span class="lr">论坛</span>
+			</div>
+			<div class="hr">
+				<a href="reg.html">注册</a>
+				<a href="login.html">登录</a>
+			</div>
+		</div>
+	</header>
+	<div class="box ftopic">
+		<h2>
+			编辑话题
+			<a href="forum.html">论坛首页</a>
+			<a href="../index.html">返回商城</a>
+		</h2>
+		<div class="wboard">
+			<div class="categ">
+				<div class="t">板块</div>
+				<span class="categs" topicId="1">讨论</span>
+				<span class="categs" topicId="2">晒单</span>
+				<div class="error"><div></div><span>必填</span></div>
+			</div>
+			<div class="title">
+				<div class="t">标题</div>
+				<div class="error"><div></div><span>必填</span></div>
+				<input type="text" name="title" maxlength="20">
+			</div>
+			<div class="post">
+				<div class="t">内容</div>
+				<div class="error"><div></div><span>必填</span></div>
+				<div class="content">
+					<textarea id="postcontent" name="content">
+					</textarea>
+				</div>
+			</div>
+			<div class="btn">
+				<input class="red" type="button" name="submit" value="发布">
+				<input class="white" type="button" name="cancel" value="取消">
+				<div class="clear"></div>
+				<div class="submiterr">网络连接错误，请重试</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+	</footer>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bbs.js"></script>
+	<script src="../js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../js/editor/config.js"></script>
+	<script type="text/javascript" src="../js/editor/kindeditor.js"></script>
+	<script type="text/javascript" src="../js/editor/lang/zh_CN.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function($){
+			if (loginData) {
+				if (loginData.success != 0) {
+					window.location.href = "../login.html"; 
+				} 
+			}else{
+				window.location.href = "../login.html";
+			}
+
+			function getUrlParam(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+				var r = window.location.search.substr(1).match(reg); //匹配目标参数
+				if (r != null)
+					return unescape(r[2]);
+				return null; //返回参数值
+			}
+			var postId = getUrlParam('postId');  
+				
+			$.ajax({
+				type : "get",
+				url : "../bbs/post/info",
+				dataType : "json",	
+				async : false,
+				data : {"postId": postId},
+				success : function(data) {
+					if(data.success==0){
+						$('input[name=title]').val(data.datas.title);
+						$('textarea[name=content]').val(data.datas.content);
+						$(".categ span[topicid='"+data.datas.topicId+"']").addClass("active");
+					}
+				}
+			});
+			
+			var editor = KindEditor.create('#postcontent', {
+		        //cssPath : '/css/index.css',
+		        themeType : 'simple',
+		        uploadJson: '../bbs/post/image',
+		        //fileManagerJson: './sale/item/fileManager',
+		        items: showItems,
+		        filterMode: false,
+		        allowFileManager: false,
+		        allowImageManager: false
+			});
+
+			$('.categ span').on('click',function(){
+				$('.categ span').removeClass('active');
+				$(this).addClass('active');
+			});
+			$('input[name=cancel]').on('click',function(){
+				window.location.href="forum.html"; 
+			});
+			var sus = 1;
+			function tipDisplay(tip,e){
+				if (tip) {
+					sus = 0;
+					e.show().children("span").text(tip);
+				}else{
+					e.hide();
+				}
+			}
+
+			$("input[name=title]").blur(function(){
+				var e = $(this).siblings(".error");
+				var tip = "";
+				var v = $(this).val();
+
+				if (!v) {
+					tip = "标题不能为空";
+				}else if(!$().topictvalidate(v)){
+					tip = "请不要使用特殊符号并不少于六个字";
+				}
+				tipDisplay(tip,e);
+			});
+
+			$(".btn input[name=submit]").click(function(){
+				// 解决修改时不点击不保存BUG
+				// editor.focus();
+				// editor.sync();
+
+				var topicId;
+				sus = 1;
+				$(".error").hide();
+				$("input[name=title]").blur();
+				editor.sync();
+
+				/* var postcontent = $("#postcontent").val().replace(/"/g,'//"'); */
+				var postcontent = $("#postcontent").val();
+				if (!postcontent) {
+					$(".post .error span").text("内容不能为空");
+					$(".post .error").show();
+					sus = 0;
+				}
+
+				if ($(".categs.active").length == 1) {
+					topicId = $('.categs.active').attr("topicId");
+					if (sus == 1) {
+						$.ajax({
+							type : "put",
+							url : '../bbs/post/',
+							data : {
+								title : $("input[name='title']").val(),
+								content : $("#postcontent").val(),
+								postId : postId,
+								topicId : topicId
+							},
+							success : function(data) {
+								if (data.success == 0) {
+									 alert("success post");
+									 window.location.href="forum.html"; 
+								}
+
+							}
+
+						});
+					}
+				}else{
+					$(".categs").siblings(".error").children("span").text("请选择话题板块");
+					$(".categs").siblings(".error").show();
+				}
+			});
+		});
+	</script>
+</body>
+</html>

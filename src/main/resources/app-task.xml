@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+    <task:annotation-driven/>
+
+    <!--<bean id="autoTasks" class="com.tenmaker.pansheng.task.AutoTasks" />
+    <task:scheduled-tasks>  &lt;!&ndash; 秒 分 时 天 月 周 [年] &ndash;&gt;
+        <task:scheduled ref="autoTasks" method="backupWilddog" cron="0 0 22 * * ?"/>	&lt;!&ndash; 每天早晨六点执行一次（调整时差） &ndash;&gt;
+    </task:scheduled-tasks>-->
+</beans>

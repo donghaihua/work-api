@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>我的订单</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/styleguide.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/orderdetail.css">
+
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+	
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body class="logoutredirect">
+	<header class="h2">
+		<div class="h2b">
+			<div class="sesearch">
+				<input type="text">
+				<span class="icon-magnifier13"></span>
+			</div>
+			<div class="logo">
+				<img src="img/logo.png" alt="logo">
+			</div>
+			<div class="index">
+				<a href="index.html">首页</a>
+				<div class="dd2">
+					<ul>
+						<li><a href="culture.html">山茶文化</a></li>
+						<li><a href="brand.html">品牌故事</a></li>
+						<li><a href="packagedesign.html">私人定制</a></li>
+						<li><a href="item_list.html">商品系列</a></li>
+						<li><a href="contact.html">联系我们</a></li>
+					</ul>
+					<div class="lan">
+						简
+					</div>
+					<div class="r">
+						<a href="c_orderlist.html">我的订单</a>
+						<a href="login.html">登录</a>|<a href="reg.html">注册</a>
+					</div>
+				</div>
+			</div>
+			<div class="secart">
+				<a href="cart.html">
+					购物车
+					<div class="cartn">0</div>
+				</a>
+			</div>
+		</div>
+	</header>
+	<header class="h1">
+		<div class="box">
+			<div class="logo">
+				<img src="img/logo.png" alt="logo">
+			</div>
+			<div class="ul1">
+				<ul>
+					<!-- <li class="pinfo">
+						<span>130****0000</span>
+						<img src="img/avatar_preview_default.png" alt="avatar">
+						<ul class="dd1">
+							<li><a href="account.html">我的账户</a></li>
+							<li>登出</li>
+						</ul>
+					</li> -->
+					<li class="pinfo"><a href="login.html">登录</a>|<a href="reg.html">注册</a></li>
+					<li><a href="c_orderlist.html">我的订单</a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="bbs"><a href="bbs/forum.html">论坛</a></div>
+			<div class="ul2">
+				<ul>
+					<li><a href="contact.html">联系我们</a></li>
+					<li><a href="item_list.html">商品系列</a></li>
+					<li><a href="packagedesign.html">私人定制</a></li>
+					<li><a href="brand.html">品牌故事</a></li>
+					<li><a href="culture.html">山茶文化</a></li>
+					<li class="active"><a href="index.html">首页</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="boxw se">
+		<div class="box">
+			<ul><li class="active">中</li><li>繁</li><li>JP</li><li>EN</li></ul>
+			<div class="sesearch">
+				<input type="text" name="seinput">
+				<input type="button" name="sebtn" value="搜索">
+			</div>
+			<div class="secart">
+				<a href="cart.html">
+					购物车
+					<div class="cartn">0</div>
+					<span class="icon-arrow-down2"></span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="clear waypoint"></div>
+	<div class="box hcl">
+		<div class="hcartlist">
+			<div class="list">
+				<table>
+					<!-- <tr>
+						<td class="td1">
+							<div class="img">
+								<img src="img/listitem.png" alt="img">
+							</div>
+							<p>
+								<span class="n">红天果冷压榨特级初榨茶籽油</span><br>
+								<span class="s">500ML</span>
+							</p>
+						</td>
+						<td class="td2">1</td>
+						<td class="td3">&yen;200</td>
+						<td class="td4">
+							<span class="icon-cross"></span>
+						</td>
+					</tr> -->
+				</table>
+			</div>
+			<div class="b">
+				<span class="ttn">共<span>0</span>件商品</span>
+				<span class="ttp">总价<span>&yen;0</span></span>
+				<input type="button" id="carthtml" value="结算">
+			</div>
+		</div>
+	</div>
+	<div class="box">
+		<div class="acctmenu" data-index="nav11">
+		</div>
+		<div class="acctcont">
+			<div class="block1">
+				订单号：<span class="orderno"></span>
+				<!-- <input type="text" placeholder="商品名称、商品编号、订单编号" id="sinput">
+				<input type="button" value="查询" id="sbtn"> -->
+			</div>
+			<div class="block2">
+				<div class="step s1 active">
+					<div class="sicon icon-text32"><div></div></div>
+					<div class="sdot icon-dot"></div>
+					<div class="sdes">提交订单</div>
+				</div>
+				<div class="step s2 active">
+					<div class="sicon icon-banknotes"><div></div></div>
+					<div class="sdot icon-dot"></div>
+					<div class="sdes">待付款</div>
+				</div>
+				<div class="step s3">
+					<div class="sicon icon-package10"><div></div></div>
+					<div class="sdot icon-dot"></div>
+					<div class="sdes">等待发货</div>
+				</div>
+				<div class="step s4">
+					<div class="sicon icon-delivery25"><div></div></div>
+					<div class="sdot icon-dot"></div>
+					<div class="sdes">等待收货</div>
+				</div>
+				<div class="step s5">
+					<div class="sicon icon-delivery33"><div></div></div>
+					<div class="sdot icon-dot"></div>
+					<div class="sdes">完成</div>
+				</div>
+			</div>
+			<div class="block3">
+				<ul class="b3tab">
+					<li class="active">订单详情<div></div></li>
+					<li>物流信息<div></div></li>
+					<li>评论<div></div></li>
+				</ul>
+				<div class="clear"></div>
+				<div class="tab1">
+					<table>
+						<thead>
+							<tr>
+								<th class="t1">商品名称</th>
+								<th class="t2">单价</th>
+								<th class="t3">数量</th>
+								<th class="t4">优惠</th>
+								<th class="t5">订单金额</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr id="orderTemp" style="display:none">
+								<td class="t1">
+									<div class="itemimg">
+										<img src="img/cartitem.png" alt="item">
+									</div>
+									<p>
+										<span class="b"></span><br>
+										<span class="n"></span><br>
+										<span class="s"></span>
+									</p>
+								</td>
+								<td class="t2">&yen;<span></span></td>
+								<td class="t3"></td>
+								<td class="t4"></td>
+								<td class="t5">
+									<p>
+										<span class="p">&yen;<span></span></span><br>
+										<span class="s"></span><br>
+										<input type="button" value="申请退款">
+									</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="receipt">
+						
+					</div>
+				</div>
+				<div class="tab2">
+					<table>
+						<tr>
+							<th>
+								<div>发货方式</div>
+							</th>
+							<td>快递</td>
+						</tr>
+						<tr class="f9">
+							<th>
+								<div>物流公司</div>
+							</th>
+							<td name="logistics_name"></td>
+						</tr>
+						<tr>
+							<th>
+								<div>运单号码</div>
+							</th>
+							<td name="logistics"></td>
+						</tr>
+						<tr class="f9 tdetail">
+							<th>
+								<div>物流详情</div>
+							</th>
+							<td>
+								<p>
+									<iframe name="kuaidi100" src="" width="600" height="380" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe>
+								</p>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="tab3">
+					<div id="comment">
+						
+					</div>
+					<div class="postt">
+						<h3>晒单贴</h3>
+						<p>主题<span>回复数</span></p>
+					</div>
+					<div id="null"></div>
+					
+					<div id="post">
+						
+					</div>
+					<div class="pageno">
+						<span class="page">
+							<a>1</a>
+							<a class="current">2</a>
+							<a>3</a>
+							<a>4</a>
+							<a>5</a>
+							<span>&hellip;</span>
+							<a>17</a>
+							<span class="nextpage">下一页<span class="icon-arrow-right2"></span></span>
+						</span>
+						<span class="tno">共<span>14</span>个晒单</span>
+					</div>
+					<div class="po">
+						<h3>发表晒单</h3>
+						<div class="cont">
+							<div class="t">商品</div>
+							<div class="">
+								<select class="sel"></select>
+							</div>
+							<div class="">
+								<div class="t">标题</div>
+								<div class="error"><div></div><span>必填</span></div>
+								<input name="title" type="text"/>
+							</div>
+							<div class="tt">
+								<div class="t">内容</div>
+								<div class="error"><div></div><span>必填</span></div>
+								<textarea id="postcontent" style="width:655px; height:300px">
+								</textarea>
+							</div>
+							<div class="">
+								<input type="button" id="submit" value="发表">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="box">
+			<div class="l">
+				<p>
+					客户服务<br>
+					<span id="site_phone">025-85703619</span>
+				</p>
+				<p>
+					地址<br>
+					<span id="site_address">江苏省南京市雨花台区长虹路222号<br>
+						德盈国际广场3幢1605室<br>
+						江苏红果文化传播有限公司</span>
+				</p>
+				<p>
+					邮箱<br>
+					<span id="site_email">srv@uhaou.cn</span>
+				</p>
+			</div>
+			<div class="m">
+				<p>订阅有好油，加入我们</p>
+				<div class="rss">
+					<input type="text" placeholder="请输入您的邮箱">
+					<input type="button" value="发送">
+				</div>
+			</div>
+			<div class="r">
+				<p>扫一扫有惊喜</p>
+				<img id="site_2dcode" src="img/2dcode.jpg" alt="code">
+				<div class="site">UHAOU.CN</div>
+				<div class="cr" id="site_record">
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script type="text/javascript" src="js/editor/config.js"></script>
+	<script type="text/javascript" src="js/editor/kindeditor.js"></script>
+	<script type="text/javascript" src="js/editor/lang/zh_CN.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			 var editor = KindEditor.create('#postcontent', {
+			        //cssPath : '/css/index.css',
+			        themeType : 'simple',
+			        uploadJson: './bbs/post/image',
+			        //fileManagerJson: './sale/item/fileManager',
+			        items: showItems,
+			        filterMode: false,
+			        allowFileManager: false,
+			        allowImageManager: false
+			});
+
+			if (loginData) {
+				if (loginData.success != 0) {
+					window.location.href = "login.html";
+				}
+			}else{
+				//window.location.href = "login.html";
+			}
+
+			var del_state;
+			$('.b3tab>li').each(function(index) {
+				$(this).bind('click', function() {
+					$(this).addClass('active');
+					$('.b3tab>li:not(:eq('+index+'))').removeClass('active');
+					
+					var cls = '.tab'+(index+1);
+					$(cls).show();
+					$('.block3>div:not(:eq('+(index+1)+'))').hide();
+				});
+			});
+
+			$('.block3>div:gt(1)').hide();
+			var url = window.location.search;
+			var paramArray, paramArray, orderNo, orderId, tabParam;
+			if(url.match('order=')) {
+				paramArray = url.split('?order=')[1];
+				paramArray = paramArray.split('&tab=');
+				orderId = paramArray[0];
+			} else {
+				paramArray = url.split('?val=')[1];
+				paramArray = paramArray.split('&tab=');
+				orderNo = paramArray[0];
+			}
+			tabParam = paramArray[1];
+			
+			
+			$('.b3tab>li:eq('+(tabParam-1)+')').click();
+
+			var shopId ;
+			var sel;
+			
+			$.ajax({
+				type: 'GET',
+				url: './sale/order',
+				data: {'orderNo': orderNo, 'orderId': orderId, 'tab': tabParam},
+				success: function(data) {
+					if(data.datas && data.datas.length > 0) {
+						orderId = data.datas[0].id;
+						shopId = data.datas[0].lightShop.id;
+
+						for(var i = 0; i<data.datas[0].saleOrderDetails.length;i++ ){
+							sel += "<option value='"+data.datas[0].saleOrderDetails[i].lightItem.id+"-"+data.datas[0].saleOrderDetails[i].saleItemSpec.id+"'>"+data.datas[0].saleOrderDetails[i].lightItem.name+data.datas[0].saleOrderDetails[i].saleItemSpec.specName+"</option>";
+						}
+						$('.sel').append(sel);
+						loadOrderData(data.datas);
+						setCommentHtml(data.datas);
+						loadDelivery(data.datas[0].orderNo, data.datas[0].logistics_name, data.datas[0].logistics);
+						loadComment(data.datas[0].id);
+						setLine(data.datas[0], del_state);
+					}
+				}
+			});
+			
+			getPostData(1);
+			
+			function getPostData(page){
+				$.ajax({
+					type : 'GET',
+					url : "./bbs/post/showList",
+					data : {'orderNo': orderNo, 'pageNo': page, 'pageSize': 5},
+					success : function(data) {
+						if(data.success == 0){
+							clearContent();
+							var str = "";
+							var temp;
+							if(data.datas){
+								for(var i = 0; i < data.datas.results.length; i++){
+									str += "<div class='pt'>";
+									str += "<p><a href='bbs/topic.html?postId="+data.datas.results[i].id+"'>"+data.datas.results[i].title+"</a></p>";
+									str += "<span class='info'>";
+									str += "<span class='r'>"+data.datas.results[i].replyNum+"</span>";
+									str += "</span>";
+									str += "<div class='time icon-clock'>";
+									str += "<span class='d'>"+data.datas.results[i].postDate+"</span>";
+									str += "</div>";
+									str += "</div> ";
+								}
+								$('#post').append(str);
+							}
+							$('.tno span').text(data.datas.totalCount);
+							$().pagegenerator(data.datas.pageCount,page);
+						}
+						if(data.success==1){
+							var str="";
+							str+="<div id='postn'>";
+							str+="暂无晒单";
+							str+="</div>";
+							$('#null').append(str);
+							$('.pageno').hide();
+						}
+					}
+				});	
+			}
+			
+			$(".page a:not(.current)").live("click",function(){
+				var page = $(this).attr("class").split("pageid")[1];
+				getPostData(page);
+			});
+
+			$(".page .nextpage").live("click",function(){
+				var page = $(this).siblings("a.current").attr("class").split(" ")[0].split("pageid")[1];
+				getPostData(parseInt(page)+1);
+			});
+			function clearContent() {
+				$('#post').html('');
+			}
+			
+			var sus = 1;
+			function tipDisplay(tip,e){
+				if (tip) {
+					sus = 0;
+					e.show().children("span").text(tip);
+				}else{
+					e.hide();
+				}
+			}
+			$.fn.topictvalidate = function(topict){
+				var reboolean = /^[a-zA-Z0-9\u4e00-\u9fa5_#\.\,\s\-]{6,20}$/.test(topict);
+				return reboolean;
+			};
+			
+			$("input[name=title]").blur(function(){
+				var e = $(this).siblings(".error");
+				var tip = "";
+				var v = $(this).val();
+
+				if (!v) {
+					tip = "标题不能为空";
+				}else if(!$().topictvalidate(v)){
+					tip = "请不要使用特殊符号并不少于六个字";
+				}
+				tipDisplay(tip,e);
+			});
+
+			$('#submit').click(function(){
+				sus = 1;
+				$(".error").hide();
+				$("input[name=title]").blur();
+				editor.sync();
+
+				var postcontent = $("#postcontent").val();
+
+				if (!postcontent) {
+					$(".tt .error span").text("内容不能为空!");
+					$(".tt .error").show();
+					sus = 0;
+				}
+				var str = $('.sel').val();
+				if(sus == 1){
+					$.ajax({
+						type : "post",
+						url : './bbs/post/show',
+						dataType : "json",
+						data : {
+							title : $("input[name='title']").val(),
+							content : postcontent,
+							topicId : 2,
+							select : str,
+							orderId : orderId,
+							orderNo : orderNo,
+							shopId : shopId
+						},
+						success : function(data) {
+							if (data.success == 0) {
+								 alert("晒单成功！");
+								 editor.text('');
+								 $('input[name=title]').val("");
+							} 
+						}
+					});
+				}
+			});
+			
+			//加载物流信息
+			function loadDelivery(orderNo, delivery_name, nu) {
+				$.ajax({
+					type: 'GET',
+					url: './sale/order/delivery',
+					data: {"orderNo": orderNo, "kd_no": nu},
+					async:false,
+					success: function(data) {
+						//console.log(data);
+						if(delivery_name) {
+							$('td[name=logistics_name]').text(delivery_name);
+						}
+						if(nu) {
+							$('td[name=logistics]').text(nu);
+						}
+						
+						$('iframe[name=kuaidi100]').attr('src', data.datas);
+						/* if(data.success == 0) {
+							var kd = data.datas;
+							$('.tab2>table').find('tr:eq(2)>td:last').text(nu);
+							del_state = kd.state;
+							if(kd.status == 201) {
+								$('.tdetail').find('td:last>p').text('查询异常，单号不存在或者已经过期');
+							} else if(kd.status == 403) {
+								$('.tdetail').find('td:last>p').text('单号不存在，请确认物流单号是否正确');
+							} else if(kd.status == 200) {
+								var del_info = '';
+								for(var i = 0; i < kd.data.length; i++) {
+									var kd_data = kd.data[i];
+									var curr_info = kd_data.time + '&nbsp;&nbsp;&nbsp;&nbsp;' + kd_data.context + '<br>';
+									del_info = del_info + curr_info;
+								}
+								$('.tdetail').find('td:last>p').html(del_info);
+							}
+						} */
+					}
+				});
+			}
+			
+			
+			function loadOrderData(orderArray) {
+				var order = orderArray[0];
+				$('span.orderno').text(order.orderNo);
+				
+				var fapiao = '<h4>发票信息</h4><p>';
+				if(order.invoiceType == 0) {
+					fapiao += '不需要发票';
+				} else if(order.invoiceType == 1) {
+					fapiao += '个人发票';
+				} else if(order.invoiceType == 2) {
+					fapiao += '公司发票，抬头：' + order.invoiceTitle;
+				}
+				fapiao += '</p>';
+				$('div.receipt').html(fapiao);
+				
+				
+				for(var j = 0; j < order.saleOrderDetails.length; j++) {
+					var orderDetail = order.saleOrderDetails[j];
+					var spec = orderDetail.saleItemSpec;
+					var tr_clone = $('#orderTemp').clone();
+					tr_clone.removeAttr('id');
+					
+					tr_clone.find('.t1>p>span.b').text(order.lightShop.brandName);//品牌
+					tr_clone.find('.t1>p>span.n').text(orderDetail.lightItem.itemName);//商品名称
+					tr_clone.find('.t1>p>span.s').text(spec.specName);//规格
+					tr_clone.find('.t2>span').text(spec.discountPrice);//规格价格
+					tr_clone.find('.t3').text(orderDetail.quantity);//数量
+					
+					if(j == 0) {
+						tr_clone.find('.t5>p>.p>span').text(order.totalPrice);//总价
+						var state_word = '';
+						var showReturn = true;
+						if(order.state == 2 || order.state == 4) {
+							state_word = '待付款';
+							showReturn = false;
+						} else if(order.state == 3) {
+							state_word = '等待发货';
+						} else if(order.state == 0) {
+							state_word = '已发货';
+						} else if(order.state == 1) {
+							state_word = '已评价';
+						} else if(order.state == 4) {
+							state_word = '已取消';
+						}
+						tr_clone.find('.t5>p>.s').text(state_word);
+						if(showReturn) {
+							tr_clone.find('.t5>p>input:button').show();
+							tr_clone.find('.t5>p>input:button').click(function() {
+								window.location.href='./c_refunddetail.html?val=' + order.orderNo;
+							});
+						} else {
+							tr_clone.find('.t5>p>input:button').hide();
+							tr_clone.find('.t5>p>input:button').unbind('click');
+						}
+					} else {
+						tr_clone.find('.t4').html('');
+						tr_clone.find('.t5').html('');
+					}
+					tr_clone.removeAttr('style');
+					tr_clone.appendTo($('.tab1>table').children('tbody'));
+					
+				}
+				//order_clone.css('display', 'inline');
+				//order_clone.appendTo($('.orderlist'));
+			}
+			
+			//加载评论信息
+			function loadComment(order_id) {
+				$.ajax({
+					type: 'GET',
+					url: './sale/comment',
+					data: {"orderId": order_id},
+					success: function(data) {
+						//console.log(data);
+						if(data.success == 0) {
+							var commentArray = data.datas;
+							for(var i = 0; i < commentArray.length; i++) {
+								var comment = commentArray[i];
+								$('.cmt').find(':hidden[name=specId]').each(function(index) {
+									if(comment.saleItemSpec.id == $(this).val()) {
+										$('textarea:eq('+index+')').val(comment.content);
+										$('textarea:eq('+index+')').attr('disabled', 'true');
+										$('textarea:eq('+index+')').next().css('display', 'block'); // 编辑按钮
+										$('textarea:eq('+index+')').next().attr('comm_id', comment.id); // 编辑按钮
+										$(this).prev().text(comment.postDate);
+										//$(this).next().unbind('click'); //提交按钮去掉click事件
+										
+										$(this).parent().find('span').each(function(ind) {
+											if($(this).hasClass("date")) {
+												return true;
+											}
+											$(this).unbind('click');
+											var type = ind+1;
+											if(comment.type == type) {
+												$(this).siblings("span").removeClass("active");
+												$(this).addClass("active");
+											}
+										});
+										return false;
+									}
+								});
+							}
+						}
+					}
+				});
+			}
+			
+			
+			function setCommentHtml(orderArray) {
+				var order = orderArray[0];
+				var order_state = parseInt(order.state);
+				$('#comment').html('<input type="hidden" id="order_id" value="'+order.id+'">');
+				var comm_html = $('#comment').html();
+				for(var j = 0; j < order.saleOrderDetails.length; j++) {
+					var orderDetail = order.saleOrderDetails[j];
+					var spec = orderDetail.saleItemSpec;
+					var html_start = '<div class="cmt"><div class="i"><div class="il"><div class="img"><img src="img/cartitem.png"></div><p>';
+					html_start += '<span class="ib">'+order.lightShop.brandName+'</span>';
+					html_start += '<span class="in">'+orderDetail.lightItem.name+'</span><br>';
+					html_start += '<span class="is">'+spec.specName+'</span>';
+					html_start += '</p></div><div class="ir"><textarea name="comment_content" placeholder="在此编辑您的评论"></textarea><input style="display:none" type="button" name="edit_comment" value="编辑"></div></div>'
+						 + '<div class="b"><span class="l a icon-dot active">好评</span><span class="l b icon-dot">中评</span><span class="l c icon-dot">差评</span>'
+						 + '<span class="date" name="comment_date"></span>';
+				    html_start += '<input type="hidden" name="specId" value="'+spec.id+'"><input name="submitComment" type="button" value="提交"></div></div>';	
+				    
+				    comm_html = comm_html + html_start;
+				}
+				$('#comment').html(comm_html);
+				
+				$('.cmt').find('div.b>span').each(function() {
+					if($(this).hasClass("date")) {
+						return true;
+					}
+					$(this).click(function() {
+						$(this).siblings("span").removeClass("active");
+						$(this).addClass("active");
+					});
+				});
+				
+				$('input[name=edit_comment]').click(function() {
+					var thisBtn = $(this);
+					thisBtn.parents('div.cmt:eq(0)').find('div.b>span').each(function() {
+						if($(this).hasClass("date")) {
+							return true;
+						}
+						$(this).click(function() {
+							$(this).siblings("span").removeClass("active");
+							$(this).addClass("active");
+						});
+					});
+					thisBtn.prev('textarea[name=comment_content]').attr('disabled', false).focus();
+				});
+				
+				//发表晒单
+				if(order_state != 0 && order_state != 1) {
+					$('div.po').hide();
+					$('#submit').unbind('click');
+				}
+				
+				//提交评论
+				$(':input[name=submitComment]').each(function(index) {
+					//console.log('绑定提交评论');
+					var curr_comm = $(this);
+					var this_comm_textarea = $('#comment').find('div.ir:eq('+index+')>textarea');
+					//console.log(parseInt(order_state));
+					//console.log(order_state != 0);
+					curr_comm.bind('click', function() {
+						if(this_comm_textarea.attr('disabled') == 'disabled') {
+							return;
+						}
+						if(order_state != 0 && order_state != 1) {
+							this_comm_textarea.val('');
+							$().popupTip("暂时无法评论");
+							return;
+						}
+						var orderId = $('#order_id').val();
+						var specId = curr_comm.prev('input:hidden').val();
+						var comm_id = $('#comment').find('div.ir:eq('+index+')>input').attr('comm_id');
+						var comm_content = $('#comment').find('div.ir:eq('+index+')>textarea').val();
+						comm_content = $.trim(comm_content);
+						var comm_type = 0;
+						$('#comment').find('div.b:eq('+index+')>span').each(function(index) {
+							if($(this).hasClass('active')) {
+								comm_type = index + 1;
+								return false;//跳出 continue   用return true
+							}
+						});
+						
+						if(comm_content.length > 0) {
+							$.ajax({
+								type: 'POST',
+								url: './sale/comment',
+								data: {"orderId": orderId, 'specId': specId, 'comm_id': comm_id, 'content': comm_content, 'type': comm_type},
+								success: function(data) {
+									if(data.success == 0) {
+										var new_comment = data.datas;
+										$('#comment').find('div.ir:eq('+index+')>textarea').val(new_comment.content);
+										$('#comment').find('div.ir:eq('+index+')>textarea').attr('disabled', 'disabled');
+										$('#comment').find('div.ir:eq('+index+')>textarea').next().attr('display', 'block');//显示编辑按钮
+										curr_comm.prev().prev().text(new_comment.postDate);
+										//curr_comm.unbind("click");
+										curr_comm.parent().find('span').each(function() {
+											$(this).unbind("click");
+										});
+										$().popupTip("发表成功");
+									}
+								}
+							});
+						} else {
+							$().popupTip("请输入评论内容");
+						}
+					});
+				});
+			}
+
+			function setLine(order, delivery_state) {
+				var order_state = order.state;
+				if(order_state != 0 && order_state != 1) {
+					$('input[name=edit_comment]').unbind('click');
+				}
+				if(order_state == 3) { //已付款
+					$('.block2').find('.s2').find('.sdes').text('已付款');
+					$('.block2').find('.s3').find('.sdes').text('等待发货');
+					
+					$('.block2').find('.s2').addClass('active');
+					$('.block2').find('.s3').addClass('active');
+				} else if(order_state == 0) {
+					//if(judgeDelivery(delivery_state) == false) {
+						$('.block2').find('.s2').find('.sdes').text('已付款');
+						$('.block2').find('.s3').find('.sdes').text('已经发货');
+						$('.block2').find('.s4').find('.sdes').text('等待收货');
+						
+						$('.block2').find('.s2').addClass('active');
+						$('.block2').find('.s3').addClass('active');
+						$('.block2').find('.s4').addClass('active');
+					//}
+				} else if(order_state == 1) {
+					$('.block2').find('.s2').find('.sdes').text('已付款');
+					$('.block2').find('.s3').find('.sdes').text('已经发货');
+					$('.block2').find('.s4').find('.sdes').text('已经收货');
+					$('.block2').find('.s5').find('.sdes').text('已评价');
+					
+					$('.block2').find('.s2').addClass('active');
+					$('.block2').find('.s3').addClass('active');
+					$('.block2').find('.s4').addClass('active');
+					$('.block2').find('.s5').addClass('active');
+				}  else if(order_state == 4) {
+					$('.block2').find('.s2').find('.sdes').text('待付款');
+					$('.block2').find('.s3').find('.sdes').text('已取消');
+					$('.block2').find('.s4').find('.sdes').text('待收货');
+					$('.block2').find('.s5').find('.sdes').text('待评价');
+					
+					$('.block2').find('.s2').addClass('active');
+					$('.block2').find('.s3').addClass('active');
+				} else if(order_state == 5 || order_state == 6) {
+					$('.block2').find('.s2').find('.sdes').text('已付款');
+					$('.block2').find('.s3').find('.sdes').text('已经发货');
+					$('.block2').find('.s4').find('.sdes').text('已经收货');
+					$('.block2').find('.s5').find('.sdes').text('待评价');
+					
+					$('.block2').find('.s2').addClass('active');
+					$('.block2').find('.s3').addClass('active');
+					$('.block2').find('.s5').addClass('active');
+					if(order.logistics) { //有物流单号
+						$('.block2').find('.s4').addClass('active');
+						/* if(delivery_state == 3) {
+							$('.block2').find('.s4').addClass('active');
+						} else {
+							$('.block2').find('.s4').removeClass('active');
+						} */
+					} else {
+						$('.block2').find('.s4').removeClass('active');
+					}
+				}
+			}
+			
+			function judgeDelivery(delivery_state) {
+				if(delivery_state == 3) {
+					$('.block2').find('.s2').find('.sdes').text('已付款');
+					$('.block2').find('.s3').find('.sdes').text('已经发货');
+					$('.block2').find('.s4').find('.sdes').text('已经收货');
+					$('.block2').find('.s5').find('.sdes').text('待评价');
+					
+					$('.block2').find('.s2').addClass('active');
+					$('.block2').find('.s3').addClass('active');
+					$('.block2').find('.s4').addClass('active');
+					$('.block2').find('.s5').addClass('active');
+					return true;
+				} else {
+					return false;
+				}
+			}
+		})
+	</script>
+	
+	
+</body>
+</html>

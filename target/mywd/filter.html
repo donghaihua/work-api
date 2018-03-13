@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	filterDiv{float: left}
+  </style>
+  <script src="js/jquery.js"></script>
+  <script>
+	$(document).ready(function() {
+		var dataArray = [];
+		$("#btn").click(function() {
+			
+			$("div.filterDiv").each(function(index) {
+				var selVal = $(this).find("select[name=key]").val();
+				var optVal = $(this).find("select[name=option]").val();
+				var inpVal = $(this).find("input[name=val]").val();
+				
+				var inpVal2 = $(this).find("input[name=roleName]").val();
+				var inpVal3 = $(this).find("input[name=roleDesc]").val();
+				
+				dataArray.push({"key":selVal, "option": optVal, "val": inpVal});
+			});
+			//var dataJson =  JSON.stringify(dataArray);
+			console.log(dataArray);
+			
+			$.ajax({
+				type: "POST",
+				dataType: "json",      
+				contentType : 'application/json',
+				url: './passport/filter',
+				data: JSON.stringify(dataArray)
+			})
+		});
+		
+	})
+  </script>
+ </head>
+ <body>
+  <div class="filterDiv">
+	<select name="key">
+		<option value="name" selected>name</option>
+		<option value="brand">brand</option>
+		<option value="price">price</option>
+	</select>
+	
+	<select name="option">
+		<option value="1" selected>包含</option>
+		<option value="2">不包含</option>
+		<option value="3"> < </option>
+		<option value="4"> >= </option>
+	</select>
+
+	<input name="val" value="钢笔">
+
+  </div>
+  
+  <div class="filterDiv">
+	<select name="key">
+		<option value="name" selected>name</option>
+		<option value="brand">brand</option>
+		<option value="price">price</option>
+	</select>
+	
+	<select name="option">
+		<option value="1">包含</option>
+		<option value="2" selected>不包含</option>
+		<option value="3"> < </option>
+		<option value="4"> >= </option>
+	</select>
+
+	<input name="val" value="派克">
+
+  </div>
+
+  <div class="filterDiv">
+	<select name="key">
+		<option value="name">name</option>
+		<option value="brand">brand</option>
+		<option value="price" selected>price</option>
+	</select>
+	
+	<select name="option">
+		<option value="1">包含</option>
+		<option value="2">不包含</option>
+		<option value="3" selected> < </option>
+		<option value="4"> >= </option>
+	</select>
+
+	<input name="val" value="15-20">
+  </div>
+
+  <div class="filterDiv">
+	<select name="key">
+		<option value="name">name</option>
+		<option value="brand">brand</option>
+		<option value="price" selected>price</option>
+	</select>
+	
+	<select name="option">
+		<option value="1">包含</option>
+		<option value="2">不包含</option>
+		<option value="3"> < </option>
+		<option value="4" selected> >= </option>
+	</select>
+	<input name="val" value="80-100">
+  </div>
+
+  <input type="button" value="装载数据" id="btn">
+ </body>
+</html>

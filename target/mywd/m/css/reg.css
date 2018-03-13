@@ -1,0 +1,179 @@
+header{
+	text-align: left;
+}
+
+header .title a{
+	position: relative;
+	display: inline-block;
+	width: 6rem;
+	height: 4.23rem;
+	text-align: center;
+	line-height: 4.23rem;
+	font-size: 1.23rem;
+}
+
+header a.active{
+	color: #fff;
+	background-color: #e36655;
+}
+
+.content{
+	min-height: 40rem;
+	background: url(../img/loginbg.png) center center;
+}
+
+.rstep{
+	position: absolute;
+	width: 100%;
+	height: 3.2rem;
+	text-align: center;
+	background-color: #303134;
+}
+
+.rstep>div{
+	display: inline-block;
+	width: 31%;
+}
+
+.rstep>div>div{
+	width: 100%;
+	max-width: 166px;
+	margin: 0 auto;
+	height: 2.8rem;
+	line-height: 3.07rem;
+	font-size: 1.07rem;
+	color: #fff;
+	border-bottom: 0.4rem solid #303134;
+}
+
+.rstep>div.active>div{
+	border-bottom: 0.4rem solid #abcf58;
+}
+
+.login{
+	padding-top: 146px;
+}
+
+.login p.tip{
+	position: absolute;
+	color: #fff;
+	font-size: 1.4rem;
+	width: 100%;
+	text-align: center;
+	margin-top: -6rem;
+}
+
+.reg1{
+	padding-top: 146px;
+}
+
+.reg2{
+	padding-top: 146px;
+}
+
+.reg3{
+	padding-top: 146px;
+}
+
+.reg3 div{
+	margin: 0 auto;
+	border-radius: 20px;
+	width: 90%;
+	padding: 35px 0px;
+	line-height: 1.77rem;
+	font-size: 1.07rem;
+	color: #fff;
+	text-align: center;
+	background-color: rgba(255,255,255,0.2)
+}
+
+input[type=text], input[type=password], .rem, .protc{
+	border-bottom: 1px solid #c5c5c5;
+	width: 92%;
+	padding: 0 4%;
+	height: 3.84rem;
+	line-height: 3.84rem;
+	font-size: 1.07rem;
+	color: #fff;
+	background-color: rgba(255,255,255,0.2);
+}
+
+.protc{
+	font-size: 0.92rem;
+}
+
+input::-webkit-input-placeholder{
+	color: #fff;
+}
+
+#captget{
+	position: absolute;
+	margin-top: 12px;
+	right: 4%;
+	max-width: 208px;
+	width: 35%;
+	height: 2.4rem;
+	font-size: 1rem;
+}
+
+#captget.inactive{
+	background-color: #aeaeae;
+}
+
+#captget.inactive:active{
+	background-color: #aeaeae;
+}
+
+.capt{
+	position: relative;
+}
+
+.capt img{
+	position: absolute;
+	top: 0.8rem;
+	right: 2%;
+	height: 2.4rem;
+}
+
+.rem img, .protc img{
+	margin: 0px 10px 0px 10px;
+	width: 1.57rem;
+	display: none;
+	vertical-align: middle;
+	display: none;
+}
+
+.rem img.active, .protc img.active{
+	display: inline;
+}
+
+.protc a{
+	color: #388bc2;
+}
+
+.btn{
+	width: 100%;
+	max-width: 750px;
+	margin: 100px 0px 60px 0px;
+	height: 3.46rem;
+	font-size: 1.23rem;
+}
+
+.btnl{
+	position: absolute;
+	margin-top: 40px;
+	right: 5%;
+	font-size: 1.15rem;
+	color: #388bc2;
+	background-color: #fff;
+	padding: 0.61rem 1.6rem;
+	background-color: #fff;
+	border-radius: 30px;
+}
+
+.bindtip{
+	position: relative;
+	top: -3rem;
+	color: #ababab;
+	padding-left: 1rem;
+}

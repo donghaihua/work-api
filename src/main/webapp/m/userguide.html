@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>用户指南</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/culbrand.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<div class="stick">
+			<div class="title">
+				用户指南
+			</div>
+		</div>
+	</header>
+	<div class="box content main">
+			<div class="box">
+				<h4>1.如何成为红果文化会员？</h4>
+				<p>关注“有好油”微信服务号或访问有好油官网（www.uhaou.cn）完成会员注册程序，即可成为有好油会员。</p>
+
+				<h4>2.如何购买红天果山茶油？</h4>
+				<ol>
+					<li>关注“有好油”微信服务号并访问微信商城；</li>
+					<li>从“购物”按钮进入“有好油”微信商城；</li>
+					<li>阅读任意一篇“有好油”微信服务号推送的图文，点击底部“阅读原文”进入有好油微信商城；</li>
+					<li>访问“有好油”官网（www.uhaou.cn）；</li>
+				</ol>
+
+				<h4>3.如何查询订单物流情况？</h4>
+				<p>访问“有好油”微信服务号或访问有好油官网（www.uhaou.cn），在“我的—订单管理”中查看物流详情；若有好油系统未显示该单物流详情，请凭单号至相应物流官方网站查询。</p>
+
+				<h4>4.如何上传购物体验？</h4>
+				<p>访问“有好油”微信服务号或访问“有好油”官网（www.uhaou.cn），在“我的—订单管理”中对相应订单进行购物评价，如果您对“有好油”的产品和服务满意，别忘了到微信朋友圈、新浪微博等社交渠道将“红好油”分享给好友哦。</p>
+
+				<h4>5.如何获得积分？</h4>
+				<ol>
+					<li>在“有好油”官网（www.uhaou.cn）完成注册流程，即可获得10积分；</li>
+					<li>在“有好油”微信商城或“有好油”官网（www.uhaou.cn），每消费1元即可获得1积分；</li>
+					<li>好友通过您的微信邀请二维码关注“有好油”微信号，您即可获得10积分，每账号最多可获得10次微信邀请奖励。（此功能暂未开通，敬请期待）；</li>
+				</ol>
+
+				<h4>6.如何查看积分？</h4>
+				<p>访问“有好油”微信商城，查看“我的-积分”或“我的-我的信息-积分”；访问“有好油”商城，查看“账户-积分”。</p>
+
+				<h4>7.如何使用积分？</h4>
+				<ol>
+					<li>以“10积分:1元”的比例抵扣消费；</li>
+					<li>以“10积分:1股”的比例兑换虚拟股。</li>
+				</ol>
+
+				<h4>8.如何兑换虚拟股？</h4>
+				<p>访问“有好油”微信商城，查看“我的-我的信息-虚拟股-兑换虚拟股”；访问“有好油”商城，查看“账户-虚拟股-兑换虚拟股”。</p>
+
+				<h4>9.什么时候买好油最划算？</h4>
+				<ol>
+					<li>每周三会员普惠日、每月18日红果会员日及每年9月15日周年庆，“有好油”商城有特定优惠哦；</li>
+					<li>当然，各大传统节日，“有好油”是一个都不会落下的。</li>
+				</ol>
+
+				<h4>10.如何获得现金券？</h4>
+				<ol>
+					<li>邀请好友注册成为“有好油”商城会员（不包含微信商城会员），在好友第一次消费后，邀请账号可获得5元现金券奖励；</li>
+					<li>我们将会开发更多好玩的活动发放现金券，让利会员。</li>
+				</ol>
+
+				<h4>11.如何查看账户信息？</h4>
+				<p>访问“有好油”微信商城，查看“我的-我的信息”；访问“有好油”商城，查看“头像-账户”。</p>
+
+				<h4>12.虚拟股股东的权利说明？</h4>
+				<ol>
+					<li>感谢会员持有“江苏红果文化传播有限公司”发行的虚拟股份，虚拟股是本站会员对公司投资支持的重要依据，本站会员可凭此参与公司股权分红。同时，欢迎持股会员对公司的发展提出宝贵建议，公司将广泛听取慎重决策；</li>
+					<li>“江苏红果文化传播有限公司”将于每年一季度公布上一年度财务报表，公司将根据实际发放的虚拟股份数量，核算虚拟股占比及每股收益，并在网站公告中发布公示。公司有权根据实际盈利情况，决定某年度是否分红，具体详见虚拟股专题页年度分红公告；</li>
+					<li>虚拟股持有者享受公司发布的股权分红，但不具备对公司的经营权。</li>
+				</ol>
+
+			</div>
+	</div>
+	<footer class="box">
+		<div class="ws">UHAOU.CN</div>
+		<div class="cr">&copy;2015 uhao.cn<br><a href="http://www.miitbeian.gov.cn/">苏ICP备15001958号-1</a></div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script type="text/javascript">
+	</script>
+</body>
+</html>

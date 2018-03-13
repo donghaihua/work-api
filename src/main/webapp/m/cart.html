@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>购物车</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/cart.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body>
+	<header class="removecart logoutredirect">
+		<div class="stick" data-back="true">
+			<div class="title">
+				购物车
+			</div>
+		</div>
+	</header>
+	<div class="content main box">
+		<div class="rstep">
+			<div class="active"><div>我的购物车</div></div>
+			<div><div>填写订单</div></div>
+			<div><div>提交订单</div></div>
+		</div>
+		<div class="emptycart">
+			<p>您的购物车还没有任何商品</p>
+		</div>
+		<div class="cartlist">
+			<!-- <div class="citem">
+				<div class="l">
+					<div class="checkbox checked">
+						<img class="cb0" src="img/tick0.png" alt="checkbox">
+						<img class="cb1" src="img/tick1.png" alt="checkbox">
+					</div>
+					<div class="c">
+						<div class="img">
+							<img src="img/itemimg.png" alt="img">
+						</div>
+						<p>
+							<span class="n">红天果冷压榨特级初榨茶籽油初榨茶籽油</span><br>
+							<span class="s">500ML</span>
+							<span class="p">&yen;200</span>
+						</p>
+						<div class="q">
+							<span>&times;</span>
+							<div class="plus">+</div>
+							<input type="text" value="99">
+							<div class="minus">&ndash;</div>
+						</div>
+					</div>
+				</div>
+				<div class="btn">
+					<input type="button" value="删除">
+				</div>
+				<div class="clear"></div>
+			</div> -->
+		</div>
+	</div>
+	<div class="orderbtn">
+		<div>
+			<div class="all">
+				全选
+			</div>
+			<div class="checkbox checked">
+				<img class="cb0" src="img/tick0.png" alt="checkbox">
+				<img class="cb1" src="img/tick1.png" alt="checkbox">
+			</div>
+			<p>
+				<span class="p"></span><br>
+				<span class="s"></span>
+				<!-- <span class="p">总价<span>¥2000</span></span><br>
+				<span class="s">已选12件</span> -->
+			</p>
+			<button class="red" id="cartsubmit">结算</button>
+		</div>
+	</div>
+	<footer class="box">
+		<div class="ws">UHAOU.CN</div>
+		<div class="cr">&copy;2015 uhao.cn<br><a href="http://www.miitbeian.gov.cn/">苏ICP备15001958号-1</a></div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		var url = window.location.search;
+		var shopId = 1;
+		if(url.split('?_tempsg=')[1]) {
+			var tempsg = url.split('?_tempsg=')[1];
+
+			$.ajax({
+				type: 'GET',
+				url: urlprefix_l +'g/checkLogin',
+				async: false,
+				cache: false,
+				data: {"tempsg": tempsg},
+				success: function(data){
+
+				}
+			});
+		} else if(url.match('shopId=')) {
+			shopId = url.split('shopId=')[1];
+		}
+
+
+		function cartGet(){
+			$.ajax({
+				type:"GET",
+				data:"",
+				async:false,
+				cache:false,
+				url: "../sale/cart",
+				data: {"shopId": shopId},
+				error:function(){
+					//window.location.href="error.html";
+				},
+				success:function(data){
+					if (data.success == 0) {
+						$(".cartlist").empty().attr("data-cartid",data.datas.id);
+						if (data.length) {
+							var str;
+							for (var i = 0; i < data.length; i++) {
+								str = '<div class="citem" data-quantt="'+data.datas[i].quantity+'" data-cartid="'+data.datas[i].id+'" data-price="'+data.datas[i].saleItemSpec.discountPrice+'" data-itemid="'+data.datas[i].lightItem.id+'" data-specid="'+data.datas[i].saleItemSpec.id+'">'
+									+'<div class="l"><div class="checkbox checked"><img class="cb0" src="img/tick0.png" alt="checkbox"><img class="cb1" src="img/tick1.png" alt="checkbox"></div>'
+										+'<div class="c">'
+											+'<div class="img"><img src="'+data.datas[i].lightItem.avatar+'" alt="img"></div>'
+											+'<p>'
+												+'<span class="n">'+data.datas[i].lightItem.brand+data.datas[i].lightItem.name+'</span><br>'
+												+'<span class="s">'+data.datas[i].saleItemSpec.specName+'</span>'
+												+'<span class="p">&yen;'+data.datas[i].saleItemSpec.discountPrice+'</span>'
+											+'</p>'
+											+'<div class="q" data-price="' + data.datas[i].saleItemSpec.discountPrice + '">'
+												+'<span>&times;</span>'
+												+'<div class="plus">+</div>'
+												+'<input type="text" value="'+data.datas[i].quantity+'">'
+												+'<div class="minus">&ndash;</div>'
+											+'</div>'
+										+'</div>'
+									+'</div><div class="btn"><input type="button" value="删除"></div><div class="clear"></div>'
+								+'</div>';
+								$(".cartlist").append(str);
+							}
+						}else{
+							$(".cartlist").hide();
+							$(".emptycart").show();
+							$(".orderbtn .checkbox").removeClass("checked");
+						}
+					}
+				}
+			});
+		}
+
+		function cartlistt(){
+			$(".orderbtn p .s").text("已选"+$(".cartlist .citem .checkbox.checked").length+"件");
+			var total = 0;
+			var itemt = $(".cartlist .citem .checkbox.checked").parents(".citem");
+			for (var i = 0; i < itemt.length; i++) {
+				total += Number($(itemt[i]).attr("data-quantt"))*Number($(itemt[i]).attr("data-price"));
+			};
+			$(".orderbtn p .p").html("总价<span>¥"+total+"</span>");
+		}
+
+		cartGet();
+		cartlistt();
+
+		$(".cartlist .citem .checkbox").live("click",function(){
+			if ($(this).hasClass("checked")) {
+				$(this).removeClass("checked");
+			}else{
+				$(this).addClass("checked");
+			}
+			if ($(".cartlist .citem .checkbox:not(.checked)").length == 0) {
+				$(".orderbtn .checkbox").addClass("checked");
+			}else{
+				$(".orderbtn .checkbox").removeClass("checked");
+			}
+			cartlistt();
+		});
+
+		$(".citem .q input[type=text]").live("blur",function(){
+			console.log($(this));
+			if (isNaN($(this).val())) {
+				$(this).val("1");
+			}else if($(this).val() <= 0){
+				$(this).val("1");
+			}else if(parseInt($(this).val()) != $(this).val()){
+				$(this).val(parseInt($(this).val()));
+			}
+
+			var inventory;
+
+			$.ajax({
+				type:"get",
+				data:{
+					"specId":$(this).parents(".citem").attr("data-specid")
+				},
+				url:"../sale/item/inventory",
+				success:function(data){
+					if (data.success == 0) {
+						inventory = data.inventory;
+					}
+				}
+			});
+
+			if ($(this).val() >= inventory) {
+				$(this).val(inventory);
+			}
+
+			var itemid = $(this).parents(".citem").attr("data-itemid");
+			var specid = $(this).parents(".citem").attr("data-specid");
+			var quantity = $(this).val();
+			$(this).parents(".citem").attr("data-quantt",quantity);
+
+			var cartput = {
+					"id": $(this).parents(".citem").attr("data-cartid"),
+					"lightItem": {"id":itemid},
+					"saleItemSpec": {"id":specid},
+					"quantity": quantity
+				};
+			var item = $(this);
+			console.log(item);
+			$.ajax({
+				type:"PUT",
+				data:JSON.stringify(cartput),
+				contentType: 'application/json',
+				dataType: 'json',
+				async:false,
+				cache:false,
+				url:"../sale/cart",
+				error:function(){
+					//window.location.href="error.html";
+				},
+				success:function(data){
+					if (data.success == 0) {
+						var dp = item.parents(".q").attr("data-price");
+						item.parents("div.c:eq(0)").find("span.p:eq(0)").text('¥' + Number(item.val())*dp);
+						$().cartput(itemid, specid, quantity);
+					}
+				}
+			});
+			cartlistt();
+		});
+
+		$(".citem .q .minus").live("click",function(){
+			var quantt = $(this).siblings("input");
+			quantt.val(Number(quantt.val())-1);
+			quantt.blur();
+		});
+
+		$(".citem .q .plus").live("click",function(){
+			var quantt = $(this).siblings("input");
+			quantt.val(Number(quantt.val())+1);
+			quantt.blur();
+		});
+
+		$(".orderbtn div .checkbox img").click(function(){
+			var cb = $(this).parents(".checkbox");
+			if (cb.hasClass("checked")) {
+				cb.removeClass("checked");
+				$(".citem .checkbox").removeClass("checked");
+			}else{
+				cb.addClass("checked");
+				$(".citem .checkbox").addClass("checked");
+			}
+			cartlistt();
+		});
+
+		$(".citem .btn input[type=button]").live('click',function(){
+			var	cartdelete = {
+				"id":$(this).parents(".citem").attr("data-cartid"),
+				"lightItem":{"id":$(this).parents(".citem").attr("data-itemid")},
+				"saleItemSpec":{"id":$(this).parents(".citem").attr("data-specid")},
+			};
+			var item = $(this).parents(".citem");
+			
+			$.ajax({
+				type:"delete",
+				data:JSON.stringify(cartdelete),
+				contentType: 'application/json',
+				dataType: 'json',
+				async:false,
+				cache:false,
+				url:"../sale/cart",
+				success:function(data){
+					if (data.success == 0) {
+						item.remove();
+						$().cartdelete($(this).parents(".citem").attr("data-itemid"),$(this).parents(".citem").attr("data-specid"));
+					}else{
+						alert("删除失败 请重试");
+					}
+				}
+			});
+			cartlistt();
+		});
+
+		$("#cartsubmit").removeAttr("disabled");
+		$("#cartsubmit").click(function(){
+			var cartlist = $(".citem .checkbox.checked").parents(".citem");
+			if (cartlist.length) {
+				$("#cartsubmit").attr("disabled","disabled");
+				var cartorder = [];
+				for (var i = cartlist.length - 1; i >= 0; i--) {
+					cartorder.push({
+						"id": $(cartlist[i]).attr("data-cartid"),
+						"lightItem": {"id":$(cartlist[i]).attr("data-itemid")},
+						"saleItemSpec": {"id":$(cartlist[i]).attr("data-specid")},
+						"quantity": $(cartlist[i]).attr('data-quantt')
+					});
+				}
+
+				$.ajax({
+					type:"post",
+					data:JSON.stringify(cartorder),
+					contentType: 'application/json',
+					dataType: 'json',
+					async:false,
+					cache:false,
+					url:"../sale/cart/settle",
+					error:function(){
+						//alert("网络连接出错 请重试");
+					},
+					success:function(data){
+						if (data.success == 0) {
+							window.location.href="order.html";
+						}else{
+							alert("提交出错 请重试");
+						}
+					}
+				});
+				$("#cartsubmit").removeAttr("disabled");
+			}else{
+				alert("请选择要结算的商品");
+			}
+		});
+	});
+	</script>
+</body>
+</html>

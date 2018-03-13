@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>邮箱验证失败</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/reg.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body>
+	<header class="removecart logoutredirect">
+		<div class="stick">
+			<div class="title">
+				<a href="login.html">登录</a>
+				<a class="active">注册</a>
+			</div>
+		</div>
+	</header>
+	<div class="box content main">
+		<div class="rstep">
+			<div><div>创建账号</div></div>
+			<div class="active"><div>验证邮箱</div></div>
+			<div><div>注册成功</div></div>
+		</div>
+		<div class="reg3">
+			<div>
+				邮箱验证失败
+			</div>
+		</div>
+		<div class="error">
+		</div>
+		<input class="red btn" type="button" id="resend" value="重新验证">
+	</div>
+	<footer class="box">
+		<div class="ws">UHAOU.CN</div>
+		<div class="cr">&copy;2015 uhao.cn<br><a href="http://www.miitbeian.gov.cn/">苏ICP备15001958号-1</a></div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var url, verifyid, verifykey;
+		url = location.search.split(".html")[0];
+		verifyid = url.substring(url.indexOf("=")+1, url.indexOf("&")) + "";
+		verifykey = url.substring(url.lastIndexOf("=")+1) + "";
+		if (!verifyid&&!verifykey) {
+			//window.location.href="error.html";
+		}
+
+		$("#resend").removeAttr("disabled");
+		$("#resend").click(function(){
+			$(this).attr("disabled","disabled");
+			$.ajax({
+				type:"post",
+				data:{verifyId:verifyid,verifyKey:verifykey,type:0},
+				url:"../g/postMsg",
+				success:function(data){
+					if (data.success == 0) {
+						$("#resend").val("已发送");
+					}else{
+						if (data.error == 102) {
+							alert("您的邮箱已验证通过");
+							window.location.href="index.html";
+						}else{
+							alert("身份验证失败，请登录");
+							window.location.href="login.html";
+						}
+					}
+				}
+			});
+			setTimeout(function(){
+				$("#resend").removeAttr("disabled").val("重新发送");
+			},10000);
+		});
+	});
+	</script>
+</body>
+</html>

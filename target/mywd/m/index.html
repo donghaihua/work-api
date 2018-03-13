@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>首页</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="../css/flexslider.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+<style>
+	.flex-control-nav{
+		height:0px!important;
+	}
+</style>
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="shadow">
+	</div>
+	<div class="addtocart">
+		<div class="t">选择规格</div>
+		<div class="speclist">
+			<!-- <div class="active">
+				<div class="s">1L</div>
+				<div class="dp">&yen;20</div>
+			</div>
+			<div>
+				<div class="s">1.5L</div>
+				<div class="dp">&yen;2000</div>
+			</div> -->
+		</div>
+		<div class="clear"></div>
+		<div class="t">选择数量</div>
+		<div class="quantt">
+			<div class="minus">&ndash;</div>
+			<input type="text" value="1">
+			<div class="plus">+</div>
+		</div>
+		<div class="clear"></div>
+		<div class="btn">
+			<input type="button" name="cancel" value="取消">
+			<input type="button" name="addtc" value="加入购物车">
+		</div>
+	</div>
+	<header>
+		<div class="stick">
+			<div class="title">
+				<img class="logo" src="img/logo.png" alt="logo">
+			</div>
+		</div>
+	</header>
+	<div class="box main">
+		<!--<div class="banner" data-imgtype="1">
+			<a href=""><img class="banner" src=""></a>
+		</div>-->
+		<div class="banner" data-imgtype="1">
+			<ul class="slides">
+
+			</ul>
+		</div>
+		<h2>
+			<span>&diams;</span><span>&diams;</span>
+			新品上市
+			<span>&diams;</span><span>&diams;</span>
+		</h2>
+		<div class="banner" data-imgtype="2">
+			<a href=""><img class="banner" src=""></a>
+		</div>
+		<h2>
+			<span>&diams;</span><span>&diams;</span>
+			每日推荐
+			<span>&diams;</span><span>&diams;</span>
+		</h2>
+		<div class="banner" data-imgtype="3">
+			<a href=""><img class="banner" src=""></a>
+		</div>
+		<h2>
+			<span>&diams;</span><span>&diams;</span>
+			商品系列
+			<span>&diams;</span><span>&diams;</span>
+		</h2>
+<!-- 		<div class="block4h">
+			<div class="brand">红天果</div>
+			<div class="series">
+				<div>食</div>
+				<div>体</div>
+				<div>家</div>
+				<div class="active">礼</div>
+			</div>
+		</div> -->
+		<div class="block4b">
+			<div class="itemlist">
+<!-- 				<div class="item">
+					<div class="gp">特惠</div>
+					<img class="itemimg" src="" alt="img">
+					<p class="n"></p>
+					<p class="p">
+						<span class="dp">&yen;2000</span>
+						<span class="op">市场价&yen;3900</span>
+					</p>
+					<button class="red">加入购物车</button>
+				</div> -->
+			</div>
+			<button class="ilhtml red" id="seeAll">查看全部</button>
+		</div>
+		<h2>
+			<span>&diams;</span><span>&diams;</span>
+			品牌故事
+			<span>&diams;</span><span>&diams;</span>
+		</h2>
+		<div class="banner" data-imgtype="6">
+			<a href=""><img class="banner" src=""></a>
+		</div>
+<!-- 		<img class="banner" id="toBrand" src="img/indeximg5.png"> -->
+		<h2>
+			<span>&diams;</span><span>&diams;</span>
+			山茶文化
+			<span>&diams;</span><span>&diams;</span>
+		</h2>
+		<div class="banner" data-imgtype="7">
+			<a href=""><img class="banner" src=""></a>
+		</div>
+<!-- 		<img class="banner" src="img/indeximg6.png"> -->
+	</div>
+	<footer class="box">
+		<div class="rss">
+			<p>订阅有好油，加入我们</p>
+			<div>
+				<input type="text" placeholder="输入您的邮箱" id="rssemail">
+				<input class="red" type="button" value="发送" id="subscribe">
+			</div>
+		</div>
+		<div class="contact">
+			<div class="t">客户服务</div>
+			<div class="b" id="site_phone2">025-85703619</div>
+			<div class="t">地址</div>
+			<div class="b" id="site_address2">江苏省南京市雨花台区长虹路222号<br>德盈国际广场3幢1605室<br>江苏红果文化传播有限公司</div>
+			<div class="t">邮箱</div>
+			<div class="b" id="site_email2">srv@uhaou.cn</div>
+			<div class="t"><a href="userguide.html">用户指南</a></div>
+			<div class="b"><a href="userguide.html">快速了解网站流程及功能</a></div>
+		</div>
+		<div class="ws">UHAOU.CN</div>
+		<div class="cr">&copy;2015 uhao.cn<br><a href="http://www.miitbeian.gov.cn/">苏ICP备15001958号-1</a></div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script src="../js/jquery.flexslider.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var url = window.location.search;
+		var nameDA = [];
+		nameDA[0] = {
+			"key": null,
+			"option": null,
+			"val": null,
+			"page": 1,
+			"limit": 5
+		};
+
+
+		if(url.match('&_tempsg=')) {
+			var tempsg = url.split('&_tempsg=')[1];
+
+			$.ajax({
+				type: 'GET',
+				url: urlprefix_l +'g/checkLogin',
+				async: false,
+				cache: false,
+				data: {"tempsg": tempsg},
+				success: function(data){
+					url = url.split('&_tempsg=')[0];
+					console.log(url);
+				}
+			});
+		}
+
+		if(url.split('?val=')[1]) {
+			var itemName = decodeURI(decodeURI(url.split('?val=')[1]));
+			//console.log(itemName);
+			if (itemName) {
+				nameDA[0].key = "name";
+				nameDA[0].option = 1;
+				nameDA[0].val = itemName;
+				$(".sesearch input[name=seinput]").val(itemName);
+				itemSearch(1, nameDA);
+			}
+		}else{
+			itemSearch(1, nameDA);
+		}
+		
+		$("#subscribe").click(function(){
+			var emailaddr = $("#rssemail").val();
+			if(!emailaddr){
+				alert("请输入邮箱");
+			}else if(!$().emailvalidate(emailaddr)){
+				alert("邮箱格式不正确");	
+			}else{
+				$.ajax({
+					type:"POST",
+					url: urlprefix_l +'s/subscription',
+					data:{email: emailaddr},
+					cache: false,
+					error:function(){
+						alert("网络连接错误，请重试");
+					},
+					success:function(data){
+						if(data.success == 0){
+							alert("订阅成功");
+						}else{
+							alert("订阅失败，请检查输入内容后重试");
+						}
+					}
+				});
+			}
+		});
+
+		function bannerGet(){
+			var type = [1,2,3,6,7];
+			for(var i in type){
+				$.ajax({
+					type: 'GET',
+					url: urlprefix_l +'s/index_1',
+					async: false,
+					cache: false,
+					data: {"type": type[i], "device":2, "state":0},
+					success: function(data){
+						if(data.success == 0){
+							if(type[i] == 1){
+								for(var j = 0;j < data.datas.length;j++){
+									if(data.datas[j].item_bg){
+										var str = '';
+										if(data.datas[j].item_url){
+											str = '<li><a href="'+(data.datas[j].item_url||'')+'"><img class="banner" src="'+data.datas[j].item_bg+'" alt=""></a></li>';
+										}else{
+											str = '<li><img class="banner" src="'+data.datas[j].item_bg+'" alt=""></li>';
+										}
+										$('ul.slides').append(str);
+									}
+								}
+								$('div[data-imgtype=1]').flexslider({
+									animation: "slide"
+								});
+							} else {
+								if(data.datas[0].item_bg){
+									var url = $(".banner[data-imgtype="+type[i]+"] a");
+									var img = url.children("img");
+									url.attr("href",data.datas[0].item_url||"");
+									img.attr("src",data.datas[0].item_bg||"");
+								}
+							}
+						}
+					}
+				});
+			}
+		}
+		bannerGet();
+		
+		function itemSearch(page, dataArray){
+			$.ajax({
+				type: "POST",
+				dataType: "json",      
+				contentType : 'application/json',
+				url: '../sale/item/search',
+				data: JSON.stringify(dataArray),
+				success: function(data) {
+					if (data.success == 0) {
+						var str = "";
+						// if (data.datas.length == 0) {
+						// 	$(".nextpage").hide();
+						// }else{
+						for (var i = 0; i < data.datas.length; i++) {
+							if(data.datas[i].minDiscountPrice == data.datas[i].minOriginalPrice
+									|| !data.datas[i].minDiscountPrice) {
+								str += '<div class="item" data-itemid="'+data.datas[i].id+'">'
+										+'<a href="item/'+data.datas[i].id+'.html">'
+										+'<img class="itemimg" src="'+data.datas[i].avatar+'" alt="img">'
+										+'<p class="n">'+data.datas[i].name+'</p>'
+										+'<p class="p">'
+										+'<span class="dp">&yen;'+data.datas[i].minOriginalPrice+'</span>'
+										+'</p>'
+										+'</a>'
+										+'<button class="red" name="addtc">加入购物车</button>'
+										+'</div>';
+							} else {
+								str += '<div class="item" data-itemid="'+data.datas[i].id+'">'
+										+'<a href="item/'+data.datas[i].id+'.html">'
+										+'<div class="gp">特惠</div>'
+										+'<img class="itemimg" src="'+data.datas[i].avatar+'" alt="img">'
+										+'<p class="n">'+data.datas[i].name+'</p>'
+										+'<p class="p">'
+										+'<span class="dp">&yen;'+data.datas[i].minDiscountPrice+'</span>'
+										+'<span class="op">市场价&yen;'+data.datas[i].minOriginalPrice+'</span>'
+										+'</p>'
+										+'</a>'
+										+'<button class="red" name="addtc">加入购物车</button>'
+										+'</div>';
+							}
+						}
+						$(".itemlist").empty().append(str);
+						//}
+					}
+				}
+			});
+		}
+		itemSearch(1, nameDA);
+
+		$("button[name=ilhtml]").click(function(){
+			window.location.href="item_list.html";
+		});
+
+		$("#seeAll").click(function() {
+			window.location.href = "item_list.html";
+		});
+
+		$(".item button").removeAttr("disabled");
+		$(".item button").live("click",function(){
+			$(this).attr("disabled","disabled");
+			var itemid = $(this).parents(".item").attr("data-itemid");
+			$.ajax({
+				type:"GET",
+				data:{"itemId":itemid},
+				url:"../sale/itemSpec",
+				success:function(jsondata){
+					if (jsondata.success == 0) {
+						$(".addtocart .quantt input[type=text]").val(1);
+						$(".addtocart .speclist").parents("tr").remove();
+						$(".addtocart").attr("data-itemid",itemid);
+						var str = '';
+						for (var i = 0; i < jsondata.datas.length; i++) {
+							var spec = jsondata.datas[i];
+							str += '<div class="spec" data-specid="'+spec.id+'">'
+											+'<div class="s">'+spec.specName+'</div>'
+											+'<div class="dp">&yen;'+spec.discountPrice+'</div>'
+										+'</div>';
+						}
+						$(".addtocart .speclist").empty().append(str);
+						$(".addtocart .spec:eq(0)").addClass("active");
+
+						$(".shadow, .addtocart").show();
+					}
+				}
+			});
+			$(this).removeAttr("disabled","disabled");
+		});
+		
+		$(".addtocart").click(function(){
+			
+		});
+		
+		$(".addtocart .spec").live('click',function(){
+			$(".addtocart .spec").removeClass("active");
+			$(this).addClass("active");
+			$(".addtocart .quantt input[type=text]").blur();
+		});
+
+		$(".addtocart .quantt input[type=text]").blur(function(){
+			if (isNaN($(this).val())) {
+				$(this).val("1");
+			}else if($(this).val() <= 0){
+				$(this).val("1");
+			}else if(parseInt($(this).val()) != $(this).val()){
+				$(this).val(parseInt($(this).val()));
+			}
+
+			var inventory;
+
+			$.ajax({
+				type:"get",
+				data:{
+					"specId":$(".addtocart .spec.active").attr("data-specid"),
+				},
+				url:"../sale/item/inventory",
+				success:function(data){
+					if (data.success == 0) {
+						inventory = data.inventory;
+					}
+				}
+			});
+
+			if ($(this).val() >= inventory) {
+				$(this).val(inventory);
+			}
+
+			if($(this).val()>99){
+				$(this).val(99);
+			}
+		});
+
+		$(".addtocart .quantt .plus").click(function(){
+			var quantt = $(this).siblings("input");
+			quantt.val(Number(quantt.val())+1);
+			quantt.blur();
+		});
+
+		$(".addtocart .quantt .minus").click(function(){
+			var quantt = $(this).siblings("input");
+			quantt.val(Number(quantt.val())-1);
+			quantt.blur();
+		});
+		$("#toBrand").click(function(){
+			window.location.href="brand.html";
+		});
+		$(".addtocart input[name=cancel]").click(function(){
+			$(".addtocart, .shadow").hide();
+		});
+
+		var url = window.location.search;
+		var shopId;
+		if(url.match('shopId=')) {
+			shopId = url.split('shopId=')[1];
+			if(shopId.match('&')) {
+				shopId = shopId.substring(0, shopId.indexOf('&'));
+			}
+		} else {
+			shopId = 1;
+		}
+
+		$(".addtocart input[name=addtc]").removeAttr("disabled");
+		$(".addtocart input[name=addtc]").click(function(){
+// 			$(this).attr("disabled","disabled");
+			var itemid = $(".addtocart").attr("data-itemid");
+			var specid = $(".addtocart .spec.active").attr("data-specid");
+			var quantity = $(".addtocart .quantt input[type=text]").val();
+			var cartpost = {
+				"shop": {"id":shopId},
+				"lightItem":{"id":itemid},
+				"saleItemSpec":{"id":specid},
+				"quantity":quantity
+			};
+			console.log(cartpost);
+			$.ajax({
+				type:"post",
+				data:JSON.stringify(cartpost),
+				contentType: 'application/json',
+				dataType: 'json',
+				async:false,
+				cache:false,
+				url:"../sale/cart",
+				success:function(data){
+					if (data.success == 0) {
+						$(".addtocart input[name=cancel]").click();
+						$().cartpost(itemid,specid,quantity);
+						$().ddcartlistt();
+						$().mcart();
+					} else if(data.success == 55) {
+						alert('库存不足，无法加入购物车');
+					}
+				}
+			});
+		});
+	});
+	</script>
+</body>
+</html>

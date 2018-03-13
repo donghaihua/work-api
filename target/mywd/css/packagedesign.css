@@ -1,0 +1,521 @@
+.banner{
+	height: 388px;
+	background: url(../img/designbanner.jpg) center;
+}
+
+.tabnav{
+	height: 48px;
+	background-color: #000;
+}
+
+.tabnav ul{
+	width: 880px;
+	margin: 0 auto;
+}
+
+.tabnav li{
+	color: #fff;
+	cursor: pointer;
+	width: 132px;
+	height: 48px;
+	float: left;
+	margin-left: 20px;
+	line-height: 48px;
+	text-align: center;
+	font-size: 20px;
+}
+
+.tabnav li.active, .tabnav li:hover{
+	background-color: #ce4836;
+}
+
+.tab2, .tab3{
+	display: none;
+}
+
+.tab1{
+	width: 918px;
+	margin: 0 auto;
+}
+
+.totalnum{
+	margin: 42px 15px;
+	font-size: 18px;
+}
+
+.totalnum span{
+	color: #ce4836;
+	font-size: inherit;
+}
+
+.tab1 .worklist li{
+	width: 276px;
+	float: left;
+	margin: 0 15px 30px 15px;
+}
+
+.tab1 .worklist li .img{
+	width: 276px;
+	height: 226px;
+	overflow: hidden;
+}
+
+.tab1 .worklist li div.detail{
+	height: 102px;
+	background-color: #f7f7f7;
+	padding: 13px 14px 0px 20px;
+}
+
+.tab1 .worklist li div.detail h3{
+	font-size: 18px;
+	line-height: 22px;
+	margin-bottom: 10px;
+}
+
+.tab1 .worklist li div.detail .avatar{
+	position: absolute;
+	width: 26px;
+	height: 26px;
+	border-radius: 30px;
+	overflow: hidden;
+}
+
+.tab1 .worklist li div.detail .avatar img{
+	width: 100%;
+	height: 100%;
+}
+
+.tab1 .worklist li div.detail .authorinfo{
+	margin-left: 36px;
+	line-height: 26px;
+	color: #606060;
+	font-size: 16px;
+}
+
+.tab1 .worklist li div.detail .vote{
+	color: #ce4836;
+	font-size: 16px;
+	margin-top: 4px;
+	text-align: right;
+}
+
+.tab1 .worklist li div.detail .vote>span{
+	cursor: pointer;
+}
+
+.tab1 .worklist li div.detail .vote span span{
+	position: relative;
+	top: 2px;
+}
+
+.tab1 .worklist li div.detail .vote span.icon-heart,
+.tab1 .worklist li div.detail .vote.active span.icon-heart2{
+	display: none;
+}
+
+.tab1 .worklist li div.detail .vote span.icon-heart2,
+.tab1 .worklist li div.detail .vote.active span.icon-heart{
+	display: inline;
+}
+
+.tab1 .clear{
+	border-top: 4px solid #f7f7f7;
+	margin: 0 15px;
+}
+
+.tab1 .listdetail{
+	position: absolute;
+	margin: 40px 0px 0px 15px;
+}
+
+.pager{
+	margin: 40px 0px 70px 0px;
+	height: 16px;
+}
+
+.pager .page{
+	float: right;
+	margin-right: 15px;
+}
+
+.page a{
+	padding: 6px 10px;
+	color: #494949;
+	cursor: pointer;
+}
+
+.page .nextpage{
+	position: relative;
+	padding: 6px 19px 6px 10px;
+	cursor: pointer;
+}
+
+.page .nextpage span{
+	position: absolute;
+	top: 4px;
+	right: 1px;
+	font-size: 20px;
+}
+
+.page a:hover, .page a.current, .page .nextpage:hover{
+	color: #fff;
+	background-color: #1d1e20;
+}
+
+.tab2{
+	width: 918px;
+	margin: 0 auto;
+}
+
+.tab2 h3{
+	font-size: 22px;
+	margin-top: 60px;
+}
+
+.tab2 ol{
+	margin: 30px 0px;
+
+}
+
+.tab2 ol li{
+	font-size: 18px;
+	line-height: 24px;
+	list-style: disc;
+}
+
+.tab2 p{
+	font-size: 18px;
+}
+
+.tab3{
+	width: 910px;
+	margin: 0 auto;
+}
+
+.tab3 .uploadinfo .ava{
+	width: 60px;
+	height: 60px;
+	margin: 60px auto 0 auto;
+	overflow: hidden;
+	border-radius: 60px;
+}
+
+.tab3 .uploadinfo .ava img{
+	width: 60px;
+	height: 60px;
+}
+
+.tab3 .uploadinfo .username{
+	margin: 12px 0;
+	text-align: center;
+	color: #388bc2;
+	font-weight: normal;
+}
+
+.tab3 .uploadinfo .telephone{
+	text-align: center;
+	color: #606060;
+	margin-bottom: 20px;
+}
+
+.tab3 .uploadform p{
+	margin-bottom: 14px;
+	font-size: 20px;
+}
+
+.tab3 .uploadform>div{
+	margin-bottom: 30px;
+	position: relative;
+}
+
+.tab3 .uploadform select{
+	width: 100%;
+	height: 48px;
+}
+
+.tab3 .uploadform input[type=text]{
+	border: 1px solid #cbcbcc;
+	height: 46px;
+	width: 890px;
+	padding: 0 10px;
+}
+
+.tab3 .uploadform textarea{
+	border: 1px solid #cbcbcc;
+	height: 124px;
+	width: 890px;
+	padding: 10px;
+	resize: none;
+}
+
+.tab3 .uploadform .workcover{
+	width: 272px;
+	height: 222px;
+	border: 2px dashed #cbcbcc;
+	position: relative;
+	overflow: hidden;
+}
+
+.tab3 .uploadform .workcover img{
+	display: none;
+	min-width: 276px;
+	min-height: 226px;
+	max-width: 500px;
+	max-height: 500px;
+}
+
+.tab3 .uploadform .bluer{
+	position: absolute;
+	top: 80px;
+	left: 50%;
+	margin-left: -38px;
+	width: 76px;
+	height: 30px;
+	line-height: 24px;
+}
+
+.tab3 .uploadform .workcover p,
+.tab3 .uploadform .images li.newimg p{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	top: 126px;
+	font-size: 16px;
+}
+
+.tab3 .uploadform .editbtn{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	height: 48px;
+	background-color: #e36655;
+	color: #fff;
+	font-size: 20px;
+	display: none;
+	cursor: pointer;
+}
+
+.tab3 .uploadform .workcover.active{
+	width: 276px;
+	height: 226px;
+	border: none;
+}
+
+.tab3 .uploadform .workcover.active img,
+.tab3 .uploadform .workcover.active:hover .editbtn{
+	display: block;
+}
+
+.tab3 .uploadform .workcover.active .bluer,
+.tab3 .uploadform .workcover.active p{
+	display: none;
+}
+
+.tab3 .uploadform .coverupload,
+.tab3 .uploadform .imgupload{
+	display: none;
+}
+
+.tab3 .uploadform .images{
+	border: 2px dashed #cbcbcc;
+	padding: 9px;
+}
+
+.tab3 .uploadform .images li{
+	float: left;
+	width: 268px;
+	height: 218px;
+	margin: 10px;
+	border: 4px solid #fff;
+	position: relative;
+	overflow: hidden;
+}
+
+.tab3 .uploadform .images li img{
+	position: absolute;
+	top: -4px;
+	left: -4px;
+	min-width: 276px;
+	min-height: 226px;
+	max-width: 500px;
+	max-height: 500px;
+}
+
+.tab3 .uploadform .images li:hover{
+	border: 4px solid #cbcbcc;
+	overflow: hidden;
+}
+
+.tab3 .uploadform .images li:hover .editbtn{
+	display: block;
+}
+
+.tab3 .uploadform .images li.newimg{
+	width: 272px;
+	height: 222px;
+	border: 2px dashed #cbcbcc;
+}
+
+.tab3 .uploadform .checkbox{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #c5c5c5;
+	cursor: pointer;
+}
+
+.tab3 .uploadform .checkbox:before{
+	font-size: 20px;
+	display: none;
+}
+
+.tab3 .uploadform .checkbox.checked{
+	position: absolute;
+	border: 2px solid #abcf58;
+	background-color: #abcf58;
+}
+
+.tab3 .uploadform .checkbox.checked:before{
+	display: inline;
+	color: #fff;
+}
+
+.tab3 .uploadform .agreement{
+	margin-left: 34px;
+	line-height: 24px;
+}
+
+.tab3 .uploadform .btn{
+	margin-top: 30px;
+}
+
+.tab3 .uploadform .btn .red{
+	width: 136px;
+	height: 46px;
+}
+
+.tab3 .uploadform .btn .white{
+	margin-left: 15px;
+	width: 100px;
+	height: 46px;
+}
+
+.tab3 .uploadform .btn span{
+	padding-left: 20px;
+	color: #c25546;
+	display: none;
+}
+
+.workinfo{
+	width: 100%;
+	background-color: #f7f7f7;
+}
+
+.workinfo>div{
+	width: 960px;
+	margin: 0 auto;
+	padding: 30px 0 60px 0;
+}
+
+.workinfo>div .ava{
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	border-radius: 60px;
+	overflow: hidden;
+}
+
+.workinfo>div .ava img{
+	width: 60px;
+	height: 60px;
+}
+
+.workinfo>div .heart{
+	position: absolute;
+	margin-top: 70px;
+	width: 60px;
+	text-align: center;
+	color: #ce4836;
+	cursor: pointer;
+}
+
+.workinfo>div .heart .icon-heart,
+.workinfo>div .heart.active .icon-heart2{
+	display: none;
+}
+
+.workinfo>div .heart.active .icon-heart{
+	display: inline;
+}
+
+.workinfo>div h3{
+	font-size: 24px;
+	margin-left: 80px;
+	line-height: 36px;
+}
+
+.workinfo>div p{
+	margin-left: 80px;
+	line-height: 30px;
+}
+
+.workinfo>div p.dt span{
+	padding-left: 15px;
+	color: #606060;
+}
+
+.workinfo>div p.cy .at{
+	color: #388bc2;
+	font-weight: normal;
+}
+
+.workinfo>div p.cy .cytype{
+	color: #ce4836;
+	padding-left: 10px;
+}
+
+.workintro{
+	width: 960px;
+	margin: 0 auto;
+}
+
+.workintro p{
+	text-indent: 20px;
+	padding: 60px 0px 40px 0px;
+}
+
+.workintro img{
+	display: block;
+	max-width: 960px;
+	margin-bottom: 10px;
+}
+
+.error{
+	position: absolute;
+	margin-top: -38px;
+	left: 102px;
+	font-size: 14px;
+	padding: 8px 50px 8px 8px;
+	color: #fff;
+	background-color: #c25546;
+	border-radius: 5px;
+	display: none;
+}
+
+.error div{
+	position: absolute;
+	bottom: -8px;
+	width: 0px;
+	height: 0px;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-top: 9px solid #c25546;
+}
+
+
+
+
+
+
+
+

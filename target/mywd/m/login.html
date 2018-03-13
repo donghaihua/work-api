@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>登录</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/reg.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body>
+	<header class="removecart">
+		<div class="stick">
+			<div class="title">
+				<a class="active">登录</a>
+				<a href="reg.html">注册</a>
+			</div>
+		</div>
+	</header>
+	<div class="box content main">
+		<div class="login">
+			<input type="text" placeholder="用户名/邮箱/手机号" id="lp" maxlength="128"><br>
+			<input type="password" placeholder="密码" id="pwd" maxlength="128">
+			<div class="rem">
+				记住账号
+				<img data-val="0" src="img/tick0.png">
+				<img class="active" data-val="1" src="img/tick1.png">
+			</div>
+			<div class="capt">
+				<input type="text" placeholder="图片验证码" id="capti" maxlength="4">
+				<img id="captimg" src="../g/getKaptchaImage">
+			</div>
+		</div>
+		<button class="red btn" name="login">登录</button>
+	</div>
+	<footer class="box">
+		<div class="ws">UHAOU.CN</div>
+		<div class="cr">&copy;2015 uhao.cn<br><a href="http://www.miitbeian.gov.cn/">苏ICP备15001958号-1</a></div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$(".rem img").click(function(){
+			$(this).removeClass("active").siblings("img").addClass("active");
+		});
+		var loginparam = $.cookie("logparam");
+
+		if (loginparam) {
+			$("#lp").val(loginparam);
+		}
+
+		$("#captimg").click(function(){
+			$().captimg();
+		});
+
+		$("button[name=login]").removeAttr("disabled");
+		$("button[name=login]").click(function(){
+			var sus = 0;
+			var lp = $("#lp").val();
+			var pwd = $("#pwd").val();
+			var capt = $("#capti").val();
+
+			if (!lp || !pwd || !capt) {
+				alert("请填写完整");
+			}else if (!$().captimgvalidate(capt)) {
+				alert("验证码格式不正确");
+			}else if ($().vcaptimg(capt)){
+				alert("验证码错误");
+			}else{
+				sus = 1;
+			}
+
+			if (sus) {
+				$.ajax({
+					type:"post",
+					data:{
+						loginParam:lp,
+						password:pwd,
+						captchaImg:capt
+					},
+					url: urlprefix + "passport/login",
+					async:false,
+					error:function(){
+						alert("网络连接错误，请重试");
+						$("#captimg").click();
+					},
+					success:function(data){
+						if (data.success == 0) {
+							if ($(".rem img.active").attr("data-val") == 1) {
+								$.cookie("logparam",$("#lp").val());
+							}else{
+								$.cookie("logparam","");
+							}
+							window.location.href="index.html";
+						}else{
+							$("#captimg").click();
+							var errort = "";
+							if (data.error == 101){
+								errort = "该账户尚未注册，请注册后登录";
+							}else if(data.error == 203){
+								errort = "密码不正确";
+							}else if(data.error == 301){
+								errort = "验证码错误";
+							}else if(data.error == 201){
+								errort = "输入格式错误";
+							}
+							alert(errort);
+						}
+					}
+				});
+			}
+			$(this).removeAttr("disabled");
+		});
+	});
+	</script>
+</body>
+</html>

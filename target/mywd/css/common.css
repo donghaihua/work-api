@@ -1,0 +1,144 @@
+.content{
+	height: 484px;
+}
+
+.content .l{
+	position: absolute;
+	padding: 154px 0px 0px 204px;
+}
+
+.content .l h3{
+	font-size: 24px;
+}
+
+.content .l p{
+	margin-top: 16px;
+	line-height: 24px;
+}
+
+.content .l input{
+	margin-top: 128px;
+	width: 232px;
+	height: 46px;
+	font-size: 20px;
+	color: #fff;
+	background-color: #e36655;
+	cursor: pointer;
+}
+
+.content .l input:hover{
+	background-color: #ce4836;
+}
+
+.content .img{
+	margin: 46px 0px 0px 687px;
+	height: 406px;
+}
+
+.content .img img{
+	max-height: 100%;
+}
+
+.payment h3,
+.order h3{
+	text-align: center;
+	padding-top: 36px;
+	padding-bottom: 21px;
+	border-bottom: 2px solid #f3f3f3;
+}
+
+.payment h3 span.t,
+.order h3 span.t{
+	font-size: 36px;
+	padding: 0px 10px 20px 10px;
+	border-bottom: 4px solid #e36655;
+}
+
+.payment h3 span.icon-circle1081,
+.order h3 span.icon-circle1081,
+.payment h3 span.icon-cancel,
+.order h3 span.icon-cancel{
+	position: absolute;
+	margin-left: -40px;
+	font-size: 40px;
+	color: #abcf58;
+}
+
+.payment h3 span.icon-cancel,
+.order h3 span.icon-cancel{
+	color: #e36655;
+}
+
+.payment p,
+.order p{
+	font-size: 20px;
+	text-align: center;
+	padding: 52px 0px 60px 0px;
+}
+
+.payment p span,
+.order p span{
+	font-size: inherit;
+	padding-right: 5px;
+	font-weight: normal;
+}
+
+.payment .btn,
+.order .btn{
+	text-align: center;
+}
+
+.payment input[type=button],
+.order input[type=button]{
+	width: 200px;
+	height: 50px;
+	color: #fff;
+	font-size: 20px;
+	margin: 0 15px;
+	cursor: pointer;
+	background-color: #e36655;
+}
+
+.payment input[type=button]:hover,
+.order input[type=button]:hover{
+	background-color: #ce4836;
+}
+
+.paytype{
+	border: 1px solid #f3f3f3;
+	border-top: none;
+}
+
+.paytype>div{
+	border-top: 1px solid #f3f3f3;
+}
+
+.paytype label{
+	display: block;
+	padding: 30px;
+	cursor: pointer;
+}
+
+.paytype label input{
+	margin-right: 15px;
+}
+
+.paytype .paydetail{
+	display: none;
+	text-align: center;
+	padding: 30px;
+}
+
+.paytype>div.active>.paydetail{
+	display: block;
+}
+
+.paytype .wxpay .paydetail img{
+	max-width: 20%;
+}
+
+.paytype .paydetail .tip{
+	padding-top: 30px;
+}
+
+

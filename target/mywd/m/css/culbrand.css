@@ -1,0 +1,66 @@
+.story1 img, .story2 img, .culbanner img{
+	width: 100%;
+}
+
+.culbanner{
+	margin-bottom: 1rem;
+}
+
+h4{
+	text-align: center;
+	font-size: 1.6rem;
+	padding: 0;
+}
+
+h5{
+	font-size: 1.4rem;
+	text-align: center;
+}
+
+h6{
+	margin-left: 1rem;
+	margin-top: 1rem;
+	font-size: 1.2rem;
+}
+
+p{
+	margin: 0.8rem 1rem;
+	font-size: 1.07rem;
+	line-height: 1.60rem;
+	text-indent: 2.2rem;
+}
+
+ul{
+	margin: 1rem;
+}
+
+ol{
+	margin: 1rem 1rem 1rem 2.4rem;
+}
+
+li{
+	font-size: 1.07rem;
+	line-height: 1.6rem;
+}
+
+table{
+	margin: 1rem;
+}
+
+#website{
+	margin-top: 2rem;
+	font-weight: bold;
+}
+
+table.contact{
+	border-spacing: 0.4rem 0.8rem;
+}
+
+table.contact th{
+	width: 30%;
+	text-align: left;
+	vertical-align: top;
+}
+
+
+

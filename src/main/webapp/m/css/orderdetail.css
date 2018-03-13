@@ -1,0 +1,402 @@
+.contt{
+	font-size: 1.07rem;
+	height: 2.3rem;
+	line-height: 2.3rem;
+	background-color: #303134;
+	color: #fff;
+	padding-left: 0.6rem;
+}
+
+.b1{
+	padding: 0.6rem;
+	font-size: 1.15rem;
+	line-height: 1.5rem;
+}
+
+.b2 span{
+	display: inline-block;
+	width: 20%;
+	float: left;
+	text-align: center;
+	font-size: 0.92rem;
+	height: 3.15rem;
+	line-height: 3.15rem;
+	color: #797979;
+	border-top: 8px solid #e9e9e9;
+	min-width: 4.4rem;
+}
+
+.b2 span.active{
+	border-top: 8px solid #a0c44e;
+	color: #a0c44e;
+}
+
+.tabh{
+	font-size: 1.15rem;
+	padding-left: 0.6rem;
+	height: 2.3rem;
+	line-height: 2.3rem;
+	color: #727272;
+	vertical-align: middle;
+	background-color: #e9e9e9;
+}
+
+.tabh .status{
+	margin-left: 1rem;
+	color: #fff;
+	font-size: 0.92rem;
+	padding: 0.2rem 0.5rem;
+	background-color: #303134;
+	border-radius: 50px;
+}
+
+.tabh .oper,
+.tabh .refund{
+	margin-left: 1rem;
+	font-size: 1rem;
+	color: #388bc2;
+}
+
+.oitem{
+	position: relative;
+	margin: 0 5%;
+	border-top: 4px solid #f7f7f7;
+	min-height: 140px;
+}
+
+.oitem .img{
+	position: absolute;
+	top: 30px;
+	width: 4.6rem;
+	height: 4.6rem;
+}
+
+.oitem .img img{
+	max-width: 100%;
+	max-height: 100%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.oitem p{
+	padding: 1.15rem 0 0.6rem 5rem;
+	width: 42%;
+}
+
+.oitem p .s{
+	color: #727272;
+	background-color: #f7f7f7;
+	padding: 0.3rem 0.6rem;
+	font-size: 0.92rem;
+	line-height: 2rem;
+}
+
+.oitem .price{
+	position: absolute;
+	top: 30px;
+	right: 0px;
+	text-align: right;
+}
+
+.oitem .price .p{
+	font-size: 1.15rem;
+	font-weight: normal;
+	color: #e36655;
+}
+
+.oitem .price .q{
+	font-weight: normal;
+	font-size: 1.15rem;
+}
+
+.oitem .price .q span{
+	font-size: 1.6rem;
+	font-weight: normal;
+	padding-right: 1.54rem;
+}
+
+.tab1b .tp{
+	text-align: right;
+	height: 3.84rem;
+	line-height: 3.84rem;
+	font-size: 1.23rem;
+	margin: 0 5%;
+	border-top: 4px solid #f7f7f7;
+}
+
+.tab1b .tp span{
+	color: #e36655;
+	font-weight: normal;
+	font-size: 1.23rem;
+}
+
+.tab2b table{
+	width: 90%;
+	margin: 1.38rem auto;
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 2px solid #c5c5c5;
+	border-radius: 10px;
+}
+
+.tab2b table td{
+	border-top: 2px solid #c5c5c5;
+}
+
+.tab2b table tr:first-child td{
+	border-top: none;
+}
+
+.tab2b table .th{
+	font-size: 0.92rem;
+	padding: 0.38rem 0 0 0.77rem;
+	line-height: 1.6rem;
+	text-align: left;
+}
+
+.tab2b table .td{
+	font-size: 1.15rem;
+	line-height: 1.53rem;
+	padding: 0 0 0.3rem 0.77rem;
+	color: #727272;
+}
+
+.tab3b .comment{
+	width: 90%;
+	margin: 1.4rem auto;
+}
+
+.tab3b .cmth{
+	height: 3.84rem;
+	line-height: 3.84rem;
+	background-color: #e9e9e9;
+	border-top-left-radius: 16px;
+	border-top-right-radius: 16px;
+}
+
+.tab3b .cmth>div{
+	display: inline-block;
+	width: 30%;
+	text-align: center;
+	font-size: 1.23rem;
+}
+
+.tab3b .cmth>div>div{
+	position: relative;
+	display: inline-block;
+	margin: 0 0.3rem;
+	width: 1.1rem;
+	height: 1.1rem;
+	background-color: #fff;
+	border-radius: 50px;
+	vertical-align: baseline;
+}
+
+.tab3b .cmth div.active div{
+	background-color: #abcf58;
+}
+
+.tab3b .cmtbt{
+	position: relative;
+	min-height: 6.07rem;
+	border: 2px solid #c5c5c5;
+}
+
+.tab3b .cmtbt .img{
+	position: absolute;
+	top: 0.6rem;
+	left: 0.76rem;
+	width: 4.7rem;
+	height: 4.7rem;
+}
+
+.tab3b .cmtbt .img img{
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.tab3b .cmtbt p{
+	margin: 0.6rem 0.2rem 0 5.5rem;
+	font-size: 0.92rem;
+	line-height: 1.2rem;
+}
+
+.tab3b .cmtbt p .s{
+	color: #727272;
+	line-height: 2rem;
+	padding: 0.2rem 0.38rem;
+	background-color: #f7f7f7;
+}
+
+.tab3b .cmtbb{
+	border-left: 2px solid #c5c5c5;
+	border-right: 2px solid #c5c5c5;
+	border-bottom: 2px solid #c5c5c5;
+}
+
+.tab3b .cmtbb .date{
+	margin-left: 3%;
+	padding-top: 0.4rem;
+	color: #abcf58;
+}
+
+.tab3b .cmtbb textarea{
+	width: 94%;
+	padding: 0 3%;
+	padding-top: 0.4rem;
+	padding-bottom: 0.4rem;
+	border: none;
+	resize: none;
+	height: 4.6rem;
+	font-size: 0.92rem;
+}
+
+.tab3b .submit button{
+	display: block;
+	width: 100%;
+	height: 3rem;
+	font-size: 1.23rem;
+	border-bottom-left-radius: 16px;
+	border-bottom-right-radius: 16px;
+}
+
+.tab3b .submit.save button[name=edit]{
+	display: none;
+}
+
+.tab3b .submit.edit button[name=save]{
+	display: none;
+}
+
+.tab4b .postt{
+	margin-left: 5%;
+	margin-top: 0.77rem;
+	margin-bottom: 0.77rem;
+}
+
+.tab4b .postt span{
+	color: #fff;
+	background-color: #abcf58;
+	border-radius: 50px;
+	padding: 0.38rem 0.61rem;
+	font-size: 0.92rem;
+}
+
+.tab4b .post{
+	background-color: #f7f7f7;
+	margin: 0.77rem 0;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.tab4b .post tr td:first-child{
+	padding-left: 5%;
+}
+
+.tab4b .post .reply{
+	background-color: #e9e9e9;
+	border-left: 2px solid #fff;
+	padding-right: 1.2rem;
+	text-align: right;
+}
+
+.tab4b .post p{
+	line-height: 2.46rem;
+	font-size: 1rem;
+	padding: 0 0.42rem;
+	color: #388bc2;
+	border-bottom: 2px solid #c5c5c5;
+}
+
+.tab4b .post .d, .tab4b .post .t{
+	padding: 0 1rem 0 0.42rem;
+	line-height: 2.46rem;
+	font-size: 0.76rem;
+	color: #9e9e9e;
+}
+
+.tab4b .post .t{
+	padding: 0;
+}
+
+.tab4b .newpost{
+	width: 90%;
+	margin: 0 auto;
+}
+
+.tab4b .newpostt{
+	background-color: #303134;
+	color: #fff;
+	height: 3.85rem;
+	line-height: 3.85rem;
+	text-align: center;
+	font-size: 1.23rem;
+}
+
+.tab4b .newpostb{
+	padding-bottom: 1.42rem;
+}
+
+.tab4b .newpostb div{
+	line-height: 2.6rem;
+}
+
+.tab4b .newpostb select{
+	width: 100%;
+	height: 2.6rem;
+	background-color: #f7f7f7;
+	font-size: 0.92rem;
+}
+
+.tab4b .newpostb input{
+	display: block;
+	font-size: 0.92rem;
+	width: 94%;
+	padding: 0 3%;
+	height: 2.6rem;
+	border: 1px solid #c5c5c5;
+}
+
+.tab4b .newpostb textarea{
+	display: block;
+	font-size: 0.92rem;
+	resize: none;
+	border: 1px solid #c5c5c5;
+	height: 7.53rem;
+	padding-top: 0.8rem;
+	line-height: 1.2rem;
+	width: 100%;
+}
+
+.tab4b .btn{
+	padding-bottom: 1rem;
+}
+
+.tab4b .btn button{
+	width: 100%;
+	height: 3rem;
+	font-size: 1.23rem;
+}
+
+<<<<<<< .mine
+.tab5b p{
+	width: 80%;
+	margin: 1.38rem auto;
+	border: 2px solid #c5c5c5;
+	border-radius: 10px;
+	padding: 0 5%;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+=======
+.tab5b p{
+	width: 80%;
+	margin: 1.38rem auto;
+	border: 2px solid #c5c5c5;
+	border-radius: 10px;
+	padding: 0 5%;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	line-height: 1.5rem;
+}
+>>>>>>> .r2285

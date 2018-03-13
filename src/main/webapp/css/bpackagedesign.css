@@ -1,0 +1,202 @@
+#content{
+	padding-top: 30px;
+}
+
+.designnav{
+	background-color: #fff;
+	border-top-left-radius: 5px;
+}
+
+.designnav ul{
+	width: 920px;
+	height: 64px;
+	border-top-left-radius: 5px;
+	overflow: hidden;
+}
+
+.designnav li{
+	float: left;
+	width: 140px;
+	height: 64px;
+	line-height: 64px;
+	text-align: center;
+	background-color: #fff;
+	color: #303134;
+	cursor: pointer;
+}
+
+.designnav li[name=dt1].active, .designnav li[name=dt1]:hover{
+	background-color: #ed9e33;
+	color: #fff;
+}
+
+.designnav li[name=dt2].active, .designnav li[name=dt2]:hover{
+	background-color: #617589;
+	color: #fff;
+}
+
+.design{
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	border-bottom: 1px solid #cacaca;
+	overflow: hidden;
+}
+
+.design table{
+	border-spacing: 0;
+	background-color: #fff;
+}
+
+.dt1 table{
+	border-top: 4px solid #ed9e33;
+}
+
+.dt2 table{
+	border-top: 4px solid #617589;
+}
+
+.design table th{
+	text-align: left;
+	height: 50px;
+	padding: 0 30px;
+}
+
+.design table td{
+	height: 60px;
+	padding: 0 30px;
+	border-top: 1px solid #d4d4d4;
+}
+
+.design table .td1{
+	padding-right: 98px;
+	width: 400px;
+}
+
+.design table .td2{
+	width: 123px;
+}
+
+.design table .td3{
+	width: 182px;
+}
+
+.design table tr:hover td{
+	background-color: #e2e2e2;
+}
+
+.block h3{
+	height: 20px;
+	text-align: center;
+	margin-bottom: 40px;
+	border-bottom: 4px solid #e2e2e2;
+}
+
+.block h3 span{
+	position: relative;
+	top: 10px;
+	padding: 0px 22px;
+	font-size: 24px;
+	background-color: #fff;
+}
+
+.workinfo>div{
+	margin: 0px -40px 30px -40px;
+	padding: 0px 40px 30px 40px;
+	border-bottom: 2px solid #e8e8e8;
+}
+
+.workinfo>div .ava{
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	border-radius: 60px;
+	overflow: hidden;
+}
+
+.workinfo>div .ava img{
+	width: 60px;
+	height: 60px;
+}
+
+.workinfo>div .heart{
+	position: absolute;
+	margin-top: 70px;
+	width: 60px;
+	text-align: center;
+	color: #ce4836;
+}
+
+.workinfo>div .heart .icon-heart,
+.workinfo>div .heart.active .icon-heart2{
+	display: none;
+}
+
+.workinfo>div .heart.active .icon-heart{
+	display: inline;
+}
+
+.workinfo>div h4{
+	font-size: 24px;
+	margin-left: 80px;
+	line-height: 36px;
+}
+
+.workinfo>div p{
+	margin-left: 80px;
+	line-height: 30px;
+}
+
+.workinfo>div p.dt span{
+	padding-left: 15px;
+	color: #606060;
+}
+
+.workinfo>div p.cy .at{
+	color: #388bc2;
+	font-weight: normal;
+}
+
+.workinfo>div p.cy .cytype{
+	color: #ce4836;
+	padding-left: 10px;
+}
+
+.workintro img{
+	display: block;
+	max-width: 840px;
+	margin-top: 30px;
+}
+
+.btn{
+	text-align: right;
+	margin-bottom: 30px;
+}
+
+.btn input{
+	width: 98px;
+	height: 44px;
+}
+
+.btn .red{
+	width: 134px;
+	margin-left: 16px;
+}
+
+.btn span{
+	padding-right: 20px;
+	display: none;
+}
+
+.btn span.success{
+	color: #87aa66;
+}
+
+.btn span.error{
+	color: #a04545;
+}
+
+.dt2{
+	display: none;
+}
+
+

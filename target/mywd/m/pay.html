@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>付款方式</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/paymenterror.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+	<style>
+		#loading{
+			background:#5E3737;
+			filter: alpha(opacity=45);
+			opacity:0.45;
+			position:absolute;
+			top:0px;
+			left:0px;
+			width:260%;
+			height:260%;
+			z-index: 999;
+
+		}
+
+		#loading>img{
+			padding-left: 18%;
+			padding-top: 25%;
+		}
+
+
+	</style>
+
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		//console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="loading">
+		<img src="img/loading.gif" />
+	</div>
+	<header class="logoutredirect">
+		<div class="stick">
+			<div class="title">
+				付款方式
+			</div>
+		</div>
+	</header>
+	<div class="box content main">
+		<h3><span class="t">请选择付款方式</span></h3>
+		<p>订单编号：<span id="order_no"></span></p>
+		<div class="paytype">
+			<div class="wxpay">
+				<label><input type="radio" name="paytype" value="0">微信支付</label>
+				<div class="paydetail">
+					<div id="wxqrcode"></div>
+					<div class="tip">请用微信扫一扫<br>扫描二维码支付</div>
+				</div>
+			</div>
+			<div class="alipay">
+				<label><input type="radio" name="paytype" value="1">支付宝支付</label>
+			</div>
+		</div>
+		<div class="btn">
+			<input type="button" class="red" id="payBtn" value="立即支付">
+		</div>
+	</div>
+	<footer class="box">
+		<div class="ws">UHAOU.CN</div>
+		<div class="cr">&copy;2015 uhao.cn<br><a href="http://www.miitbeian.gov.cn/">苏ICP备15001958号-1</a></div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="../js/jquery.qrcode.min.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script type="text/javascript">
+	var appId2, timeStamp2, nonceStr2, package2, paySign2;
+	$(document).ready(function(){
+		var url = window.location.search;
+		var orderNo;
+		if(url.split('?val=')[1]) {
+			url = url.split('?val=')[1];
+			if(url.indexOf('&') > 0) {
+				orderNo = url.substring(0, url.indexOf('&'));
+			} else {
+				orderNo = url;
+			}
+			$('#order_no').text(orderNo);
+		} else {
+			//window.location.href = "./error.html";
+		}
+
+		var isWx = isWxVisit();
+
+		if(isWx) {
+			var url = encodeURIComponent(location.href.split('#')[0]);
+			$.ajax({
+				url: '../uiserver/wx/getSignature',
+				async: false,
+				data: {"url": url},
+				success: function (data) {
+					/*alert(data.success);
+					alert(data.appId);*/
+					if(data.success == 0) {
+						wx.config({
+							debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+							appId: data.appId, // 必填，公众号的唯一标识
+							timestamp: data.timestamp, // 必填，生成签名的时间戳
+							nonceStr: data.nonceStr, // 必填，生成签名的随机串
+							signature: data.signature,// 必填，签名，见附录1
+							jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+						});
+
+						wx.ready(function(){
+							$('#loading').hide();
+						});
+					}
+				}
+			});
+		}
+
+		$("input[name=paytype]").change(function(){
+			if ($(this).val() == 0) {
+				$(".alipay").removeClass("active");
+				//alert(isWx);
+				if(isWx) {
+					$('#payBtn').show();
+				} else {
+					getQrcode();
+					$(".wxpay").addClass("active");
+					$(".alipay").removeClass("active");
+				}
+			}else if($(this).val() == 1){
+				//alert('支付宝支付已被微信拦截，请使用微信支付');
+				$(".alipay").addClass("active");
+				$(".wxpay").removeClass("active");
+				$('#payBtn').show();
+			}
+		});
+
+		$('#payBtn').click(function () {
+			var payType = $("input[name=paytype]:checked").val();
+			if(payType == 0) {
+				if(isWx) {
+					wxPay();
+				}
+			} else if (payType == 1) {
+				if(isWx) {
+					alert("微信端不能使用支付宝付款");
+				}else{
+					aliPay();
+				}
+			}
+		});
+
+		function isWxVisit() {
+			var isTrue = false;
+			$.ajax({
+				url: '../g/wx_visit',
+				async: false,
+				success: function (data) {
+					if (data.success == 0){
+						$.ajax({
+							url: '../g/wx_exist_openid',
+							async: false,
+							success: function (data) {
+								if (data.success == 0){
+									isTrue = true;
+								} else if (data.success == 1){
+									window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd0b5eac8af7ae59e&redirect_uri=http%3a%2f%2fuhaou.cn%2fuiserver%2fwx%2fwxBindAccount&response_type=code&scope=snsapi_userinfo&state="+orderNo+"#wechat_redirect";
+								}
+							}
+						});
+						isTrue = true;
+					} else if (data.success == 2){
+						alert(data.errorMsg);
+					}
+				}
+			});
+			return isTrue;
+		}
+		function wxPay(){
+			$.ajax({
+				url: '../uiserver/wxPay/unifiedorder',
+				async: false,
+				data: {"orderNo": orderNo, "url": url},
+				success: function (data) {
+					if(data.success == 0) {
+						/*alert(data.appId
+								+ ", " + data.timeStamp
+								+ ", " + data.nonceStr
+								+ ", " + data.package
+								+ ", " + data.paySign);*/
+						appId2 = data.appId.toString();
+						timeStamp2 = data.timeStamp.toString();
+						nonceStr2 = data.nonceStr.toString();
+						package2 = data.package.toString();
+						paySign2 = data.paySign.toString();
+						//callpay();
+						wx.chooseWXPay({
+							timestamp: timeStamp2, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+							nonceStr: nonceStr2, // 支付签名随机串，不长于 32 位
+							package: package2, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+							signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+							paySign: paySign2, // 支付签名
+							success: function (res) {
+								// 支付成功后的回调函数
+								if(res.errMsg == 'chooseWXPay:cancel'
+										|| res.errMsg == 'chooseWXPay:fail') {
+									alert('支付失败！');
+								} else if (res.errMsg == "chooseWXPay:ok") {
+									alert("支付成功 ");
+									window.location.href='c_orderlist.html';
+								} else {
+									alert('支付失败！');
+								}
+							}
+						});
+					}
+				}
+			});
+		}
+
+		function aliPay() {
+			$.ajax({
+				type: 'POST',
+				url: '../sale/order/alipay/pay',
+				data: {'orderNo': orderNo, 'isPhone': 0},
+				success: function(data) {
+					//console.log(this_btn);
+					if(data.success == 1 && data.error == 302) {
+						alert('由于超过下单时间30分钟未支付，订单自动取消');
+					} else {
+						$('#payBtn').after(data.datas);
+					}
+				}
+			})
+		}
+		function getQrcode(){
+			$.ajax({
+                url: '../uiserver/wxPay/getQrcode',
+				data: {'orderNo': orderNo},
+                success: function (data) {
+                	$('#wxqrcode').qrcode(data.url);
+                }
+            });
+		}
+	});
+
+
+    //调用微信JS api 支付
+    function jsApiCall() {
+        WeixinJSBridge.invoke(
+                'getBrandWCPayRequest', {
+                    "appId": appId2,     //公众号名称，由商户传入
+                    "timeStamp": timeStamp2,         //时间戳，自1970年以来的秒数
+                    "nonceStr": nonceStr2, //随机串
+                    "package": package2,
+                    "signType": "MD5",         //微信签名方式:
+                    "paySign": paySign2 //微信签名
+                },
+
+                function (res) {
+                    WeixinJSBridge.log(res.err_msg);
+					//alert(res.err_msg == 'get_brand_wcpay_request:cancel');
+					//alert(res.err_msg == 'get_brand_wcpay_request:fail');
+					if(res.err_msg == 'get_brand_wcpay_request:cancel'
+							|| res.err_msg == 'get_brand_wcpay_request:fail') {
+						alert('支付失败！');
+					} else if (res.err_msg == "get_brand_wcpay_request:ok") {
+                        alert("支付成功 ");
+						window.location.href='c_orderlist.html';
+                    }
+                }
+        );
+    }
+
+    function callpay() {
+        /*if (typeof WeixinJSBridge == "undefined") {
+            if (document.addEventListener) {
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+            } else if (document.attachEvent) {
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+            }
+        } else {
+            jsApiCall();
+        }*/
+    }
+
+	</script>
+</body>
+</html>

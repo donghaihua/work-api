@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>店铺主页</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<link href="../icomoon/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/global.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<script src="../js/jquery-1.11.0.min.js"></script>
+	</head>
+
+	<body>
+		<div class="md">
+			<div class="header">店铺主页<span class="right-btn"><a href="" id="applyForFx">申请分销</a></span></div>
+			<div class="user-profile">
+				<div class="user-logo">
+					<img src="../images/touxiang.jpg" />
+				</div>
+				<div class="user-info">
+					<p class="htitle"></p>
+					<!--<p class="hname">店主微信：LEO</p>-->
+				</div>
+			</div>
+
+			<div class="div-list" style="margin-bottom:3.3rem ;">
+				<ul class="list-2" id="list-ul">
+
+				</ul>
+			</div>
+
+		</div>
+		<div class="like">
+			<div class="like-content">
+				<span><img src="../images/logo.png" /></span>
+				<span>关注微信号，享专享服务</span>
+				<button class="btn btn-orange" id="fivate">关注</button>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class="menu">
+				<ul class="menu-nav">
+					<li class="active">
+						<a href="shop-index.html" id="a_shop_index">
+							<p class="icon-p"><i class="icon-home"></i></p>
+							<p>首页</P>
+						</a>
+					</li>
+					<li>
+						<a href="shop-list.html" id="a_shop_list">
+							<p class="icon-p"><i class="icon-goods"></i></p>
+							<p>商品</P>
+						</a>
+					</li>
+					<li>
+						<a href="shop-cart.html" id="a_shop_cart">
+							<p class="icon-p"><i class="icon-cart"></i></p>
+							<p>购物车</P>
+						</a>
+					</li>
+					<li>
+						<a href="user-center.html" id="a_shop_center">
+							<p class="icon-p"><i class="icon-user"></i></p>
+							<p>个人中心</P>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</footer>
+		<div class="Mask">
+			<div class="Mask-content"></div>
+		</div>
+		<div class="follow">
+			<div class="follow-QR">
+				<div class="follow-QR-code">
+					<span class="close" id="close-fivate"><i class="icon-close"></i></span>
+					<img src="../../img/2dcode.jpg" />
+					<p>长按识别图中的二维码</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" charset="UTF-8" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#fivate").click(function() {
+				$(".Mask,.follow").show();
+			});
+			$("#close-fivate").click(function(){
+				$(".Mask,.follow").hide();
+			});
+			var url = window.location.search;
+			var shopId;
+			if(url.match('shopId=')) {
+				shopId = url.split('shopId=')[1];
+				$('#a_shop_index').attr('href', 'shop-index.html?shopId=' + shopId);
+				$('#a_shop_list').attr('href', 'shop-list.html?shopId=' + shopId);
+				$('#a_shop_cart').attr('href', '../../m/cart.html?shopId=' + shopId);
+				$('#a_shop_center').attr('href', 'user-center.html?shopId=' + shopId);
+			} else {
+				window.location.href = 'http://uhaou.cn/m/error.html';
+			}
+			var avatar;
+			$.ajax({
+				type: 'GET',
+				url: '../../uiserver/distribution/shopIndex',
+				data: {"shopId" : shopId},
+				async: false,
+				cache: false,
+				success: function(res) {
+					if(res.success == 0) {
+						avatar = res.avatar;
+						$('#applyForFx').attr('href', 'apply-sale.html?pAccountId='+res.pAccountId);
+						var shopInfo = res.shop;
+						$('div.user-logo').html('<img src="' + res.avatar + '" />');
+						$('div.user-info').find('p.htitle').text(shopInfo.name);
+						for(var i = 0; i < res.itemList.length; i++) {
+							var item = res.itemList[i];
+							var resStr = '<li data_id=' + item.id + '>';
+							if(i % 2 != 0) {
+								resStr = '<li class="even" data_id=' + item.id + '>';
+							}
+							resStr += '<div class="list-img"><img src="' + item.avatar + '" alt="" /></div>';
+							resStr += '<div class="list-info"><p class="info-name">' + item.name + '</p>';
+							resStr += '<p class="info-price">￥' + item.minDiscountPrice + '</P></div></li>';
+							$('#list-ul').append(resStr);
+						}
+						$('#list-ul').find('li').click(function () {
+							var itemId = $(this).attr('data_id');
+							//window.location.href = 'http://uhaou.cn/m/item/' + itemId + '.html?shopId=' + shopId;
+							window.location.href = '../../m/item/' + itemId + '.html?shopId=' + shopId;
+						});
+					} else {
+						if(res.error == 2) {
+							window.location.href = 'seletor-good.html';
+						}
+					}
+				}
+
+			});
+
+
+			var isWx = isWxVisit();
+
+			if(isWx) {
+				var url = encodeURIComponent(location.href.split('#')[0]);
+				$.ajax({
+					url: '../../uiserver/wx/getSignature',
+					async: false,
+					data: {"url": url},
+					success: function (data) {
+						if(data.success == 0) {
+							wx.config({
+								debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+								appId: data.appId, // 必填，公众号的唯一标识
+								timestamp: data.timestamp, // 必填，生成签名的时间戳
+								nonceStr: data.nonceStr, // 必填，生成签名的随机串
+								signature: data.signature,// 必填，签名，见附录1
+								jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone',
+									'hideMenuItems', 'showMenuItems'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+							});
+
+
+							wx.ready(function(){
+								var title_1 = '这是我的小店，快来看看吧！'; // 分享标题
+								var desc_1 = '保证优品！有钱的捧个钱场，没钱的请帮忙转发，谢谢啦！'; // 分享描述
+								var link_1 = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd0b5eac8af7ae59e&redirect_uri=http%3a%2f%2fuhaou.cn%2fuiserver%2fwx%2fwxAutoBindAccount&response_type=code&scope=snsapi_userinfo&state=shopIndex_'+shopId+'#wechat_redirect'; // 分享链接
+								var imgUrl_1 = avatar; // 分享图标
+
+								wx.onMenuShareTimeline({
+									title: title_1, // 分享标题
+									desc: desc_1, // 分享描述
+									link: link_1, // 分享链接
+									imgUrl: imgUrl_1, // 分享图标
+									success: function () {
+										// 用户确认分享后执行的回调函数
+									},
+									cancel: function () {
+										// 用户取消分享后执行的回调函数
+									}
+								});
+
+								wx.onMenuShareAppMessage({
+									title: title_1, // 分享标题
+									desc: desc_1, // 分享描述
+									link: link_1, // 分享链接
+									imgUrl: imgUrl_1, // 分享图标
+									success: function () {
+										// 用户确认分享后执行的回调函数
+									},
+									cancel: function () {
+										// 用户取消分享后执行的回调函数
+									}
+								});
+
+								wx.hideMenuItems({
+									menuList: ['menuItem:share:qq', 'menuItem:share:weiboApp', 'menuItem:share:QZone', 'menuItem:share:facebook'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+								});
+
+								wx.showMenuItems({
+									menuList: ['menuItem:profile', 'menuItem:addContact']
+								});
+							});
+						}
+					}
+				});
+			}
+
+			function isWxVisit() {
+				var isTrue = false;
+				$.ajax({
+					url: '../../g/wx_visit',
+					async: false,
+					success: function (data) {
+						if (data.success == 0){
+							$.ajax({
+								url: '../../g/wx_exist_openid',
+								async: false,
+								success: function (data) {
+									if (data.success == 0){
+										isTrue = true;
+									} else if (data.success == 1){
+										//alert(123);
+										//window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbeac869bcc9744a7&redirect_uri=http%3a%2f%2fnutin.me%2fmaker%2fuiserver%2fwx%2fwxAutoBindAccount&response_type=code&scope=snsapi_userinfo&state="+orderNo+"#wechat_redirect";
+									}
+								}
+							});
+							isTrue = true;
+						} else if (data.success == 2){
+							alert(data.errorMsg);
+						}
+					}
+				});
+				return isTrue;
+			}
+		});
+	</script>
+
+</html>

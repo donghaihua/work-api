@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="mywilddog:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="mywd.war">
+      <element id="artifact" artifact-name="mywilddog:war exploded" />
+    </root>
+  </artifact>
+</component>

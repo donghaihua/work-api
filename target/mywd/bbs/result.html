@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>搜索结果</title>
+	<script src="../js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bbs.css">
+	<link rel="stylesheet" type="text/css" href="../css/font.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<header>
+		<div class="box">
+			<div class="hl">
+				<span class="ll">UHAOU.</span>
+				<span class="lm">CN</span>
+				<span class="lr">论坛</span>
+			</div>
+			<div class="hr">
+				<a href="reg.html">注册</a>
+				<a href="login.html">登录</a>
+				<!-- <div class="info"><span class="un">用户</span><span class="icon-arrow-down"></span><ul class="dd1"><li><a href="account.html">我的账户</a></li><li id="logout">登出</li></ul></div><div class="ava"><img src="../img/avatar_preview_default.png" alt="img"></div> -->
+			</div>
+		</div>
+	</header>
+	<div class="box findex">
+		<h2>
+			搜索结果
+			<input class="red" type="button" id="newtopic" value="发表话题">
+			<a href="../index.html">返回商城</a>
+		</h2>
+		<div class="sidebar">
+			<div class="boardn bn1">
+				<h3>搜索</h3>
+				<div class="ct">
+					<span id="search" class="icon-magnifier13"></span><input type="text">
+				</div>
+			</div>
+			<div class="boardn bn2">
+				<h3>精彩话题</h3>
+				<div class="ct">
+					<ul id="hotpost">
+					</ul>
+				</div>
+			</div>
+			<div class="boardn bn3">
+				<h3>最近活动</h3>
+				<div class="ct">
+					<img src="../img/2dcode.jpg" alt="2dcode">
+					<p>扫描二维码，轻松得优惠</p>
+				</div>
+			</div>
+		</div>
+		<div class="mboard">
+			<div class="mbh">
+				<div class="keyword"></div>
+			</div>
+			<div class="tab">
+				<div class="postlist">
+					<div class="mbb">
+						<div class="mbbr">
+							<div class="brwsta icon-bubble">11</div>
+						</div>
+						<div class="ava">
+							<img src="../img/avatar_preview_default.png" alt="img">
+						</div>
+						<h4><a>油品非常好，油质很清澈，赠品是深海鱼油第...</a></h4>
+						<p>ra****ps@yahoo.cn发表于2015-09-02  19:20 | ra****ps回复于10小时以前</p>
+						<input class="blue" type="button" value="编辑">
+						<input class="red" type="button" value="删除">
+					</div>
+				</div>
+				<div class="mbf">
+					<div class="mbfl">
+						<div>
+							<span class="pa">共30页</span><span class="pn">第<input type="text" value="20">页</span>
+							<input class="white" name="jumpto" type="button" value="跳转">
+						</div>
+					</div>
+					<div class="mbfr">
+						<input class="red" name="next" type="button" value="下一页">
+						<input class="red" name="prev" type="button" value="上一页">
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+	</footer>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.cookie.js"></script>
+	<script src="../js/bbs.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function($){
+			$.ajax({
+				type:"GET",
+				data:"",
+				url:"../bbs/post/count",
+				success:function(data){
+					if (data.success == 0) {
+						$("#ttotal").text(data.datas.total);
+						$("#ttoday").text(data.datas.today);
+					}
+				}
+			});
+
+			var url, href, str;
+			url = location.hash;
+			var page = 1;
+			var searchkeyword = '';
+			
+			function pageReload(param, value){
+				url = location.hash;
+				href = location.href;
+				if(url.indexOf("#") != -1){
+					eval(""+url.substr(1).split("&")+"");
+				}
+
+				if (param && value) {
+					window.location.href = $().changeurl(href,param,value);
+					url = location.hash;
+					if(url.indexOf("#") != -1){
+						eval(""+url.substr(1).split("&")+"");
+					}
+				}
+
+				searchkeyword = decodeURI(searchkeyword);
+				
+				$.ajax({
+					type:"GET",
+					data:{"pageNo":page, "pageSize": 10, "keyword": searchkeyword},
+					url:"../bbs/post/search",
+					success:function(data){
+						if (data.success == 0) {
+							$(".tab").hide();
+							pageCount = data.datas.pageCount;
+							$(".postlist").empty();
+							for (var i = 0; i < data.datas.results.length; i++) {
+								var str = '';
+								str += '<div class="mbb" data-postid="'+data.datas.results[i].id+'"><div class="mbbr"><div class="brwsta icon-bubble">'+data.datas.results[i].replyNum+'</div></div><div class="ava"><img src="'+data.datas.results[i].user.lightAccountInfos[0].avatar+'" alt="img"></div>';
+								if(data.datas.results[i].topicId == 1){
+									str += '<h4>[讨论] ';
+								}
+								if(data.datas.results[i].topicId == 2){
+									str += '<h4>[晒单] ';
+								}
+								str += '<a href="topic.html?postId='+data.datas.results[i].id+'">'+data.datas.results[i].title+'</a></h4><p>'+data.datas.results[i].user.userName+'&nbsp;&nbsp;发表于&nbsp;&nbsp;'+data.datas.results[i].postDate;
+								if (data.datas.results[i].map.date) {
+									str +=' | '+data.datas.results[i].map.userName+'&nbsp;&nbsp;回复于&nbsp;&nbsp;'+data.datas.results[i].map.date;
+								}
+	
+								str+= '</p>';
+								$(".postlist").append(str);
+							}
+								
+							$(".mbf .pa").text('共'+data.datas.pageCount+'页');
+							$(".mbf .pn input[type=text]").val(data.datas.currentPage);
+							if(data.datas.pageCount){
+								if (data.datas.currentPage != page) {
+									window.location.href = $().changeurl(href,"page",data.datas.currentPage);
+									url = location.hash;
+									if(url.indexOf("#") != -1){
+										eval(""+url.substr(1).split("&")+"");
+									}
+								}
+							}else{
+								$(".postlist").append('<div class="nullmsg">暂无搜索结果</div>');
+							}
+							if(!searchkeyword){
+								searchkeyword = "无搜索关键词";
+							}
+							
+							$(".mbh .keyword").text(searchkeyword);
+							$(".tab").show();
+						}
+					}
+				});
+			}
+
+			pageReload();
+
+			$(".mbf .pn input[type=text]").blur(function(){
+				if (isNaN($(this).val())) {
+					$(this).val("1");
+				}else if($(this).val() <= 0){
+					$(this).val("1");
+				}else if(parseInt($(this).val()) != $(this).val()){
+					$(this).val(parseInt($(this).val()));
+				}
+			});
+
+			$("input[name=jumpto]").click(function(){
+				var pageTarget = $(this).siblings(".pn").children("input[type=text]").val();
+				if(pageCount<=pageTarget){
+					pageReload("page", pageCount);
+				}else{
+					pageReload("page", pageTarget);
+				}
+			});
+
+			$("input[name=next]").click(function(){
+				if(pageCount<=page+1){
+					pageReload("page", parseInt(pageCount));
+				}else{
+					pageReload("page", parseInt(page+1));
+				}
+			});
+
+			$("input[name=prev]").click(function(){
+				pageReload("page", parseInt(page-1));
+			});
+			document.onkeydown = function(e){
+			    var ev = document.all ? window.event : e;
+			    if(ev.keyCode==13) {
+			    	var keyword = $('.ct input').val();
+					if(keyword){
+						var href = location.href;
+						window.location.href = "result.html#searchkeyword='"+encodeURI(keyword)+"'";
+						pageReload();
+					}else{
+						alert("请填写搜索关键词");
+					}
+			     }
+			}
+			$("#search").click(function(){
+				var keyword = $(this).siblings("input").val();
+				if(keyword){
+					var href = location.href;
+					window.location.href = "result.html#searchkeyword='"+encodeURI(keyword)+"'";
+					pageReload();
+				}else{
+					alert("请填写搜索关键词");
+				}
+			});
+			
+		});
+	</script>
+</body>
+</html>

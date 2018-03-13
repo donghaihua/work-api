@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>话题详情</title>
+	<script src="../js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bbs.css">
+	<link rel="stylesheet" type="text/css" href="../css/font.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<header>
+		<div class="box">
+			<div class="hl">
+				<span class="ll">UHAOU.</span>
+				<span class="lm">CN</span>
+				<span class="lr">论坛</span>
+			</div>
+			<div class="hr">
+				<a href="../reg.html">注册</a>
+				<a href="../login.html">登录</a>
+			<!-- 	<div class="info"><span class="un">用户</span><span class="icon-arrow-down"></span><ul class="dd1"><li><a href="account.html">我的账户</a></li><li id="logout">登出</li></ul></div><div class="ava"><img src="img/avatar_preview_default.png" alt="img"></div> -->
+			</div>
+		</div>
+	</header>
+	<div class="box fto">
+		<h2>
+			<span class="index"><span class="icon-left217">&nbsp;</span>话题</span>
+			<input class="red" type="button" id="newtopic" value="发表话题">
+			<a href="../index.html">返回商城</a>
+		</h2>
+		<div class="sidebar">
+			<div class="boardn bn1">
+				<h3>搜索</h3>
+				<div class="ct">
+					<span id="search" class="icon-magnifier13"></span><input type="text">
+				</div>
+			</div>
+			<div class="boardn bn2">
+				<h3>精彩话题</h3>
+				<div class="ct">
+					<ul id="hotpost">
+					</ul>
+				</div>
+			</div>
+			<div class="boardn bn3">
+				<h3>最近活动</h3>
+				<div class="ct">
+					<img src="../img/2dcode.jpg" alt="2dcode">
+					<p>扫描二维码，轻松得优惠</p>
+				</div>
+			</div>
+		</div>
+		<div class="mboard ttod">
+			<div class="mbh">
+			</div>
+			<div class="replylist">
+			</div>
+			<div class="mbf">
+				<div class="mbfl">
+					<div>
+						<span class="pa">共30页</span><span class="pn">第<input type="text" value="20">页</span>
+						<input class="white" name="jumpto" type="button" value="跳转">
+					</div>
+				</div>
+				<div class="mbfr">
+					<input class="red" name="next" type="button" value="下一页">
+					<input class="red" name="prev"  type="button" value="上一页">
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="mboard trep" id="index">
+			<div class="mbf">
+				<div class="ava" id="replyavatar">
+					<img src="../img/avatar_preview_default.png" alt="img">
+				</div>
+				<div class="mbft">发表回复</div>
+				<div class="error"><div></div><span>必填</span></div>
+				<textarea name="content" maxlength="100"></textarea>
+				<div class="oper" id="submit">
+					<div class="error"><div></div><span>请先登录</span></div>
+					<input type="button" class="redl" id="replysubmit" value="回复">
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+	</footer>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bbs.js"></script>
+	<script src="../js/jquery.cookie.js"></script>
+	<script type="text/javascript">
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if (r != null)
+				return unescape(r[2]);
+			return null; //返回参数值
+		}
+
+  		var postId = getUrlParam('postId');  
+
+		$(document).ready(function() {
+			$.ajax({
+				type : "get",
+				url : "../bbs/post/info",
+				dataType : "json",	
+				data : {"postId": postId}, 
+				success : function(data) {
+					var str = "";
+					str+="<div class='ava'>";
+					str+="<img src='"+data.datas.user.lightAccountInfos[0].avatar+"' alt='img'>";
+					str+="</div>";
+					str+="<h3>"+data.datas.title+"</h3>";
+					str+="<div class='tinfo'>"+data.datas.user.userName+"&nbsp;&nbsp;发表于&nbsp;&nbsp;"+data.datas.postDate+"</div>";
+					str+="<p>"+data.datas.content+"</p>";
+					str+="<div class='oper'>";
+					if(data.datas.user.id == accountid){
+						str+="<span name='edit' class='edit'>编辑</span>";
+						str+="<span name='delete' class='delete'>删除</span>";
+					}else if(roleId == 3){
+						str+="<span name='delete' class='delete'>删除</span>";
+					}
+					str+="<span class='reply'><a href='#index'>发表回复</a></span>";
+					str+="</div>";
+					str+="<div class='repno'>回复<span>&nbsp;"+data.datas.replyNum+"</span></div>";
+					$(str).appendTo(".mbh");
+				}
+			});
+			
+			var avaimg = $("header .ava").html();
+			$("#replyavatar").html(avaimg);
+			
+			var page = 1;
+			var currentPage = 1;
+			var pageCount = 0;
+			function pageReload(pageNo){
+				url = location.hash;
+				href = location.href;
+				if(url.indexOf("#") != -1){
+					eval(""+url.substr(1).split("&")+"");
+				}
+				
+				if (pageNo) {
+					window.location.href = $().changeurl(href,"page",pageNo);
+					url = location.hash;
+					if(url.indexOf("#") != -1){
+						eval(""+url.substr(1).split("&")+"");
+					}
+				}
+				
+				$.ajax({
+					type:"GET",
+					data:{"pageNo" : page, "pageSize" : 5, "postId" : postId},
+					url:"../bbs/reply",
+					success:function(data){
+						if (data.success == 0) {
+							var str = "";
+							pageCount = data.datas.pageCount;
+							currentPage = data.datas.currentPage;
+							$.each(data.datas.results, function(i, item) {
+								str+="<div class='mbb'>";
+								str+="<div class='ava'>";
+								str+="<img src='"+data.datas.results[i].user.lightAccountInfos[0].avatar+"' alt='img'>";
+								str+="</div>";
+								str+="<div>";
+								str+="<span class='mbbn'>"+item.user.userName+"</span>";
+								str+="<span class='mbbt'>&nbsp;&nbsp;发表于&nbsp;&nbsp;"+item.date+"</span>";
+								str+="</div>";
+								str+="<p>"+item.reply+"</p>";
+								str+="</div>";
+							});
+							$(".replylist").empty();
+							$(str).appendTo('.replylist');
+							
+							$(".pa").text('共'+data.datas.pageCount+'页');
+							$(".pn input[type=text]").val(data.datas.currentPage);
+						}
+						
+					}
+				});
+				
+			}
+			
+			pageReload();
+			
+			$(".mbf .pn input[type=text]").blur(function(){
+				if (isNaN($(this).val())) {
+					$(this).val("1");
+				}else if($(this).val() <= 0){
+					$(this).val("1");
+				}else if(parseInt($(this).val()) != $(this).val()){
+					$(this).val(parseInt($(this).val()));
+				}
+			});
+			$('span .icon-left217').on('click',function(){
+				window.location.href="forum.html"; 
+			});
+			$('input[name=prev]').click(function() {
+				pageReload(parseInt(currentPage-1));
+			});
+			$('input[name=jumpto]').click(function() {
+				var pageTarget = $(this).siblings(".pn").children("input[type=text]").val();
+				if(pageCount<=pageTarget){
+					pageReload(pageCount);
+				}else{
+					pageReload(pageTarget);
+				}
+			});
+			$('input[name=next]').click(function() {
+				if(pageCount<=currentPage){
+					pageReload(pageCount);
+				}else{
+					pageReload(currentPage+1);
+				}
+			});
+
+			var sus = 1;
+			function tipDisplay(tip,e){
+				if (tip) {
+					sus = 0;
+					e.show().children("span").text(tip);
+				}else{
+					sus = 1;
+					e.hide();
+				}
+			}
+
+			$("textarea[name=content]").blur(function(){
+				var e = $(this).siblings(".error");
+				var tip = "";
+				var v = $(this).val();
+
+				if (!v) {
+					tip = "回复不能为空";
+				}else if(!$().topictvalidate(v)){
+					tip = "请不要使用特殊符号并不少于六个字";
+				}
+				tipDisplay(tip,e);
+			});
+			
+			
+			function ajaxForm(){
+				if(loginData.success == 0){
+					$.ajax({
+						type:"post",
+						url:"../bbs/reply",
+						dataType:"json",
+						data:{postId : postId ,reply : $('textarea[name=content]').val()},
+						success : function(data) {
+							if (data.success == 0) {
+								 $('textarea[name=content]').val("");
+								 alert("回帖成功!");
+								 window.location.reload();
+							}
+						},
+						error : function(data){
+							alert("网络连接错误，请重试！");
+						}
+					});
+				}else{
+					$("#submit .error").show();
+				}
+			}
+
+			var sus = 1;
+
+			$(".trep textarea[name=content]").blur(function(){
+				$(".trep .error").hide();
+				var v = $(this).val();
+				if(v){
+					sus = 1;
+				}else{
+					$(".trep .error span").text("必填");
+					$(".trep .error").show();
+					sus = 0;
+				}
+			});
+
+			$("#replysubmit").click(function(){
+				sus = 1;
+				$(".trep textarea[name=content]").blur();
+				if (sus) {
+					ajaxForm();
+				}
+			});
+			
+			$("span[name=delete]").live('click',function(){
+				if (confirm('确定删除该话题？')) {
+					$.ajax({
+						type:"put",
+						data:{"postId":postId},
+						url:"../bbs/post/delete",
+						success:function(data){
+							if (data.success == 0) {
+								window.location.href = "forum.html";
+							}else{
+								alert("网络连接错误，请重试！");
+							}
+						}
+					});
+				}
+			});
+
+			$("span[name=edit]").live('click',function(){
+				window.location.href = "edittopic.html?postId="+postId;
+			});
+			
+			$("#search").click(function(){
+				var keyword = $(this).siblings("input").val();
+				if(keyword){
+					var href = location.href;
+					window.location.href = "result.html#searchkeyword='"+encodeURI(keyword)+"'";
+				}else{
+					alert("请填写搜索关键词");
+				}
+			});
+		});
+	</script>
+</body>
+</html>

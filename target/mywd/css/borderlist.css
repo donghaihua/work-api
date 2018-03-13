@@ -1,0 +1,447 @@
+.search{
+	margin-top: 15px;
+}
+
+.search th{
+	text-align: left;
+	height: 40px;
+}
+
+.search .td2 span{
+	color: #cacaca;
+}
+
+.search .td1{
+	width: 376px;
+}
+
+.search input[name=skey]{
+	width: 324px;
+	height: 44px;
+	padding: 0px 10px;
+	font-size: 18px;
+	border: 1px solid #d4d4d4;
+}
+
+.search input[name=date]{
+	padding: 0px 10px;
+	width: 158px;
+	height: 44px;
+	border: 1px solid #d4d4d4;
+}
+
+.search input[type=button]{
+	position: relative;
+	top: 2px;
+	left: 4px;
+	width: 136px;
+	height: 46px;
+	background-color: #e36655;
+	color: #fff;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.search input[type=button]:hover{
+	background-color: #ce4836;
+}
+
+.ordernav{
+	margin-top: 30px;
+	background-color: #fff;
+	border-top-left-radius: 5px;
+}
+
+.ordernav ul{
+	width: 920px;
+	height: 64px;
+	border-top-left-radius: 5px;
+	overflow: hidden;
+}
+
+.ordernav li{
+	float: left;
+	width: 140px;
+	height: 64px;
+	line-height: 64px;
+	text-align: center;
+	background-color: #fff;
+	color: #303134;
+	cursor: pointer;
+}
+
+.ordernav li[name=ot1].active, .ordernav li[name=ot1]:hover{
+	background-color: #ed9e33;
+	color: #fff;
+}
+
+.ordernav li[name=ot2].active, .ordernav li[name=ot2]:hover{
+	background-color: #617589;
+	color: #fff;
+}
+
+.ordernav li[name=ot3].active, .ordernav li[name=ot3]:hover{
+	background-color: #c35817;
+	color: #fff;
+}
+
+.order{
+	position: relative;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	border-bottom: 1px solid #cacaca;
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+
+.order .otitle{
+	position: relative;
+	height: 60px;
+	line-height: 60px;
+	background-color: #e2e2e2;
+	border-top: 4px solid #ed9e33;
+	cursor: pointer;
+}
+
+.order .otitle:hover{
+	background-color: #efeded;
+}
+
+.order .otitle .icon-dot{
+	position: absolute;
+	left: 10px;
+	color: #ed9e33;
+	font-size: 40px;
+	line-height: 62px;
+}
+
+.order .otitle>span{
+	padding-left: 45px;
+}
+
+.order .otitle>span>span{
+	padding-right: 30px;
+}
+
+.order .otitle>span>span.os{
+	margin-right: 15px;
+	padding: 4px 10px;
+	background-color: #909090;
+	color: #fff;
+	border-radius: 20px;
+}
+
+.order .otitle>span>span.op{
+	color: #e36655;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.order .otitle>span>span.op>span{
+	font-weight: inherit;
+}
+
+.order.ot1 .otitle{
+	border-top: 4px solid #ed9e33;
+}
+
+.order.ot1 .otitle .icon-dot{
+	color: #ed9e33;
+}
+
+.order.ot2 .otitle{
+	border-top: 4px solid #617589;
+}
+
+.order.ot2 .otitle .icon-dot{
+	color: #617589;
+}
+
+.order.ot3 .otitle{
+	border-top: 4px solid #c35817;
+}
+
+.order.ot3 .otitle .icon-dot{
+	color: #c35817;
+}
+
+.order table{
+	background-color: #fff;
+	border-collapse: collapse;
+}
+
+.order table th{
+	height: 42px;
+}
+
+.order table td{
+	height: 102px;
+	border-top: 1px solid #d4d4d4;
+}
+
+.order table .td1{
+	position: relative;
+	width: 304px;
+}
+
+.order table th.td1{
+	width: 244px;
+	padding-left: 60px;
+	text-align: left;
+}
+
+.order table .td1 .img{
+	position: absolute;
+	left: 30px;
+	width: 64px;
+	height: 64px;
+}
+
+.order table .td1 .img img{
+	width: 100%;
+	height: 100%;
+}
+
+.order table .td1 p{
+	margin-left: 112px;
+}
+
+.order table .td1 .b{
+	font-size: 18px;
+}
+
+.order table .td1 .s{
+	font-size: 14px;
+	color: #ababab;
+	background-color: #f3f3f3;
+	color: #303134;
+	padding: 6px 8px;
+	line-height: 34px;
+	border-radius: 20px;
+}
+
+.order table .td2{
+	width: 120px;
+	text-align: center;
+}
+
+.order table .td3{
+	width: 50px;
+	text-align: center;
+}
+
+.order table td.td4{
+	border-right: 1px solid #d4d4d4;
+}
+
+.order table .td4{
+	width: 152px;
+	text-align: center;
+}
+
+.order table .td5{
+	width: 292px;
+}
+
+.order table th.td5{
+	border-bottom: 1px solid #d4d4d4;
+}
+
+.order table td.td5{
+	border-top: 1px solid #fff;
+}
+.order table td.td5 span {
+	padding: 0px 10px;
+}
+.order table td.td5 p{
+	padding: 0px 10px;
+	line-height: 20px;
+}
+
+.order .receipt{
+	background-color: #fff;
+	padding: 10px 30px;
+	line-height: 26px;
+	border-top: 1px solid #d4d4d4;
+}
+
+.order .receipt p{
+	font-size: 14px;
+}
+
+.order .btn{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	display: none;
+}
+
+.order:hover .btn{
+	display: block;
+}
+
+.order .btn input{
+	background-color: #e36655;
+	color: #fff;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.order .btn input:hover{
+	background-color: #ce4836;
+}
+
+.order .btn input[name=oper]{
+	width: 84px;
+	height: 40px;
+}
+
+.order .oper{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	display: none;
+}
+
+.order .oper input{
+	width: 124px;
+	height: 46px;
+}
+
+.order .btn:hover .oper{
+	display: block;
+}
+
+.popup{
+	display: none;
+	position: fixed;
+	left: 50%;
+	right: 50%;
+	top: 20px;
+	margin-left: -363px;
+	padding-bottom: 25px;
+	width: 726px;
+	border-top: 5px solid #303134;
+	background-color: #f3f3f3;
+	z-index: 200;
+	box-shadow: 4px 4px 0px 1px rgba(0,0,0,0.1);
+	max-height: 90%;
+}
+
+.popup .cancel{
+	position: absolute;
+	top: -20px;
+	left: -18px;
+	width: 36px;
+	height: 36px;
+	border-radius: 20px;
+	opacity: 0.2;
+	background-color: #000;
+	cursor: pointer;
+}
+
+.popup .icon-cross{
+	position: absolute;
+	top: -16px;
+	left: -14px;
+	width: 28px;
+	height: 28px;
+	background-color: #303134;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+.popup .icon-cross:before{
+	position: absolute;
+	font-size: 12px;
+	line-height: 28px;
+	left: 8px;
+	color: #fff;
+}
+
+.popup .error{
+	float: right;
+	margin-right: 200px;
+	color: #e36655;
+}
+
+.popup h3{
+	background-color: #fff;
+	color: #303134;
+	height: 50px;
+	line-height: 50px;
+}
+
+.popup h3 .icon-square{
+	padding-left: 28px;
+	font-size: 20px;
+}
+
+.popup h3 .icon-square:before{
+	position: relative;
+	top: 2px;
+	padding-right: 4px;
+	font-size: 24px;
+}
+
+.popup h3 .tip{
+	position: absolute;
+	left: 160px;
+	color: #e36655;
+}
+
+.popup h3 input[type=button]{
+	position: absolute;
+	right: 38px;
+	top: 6px;
+	width: 110px;
+	height: 36px;
+	color: #fff;
+	background-color: #e36655;
+	cursor: pointer;
+	font-size: 18px;
+}
+
+.popup h3 input[type=button]:hover{
+	background-color: #ce4836;
+}
+
+.popup .addr{
+	padding: 20px 30px 20px 50px;
+	line-height: 32px;
+}
+
+.popup .addr .recpt{
+	font-size: 18px;
+	padding-right: 15px;
+}
+
+.popup .addr .tel{
+	font-size: 18px;
+}
+
+.popup p{
+	margin: 10px 0px 0px 50px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 16px;
+}
+
+.popup input, .popup select{
+	margin-left: 50px;
+	width: 626px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #fff;
+}
+
+.popup input[type=text], .popup input[type=tel], .popup input[type=date]{
+	border: 1px solid #c5c5c5;
+	width: 606px;
+	padding: 0px 10px;
+	font-size: 16px;
+}
+
+
+
+

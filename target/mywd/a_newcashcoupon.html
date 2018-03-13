@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>创建现金券</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/console.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/bshopweb.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body>
+	<div class="cover">
+	</div>
+	<header>
+		<div class="wrapper">
+			<div class="logo">
+				<img src="img/uhaoulogo.png" alt="logo">
+			</div>
+			<div class="breadcrumb">
+			</div>
+			<div class="userinfo">
+				<img src="img/avatar_preview_default.png" alt="avatar">
+				<span class="username"><span class="un"></span><span class="icon-arrow-down"></span></span>
+			</div>
+			<span class="icon-notif new"><span class="icon-dot"></span></span>
+			<span class="icon-mail new"><span class="icon-dot"></span></span>
+			<ul class="ddlist">
+			</ul>
+		</div>
+	</header>
+	<div class="wrapper">
+		<div id="sidebar" data-index="nav62">
+		</div>
+		<div id="content">
+			<div class="board">
+				<div class="boardt">创建现金券</div>
+				<hr class="boardhr">
+				<div class="infoset">
+					<div class="input">
+						<p>名称</p>
+						<input type="text" name="ticketName" data-validate="text">
+						<div class="errortip">网络连接错误，请重试</div>
+					</div>
+					<div class="input">
+						<p>面额</p>
+						<input type="text" name="ticketValue" data-validate="number">
+						<div class="errortip">网络连接错误，请重试</div>
+					</div>
+					<div class="input">
+						<p>描述</p>
+						<input type="text" name="desc" data-validate="text">
+						<div class="errortip">网络连接错误，请重试</div>
+					</div>
+					<div class="input">
+						<p>使用开始时间</p>
+						<input type="text" name="beginTime" data-validate="date">
+						<div class="errortip">网络连接错误，请重试</div>
+					</div>
+					<div class="input">
+						<p>使用截止时间</p>
+						<input type="text" name="endTime" data-validate="date">
+						<div class="errortip">网络连接错误，请重试</div>
+					</div>
+					<div class="input">
+						<p>数量</p>
+						<input type="text" name="count" data-validate="number">
+						<div class="errortip">网络连接错误，请重试</div>
+					</div>
+				</div>
+			</div>
+			<div class="btn">
+				<div class="errortip">网络连接错误，请重试</div>
+				<input class="redl" id="subBtn" type="button" value="保存">
+			</div>
+		</div>
+		<div class="sidebarb">
+			<div class="up">
+				<div class="icon-arrow-up"></div>
+			</div>
+			<div class="copyright" id="site_record">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/a_general.js"></script>
+	<script type="text/javascript">
+	$().ready(function(){
+		var sus = 1;
+		$(".infoset input").blur(function(){
+			var tip = "";
+			var v = $(this).val();
+			if(!v){
+				tip = "必填";
+			}else if($(this).attr("data-validate") == "number"){
+				if(isNaN(v)){
+					$(this).val(1);
+					tip = "请填写1-99999的整数";
+				}else{
+					v = Math.floor(Number(v));
+					if(v>99999){
+						$(this).val(99999);
+						tip = "请填写1-99999的整数";
+					}else if(v<=0){
+						$(this).val(1);
+						tip = "请填写1-99999的整数";
+					}
+				}
+			}else if($(this).attr("data-validate") == "date"){
+				if(!$().datevalidate(v)){
+					tip = "日期格式为1990-12-31";
+				}
+			}
+			
+			if(tip){
+				sus = 0;
+				$(this).siblings(".errortip").text(tip);
+				$(this).parents(".input").addClass("error");
+			}else{
+				$(this).parents(".input").removeClass("error");
+			}
+			
+		});
+		
+		$('#subBtn').click(function(){
+			$(this).parents(".btn").removeClass("error");
+			//注意事项：success 0 或者 1，保存成功或者失败要有提示，
+			//自行添加提示
+			//数据要验证，数字大于0，小于等于99999
+			//其他字段要求不为空即可
+			//此处收集用户填写的数据
+			sus = 1;
+			$(".infoset input").blur();
+			if(sus){
+				var ajaxdata ={
+						"ticketName": $("input[name='ticketName']").val(),
+						"desc": $("input[name='desc']").val(),
+						"count": $("input[name='count']").val(),
+						"ticketValue": $("input[name='ticketValue']").val(),
+						"beginTime": $("input[name='beginTime']").val(),
+						"endTime": $("input[name='endTime']").val()
+				};
+				$.ajax({			
+					type: "POST",
+					url: "./s/createSystemTicket",
+					data: JSON.stringify(ajaxdata),
+					contentType: "application/json; charset=utf-8",
+					async: false,
+					cache:false,
+					error:function(data){
+						console.log(data);
+					},
+					success:function(data){
+						console.log(data);
+						if(data.success == 0){
+							alert("创建成功");
+							window.location.href="a_cashcoupon.html";
+						}else{
+							$('#subBtn').parents(".btn").addClass("error").children(".errortip").text("创建失败");
+						}
+					}
+				});
+			}
+		});
+	});
+	</script>
+</body>
+</html>

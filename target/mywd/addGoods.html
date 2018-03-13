@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script charset="utf-8" src="js/editor/config.js"></script>
+<script charset="utf-8" src="js/editor/kindeditor.js"></script>
+<script charset="utf-8" src="js/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="js/jquery.js"></script>
+<script>
+	$(document).ready(function() {
+		var editor;
+		KindEditor.ready(function(K) {
+			editor = K.create('#detail_desc', {
+		        //cssPath : '/css/index.css',
+		        themeType : 'simple',
+		        uploadJson: './sale/item/uploadImg',
+		        //fileManagerJson: './sale/item/fileManager',
+		        items: showItems,
+		        filterMode: false,
+		        allowFileManager: false,
+		        allowImageManager: false
+			});
+		});
+		
+		$("#clickMe").click(function() {
+			//同步数据后可以直接取得textarea的value
+			editor.sync();
+			html = $('#detail_desc').val();
+			
+			html = html.replace(/"/g,'//"');
+			console.log(html);
+			var certs = "1,2";
+			
+			var item = {
+				// "item_brand": $("input[name='item_brand']").val(),
+				"item_series": $("input[name='item_series']").val(),
+				"item_name": $("input[name='item_name']").val(),
+				"item_sellingPoint": $("input[name='item_sellingPoint']").val(),
+				"item_rawMaterial": $("input[name='item_rawMaterial']").val(),
+				"item_packing": $("input[name='item_packing']").val(),
+				"item_technology": $("input[name='item_technology']").val(),
+				"certs": certs,
+				
+				"specList":[{"specName":1, "avatar":1, "originalPrice": 99, "discount": 0.8, "inventory": 100}, {"specName":2, "avatar":2, "originalPrice":299, "discount": 0.8, "inventory": 200}],
+				"detail_img1": $("input[name='detail_img1']").val(),
+				"detail_img2": $("input[name='detail_img2']").val(),
+				"detail_img3": $("input[name='detail_img3']").val(),
+				"detail_img4": $("input[name='detail_img4']").val(),
+				"detail_img5": $("input[name='detail_img5']").val(),
+				"detail_desc": $('#detail_desc').val(),
+				"detail_volume": $("input[name='detail_volume']").val(),
+				"detail_weight": $("input[name='detail_weight']").val(),
+				"detail_producingArea": $("input[name='detail_producingArea']").val(),
+				"detail_burdening": $("input[name='detail_burdening']").val(),
+				"detail_additive": $("input[name='detail_additive']").val(),
+				"detail_storage": $("input[name='detail_storage']").val(),
+				"detail_productionDate": $("input[name='detail_productionDate']").val(),
+				"detail_shelfLife": $("input[name='detail_shelfLife']").val()
+			};
+			
+			$.ajax({
+				type: "POST",
+				dataType: "json",      
+				contentType : 'application/json',
+				url: './sale/item',
+				data: JSON.stringify(item)
+			});
+		})
+	})
+</script>
+</head>
+<body>
+	商品名称：<input name="item_name" /> <br/>
+	品牌：<input name="item_brand"> <br/>
+	系列(此处应该采用select)：<input name="item_series"> <br/>
+	卖点：<input name="item_sellingPoint" /> <br/>
+	原料：<input name="item_rawMaterial" /> <br/>
+	包装：<input name="item_packing" /> <br/>
+	工艺：<input name="item_technology" /> <br/>
+	证书1：<select name="cert1"><option>1</option></select> <br/>
+	证书2：<select name="cert2"><opiton>2</opiton></select> <br/>
+	
+	规格：<input name="spec_name"> <br/>
+	原价<input name="spec_originalPrice"> <br/>
+	折扣<input name="spec_discount"> <br/>
+	库存<input name="spec_inventory"> <br/>
+	
+	详情图片1：<input name="detail_img1"> <br/>
+	详情图片2：<input name="detail_img2"> <br/>
+	详情图片3：<input name="detail_img3"> <br/>
+	详情图片4：<input name="detail_img4"> <br/>
+	详情图片5：<input name="detail_img5"> <br/>
+	体积：<input name="detail_volume"> <br/>
+	重量：<input name="detail_weight"> <br/>
+	产地：<input name="detail_producingArea"> <br/>
+	配料：<input name="detail_burdening"> <br/>
+	添加剂：<input name="detail_additive"> <br/>
+	标准码：<input name="detail_standardCode"> <br/>
+	储存方法：<input name="detail_storage"> <br/>
+	生产日期：<input name="detail_productionDate"> <br/>
+	保质期：<input name="detail_shelfLife"> <br/>
+
+	<textarea id="detail_desc" name="content" style="width: 700px; height: 300px;">
+		&lt;strong&gt;HTML内容&lt;/strong&gt;
+	</textarea>
+	<input id="clickMe" type="button" value="添加" />
+</body>
+</html>

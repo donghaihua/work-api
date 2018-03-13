@@ -1,0 +1,64 @@
+.container{
+	background-color: #fff;
+	width: 1140px;
+	margin: 0 auto;
+	padding: 5px 0px;
+}
+
+hr{
+	margin: 30px 0px 20px 26px;
+	height:1px;
+	width: 734px;
+	border:none;
+	border-top:1px dashed #000;
+}
+
+p.secunav{
+	line-height: 30px;
+	height: 30px;
+	
+	margin-left: 32px;
+	padding-left: 10px;
+	border-left: 3px solid #000;
+}
+
+table{
+	margin: 32px;
+	margin-bottom: 0px;
+	padding-right: 12px;
+	background-color: #fff;
+	border-spacing: 12px 0px;
+}
+
+table tr{
+	height: 56px;
+}
+
+table tr td:first-child{
+	width: 124px;
+	text-align: center;
+	border-bottom: 1px solid #f2f0ef;
+	border-right: 1px solid #f2f0ef;
+}
+
+table tr td:last-child{
+	width: 312px;
+	padding: 0px 28px 0px 18px;
+}
+
+table tr:last-child td:first-child{
+	border-bottom: none;
+}
+
+table tr:first-child td:last-child, table tr:nth-child(2) td:last-child{
+	border-bottom: 1px dashed #000;
+}
+
+#password, #telephone, #email{
+	color: #87aa66;
+}
+
+table tr td a{
+	float: right;
+	color: #117292;
+}

@@ -1,0 +1,18 @@
+.content h3{
+	text-align: center;
+	padding-top: 36px;
+	padding-bottom: 21px;
+	border-bottom: 2px solid #f3f3f3;
+}
+
+.content h3 span.t{
+	font-size: 36px;
+	padding: 0px 10px 20px 10px;
+	border-bottom: 4px solid #e36655;
+}
+
+.content p{
+	line-height: 24px;
+	font-size: 16px;
+	text-indent: 20px;
+}

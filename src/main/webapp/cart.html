@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>购物车</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/styleguide.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/cart.css">
+
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+	
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body class="logoutredirect">
+	<header class="h2">
+		<div class="h2b">
+			<div class="sesearch">
+				<input type="text">
+				<span class="icon-magnifier13"></span>
+			</div>
+			<div class="logo">
+				<img src="img/logo.png" alt="logo">
+			</div>
+			<div class="index">
+				<a href="index.html">首页</a>
+				<div class="dd2">
+					<ul>
+						<li><a href="culture.html">山茶文化</a></li>
+						<li><a href="brand.html">品牌故事</a></li>
+						<li><a href="packagedesign.html">私人定制</a></li>
+						<li><a href="item_list.html">商品系列</a></li>
+						<li><a href="contact.html">联系我们</a></li>
+					</ul>
+					<div class="lan">
+						简
+					</div>
+					<div class="r">
+						<a href="c_orderlist.html">我的订单</a>
+						<a href="login.html">登录</a>|<a href="reg.html">注册</a>
+					</div>
+				</div>
+			</div>
+			<div class="secart">
+				<a href="cart.html">
+					购物车
+					<div class="cartn">0</div>
+				</a>
+			</div>
+		</div>
+	</header>
+	<header class="h1">
+		<div class="box">
+			<div class="logo">
+				<img src="img/logo.png" alt="logo">
+			</div>
+			<div class="ul1">
+				<ul>
+					<!-- <li class="pinfo">
+						<span>130****0000</span>
+						<img src="img/avatar_preview_default.png" alt="avatar">
+						<ul class="dd1">
+							<li><a href="account.html">我的账户</a></li>
+							<li>登出</li>
+						</ul>
+					</li> -->
+					<li class="pinfo"><a href="login.html">登录</a>|<a href="reg.html">注册</a></li>
+					<li><a href="c_orderlist.html">我的订单</a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="bbs"><a href="bbs/forum.html">论坛</a></div>
+			<div class="ul2">
+				<ul>
+					<li><a href="contact.html">联系我们</a></li>
+					<li><a href="item_list.html">商品系列</a></li>
+					<li><a href="packagedesign.html">私人定制</a></li>
+					<li><a href="brand.html">品牌故事</a></li>
+					<li><a href="culture.html">山茶文化</a></li>
+					<li class="active"><a href="index.html">首页</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="boxw se">
+		<div class="box">
+			<ul><li class="active">中</li><li>繁</li><li>JP</li><li>EN</li></ul>
+			<div class="sesearch">
+				<input type="text" name="seinput">
+				<input type="button" name="sebtn" value="搜索">
+			</div>
+			<div class="secart">
+				<a href="cart.html">
+					购物车
+					<div class="cartn">0</div>
+					<span class="icon-arrow-down2"></span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="clear waypoint"></div>
+	<div class="box hcl">
+		<div class="hcartlist">
+			<div class="list">
+				<table>
+					<!-- <tr>
+						<td class="td1">
+							<div class="img">
+								<img src="img/listitem.png" alt="img">
+							</div>
+							<p>
+								<span class="n">红天果冷压榨特级初榨茶籽油</span><br>
+								<span class="s">500ML</span>
+							</p>
+						</td>
+						<td class="td2">1</td>
+						<td class="td3">&yen;200</td>
+						<td class="td4">
+							<span class="icon-cross"></span>
+						</td>
+					</tr> -->
+				</table>
+			</div>
+			<div class="b">
+				<span class="ttn">共<span>0</span>件商品</span>
+				<span class="ttp">总价<span>&yen;0</span></span>
+				<input type="button" id="carthtml" value="结算">
+			</div>
+		</div>
+	</div>
+	<div class="clear waypoint"></div>
+	<div class="cartt box">
+		<div class="content box">
+			<div class="title">
+				购物车
+			</div>
+			<ol class="step">
+				<li class="active"><span class="icon-square">01</span>我的购物车</li>
+				<li><span class="icon-square">02</span>填写核对订单</li>
+				<li><span class="icon-square">03</span>我的购物车</li>
+			</ol>
+		</div>
+		<div class="cartlisth">
+			<table>
+				<tr>
+					<th>
+						<input type="checkbox">全选
+					</th>
+					<th>商品</th><th>单价</th><th>数量</th><th>优惠</th><th>金额</th><th>操作</th>
+				</tr>
+			</table>
+		</div>
+		<div class="cartlistb">
+			<table>
+				<!-- <tr>
+					<td class="td1">
+						<input type="checkbox">
+					</td>
+					<td class="td2">
+						<div class="img">
+							<img src="img/cartitem.png" alt="img">
+						</div>
+						<p><span>红天果</span><br>冷压榨特级初榨茶籽油</p>
+					</td>
+					<td class="td3">
+						<div class="price">
+							&yen;<span>200</span>
+						</div>
+						<div class="dprice">
+							&yen;<span>100</span>
+						</div>
+					</td>
+					<td class="td4">
+						<div class="quantt">
+							<div class="icon-minus"></div>
+							<div class="num"><input type="text" value="20"></div>
+							<div class="icon-plus"></div>
+						</div>
+					</td>
+					<td  class="td5">
+						返现&yen;10.00
+					</td>
+					<td class="td6">
+						<div class="price">
+							&yen;<span>400</span>
+						</div>
+					</td>
+					<td class="td7">
+						<input type="button" class="delete" value="移除">
+					</td>
+				</tr> -->
+			</table>
+		</div>
+		<div class="cartlistt">
+			<span class="all"><input type="checkbox">全选</span>
+			<!-- <input type="button" class="delete" value="删除选中商品"> -->
+			<!-- <input type="button" class="shopping" value="继续购物"> -->
+			<span class="selected">已选择<span class="q">0</span>件</span>
+			<span class="total">总价<span>&yen;<span class="p">0</span></span></span>
+			<input type="button" class="submit" value="结算">
+			<div class="submiterror">网络连接出错，请重试</div>
+		</div>
+		<div class="cartempty">
+			购物车是空的，去逛逛吧
+		</div>
+	</div>
+	<footer>
+		<div class="box">
+			<div class="l">
+				<p>
+					客户服务<br>
+					<span id="site_phone">025-85703619</span>
+				</p>
+				<p>
+					地址<br>
+					<span id="site_address">江苏省南京市雨花台区长虹路222号<br>
+						德盈国际广场3幢1605室<br>
+						江苏红果文化传播有限公司</span>
+				</p>
+				<p>
+					邮箱<br>
+					<span id="site_email">srv@uhaou.cn</span>
+				</p>
+			</div>
+			<div class="m">
+				<p>订阅有好油，加入我们</p>
+				<div class="rss">
+					<input type="text" placeholder="请输入您的邮箱">
+					<input type="button" value="发送">
+				</div>
+			</div>
+			<div class="r">
+				<p>扫一扫有惊喜</p>
+				<img id="site_2dcode" src="img/2dcode.jpg" alt="code">
+				<div class="site">UHAOU.CN</div>
+				<div class="cr" id="site_record">
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		function cartGet(){
+			$.ajax({
+				type:"GET",
+				data:"",
+				async:false,
+				cache:false,
+				url:"./sale/cart",
+				error:function(){
+					//window.location.href="error.html";
+				},
+				success:function(data){
+					if (data.success==0) {
+						$(".cartlistb table").empty().attr("data-cartid",data.datas.id);
+						if (data.length) {
+							for (var i = 0; i < data.length; i++) {
+								$(".cartlistb table").append('<tr data-quantt="'+data.datas[i].quantity+'" data-cartid="'+data.datas[i].id+'" data-itemid="'+data.datas[i].lightItem.id+'" data-specid="'+data.datas[i].saleItemSpec.id+'">'
+									+'<td class="td1"><input type="checkbox"></td>'
+									+'<td class="td2"><div class="img"><img src="'+data.datas[i].lightItem.avatar+'" alt="img"></div><p><span class="b">'+data.datas[i].lightItem.brand+'</span><br>'+data.datas[i].lightItem.name+'<br><span class="s">'+data.datas[i].saleItemSpec.specName+'</span></p></td>'
+									+'<td class="td3"><div class="price">&yen;<span>'+data.datas[i].saleItemSpec.originalPrice+'</span></div><div class="dprice">&yen;<span>'+data.datas[i].saleItemSpec.discountPrice+'</span></div></td>'
+									+'<td class="td4"><div class="quantt" data-price="'+data.datas[i].saleItemSpec.discountPrice+'"><div class="icon-minus"></div><div class="num"><input type="text" value="'+data.datas[i].quantity+'"></div><div class="icon-plus"></div></div></td><td  class="td5"></td>'
+									+'<td class="td6"><div class="price">&yen;<span>'+(parseFloat(data.datas[i].saleItemSpec.discountPrice)*parseFloat(data.datas[i].quantity))+'</span></div></td>'
+									+'<td class="td7"><input type="button" class="delete" value="移除"></td></tr>');
+							};
+						}else{
+							$(".cartlistt").hide();
+							$(".cartempty").show();
+						}
+					}
+				}
+			});
+		}
+
+		function cartlistt(){
+			$(".cartlistt .selected .q").text($(".cartlistb .td1 input[type=checkbox]:checked").length);
+			var total = 0;
+			var itemt = $(".cartlistb .td1 input[type=checkbox]:checked").parents(".td1").siblings(".td6").children(".price").children("span");
+			for (var i = 0; i < itemt.length; i++) {
+				total += Number($(itemt[i]).text());
+			};
+			$(".cartlistt .total .p").text(total);
+		}
+
+		$(".cartlisth input[type=checkbox], .cartlistt .all input[type=checkbox]").change(function(){
+			if ($(this).attr("checked") == "checked") {
+				$(".cartlistb .td1 input[type=checkbox], .cartlisth input[type=checkbox], .cartlistt .all input[type=checkbox]").attr("checked","checked");
+			}else{
+				$(".cartlistb .td1 input[type=checkbox], .cartlisth input[type=checkbox], .cartlistt .all input[type=checkbox]").removeAttr("checked");
+			}
+			cartlistt();
+		});
+
+		$(".quantt input").live("blur",function(){
+			if (isNaN($(this).val())) {
+				$(this).val("1");
+			}else if($(this).val() <= 0){
+				$(this).val("1");
+			}else if(parseInt($(this).val()) != $(this).val()){
+				$(this).val(parseInt($(this).val()));
+			}
+
+			var inventory;
+
+			$.ajax({
+				type:"get",
+				data:{
+					"specId":$(this).parents("tr").attr("data-specid")
+				},
+				url:"./sale/item/inventory",
+				success:function(data){
+					if (data.success == 0) {
+						inventory = data.inventory;
+					}
+				}
+			});
+
+			if ($(this).val() >= inventory) {
+				$(this).val(inventory);
+			}
+
+			var itemid = $(this).parents("tr").attr("data-itemid");
+			var specid = $(this).parents("tr").attr("data-specid");
+			var quantity = $(this).val();
+			$(this).parents("tr").attr("data-quantt",quantity);
+
+			var cartput = {
+					"id": $(this).parents("tr").attr("data-cartid"),
+					"lightItem": {"id":itemid},
+					"saleItemSpec": {"id":specid},
+					"quantity": quantity
+				};
+			var item = $(this);
+			$.ajax({
+				type:"PUT",
+				data:JSON.stringify(cartput),
+				contentType: 'application/json',
+				dataType: 'json',
+				async:false,
+				cache:false,
+				url:"./sale/cart",
+				error:function(){
+					window.location.href="error.html";
+				},
+				success:function(data){
+					if (data.success == 0) {
+						var dp = item.parents(".quantt").attr("data-price");
+						item.parents(".td4").siblings(".td6").children(".price").children("span").text(Number(item.val())*dp);
+						$().cartput(itemid, specid, quantity);
+					}
+				}
+			});
+			cartlistt();
+		});
+
+		$(".quantt .icon-minus").live("click",function(){
+			var quantt = $(this).siblings(".num").children("input");
+			quantt.val(Number(quantt.val())-1);
+			quantt.blur();
+		});
+
+		$(".quantt .icon-plus").live("click",function(){
+			var quantt = $(this).siblings(".num").children("input");
+			quantt.val(Number(quantt.val())+1);
+			quantt.blur();
+		});
+
+		$(".cartlistb .td1 input[type=checkbox]").live("click",function(){
+			cartlistt();
+		});
+
+		cartGet();
+		$(".cartlistt .all input[type=checkbox]").click();
+
+		$(".cartlistt input.submit").removeAttr("disabled");
+		$(".cartlistt input.submit").click(function(){
+			$(".cartlistt .submiterror").hide();
+			var cartlist = $(".cartlistb input[type=checkbox]:checked").parents("tr");
+			if (cartlist.length) {
+				$(".cartlistt input.submit").attr("disabled","disabled");
+				var cartorder = [];
+				for (var i = cartlist.length - 1; i >= 0; i--) {
+					cartorder.push({
+						"id": $(cartlist[i]).attr("data-cartid"),
+						"lightItem": {"id":$(cartlist[i]).attr("data-itemid")},
+						"saleItemSpec": {"id":$(cartlist[i]).attr("data-specid")},
+						"quantity": $(cartlist[i]).attr('data-quantt')
+					});
+				}
+
+				$.ajax({
+					type:"post",
+					data:JSON.stringify(cartorder),
+					contentType: 'application/json',
+					dataType: 'json',
+					async:false,
+					cache:false,
+					url:"./sale/cart/settle",
+					error:function(){
+						$(".cartlistt .submiterror").text("网络连接出错，请重试").show();
+					},
+					success:function(data){
+						if (data.success == 0) {
+							window.location.href="order.html";
+						}else{
+							$(".cartlistt .submiterror").text("提交出错，请重试").show();
+						}
+					}
+				});
+				$(".cartlistt input.submit").removeAttr("disabled");
+			}else{
+				$(".cartlistt .submiterror").text("请选择要结算的商品").show();
+			}
+		});
+
+		$(".td7 .delete").live('click',function(){
+			var	cartdelete = {
+				"id":$(this).parents("tr").attr("data-cartid"),
+				"lightItem":{"id":$(this).parents("tr").attr("data-itemid")},
+				"saleItemSpec":{"id":$(this).parents("tr").attr("data-specid")},
+			};
+			var item = $(this).parents("tr");
+			
+			$.ajax({
+				type:"delete",
+				data:JSON.stringify(cartdelete),
+				contentType: 'application/json',
+				dataType: 'json',
+				async:false,
+				cache:false,
+				url:"./sale/cart",
+				success:function(data){
+					if (data.success == 0) {
+						item.remove();
+						$().cartdelete($(this).parents("tr").attr("data-itemid"),$(this).parents("tr").attr("data-specid"));
+					}
+				}
+			});
+			$().ddcartlistt();
+		});
+	});
+	</script>
+</body>
+</html>

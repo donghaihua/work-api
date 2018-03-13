@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+        http://www.springframework.org/schema/data/mongo
+        http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+
+    <!--1 引入属性文件，在配置中占位使用 -->
+    <context:property-placeholder location="classpath*:*.properties" file-encoding="utf-8" />
+
+    <context:annotation-config />
+
+
+
+    <bean id="ds1" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.uid}" />
+        <property name="password" value="${jdbc.pwd}" />
+
+        <property name="proxyFilters">
+            <list>
+                <bean id="log-filter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+                    <property name="resultSetLogEnabled" value="${log.enable}" />
+                </bean>
+                <bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+                    <property name="slowSqlMillis" value="${slow.sql.millis}" />
+                    <property name="logSlowSql" value="${slow.sql.enable}" />
+                    <property name="mergeSql" value="${slow.sql.merge}" />
+                </bean>
+                <ref bean="wall-filter" />
+            </list>
+        </property>
+
+        <property name="maxActive" value="${jdbc.max_active}" />
+        <property name="initialSize" value="${jdbc.initial_size}" />
+        <property name="maxWait" value="${jdbc.max_wait}" />
+        <property name="minIdle" value="${jdbc.min_idle}" />
+
+        <property name="timeBetweenEvictionRunsMillis" value="3000" />
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+
+        <property name="validationQuery" value="SELECT 'x'" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+
+        <property name="removeAbandoned" value="true" />
+        <property name="removeAbandonedTimeout" value="1800" />
+        <property name="logAbandoned" value="true" />
+        <property name="connectionInitSqls" value="set names utf8mb4;" />
+    </bean>
+    <bean id="wall-filter" class="com.alibaba.druid.wall.WallFilter">
+        <property name="dbType" value="${wall.db.type}" />
+        <property name="config" ref="wall-config" />
+    </bean>
+    <bean id="wall-config" class="com.alibaba.druid.wall.WallConfig">
+        <property name="multiStatementAllow" value="true" />
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="ds1"></property>
+        <property name="typeAliasesPackage" value="com.tenmaker.backupwd.model"></property>
+        <property name="mapperLocations" value="classpath:com/tenmaker/backupwd/PassportAccountMapper.xml"></property>
+
+    </bean>
+
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <property name="basePackage" value="com.tenmaker.backupwd.mapper"></property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="ds1"></property>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+<!--
+
+    <mongo:mongo-client id="mongoClient" host="${mongo.host}" port="${mongo.port}" credentials="${mongo.user}:${mongo.pwd}@${mongo.db.main}">
+        <mongo:client-options connections-per-host="3"
+                          threads-allowed-to-block-for-connection-multiplier="2"
+                          connect-timeout="3000"
+                          max-wait-time="2500"
+                          socket-keep-alive="true"
+                          socket-timeout="1500" />
+    </mongo:mongo-client>
+    <mongo:db-factory id="mongoDbFactory"
+                      dbname="${mongo.db.main}"
+                      mongo-ref="mongoClient"/>
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongoDbFactory" />
+    </bean>
+    <mongo:repositories base-package="com.tenmaker.pansheng.dao.mongo" />
+-->
+
+    <!--6 容器自动扫描IOC组件  -->
+    <context:component-scan base-package="com.tenmaker.**">
+        <!-- 防止 controller 类被重复扫描（mvc-config.xml 里已有扫描） -->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+    <!--7 aspectj支持自动代理实现AOP功能 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+
+    <!--<import resource="cache-config.xml" />
+    <import resource="security-config.xml" />-->
+
+</beans>

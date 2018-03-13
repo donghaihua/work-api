@@ -1,0 +1,101 @@
+.acctcont{
+	margin-left: 288px;
+	min-height: 500px;
+	padding-top: 20px;
+}
+
+.refl{
+	border-collapse: separate;
+	border-spacing: 0px;
+}
+
+.refl thead tr{
+	height: 50px;
+	background-color: #303134;
+	color: #fff;
+}
+
+.refl tbody tr{
+	height: 90px;
+	background-color: #f9f9f9;
+}
+
+.refl tbody td{
+	border-bottom: 4px solid #fff;
+	text-align: center;
+}
+
+.refl .td1{
+	width: 190px;
+}
+
+.refl .td1 .orderno{
+	
+	font-weight: normal;
+	line-height: 22px;
+}
+
+.refl .td1 .date{
+	font-size: 14px;
+	font-weight: normal;
+	color: #9b9b9b;
+	line-height: 22px;
+}
+
+.refl .td2{
+	width: 140px;
+	padding-right: 18px;
+}
+
+.refl .td2 .tprice{
+	font-size: 20px;
+	font-weight: normal;
+}
+
+.refl .td3{
+	width: 150px;
+	padding-right: 18px;
+}
+
+.refl .td3 .price{
+	font-size: 20px;
+	font-weight: normal;
+	color: #e36655;
+}
+
+.refl .td4{
+	width: 140px;
+	padding-right: 18px;
+}
+
+.refl .td4 .sta{
+	margin: 0 auto;
+	width: 88px;
+	height: 32px;
+	text-align: center;
+	line-height: 32px;
+	
+	background-color: #cdcdcd;
+	border-radius: 60px;
+}
+
+.refl .td5{
+	width: 150px;
+}
+
+.refl .td5 input{
+	width: 98px;
+	height: 40px;
+	font-size: 18px;
+	color: #fff;
+	background-color: #e36655;
+	cursor: pointer;
+}
+
+.refl .td5 input:hover{
+	background-color: #ce4836;
+}
+
+.pager{
+	margin-right: 30px;
+}

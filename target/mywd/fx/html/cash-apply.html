@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>提现申请</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<link href="../icomoon/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/global.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<script src="../js/jquery-1.11.0.min.js"></script>
+	</head>
+
+	<body>
+		<div class="md">
+			<div class="header"><span class="goback"><a href="funds-manage.html"><i class="icon-back"></i></a></span>佣金管理<span class="right-btn"><a href="cash-record.html">提现记录</a></span></div>
+
+			<div class="content nopadding">
+				<form class="myform">
+					<div class="form-group">
+						<span class="form-span">可提金额</span>
+						<span class="form-span-price"></span>
+					</div>
+					<div class="form-group bank_height">
+						<span class=" form-span">提现至</span>
+						<label class="bank-card"></label>
+						<!--<label class="bank-name">兴业银行</label>
+						<label class="bank-img"><img src="../images/bank.png" /></label>-->
+
+					</div>
+					<div class="form-group">
+						<span class="form-span">提现金额</span>
+						<input class="form-input" type="text" placeholder="请输入提现金额" id="amount" value="">
+					</div>
+					<div class="button-group">
+						<button class="btn btn-orange" type="button" id="confirm-btn">确认提现</button>
+					</div>
+				</form>
+
+			</div>
+
+		</div>
+		<!--蒙版-->
+		<div class="Mask">
+			<div class="Mask-content"></div>
+		</div>
+		<div class="passwordmodal">
+			<div class="password-content">
+				<div class="password-head"><span class="leftbtn"><i class="icon-back"></i></span>提现密码</div>
+
+				<div class="password-div">
+					<div>
+						<span class="arrow-border"></span>
+						<input type="password" value="" data-number="1" maxlength="1" />
+					</div>
+					<div>
+						<span class="arrow-border"></span>
+						<input type="password" value="" data-number="2" maxlength="1" />
+					</div>
+					<div>
+						<span class="arrow-border"></span>
+						<input type="password" value="" data-number="3" maxlength="1" />
+					</div>
+					<div>
+						<span class="arrow-border"></span>
+						<input type="password" value="" data-number="4" maxlength="1" />
+					</div>
+					<div>
+						<span class="arrow-border"></span>
+						<input type="password" value="" data-number="5" maxlength="1" />
+					</div>
+					<div>
+						<input type="password" value="" data-number="6" maxlength="1" />
+					</div>
+				</div>
+				<p class="password-message">忘记密码，请致电客服<span>026-888866</span></p>
+
+			</div>
+		</div>
+	</body>
+	<script>
+		$(document).ready(function() {
+			$(".leftbtn").click(function() {
+				$(".Mask").hide();
+				$(".passwordmodal").slideUp("slow");
+				$("input[data-number='1']").focus();
+			});
+			var pwd="";
+			$(".password-div [type='password']").keyup(function() {
+				var reg = /^[0-9]\d*$/;
+				var val = $(this).val();
+				if (reg.test(val)) {
+					var num = parseInt($(this).attr("data-number"));
+					if(num == 1) {
+						pwd="";
+					}
+					pwd += val;
+					if (num == 6) {
+						//alert(pwd);
+						$.ajax({
+							type: 'GET',
+							url: '../../uiserver/distribution/validateCashPassword',
+							data: {'password': pwd},
+							async: false,
+							cache: false,
+							success: function(res) {
+								if(res.success == 0) {
+									applyWithdraw();
+								} else {
+									alert(res.errorMsg);
+									$(".password-div [type='password']").val('');
+									$("input[data-number='1']").focus();
+								}
+							}
+						});
+					}
+					$("input[data-number='" + (num + 1) + "']").focus();
+				} else {
+					$(this).val("");
+				}
+			});
+
+			var totalAmount;
+			$.ajax({
+				type: 'GET',
+				url: '../../uiserver/distribution/showWithdraw',
+				async: false,
+				cache: false,
+				success: function(res) {
+					if(res.success == 0) {
+						if(res.isSetCashPwd == 0) {
+							window.location.href = 'set-password.html';
+						} else {
+							totalAmount = res.distributionAccount.totalAmount;
+							if(totalAmount < 100) {
+								alert("佣金必须要超过100才能提现");
+							}
+							$('span.form-span-price').text('￥' + totalAmount);
+							$('label.bank-card').text(res.distributionAccount.cardNO);
+						}
+					}
+				}
+			});
+
+			$('#confirm-btn').click(function () {
+				if(totalAmount < 100) {
+					alert("佣金必须要超过100才能提现");
+					return;
+				}
+
+				var amount = parseFloat($('#amount').val());
+
+				if(isNaN(amount)){
+					alert("请输入正确的金额数字");
+					return;
+				}
+
+				if(amount<100) {
+					alert("单笔提现金额不得少于100元");
+					return;
+				} else if(totalAmount < amount) {
+					alert("输入错误！超过可提现最大金额");
+					return;
+				}
+				$(".Mask").show();
+				$(".passwordmodal").slideDown("slow");
+			});
+
+			function applyWithdraw() {
+				$.ajax({
+					type: 'POST',
+					url: '../../uiserver/distribution/applyToWithdraw',
+					data: {'amount': parseFloat($('#amount').val())},
+					async: false,
+					cache: false,
+					success: function(res) {
+						if(res.success == 0) {
+							window.location.href = 'cash-record.html';
+						} else {
+							alert(res.errorMsg);
+							window.location.reload();
+						}
+					}
+				});
+			}
+
+		});
+	</script>
+
+</html>

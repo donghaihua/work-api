@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!-- AOP式方法级权限检查  -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+    <!-- shiro权限注解支持开启  -->
+    <aop:config proxy-target-class="true"></aop:config>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+
+    <bean id="customShiroSessionDAO" class="com.tenmaker.backupwd.controller.shiro.AppShiroSession" />
+
+    <bean id="defaultWebSessionManager" class="com.tenmaker.backupwd.controller.shiro.WebSessionManager">
+        <property name="globalSessionTimeout" value="-1" />
+        <property name="sessionDAO" ref="customShiroSessionDAO" />
+        <!--<property name="sessionIdCookie.domain" value=".tenmaker.com" />-->
+        <!--         <property name="sessionIdCookie.path" value="/"/> -->
+    </bean>
+
+    <bean id="subjectDao" class="com.tenmaker.backupwd.controller.shiro.SubjectDAO"/>
+    <bean id="subjectFactory" class="com.tenmaker.backupwd.controller.shiro.WebSubjectFactory" />
+
+    <!-- 項目自定义的Realm, 所有accountService依赖的dao都需要用depends-on声明 -->
+    <bean id="shiroDbRealm" class="com.tenmaker.backupwd.controller.shiro.AppShiroRealm"/>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="shiroDbRealm"/>
+        <!-- 缓存管理 -->
+        <property name="cacheManager" ref="shiroEhcacheManager" />
+        <property name="sessionManager" ref="defaultWebSessionManager" />
+        <property name="subjectDAO" ref="subjectDao"/>
+        <property name="subjectFactory" ref="subjectFactory"/>
+    </bean>
+
+    <bean id="shiroFilter" class="com.tenmaker.backupwd.controller.shiro.MyShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/login/mobileLogin.htm"/>
+        <property name="successUrl" value=""/>
+        <property name="filters">
+            <map>
+                <!-- 自定义身份认证过滤器 -->
+                <entry key="newAuthc" value-ref="loginFilter"/>
+                <!-- 自定义角色认证过滤器 -->
+                <!--  <entry key="newRoles" value-ref="rolesFilter"/> -->
+                <!-- 自定义角色资源认证过滤器 -->
+                <!-- <entry key="newPermi" value-ref="permissionFilter"/> -->
+            </map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /api/** = anon
+                /login/** = anon
+                /passports/** = anon
+                /test/** = anon
+                /callback.htm = anon
+
+                /health/v2/*.htm = newAuthc
+
+                /** = newAuthc
+
+                <!--/** = anon-->
+
+                <!--/admins/member/**=roles["admin,guest"],每个参数通过才算通过，相当于hasAllRoles()方法。-->
+                <!--/admins/member/**=perms["member:add:*,member:modify:*"]，当有多个参数时必须每个参数都通过才通过，想当于isPermitedAll()方法。-->
+            </value>
+        </property>
+    </bean>
+
+    <!-- 用户授权信息Cache, 采用EhCache -->
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!--未登录或超时跳转-->
+                <prop key="org.apache.shiro.authz.UnauthenticatedException">
+                    redirect:/shiro/tokenerror.html
+                </prop>
+                <!--未授权-->
+                <prop key="org.apache.shiro.authz.UnauthorizedException">
+                    redirect:/shiro/permissionerror.html
+                </prop>
+            </props>
+        </property>
+        <property name="defaultErrorView" value="/shiro/index"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,187 @@
+.nav-check {
+  margin-top: 30px;
+  border-top-left-radius: 5px;
+  background-color: #fff;
+}
+.nav-check ul {
+  overflow: hidden;
+  width: 920px;
+  height: 64px;
+  border-top-left-radius: 5px;
+}
+.nav-check ul li {
+  line-height: 64px;
+  float: left;
+  width: 140px;
+  height: 64px;
+  cursor: pointer;
+  text-align: center;
+  color: #303134;
+  background-color: #fff;
+}
+.nav-check ul li:hover,
+.nav-check ul li.active {
+  color: #fff;
+  background-color: #ed9e33;
+}
+.check ul li {
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-top: 5px solid #ed9e33;
+}
+.check ul li .title {
+  padding: 20px 30px;
+  background: #d7d7d7;
+}
+.check ul li table {
+  box-sizing: border-box;
+  width: 100%;
+  border-collapse: collapse;
+  vertical-align: middle;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background: white;
+}
+.check ul li table thead tr th {
+  line-height: 1.42857143;
+  padding: 15px 30px;
+  vertical-align: bottom;
+  border-bottom: 1px solid #d7d7d7;
+}
+.check ul li table tbody tr td {
+  line-height: 1.42857143;
+  padding: 20px 30px;
+}
+button {
+  margin-right: 2px;
+  margin-left: 2px;
+  padding: 5px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+button.modifyBank {
+  color: white;
+  background-color: #1d1e20;
+}
+button.positive {
+  color: white;
+  background-color: #1d1e20;
+}
+button.negative {
+  background-color: #f3f3f3;
+}
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 30px 50px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border: 1px solid #f3f3f3;
+  background: white;
+}
+.popup .title {
+  margin-bottom: 20px;
+}
+
+
+.newcert{
+  display: none;
+  position: fixed;
+  width: 800px;
+  height: 250px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin: auto;
+  padding: 36px 30px 58px 30px;
+  background-color: #fff;
+  border-top: 4px solid #303134;
+  box-shadow: 5px 5px 1px 1px rgba(0,0,0,0.1);
+  z-index: 1;
+}
+
+.newcert .failuremsg, .newcert .nullmsg{
+  position: absolute;
+  color: #a04545;
+  display: none;
+}
+
+.newcert .uploadingmsg{
+  position: absolute;
+  color: #87aa66;
+  display: none;
+}
+
+.newcert .certtitle{
+  color: #2b2b2b;
+
+}
+
+.newcert .certt{
+  width: 780px;
+  height: 44px;
+  margin-top: 10px;
+  padding: 0 10px;
+  border: 1px solid #cacaca;
+  font-size: 18px;
+}
+
+.newcert .certf{
+  display: none;
+}
+
+.newcert .certb{
+  position: relative;
+  width: 670px;
+  height: 44px;
+  line-height: 44px;
+  margin: 30px 0px 60px 0px;
+  padding: 0px 120px 0px 10px;
+  background-color: #f3f3f3;
+  border: 1px solid #f3f3f3;
+}
+
+.newcert .certb input{
+  position: absolute;
+  right: 12px;
+  top: 7px;
+  width: 94px;
+  height: 30px;
+  border: 1px solid #e36655;
+  background-color: #e36655;
+  color: #fff;
+
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.newcert .certb input:hover{
+  background-color: #ce4836;
+}
+
+.newcert .certsubmit, .newcert .certcancel{
+  position: absolute;
+  width: 134px;
+  height: 44px;
+  color:#fff;
+  font-size: 20px;
+  background-color: #e36655;
+  border: 1px solid #e36655;
+  cursor: pointer;
+}
+
+.newcert .certsubmit{
+  right: 196px;
+}
+
+.newcert .certcancel{
+  right: 30px;
+}
+
+.newcert .certsubmit:hover, .newcert .certcancel:hover{
+  background-color: #ce4836;
+}

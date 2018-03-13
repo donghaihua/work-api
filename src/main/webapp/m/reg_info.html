@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>验证邮箱</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/reg.css">
+	<style type="text/css">
+		.reg3{
+			display: none;
+		}
+	</style>
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body>
+	<header class="removecart logoutredirect">
+		<div class="stick">
+			<div class="title">
+				<a href="login.html">登录</a>
+				<a class="active">注册</a>
+			</div>
+		</div>
+	</header>
+	<div class="box content main">
+		<div class="rstep">
+			<div><div>创建账号</div></div>
+			<div class="active"><div>验证邮箱</div></div>
+			<div><div>注册成功</div></div>
+		</div>
+		<div class="reg2">
+			<input type="text" placeholder="用户名" id="un"><br>
+			<input type="text" placeholder="您的邮箱" id="em"><br>
+			<a class="btnl" id="skip" href="index.html">跳过</a>
+			<input class="red btn" type="button" id="emvali" value="验证邮箱">
+		</div>
+		<div class="reg3">
+			<div class="sent">邮件已发送至您的邮箱<br>请在24小时内完成验证</div>
+			<input class="red btn" type="button" id="resend" value="重新发送">
+		</div>
+	</div>
+	<footer class="box">
+		<div class="ws">UHAOU.CN</div>
+		<div class="cr">&copy;2015 uhao.cn<br><a href="http://www.miitbeian.gov.cn/">苏ICP备15001958号-1</a></div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var securitykey = $.cookie("securitykey");
+
+		$.ajax({
+			type:"post",
+			data:{securityKey:securitykey,type:1,securityId:accountid,time:0},
+			url:"../passport/security/keyCheck",
+			error:function(){
+				//window.location.href="error.html";
+			},
+			success:function(data){
+				if (data.error) {
+					$("#emailvali").unbind();
+					alert("您的请求失败，请登录后进行修改");
+					window.location.href="login.html";
+				}
+			}
+		});
+
+		$("#skip").click(function(){
+			$.ajax({
+				type:"put",
+				data:{securityKey:securitykey,type:1},
+				url:"../passport/security/killSecurityKey",
+				error:function(){
+					//window.location.href="index.html";
+				},
+				success:function(){
+					$.cookie("securitykey","");
+					window.location.href="index.html";
+				}
+			});
+		});
+
+		$("#emvali").removeAttr("disabled");
+		$("#emvali").click(function(){
+			$(this).attr("disabled","disabled");
+			var sus = 0;
+			var un = $("#un").val();
+			var em = $("#em").val();
+
+			if (!un || !em) {
+				alert("请填写完整");
+			}else if(!$().unamevalidate(un)){
+				alert("用户名只能由中英文数字下划线组成并不少于两个字符");
+			}else if($().check("userName",un,"account")){
+				alert("该用户名已被注册");
+			}else if(!$().emailvalidate(em)){
+				alert("邮箱格式不正确");
+			}else if($().check("email",em,"account")){
+				alert("该邮箱已被注册");
+			}else{
+				sus = 1;
+			}
+
+			if (sus) {
+				$.ajax({
+					type:"put",
+					data:{
+						type:1,
+						userName: un,
+						email: em,
+						accountId:accountid,
+						securityKey:securitykey,
+						captchaImg:"",
+					},
+					url:"../passport/account/security",
+					async:false,
+					error:function(){
+						alert("网络连接错误，请重试");
+					},
+					success:function(data){
+						if (data.success == 0) {
+							$(".reg2").hide();
+							$(".reg3").show();
+							$("#un, #em").val("");
+						}else if(data.error == 101){
+							window.location.href="error.html";
+						}else if(data.error == 102) {
+							alert("用户名已被注册");
+						}else if(data.error == 201) {
+							alert("用户名或邮箱格式有误");
+						}else if(data.error == 301) {
+							alert("您的请求失败，请登录");
+							window.location.href="login.html";
+						}else if(data.error == 302) {
+							alert("您的请求已过期，请登录");
+							window.location.href="login.html";
+						}
+					}
+				});
+			}
+			$(this).removeAttr("disabled");
+		});
+
+		$("#resend").removeAttr("disabled");
+		$("#resend").click(function(){
+			$(this).attr("disabled","disabled");
+			$.ajax({
+				type:"post",
+				data:{accountId:accountid,type:0},
+				url:"../g/postMsg",
+				success:function(data){
+					if (data.success == 0) {
+						$("#resend").val("已发送");
+					}else{
+						if (data.error == 102) {
+							alert("您的邮箱已验证通过");
+							window.location.href="index.html";
+						}else if(data.error == 101){
+							alert("重发失败");
+						}else{
+							alert("重发失败");
+						}
+					}
+				}
+			});
+			setTimeout(function(){
+				$("#resend").removeAttr("disabled").val("重新发送");
+			},10000);
+		});
+	});
+	</script>
+</body>
+</html>

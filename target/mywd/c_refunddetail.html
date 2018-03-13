@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>退货详情</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/styleguide.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/refund.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body class="logoutredirect">
+	<header class="h2">
+		<div class="h2b">
+			<div class="sesearch">
+				<input type="text">
+				<span class="icon-magnifier13"></span>
+			</div>
+			<div class="logo">
+				<img src="img/logo.png" alt="logo">
+			</div>
+			<div class="index">
+				<a href="index.html">首页</a>
+				<div class="dd2">
+					<ul>
+						<li><a href="culture.html">山茶文化</a></li>
+						<li><a href="brand.html">品牌故事</a></li>
+						<li><a href="packagedesign.html">私人定制</a></li>
+						<li><a href="item_list.html">商品系列</a></li>
+						<li><a href="contact.html">联系我们</a></li>
+					</ul>
+					<div class="lan">
+						简
+					</div>
+					<div class="r">
+						<a href="c_orderlist.html">我的订单</a>
+						<a href="login.html">登录</a>|<a href="reg.html">注册</a>
+					</div>
+				</div>
+			</div>
+			<div class="secart">
+				<a href="cart.html">
+					购物车
+					<div class="cartn">0</div>
+				</a>
+			</div>
+		</div>
+	</header>
+	<header class="h1">
+		<div class="box">
+			<div class="logo">
+				<img src="img/logo.png" alt="logo">
+			</div>
+			<div class="ul1">
+				<ul>
+					<!-- <li class="pinfo">
+						<span>130****0000</span>
+						<img src="img/avatar_preview_default.png" alt="avatar">
+						<ul class="dd1">
+							<li><a href="account.html">我的账户</a></li>
+							<li>登出</li>
+						</ul>
+					</li> -->
+					<li class="pinfo"><a href="login.html">登录</a>|<a href="reg.html">注册</a></li>
+					<li><a href="c_orderlist.html">我的订单</a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="bbs"><a href="bbs/forum.html">论坛</a></div>
+			<div class="ul2">
+				<ul>
+					<li><a href="contact.html">联系我们</a></li>
+					<li><a href="item_list.html">商品系列</a></li>
+					<li><a href="packagedesign.html">私人定制</a></li>
+					<li><a href="brand.html">品牌故事</a></li>
+					<li><a href="culture.html">山茶文化</a></li>
+					<li class="active"><a href="index.html">首页</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="boxw se">
+		<div class="box">
+			<ul><li class="active">中</li><li>繁</li><li>JP</li><li>EN</li></ul>
+			<div class="sesearch">
+				<input type="text" name="seinput">
+				<input type="button" name="sebtn" value="搜索">
+			</div>
+			<div class="secart">
+				<a href="cart.html">
+					购物车
+					<div class="cartn">0</div>
+					<span class="icon-arrow-down2"></span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="clear waypoint"></div>
+	<div class="box hcl">
+		<div class="hcartlist">
+			<div class="list">
+				<table>
+					<!-- <tr>
+						<td class="td1">
+							<div class="img">
+								<img src="img/listitem.png" alt="img">
+							</div>
+							<p>
+								<span class="n">红天果冷压榨特级初榨茶籽油</span><br>
+								<span class="s">500ML</span>
+							</p>
+						</td>
+						<td class="td2">1</td>
+						<td class="td3">&yen;200</td>
+						<td class="td4">
+							<span class="icon-cross"></span>
+						</td>
+					</tr> -->
+				</table>
+			</div>
+			<div class="b">
+				<span class="ttn">共<span>0</span>件商品</span>
+				<span class="ttp">总价<span>&yen;0</span></span>
+				<input type="button" id="carthtml" value="结算">
+			</div>
+		</div>
+	</div>
+	<div class="cont">
+		<h2><div></div>退货流程</h2>
+		<div class="s">
+			<ul id="r_state">
+				<li><span>01</span>买家申请退货</li>
+				<li><span>02</span>退货申请处理中</li>
+				<li><span>03</span>退款完成</li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div class="step1">
+			<h3>订单编号:<span id="order_no"></span></h3>
+			<table class="tab">
+				<tr>
+					<th>
+						<div>是否退货</div>
+					</th>
+					<td class="td1">
+						<span class="icon-dot active">退货退款</span>
+						<span class="icon-dot">仅退款</span>
+						<input type="hidden" id="r_type">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<div>退款金额</div>
+					</th>
+					<td class="td2">
+						<input id="amount" type="text">元
+						<div class="error rpe">
+							<div></div>
+							<span>格式错误</span>
+						</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;最多<span id="order_total">200</span>元
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<div>退货物流</div>
+					</th>
+					<td class="td3 required">
+						<div class="status1">
+							<select id="logistics_name">
+							</select>
+							单号
+							<input id="logistics_no" type="text">
+							<div class="error noe">
+								<div></div>
+								<span>格式错误</span>
+							</div>
+						</div>
+						<div class="status2">
+							<p>仅退款不需填写物流信息</p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<div>退款原因</div>
+					</th>
+					<td class="td4">
+						<select id="reason">
+							<option>商品与实物不符</option>
+							<option>缺货</option>
+							<option>订单信息错误</option>
+							<option>发票问题</option>
+							<option>七天无理由退货</option>
+							<option>未收到货</option>
+							<option>收到商品破损</option>
+							<option>商品错发漏发</option>
+							<option>商品质量问题</option>
+						</select><br>
+						<textarea id="reason_detail"></textarea>
+						<div class="error rse">
+							<div></div>
+							<span>格式错误</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<div>上传凭证</div>
+					</th>
+					<td class="td5">
+						<ul>
+							<li><img id="img1" src="" alt="img"><br></li>
+							<li><img id="img2" src="" alt="img"></li>
+							<li><img id="img3" src="" alt="img"></li>
+						</ul>
+						<div class="clear">
+						<iframe id='frameFilec' name='frameFilec' style='display: none;'></iframe>
+						<form id="imgUpload1" method="post" action="./sale/order/refund/upload" enctype="multipart/form-data" target='frameFilec'>
+							<input type="button" value="选择图片">
+							<input name="file_img" type="file"><br>
+						</form>
+							
+						<form id="imgUpload2" method="post" action="./sale/order/refund/upload" enctype="multipart/form-data" target='frameFilec'>
+							<input type="button" value="选择图片">
+							<input name="file_img" type="file"><br>
+						</form>
+							
+						<form id="imgUpload3" method="post" action="./sale/order/refund/upload" enctype="multipart/form-data" target='frameFilec'>
+							<input type="button" value="选择图片">
+							<input name="file_img" type="file"><br>
+						</form>
+						<div class="clear">
+					</td>
+				</tr>
+			</table>
+			<span class="sbe">网络连接错误，请重试</span>
+			<input type="button" id="sbmt" value="提交退货申请">
+		</div>
+		<div class="step2">
+			<h3>订单编号:<span id="order_no2">860185917824494</span></h3>
+			<table class="tab tab2">
+				<tr>
+					<th>
+						<div>是否退货</div>
+					</th>
+					<td class="td1">
+						<span id="refund_type2" class="icon-dot active"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<div>退款金额</div>
+					</th>
+					<td class="td2">
+						<input type="text" disabled="disabled" id="amount2" value="200">元
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<div>退货物流</div>
+					</th>
+					<td class="td3">
+						<input type="text" disabled="disabled" value="" name="express">
+						单号<input type="text" id="logistics_no2" disabled="disabled" value="">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<div>退款原因</div>
+					</th>
+					<td class="td4">
+						<input type="text" disabled="disabled" name="reason" id="reason2" value=""><br>
+						<textarea id="reason_detail2" disabled="disabled"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<div>图片凭证</div>
+					</th>
+					<td class="td5">
+						<ul>
+							<li><img id="img1_2" src="" alt="img"></li>
+							<li><img id="img2_2" src="" alt="img"></li>
+							<li><img id="img3_2" src="" alt="img"></li>
+						</ul>
+						<div class="clear"></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="step3">
+			
+		</div>
+	</div>
+	<footer>
+		<div class="box">
+			<div class="l">
+				<p>
+					客户服务<br>
+					<span id="site_phone">025-85703619</span>
+				</p>
+				<p>
+					地址<br>
+					<span id="site_address">江苏省南京市雨花台区长虹路222号<br>
+						德盈国际广场3幢1605室<br>
+						江苏红果文化传播有限公司</span>
+				</p>
+				<p>
+					邮箱<br>
+					<span id="site_email">srv@uhaou.cn</span>
+				</p>
+			</div>
+			<div class="m">
+				<p>订阅有好油，加入我们</p>
+				<div class="rss">
+					<input type="text" placeholder="请输入您的邮箱">
+					<input type="button" value="发送">
+				</div>
+			</div>
+			<div class="r">
+				<p>扫一扫有惊喜</p>
+				<img id="site_2dcode" src="img/2dcode.jpg" alt="code">
+				<div class="site">UHAOU.CN</div>
+				<div class="cr" id="site_record">
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script type="text/javascript">
+		var curr_fileImg = 1;
+		$(document).ready(function(){
+			if (loginData) {
+				if (loginData.success != 0) {
+					window.location.href = "login.html";
+				}
+			}else{
+				//window.location.href = "login.html";
+			}
+
+			var reason_inp_begin= '<input type="text" disabled="disabled" name="reason" value="';
+			var inp_end = '">';
+			var url = window.location.search;
+			var paramArray = url.split('?val=');
+			var orderNo = '';
+			var order_totalPrice = 0;
+
+			if(paramArray) {
+				orderNo = paramArray[1];
+				$('#order_no').text(orderNo);
+				$('#order_no2').text(orderNo);
+			}
+			var data_add = false; // 只能修改，不可添加
+			$('#r_type').val("1")
+			$('.step1').find('.td1').find('span').each(function(index) {
+				$(this).click(function() {
+					$(this).siblings().removeClass('active');
+					$(this).addClass('active');
+					$(this).parent().find(':hidden').val(index+1);
+					if($('#r_type').val() == 2){
+						$('.step1 .td3').removeClass("required");
+					}else if($('#r_type').val() == 1){
+						$('.step1 .td3').addClass("required");
+					}
+				});
+			})
+
+			$(".cont .tab .td5 input[type=button]").click(function(){
+				$(this).siblings("input[type=file]").click();
+			});
+
+			$.ajax({
+				type: 'GET',
+				url: './sale/order/refund',
+				data: {'orderNo': orderNo},
+				success: function(data) {
+					if(data.success == 0) {
+						if(data.datas) {	// 已经发出了申请
+							data_add = false;
+							var refund = data.datas;
+							var r_state = refund.state;
+							$('.step1').hide();
+							if(r_state == 0) { // 已经发出了申请
+								$('#r_state>li:eq(0)').addClass('active');
+								$('#r_state>li:eq(1)').addClass('active');
+								setData(refund);
+							} else if (r_state == 1) { // 退款已经完成
+								$('div.step1').hide();
+								$('div.step2').hide();
+								$('#r_state>li:eq(0)').addClass('active');
+								$('#r_state>li:eq(1)').addClass('active');
+								$('#r_state>li:eq(2)').addClass('active');
+								$('.step3').html('<p>已成功退款：<span>'+refund.amount_true+'</span>元！</p>');
+							} else if(r_state == 2) {
+								$('div.step1').hide();
+								$('div.step2').hide();
+								$('#r_state>li:eq(0)').addClass('active');
+								$('#r_state>li:eq(1)').addClass('active');
+								$('#r_state>li:eq(2)').addClass('active');
+								if(refund.reject_reason) {
+									$('.step3').html('<p>退款已被拒绝！原因：<span>' + refund.reason + '--' + refund.reject_reason+'</span></p>');
+								} else {
+									$('.step3').html('<p>退款已被拒绝！原因：<span>' + refund.reason + '</span></p>');
+								}
+
+							}
+						} else {	// 还没有发起申请
+							$('#order_total').text(data.order_total);
+							order_totalPrice = data.order_total;
+							$('.step2').hide();
+							$('#r_state>li:eq(0)').addClass('active');
+							data_add = true;
+						}
+					} else if(data.success == 1) {
+						if(data.error == 101 || data.error == 401) { // 单号不存在, 跳ERROR
+
+						}
+					}
+				}
+			});
+
+			var sel="";
+			$.ajax({
+				type: 'get',
+				url: './s/delivery',
+				success: function(data){
+					if(data.datas){
+						for(var i = 0; i<data.datas.length; i++){
+							sel +=	"<option value='"+data.datas[i].id+"'>"+data.datas[i].name+"</option>";
+						}
+					}
+					$('#logistics_name').append(sel);
+				}
+			});
+
+			function setData(refund) {
+				var r_type = '退货退款';
+				if(refund.refund_type == 2) {
+					r_type = '仅退款';
+					$('.step2 .td3').hide();
+				}
+				$('#refund_type2').text(r_type);
+				$('#amount2').val(refund.amount);
+				$('#reason2').val(refund.reason);
+				$('input[name=express]').val(refund.logistics_name);
+				$('#logistics_no2').val(refund.logistics_no);
+				$('#reason_detail2').val(refund.reason_detail);
+				$('#img1_2').attr('src', refund.img1);
+				$('#img2_2').attr('src', refund.img2);
+				$('#img3_2').attr('src', refund.img3);
+			}
+
+			$('input[name=file_img]').each(function(index) {
+				$(this).change(function() {
+					curr_fileImg = index+1;
+					var form_id = '#imgUpload' + curr_fileImg;
+					$(form_id).submit();
+				})
+			});
+
+			$('#sbmt').click(function() {
+				console.log("1位小数测试:" +/^-?\d+\.?\d{1}$/.test($('#amount').val()));
+				console.log("2位数测试:" +/^-?\d+\.?\d{0,2}$/.test($('#amount').val()));
+				console.log("整数测试:" +/^\d+$/.test($('#amount').val()));
+				if(/^-?\d+\.?\d{0,2}$/.test($('#amount').val()) == false
+						&& /^-?\d+\.?\d{1}$/.test($('#amount').val()) == false
+						&& /^\d+$/.test($('#amount').val()) == false) {
+
+					alert('退款金额必须为整数，或者保留两位小数');
+					return;
+				}
+				if($('#amount').val() > order_totalPrice) { // 金额问题
+					alert('请不要超过最大退款金额');
+					return;
+				}
+				if($('#logistics_no').val().trim().length == 0 && $('#r_type').val() == 1) { //物流编号为空
+					alert('请输入物流单号');
+					return;
+				}
+				if(/^\d+$/.test($('#logistics_no').val()) == false && $('#r_type').val() == 1) {
+					alert('快递单号必须是纯数字');
+					return;
+				}
+
+				var ajax_type = 'PUT';
+				if(data_add == true) {
+					ajax_type = 'POST';
+				}
+				if($('#r_type').val() == 1){
+					var saleRefund = {
+							'orderNo': orderNo,
+							'refund_type': $('#r_type').val(),
+							'amount': $('#amount').val(),
+							'logistics_id': $('#logistics_name').val(),
+							'logistics_name': $("#logistics_name").find("option:selected").text(),
+							'logistics_no': $('#logistics_no').val(),
+							'reason': $('#reason').val(),
+							'reason_detail': $('#reason_detail').val(),
+							'img1': $('#img1').attr('src'),
+							'img2': $('#img2').attr('src'),
+							'img3': $('#img3').attr('src')
+						};
+				}else {
+					var saleRefund = {
+							'orderNo': orderNo,
+							'refund_type': $('#r_type').val(),
+							'amount': $('#amount').val(),
+							'reason': $('#reason').val(),
+							'reason_detail': $('#reason_detail').val(),
+							'img1': $('#img1').attr('src'),
+							'img2': $('#img2').attr('src'),
+							'img3': $('#img3').attr('src')
+						};
+				}
+				console.log(JSON.stringify(saleRefund));
+				$.ajax({
+					type: ajax_type,
+					dataType: 'json',
+					contentType: 'application/json',
+					url: './sale/order/refund',
+					data: JSON.stringify(saleRefund),
+					success: function(data) {
+						if(data.success == 0) {
+							window.location.reload();
+						}
+					}
+				});
+			})
+		});
+
+
+		function imgUploadSuccess(msg) {
+			if (msg.split('|')[0] == 0) {
+				var id_sec = '#img'+curr_fileImg;
+				$(id_sec).attr('src', msg.split('|')[1]);
+			}
+		}
+	</script>
+</body>
+</html>

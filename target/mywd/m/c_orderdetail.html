@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>订单详情</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/orderdetail.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body>
+	<header class="logoutredirect">
+		<div class="stick">
+			<div class="title">
+				<a href="c_orderlist.html">订单管理</a>
+			</div>
+		</div>
+	</header>
+	<div class="content main box">
+		<div class="contt">我的订单</div>
+		<div class="b1">
+			<div class="no">编号：860185917824494</div>
+			<div class="date">2014-09-14</div>
+		</div>
+		<div class="b2">
+			<span name="step1">提交订单</span>
+			<span name="step2">付款成功</span>
+			<span name="step3">等待收货</span>
+			<span name="step4">等待评价</span>
+			<span name="step5">完成</span>
+			<div class="clear"></div>
+		</div>
+		<div class="tabh tab1h">
+			订单详情
+			<span class="status"></span>
+			<span class="oper"></span>
+			<span class="refund"></span>
+		</div>
+		<!-- <div class="tabh tab1h">
+			订单详情
+			<span class="status">已付款</span>
+			<span class="oper">付款</span>
+		</div> -->
+		<div class="tabb tab1b">
+			<div class="itemlist">
+				<!-- <div class="oitem">
+					<div class="img">
+						<img src="img/itemimg.png" alt="img">
+					</div>
+					<p>
+						<span class="n">红天果冷压榨特级初榨茶籽油初榨茶籽油</span><br>
+						<span class="s">500ML</span>
+					</p>
+					<div class="price">
+						<span class="p">&yen;200</span><br>
+						<span class="q"><span>&times;</span>16</span>
+					</div>
+				</div>
+				<div class="oitem">
+					<div class="img">
+						<img src="img/itemimg.png" alt="img">
+					</div>
+					<p>
+						<span class="n">红天果冷压榨特级初榨茶籽油初榨茶籽油红天果冷压榨特级初榨茶籽油初榨茶籽油红天果冷压榨特级初榨茶籽油初榨茶籽油</span><br>
+						<span class="s">500ML</span>
+					</p>
+					<div class="price">
+						<span class="p">&yen;200</span><br>
+						<span class="q"><span>&times;</span>16</span>
+					</div>
+				</div> -->
+			</div>
+			<div class="tp">总价<span>&yen;</span></div>
+		</div>
+		<div class="tabh tab2h">
+			物流信息
+		</div>
+		<div class="tabb tab2b">
+			<table>
+				<tr>
+					<td>
+						<div class="th">物流公司</div>
+						<div class="td" id="exprcoop"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="th">物流单号</div>
+						<div class="td" id="exprno"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="th">物流详情</div>
+						<div class="td" id="delivery">
+							<iframe name="kuaidi100" src="" width="100%" height="280" 
+							marginwidth="0" marginheight="0" hspace="0" vspace="0" 
+							frameborder="0" scrolling="no"></iframe>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="tabh tab5h">
+			发票信息
+		</div>
+		<div class="tabb tab5b">
+			<p>单位：</p>
+		</div>
+		<div class="tabh tab3h">
+			评论
+		</div>
+		<div class="tabb tab3b">
+			<div class="comment">
+				<div class="cmth">
+					<div class="active"><div></div>好评</div>
+					<div><div></div>中评</div>
+					<div><div></div>差评</div>
+				</div>
+				<div class="cmtb">
+					<div class="cmtbt">
+						<div class="img">
+							<img src="img/itemimg.png" alt="img">
+						</div>
+						<p>
+							<span class="n">红天果冷压榨特级初榨茶籽油初榨茶籽油</span><br>
+							<span class="s">500ML</span>
+						</p>
+					</div>
+					<div class="cmtbb">
+						<textarea placeholder="请输入您的评论"></textarea>
+					</div>
+				</div>
+				<div class="submit save">
+					<button class="red" name="save">提交</button>
+					<button class="red" name="edit">编辑</button>
+				</div>
+			</div>
+			<div class="comment">
+				<div class="cmth">
+					<div class="active"><div></div>好评</div>
+					<div><div></div>中评</div>
+					<div><div></div>差评</div>
+				</div>
+				<div class="cmtb">
+					<div class="cmtbt">
+						<div class="img">
+							<img src="img/itemimg.png" alt="img">
+						</div>
+						<p>
+							<span class="n">红天果冷压榨特级初榨茶籽油初榨茶籽油</span><br>
+							<span class="s">500ML</span>
+						</p>
+					</div>
+					<div class="cmtbb">
+						<div class="date">2014-07-06</div>
+						<textarea placeholder="请输入您的评论" disabled="disabled">很不错的油，没有异味，以前就给宝宝买过，这次还给了赠品，很满意。很不错的油，没有异味，以前就给宝宝买过，这次还给了赠品，很满意。很不错的油，没有异味，以前就给宝宝买过，这次还给了赠品，很满意。很不错的油，没有异味，以前就给宝宝买过，这次还给了赠品，很满意。很不错的油，没有异味，以前就给宝宝买过，这次还给了赠品，很满意。很不错的油，没有异味，以前就给宝宝买过，这次还给了赠品，很满意。</textarea>
+					</div>
+				</div>
+				<div class="submit edit">
+					<button class="red" name="save">提交</button>
+					<button class="red" name="edit">编辑</button>
+				</div>
+			</div>
+		</div>
+		<div class="tabh tab4h">
+			晒单
+		</div>
+		<div class="tabb tab4b">
+			<div class="postt">
+				<span></span>
+			</div>
+			<div class="postlist">
+				<!-- <table class="post">
+					<tr>
+						<td><p>非常满意！太棒了！</p></td><td class="reply" rowspan="2">回复<br>17</td>
+					</tr>
+					<tr>
+						<td>
+							<div>
+								<span class="d">2014-07-08</span>
+								<span class="t">10:16:38</span>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<table class="post">
+					<tr>
+						<td><p>非常满意！太棒了！</p></td><td class="reply" rowspan="2">回复<br>17</td>
+					</tr>
+					<tr>
+						<td>
+							<div>
+								<span class="d">2014-07-08</span>
+								<span class="t">10:16:38</span>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<table class="post">
+					<tr>
+						<td><p>非常满意！太棒了！</p></td><td class="reply" rowspan="2">回复<br>117</td>
+					</tr>
+					<tr>
+						<td>
+							<div>
+								<span class="d">2014-07-08</span>
+								<span class="t">10:16:38</span>
+							</div>
+						</td>
+					</tr>
+				</table> -->
+			</div>
+			<div class="nextpage">
+				<button>点击加载下一页</button>
+			</div>
+			<div class="newpost">
+				<div class="newpostt">
+					发表晒单
+				</div>
+				<div class="newpostb">
+					<div>选择商品</div>
+					<select id="postselect"></select>
+					<div>标题名称</div>
+					<input type="text" placeholder="标题名称">
+					<div>内容</div>
+					<textarea placeholder="内容" id="postcontent"></textarea>
+				</div>
+				<div class="btn">
+					<button class="red" id="postsubmit">发表</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="box">
+		<div class="ws">UHAOU.CN</div>
+		<div class="cr">&copy;2015 uhao.cn<br><a href="http://www.miitbeian.gov.cn/">苏ICP备15001958号-1</a></div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script type="text/javascript" src="../js/editor/config.js"></script>
+	<script type="text/javascript" src="../js/editor/kindeditor.js"></script>
+	<script type="text/javascript" src="../js/editor/lang/zh_CN.js"></script>
+	<script type="text/javascript">
+	$().ready(function(){
+		var editor = KindEditor.create('#postcontent', {
+	        //cssPath : '/css/index.css',
+	        themeType : 'simple',
+	        uploadJson: './bbs/post/image',
+	        //fileManagerJson: './sale/item/fileManager',
+	        items: showItems,
+	        filterMode: false,
+	        allowFileManager: false,
+	        allowImageManager: false,
+	        afterBlur: function(){this.sync();}
+		});
+
+		if (loginData) {
+			if (loginData.success != 0) {
+				window.location.href = "login.html";
+			}
+		}else{
+			window.location.href = "login.html";
+		}
+
+		var url = window.location.search;
+		var orderNo, orderId, shopId;
+		if(url.match('order=')) {
+			orderId = url.split('?order=')[1];
+		} else {
+			orderNo = url.split('?val=')[1];
+		}
+
+		var postPage = 1;
+		$.ajax({
+			type: 'GET',
+			url: '../sale/order',
+			data: {'orderNo': orderNo, 'orderId': orderId},
+			cache:false,
+			async:false,
+			success: function(data) {
+				if (data.success == 0) {
+					orderdata = data.datas[0];
+
+					orderId = orderdata.id;
+					shopId = orderdata.lightShop.id;
+					orderNo = orderdata.orderNo;
+					
+					var state_word ='';
+					var showReturn = false;
+					var showRefund = false;
+					if(orderdata.state == 2) {
+						showReturn = true;
+						state_word = '待付款';
+						$(".b2 span[name=step1]").addClass("active");
+					} else if(orderdata.state == 3) {
+						state_word = '等待发货';
+						$(".b2 span[name=step1], .b2 span[name=step2]").addClass("active");
+					} else if(orderdata.state == 0) {
+						state_word = '已发货';
+						showRefund = true;
+						$(".b2 span[name=step1], .b2 span[name=step2], .b2 span[name=step3]").addClass("active");
+					} else if(orderdata.state == 1) {
+						state_word = '已评价';
+						showRefund = true;
+						$(".b2 span[name=step1], .b2 span[name=step2], .b2 span[name=step3], .b2 span[name=step4], .b2 span[name=step5]").addClass("active");
+					} else if(orderdata.state == 4) {
+						state_word = '已取消';
+						$(".b2 span[name=step4]").val("已取消");
+					} else if(orderdata.state == 5) {
+						state_word = '待退款';
+					}
+					
+					$(".tab1h .status").text(state_word);
+
+					if (showReturn) {
+						$(".tab1h .oper").text("付款");
+						$(".tab1h .oper").click(function() {
+							window.location.href = "pay.html?val=" + orderNo;
+						});
+						$(".tab1h .oper").text("付款");
+					}else{
+						$(".tab1h .oper").remove();
+					}
+
+					if (showRefund) {
+						$(".tab1h .refund").text("退货");
+						$(".tab1h .refund").click(function() {
+							window.location.href = "refunddetail.html?val=" + orderNo;
+						});
+
+					}else{
+						$(".tab1h .refund").remove();
+					}
+
+					$(".b1 .no").text("编号："+orderNo+"");
+					$(".b1 .date").text(orderdata.dealDate);
+					$(".tab1b .tp span").html('&yen;'+orderdata.totalPrice);
+					$(".tab1b .itemlist").empty();
+					$(".tab3b").empty();
+					for (var i = orderdata.saleOrderDetails.length - 1; i >= 0; i--) {
+						var itemstr = "";
+						itemstr += '<div class="oitem">'
+									+'<div class="img">'
+										+'<img src="'+orderdata.saleOrderDetails[i].saleItemSpec.avatar+'" alt="img">'
+									+'</div>'
+									+'<p>'
+										+'<span class="n">'+orderdata.lightShop.brandName+orderdata.saleOrderDetails[i].lightItem.name+'</span><br>'
+										+'<span class="s">'+orderdata.saleOrderDetails[i].saleItemSpec.specName+'</span>'
+									+'</p>'
+									+'<div class="price">'
+										+'<span class="p">&yen;'+orderdata.saleOrderDetails[i].saleItemSpec.discountPrice+'</span><br>'
+										+'<span class="q"><span>&times;</span>'+orderdata.saleOrderDetails[i].quantity+'</span>'
+									+'</div>'
+								+'</div>';
+						var commstr = "";
+						commstr +='<div class="comment" data-specid="'+orderdata.saleOrderDetails[i].saleItemSpec.id+'">'
+									+'<div class="cmth">'
+										+'<div class="active" data-type="1"><div></div>好评</div>'
+										+'<div data-type="2"><div></div>中评</div>'
+										+'<div data-type="3"><div></div>差评</div>'
+									+'</div>'
+									+'<div class="cmtb">'
+										+'<div class="cmtbt">'
+											+'<div class="img">'
+												+'<img src="'+orderdata.saleOrderDetails[i].saleItemSpec.avatar+'" alt="img">'
+											+'</div>'
+											+'<p>'
+												+'<span class="n">'+orderdata.lightShop.brandName+orderdata.saleOrderDetails[i].lightItem.name+'</span><br>'
+												+'<span class="s">'+orderdata.saleOrderDetails[i].saleItemSpec.specName+'</span>'
+											+'</p>'
+										+'</div>'
+										+'<div class="cmtbb">'
+											+'<textarea placeholder="请输入您的评论"></textarea>'
+										+'</div>'
+									+'</div>'
+									+'<div class="submit save">'
+										+'<button class="red" name="save">提交</button>'
+										+'<button class="red" name="edit">编辑</button>'
+									+'</div>'
+								+'</div>';
+					}
+					$(".tab1b .itemlist").append(itemstr);
+					$(".tab3b").append(commstr);
+					
+					
+					var fapiao = '<p>';
+					if(orderdata.invoiceType == 0) {
+						fapiao += '不需要发票';
+					} else if(orderdata.invoiceType == 1) {
+						fapiao += '个人发票';
+					} else if(orderdata.invoiceType == 2) {
+						fapiao += '公司发票，抬头：' + orderdata.invoiceTitle;
+					}
+					fapiao += '</p>';
+					$('div.tab5b').html(fapiao);
+					
+					
+					if (orderdata.logistics) {
+						$("#exprno").text(orderdata.logistics);
+					}
+					if (orderdata.logistics_name) {
+						$("#exprcoop").text(orderdata.logistics_name);
+						loadDelivery(orderNo, orderdata.logistics);
+					}
+					getPost(postPage);
+
+					$.ajax({
+						type: 'GET',
+						url: '../sale/comment',
+						data: {"orderId": orderId},
+						success:function(data){
+							if (data.success == 0) {
+								for (var i = 0; i < data.datas.length; i++) {
+									var cmt = $(".comment[data-specid="+data.datas[i].saleItemSpec.id+"]");
+									cmt.attr("data-commid",data.datas[i].id);
+									cmt.find('.cmth').children('div').removeClass("active").siblings('div[data-type='+data.datas[i].type+']').addClass("active");
+									cmt.find('.cmtbb').children(".date").remove();
+									cmt.find('.cmtbb').prepend('<div class="date">'+data.datas[i].postDate+'</div>');
+									cmt.find('.cmtbb').children("textarea").val(data.datas[i].content).attr("disabled","disabled");
+									cmt.children(".submit").removeClass("save").addClass("edit");
+								};
+							}
+						}
+					});
+
+					var options = "";
+					for(var i = 0; i<data.datas[0].saleOrderDetails.length;i++ ){
+						options += "<option value='"+data.datas[0].saleOrderDetails[i].lightItem.id+"-"+data.datas[0].saleOrderDetails[i].saleItemSpec.id+"'>"+data.datas[0].saleOrderDetails[i].lightItem.name+data.datas[0].saleOrderDetails[i].saleItemSpec.specName+"</option>";
+					}
+					$("#postselect").append(options);
+				}
+			}
+		});
+
+		function getPost(postlistPage){
+			$.ajax({
+				type : 'GET',
+				url : "../bbs/post/showList",
+				data : {'orderNo': orderNo, 'pageNo': postlistPage, 'pageSize': 5},
+				success : function(data) {
+					if(data.success == 0){
+						var str = "";
+						if(data.datas){
+							for(var i = 0; i < data.datas.results.length; i++){
+								str +='<table class="post">'
+										+'<tr>'
+											+'<td><a href="bbs/topic.html?postId='+data.datas.results[i].id+'"><p>'+data.datas.results[i].title+'</p></a></td><td class="reply" rowspan="2">回复<br>'+data.datas.results[i].replyNum+'</td>'
+										+'</tr>'
+										+'<tr>'
+											+'<td>'
+												+'<div>'
+													+'<span class="d">'+data.datas.results[i].postDate+'</span>'
+												+'</div>'
+											+'</td>'
+										+'</tr>'
+									+'</table>';
+							}
+							$('.postlist').append(str);
+						}
+						$('.postt').html('<span>共'+data.datas.totalCount+'个晒单</span>');
+					}else{
+						$('.postt').html('<span>共0个晒单</span>');
+					}
+				}
+			});
+		}
+
+		$(".tab4b .nextpage button").click(function(){
+			postPage++;
+			getPost(postPage);
+		});
+
+		function loadDelivery(orderNo, nu){
+			$.ajax({
+				type: 'GET',
+				url: '../sale/order/delivery',
+				data: {"orderNo": orderNo, "kd_no": nu},
+				async:false,
+				success: function(data) {
+					$('iframe[name=kuaidi100]').attr('src', data.datas);
+				}
+			});
+		}
+
+		$(".comment .cmth>div").live('click',function(){
+			if ($(this).parents(".comment").find(".submit").hasClass('save')) {
+				$(this).siblings('div').removeClass("active");
+				$(this).addClass("active");
+			}
+		});
+
+		$(".comment .submit button[name=edit]").live('click',function(){
+			var cmt = $(this).parents(".comment");
+			cmt.find('.cmtbb').children(".date").hide();
+			cmt.find('.cmtbb').children("textarea").removeAttr("disabled").focus();
+			cmt.children(".submit").removeClass("edit").addClass("save");
+		});
+
+		$(".comment .submit button[name=save]").live('click',function(){
+			var cmt = $(this).parents(".comment");
+			if(cmt.find('textarea').val()){
+				$.ajax({
+					type: 'POST',
+					url: '../sale/comment',
+					data: {
+						"orderId": orderId,
+						'specId': cmt.attr('data-specid'),
+						'comm_id': cmt.attr('data-commid'),
+						'content': cmt.find('textarea').val(),
+						'type': cmt.find('.cmth').children("div.active").attr("data-type")
+					},
+					success: function(data) {
+						if(data.success == 0) {
+							console.log(data);
+							cmt.attr('data-commid',data.datas.id);
+							cmt.find('.cmth').children('div').removeClass("active").siblings('div[data-type='+data.datas.type+']').addClass("active");
+							cmt.find('.cmtbb').prepend('<div class="date">'+data.datas.postDate+'</div>');
+							cmt.find('.cmtbb').children("textarea").val(data.datas.content).attr("disabled","disabled");
+							cmt.children(".submit").removeClass("save").addClass("edit");
+						}
+					}
+				});
+			}
+		});
+
+		$("#postsubmit").click(function(){
+			editor.sync();
+			if ($("#postselect").val()) {
+				if ($(".newpostb input").val()) {
+					if ($(".newpostb textarea").val()) {
+						$.ajax({
+							type : "post",
+							url : './bbs/post/show',
+							dataType : "json",
+							data : {
+								title : $(".newpostb input").val(),
+								content : $(".newpostb textarea").val(),
+								topicId : 2,
+								select : $("#postselect").val(),
+								orderId : orderId,
+								orderNo : orderNo,
+								shopId : shopId
+							},
+							success : function(data) {
+								if (data.success == 0) {
+									 alert("晒单成功！");
+									 editor.text('');
+									 $('input[name=title]').val("");
+								} 
+							}
+						});
+					}else{
+						alert("请填写晒单内容");
+					}
+				}else{
+					alert("请填写标题");
+				}
+			}else{
+				alert("请选择商品");
+			}
+		});
+	});
+	</script>
+</body>
+</html>

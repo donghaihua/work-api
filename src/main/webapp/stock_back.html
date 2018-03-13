@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Aspect Ratio with Preview Pane | Jcrop Demo</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script src="js/jquery.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: 'get',
+                url: './s/stock/getPastData',
+                success: function (data) {
+                    var tr_html;
+                    for(var i = 0; i < data.datas.length; i++) {
+                        tr_html += '<tr>';
+                        var systemStock = data.datas[i];
+
+                        tr_html += '<td>' + systemStock.currYear + '</td>';
+                        tr_html += '<td>' + systemStock.netProfit + '</td>';
+                        tr_html += '<td>' + systemStock.ratioProfit + '</td>';
+                        tr_html += '<td>' + systemStock.issueNumber + '</td>';
+                        tr_html += '<td>' + systemStock.epsProfit + '</td>';
+
+                        tr_html += '</tr>';
+                    }
+                    $('#tb_past').append(tr_html);
+                }
+            });
+
+            $.ajax({
+                type: 'get',
+                url: './s/stock/getCurrData',
+                success: function (data) {
+                    var tr_html;
+                    tr_html += '<tr>';
+                    var systemStock = data.datas;
+                    $('#stockId').val(systemStock.id);
+                    tr_html += '<td>' + systemStock.currYear + '</td>';
+                    tr_html += '<td><input name="netProfit" value="' + systemStock.netProfit + '"/></td>';
+                    tr_html += '<td><input name="ratioProfit" value="' + systemStock.ratioProfit + '"/></td>';
+                    tr_html += '<td>' + systemStock.issueNumber + '</td>';
+                    tr_html += '<td>' + systemStock.epsProfit + '</td>';
+
+                    tr_html += '</tr>';
+                    $('#tb_curr').append(tr_html);
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+<div class="container">
+    历年数据：
+    <table border="1px" id="tb_past">
+        <tr>
+            <td>年份</td>
+            <td>年利润</td>
+            <td>分红比率</td>
+            <td>年度流通股数</td>
+            <td>每股收益</td>
+        </tr>
+        
+    </table>
+
+    当前数据：
+    <form action="./s/stock/update" method="post">
+        <input type="hidden" name="stockId" id="stockId">
+    <table border="1px" id="tb_curr">
+        <tr>
+            <td>年份</td>
+            <td>年利润</td>
+            <td>分红比率</td>
+            <td>年度流通股数</td>
+            <td>每股收益</td>
+        </tr>
+
+
+    </table>
+        <input type="submit" value="修改">
+    </form>
+
+</div>
+</body>
+</html>

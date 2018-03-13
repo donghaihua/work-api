@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<context:property-placeholder location="classpath*:*.properties"/>
+
+	<!--<mvc:resources mapping="/scripts/**" location="/scripts/**" />
+	<mvc:resources mapping="/styles/**" location="/styles/**" />
+	<mvc:resources mapping="/images/**" location="/images/**" />
+	<mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
+
+	&lt;!&ndash; i18n resoureces files &ndash;&gt;
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>i18n/message</value>
+			</list>
+		</property>
+	</bean>
+-->
+	<task:executor id="asyncExecutor" pool-size="10" />
+
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean id="fastJsonHttpMessageConverter4" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>application/json;charset=utf-8</value>
+						</list>
+					</property>
+					<property name="fastJsonConfig">
+						<bean class="com.alibaba.fastjson.support.config.FastJsonConfig">
+							<property name="features">
+								<list>
+									<value>AllowArbitraryCommas</value>
+									<value>AllowUnQuotedFieldNames</value>
+									<value>DisableCircularReferenceDetect</value>
+								</list>
+							</property>
+							<property name="serializerFeatures">
+								<list>
+									<value>WriteMapNullValue</value>
+									<value>WriteNullListAsEmpty</value>
+									<value>WriteNullStringAsEmpty</value>
+									<value>WriteNullBooleanAsFalse</value>
+									<value>WriteEnumUsingToString</value>
+									<value>QuoteFieldNames</value>
+									<value>WriteNonStringKeyAsString</value>
+									<value>WriteDateUseDateFormat</value>
+								</list>
+							</property>
+						</bean>
+					</property>
+				</bean>
+				<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>image/jpeg</value>
+							<value>image/png</value>
+							<value>image/jpg</value>
+							<value>image/gif</value>
+							<value>application/x-bmp</value>
+						</list>
+					</property>
+				</bean>
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html;charset=UTF-8</value>
+							<value>text/plain;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+				<bean class="org.springframework.http.converter.FormHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+		<property name="asyncRequestTimeout" value="1000" />
+		<!--<property name="taskExecutor" ref="asyncExecutor" />-->
+		<!--<property name="callableInterceptors">
+			<array>
+				<bean class="com.tenmaker.common.controller.api.AsyncTimeoutCallableProcessingInterceptor" />
+			</array>
+		</property>
+-->	</bean>
+
+	<mvc:cors>
+		<mvc:mapping path="/**/**"
+					 allowed-origins="*"
+					 allowed-methods="*"
+					 allowed-headers="*"
+					 max-age="3600"
+		/>
+	</mvc:cors>
+
+	<!--<bean id="handlerExceptionResolver" class="com.tenmaker.common.handler.HandlerExceptionResolver" />-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+
+	<context:component-scan base-package="com.tenmaker.backupwd.controller" />
+<!--	<context:component-scan base-package="com.tenmaker.*.controller.**" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController" />
+	</context:component-scan>-->
+
+	<mvc:annotation-driven />
+	<task:annotation-driven executor="asyncExecutor" />
+</beans>

@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<link href="../icomoon/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/global.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<script src="../js/jquery-1.11.0.min.js"></script>
+	</head>
+
+	<body>
+		<div class="md">
+			<div class="header">个人中心</div>
+
+			<div class="tab-nav">
+				<ul class="tab-nav-menu">
+					<li id="orderManagerSelf">订单管理</li>
+					<li class="active">分销中心</li>
+				</ul>
+			</div>
+
+			<div class="user-profile" style="margin-top:20px;">
+				<div class="user-logo">
+					<img src="../images/touxiang.jpg" />
+				</div>
+				<div class="user-info">
+					<p class="htitle"></p>
+					<!--<p class="hname">店主微信：LEO</p>-->
+				</div>
+				<!--<span class="edit"><i class="icon-edit"></i></span>-->
+			</div>
+
+			<div class="baseinfo bmargin">
+
+				<ul class="baseinf-ul">
+					<li>
+						<h3 id="orderCount"></h3>
+						<p>订单成交</p>
+						<div class="split"></div>
+					</li>
+					<li class="active">
+						<h3 id="money"></h3>
+						<p>佣金提成</p>
+					</li>
+				</ul>
+			</div>
+			<div class="content nopadding">
+
+				<div class="form-group" id="orderManager">
+					<div class="icon-div">
+						<span class="red"><i class="icon-file"></i></span>
+					</div>
+					<span class="form-label">订单管理</span>
+					<span class="arrow-icon"><i class="fa fa-angle-right"></i></span>
+				</div>
+				<div class="form-group" id="disManager">
+					<div class="icon-div">
+						<span class="blue"><i class="icon-member"></i></span>
+					</div>
+					<span class="form-label">分销商管理</span>
+					<span class="arrow-icon"><i class="fa fa-angle-right"></i></span>
+				</div>
+				<div class="form-group" id="itemManager">
+					<div class="icon-div">
+						<span class="yellow"><i class="icon-box"></i></span>
+					</div>
+					<span class="form-label">商品管理</span>
+					<span class="arrow-icon"><i class="fa fa-angle-right"></i></span>
+				</div>
+				<div class="form-group" id="moneyManager">
+					<div class="icon-div">
+						<span class="green"><i class="icon-money"></i></span>
+					</div>
+					<span class="form-label">佣金管理</span>
+					<span class="arrow-icon"><i class="fa fa-angle-right"></i></span>
+				</div>
+
+			</div>
+
+		</div>
+		<footer class="footer">
+			<div class="menu">
+				<ul class="menu-nav">
+					<li>
+						<a href="shop-index.html" id="a_shop_index">
+							<p class="icon-p"><i class="icon-home"></i></p>
+							<p>首页</P>
+						</a>
+					</li>
+					<li>
+						<a href="shop-list.html" id="a_shop_list">
+							<p class="icon-p"><i class="icon-goods"></i></p>
+							<p>商品</P>
+						</a>
+					</li>
+					<li>
+						<a href="shop-cart.html" id="a_shop_cart">
+							<p class="icon-p"><i class="icon-cart"></i></p>
+							<p>购物车</P>
+						</a>
+					</li>
+					<li class="active">
+						<a href="user-center.html" id="a_shop_center">
+							<p class="icon-p"><i class="icon-user"></i></p>
+							<p>个人中心</P>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</footer>
+	</body>
+	<script>
+		$(document).ready(function() {
+			/*var url = window.location.search;
+			var shopId;
+			if(url.match('shopId=')) {
+				shopId = url.split('shopId=')[1];
+			} else {
+				window.location.href = 'http://uhaou.cn/m/error.html';
+			}
+			$('#a_index').attr('href', 'shop-index.html?shopId=' + shopId);
+			$('#a_item').attr('href', 'shop-list.html?shopId=' + shopId);*/
+			var url = window.location.search;
+			var tempId = -1;
+			if(url.match('_tempsg=')) {
+				var tempsg = url.split('_tempsg=')[1];
+
+				$.ajax({
+					type: 'GET',
+					url:  '../../g/checkLogin',
+					async: false,
+					cache: false,
+					data: {"tempsg": tempsg},
+					success: function(data){
+						tempId = tempsg;
+
+					}
+				});
+			}
+			$('#orderManagerSelf').click(function () {
+				window.location.href = '../../m/c_orderlist.html';
+			});
+			$('#a_index').attr('href', 'shop-index.html');
+			$('#a_item').attr('href', 'shop-list.html');
+			var shopId;
+			//请求个人信息以及订单交易量和佣金提成金额
+			$.ajax({
+				type: 'GET',
+				url: '../../uiserver/distribution/saleCenter',
+				data: {'accountId': tempId},
+				async: false,
+				cache: false,
+				success: function(res) {
+					$('div.user-logo').find('img').attr('src', res.avatar); // 头像
+					$('div.user-info').find('p.htitle').html(res.shop.name); // 店铺名
+					shopId = res.shop.id;
+					$('#a_shop_index').attr('href', 'shop-index.html?shopId=' + shopId);
+					$('#a_shop_list').attr('href', 'shop-list.html?shopId=' + shopId);
+					$('#a_shop_cart').attr('href', '../../m/cart.html?shopId=' + shopId);
+					$('#a_shop_center').attr('href', 'user-center.html?shopId=' + shopId);
+					//$('div.user-info').find('.hname').html(''); //
+
+					$('#orderCount').html(res.orderCount);
+					$('#money').html('￥' + res.totalAmounts);
+				}
+			});
+			// 编辑店铺信息
+			$('i.icon-edit').click(function () {
+				window.location.href = 'shop-info.html';
+			});
+			// 订单管理
+			$('#orderManager').click(function () {
+				window.location.href = 'order-manage.html';
+			});
+			// 分销商管理
+			$('#disManager').click(function () {
+				window.location.href = 'custom-manage.html';
+			});
+			// 商品管理
+			$('#itemManager').click(function () {
+				window.location.href = 'good-manager.html';
+			});
+			// 佣金管理
+			$('#moneyManager').click(function () {
+				window.location.href = 'funds-manage.html';
+			});
+		})
+	</script>
+</html>

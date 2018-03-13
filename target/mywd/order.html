@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>订单</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/styleguide.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/order.css">
+
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+	
+	<!-- <script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script> -->
+</head>
+<body class="logoutredirect">
+	<header class="h2">
+		<div class="h2b">
+			<div class="sesearch">
+				<input type="text">
+				<span class="icon-magnifier13"></span>
+			</div>
+			<div class="logo">
+				<img src="img/logo.png" alt="logo">
+			</div>
+			<div class="index">
+				<a href="index.html">首页</a>
+				<div class="dd2">
+					<ul>
+						<li><a href="culture.html">山茶文化</a></li>
+						<li><a href="brand.html">品牌故事</a></li>
+						<li><a href="packagedesign.html">私人定制</a></li>
+						<li><a href="item_list.html">商品系列</a></li>
+						<li><a href="contact.html">联系我们</a></li>
+					</ul>
+					<div class="lan">
+						简
+					</div>
+					<div class="r">
+						<a href="c_orderlist.html">我的订单</a>
+						<a href="login.html">登录</a>|<a href="reg.html">注册</a>
+					</div>
+				</div>
+			</div>
+			<div class="secart">
+				<a href="cart.html">
+					购物车
+					<div class="cartn">0</div>
+				</a>
+			</div>
+		</div>
+	</header>
+	<header class="h1">
+		<div class="box">
+			<div class="logo">
+				<img src="img/logo.png" alt="logo">
+			</div>
+			<div class="ul1">
+				<ul>
+					<!-- <li class="pinfo">
+						<span>130****0000</span>
+						<img src="img/avatar_preview_default.png" alt="avatar">
+						<ul class="dd1">
+							<li><a href="account.html">我的账户</a></li>
+							<li>登出</li>
+						</ul>
+					</li> -->
+					<li class="pinfo"><a href="login.html">登录</a>|<a href="reg.html">注册</a></li>
+					<li><a href="c_orderlist.html">我的订单</a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="bbs"><a href="bbs/forum.html">论坛</a></div>
+			<div class="ul2">
+				<ul>
+					<li><a href="contact.html">联系我们</a></li>
+					<li><a href="item_list.html">商品系列</a></li>
+					<li><a href="packagedesign.html">私人定制</a></li>
+					<li><a href="brand.html">品牌故事</a></li>
+					<li><a href="culture.html">山茶文化</a></li>
+					<li class="active"><a href="index.html">首页</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="boxw se">
+		<div class="box">
+			<ul><li class="active">中</li><li>繁</li><li>JP</li><li>EN</li></ul>
+			<div class="sesearch">
+				<input type="text" name="seinput">
+				<input type="button" name="sebtn" value="搜索">
+			</div>
+			<div class="secart">
+				<a href="cart.html">
+					购物车
+					<div class="cartn">0</div>
+					<span class="icon-arrow-down2"></span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="clear waypoint"></div>
+	<div class="box hcl">
+		<div class="hcartlist">
+			<div class="list">
+				<table>
+					<!-- <tr>
+						<td class="td1">
+							<div class="img">
+								<img src="img/listitem.png" alt="img">
+							</div>
+							<p>
+								<span class="n">红天果冷压榨特级初榨茶籽油</span><br>
+								<span class="s">500ML</span>
+							</p>
+						</td>
+						<td class="td2">1</td>
+						<td class="td3">&yen;200</td>
+						<td class="td4">
+							<span class="icon-cross"></span>
+						</td>
+					</tr> -->
+				</table>
+			</div>
+			<div class="b">
+				<span class="ttn">共<span>0</span>件商品</span>
+				<span class="ttp">总价<span>&yen;0</span></span>
+				<input type="button" id="carthtml" value="结算">
+			</div>
+		</div>
+	</div>
+	<div class="boxw ordernav">
+		<div class="content box">
+			<div class="title">
+				购物车
+			</div>
+			<ol class="step">
+				<li class="active"><span class="icon-square">01</span>我的购物车</li>
+				<li class="active"><span class="icon-square">02</span>填写核对订单</li>
+				<li><span class="icon-square">03</span>成功提交订单</li>
+			</ol>
+		</div>
+	</div>
+	<div class="box">
+		<div class="block block1 active">
+			<h2><span class="n">01</span><span class="t">收货信息</span></h2>
+			<div class="blockc">
+				<h3>选择收货地址</h3>
+				<div class="addrbtn"></div>
+				<div class="r addrbook">
+					<!-- <div class="addr default">
+						<div class="checkbox checked icon-checkmark"></div>
+						<p class="recinfo">aa 186-9078-9045</p>
+						<p class="address">aaaaaaaaaaaaaaaaaaaaaa</p>
+						<p class="oper">
+							<input type="button" name="default" value="默认地址" disabled="disabled">
+							<input type="button" name="setdefault" value="设为默认地址">
+							<input type="button" name="edit" value="编辑">
+						</p>
+					</div> -->
+				</div>
+				<div class="r newaddress">
+					<div class="setnewaddr">
+						<div class="checkbox icon-checkmark"></div>
+						<p>设置新地址</p>
+					</div>
+					<div class="form">
+						<div class="input required">
+							<p>收货人姓名</p>
+							<input type="text" name="recip" id="addrre">
+							<div class="error">姓名格式不正确</div>
+						</div>
+						<div class="input required">
+							<p>所在地</p>
+							<select id="province" name="province"></select>
+							<select id="city" name="city"></select>
+							<select id="region" name="region"></select>
+							<div class="error locationerror">所在地必填</div>
+						</div>
+						<div class="input required">
+							<p>详细地址</p>
+							<textarea id="addrad"></textarea>
+							<div class="error">地址格式不正确</div>
+						</div>
+						<div class="input required">
+							<p>手机号码</p>
+							<input type="text" name="tel" id="addrte">
+							<div class="error">手机号格式不正确</div>
+						</div>
+						<div class="input">
+							<p>邮政编码(选填)</p>
+							<input type="text" name="postcode" id="addrpc">
+							<div class="error">邮政编码格式不正确</div>
+						</div>
+						<div class="input">
+							<p>固定电话(选填)</p>
+							<input type="text" name="phone" id="addrph">
+							<div class="error">固定电话格式不正确</div>
+						</div>
+						<input type="button" name="newaddr" value="保存收货地址">
+						<div class="addrerror">网络连接失败，请重试网络连接失败，请重试</div>
+					</div>
+				</div>
+				<div class="nextstep">
+					<input type="button" data-vali="block1" data-nextstep="block2" value="下一步">
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="block block2">
+			<h2 data-vali="block1 "><span class="n">02</span><span class="t">优惠</span></h2>
+			<div class="blockc">
+				<h3>选择现金券</h3>
+				<div class="r">
+					<select id="cashcouponlist">
+					</select>
+					<span class="cashcou">省<span id="ccvalue">0</span>元</span>
+				</div>
+				<h3>使用积分</h3>
+				<div class="r">
+					<div class="credit">
+						<span class="cretot">当前共<span id="credittotal">0</span>点积分</span>
+						<span class="creuse">使用<input type="text" name="credit" id="credituse" value="0">点</span>
+						<span class="crecur">省<span id="crvalue">0</span>元</span>
+					</div>
+				</div>
+				<h3>优惠总计</h3>
+				<div class="r total">
+					您的订单总价为<span id="pricetotal">10000</span>元，优惠<span id="offtotal">0</span>元。<br><span class="tip">*十个积分可抵一元，优惠不能超过总价50%</span>
+				</div>
+				<div class="nextstep">
+					<input type="button"  data-vali="block2" data-nextstep="block7" value="下一步">
+				</div>
+			</div>
+		</div>
+		<div class="block block7">
+			<h2 data-vali="block1 block2"><span class="n">03</span><span class="t">商品清单</span></h2>
+			<div class="blockc">
+				<table class="cart">
+					<thead>
+						<tr>
+							<th class="d1"><span>商品</span></th>
+							<th class="d2"><span>单价</span></th>
+							<th class="d3"><span>数量</span></th>
+							<th class="d4"><span>优惠</span></th>
+							<th class="d5"><span>金额</span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- <tr>
+							<td class="d1">
+								<img src="img/cartitem.png" alt="cart">
+								<p>
+									<span class="b">红天果</span>	<br>
+									冷压榨特级初榨茶籽油<br>
+									<span class="s">500ML</span>
+								</p>
+							</td>
+							<td class="d2">
+								<div>&yen;<span>200</span></div>
+							</td>
+							<td class="d3">
+								<div>2</div>
+							</td>
+							<td class="d4"></td>
+							<td class="d5">
+								<div>
+									&yen;<span>400</span>
+								</div>
+							</td>
+						</tr> -->
+					</tbody>
+				</table>
+				<table class="plus">
+					<tr>
+						<th>优惠券</th>
+						<td><div class="couponoff">-&nbsp;&yen;<span id="couponoff">0.00</span></div></td>
+					</tr>
+					<tr>
+						<th>积分</th>
+						<td><div class="creditoff">-&nbsp;&yen;<span id="creditoff">0.00</div></td>
+					</tr>
+					<!-- <tr>
+						<th>运费</th>
+						<td><div class="transp">&yen;<span>0.00</span></div></td>
+					</tr> -->
+				</table>
+				<div class="price">
+					总价格<span>&yen;<span id="orderprice">2280</span></span>
+				</div>
+				<div class="memo">
+					<p>留言备注(如需发票请留言)</p>
+					<textarea maxlength="200"></textarea>
+				</div>
+				<div class="btn">
+					<input type="button" name="submit" value="提交订单">
+					<input type="button" name="cancel" value="取消">
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="box">
+			<div class="l">
+				<p>
+					客户服务<br>
+					<span id="site_phone">025-85703619</span>
+				</p>
+				<p>
+					地址<br>
+					<span id="site_address">江苏省南京市雨花台区长虹路222号<br>
+						德盈国际广场3幢1605室<br>
+						江苏红果文化传播有限公司</span>
+				</p>
+				<p>
+					邮箱<br>
+					<span id="site_email">srv@uhaou.cn</span>
+				</p>
+			</div>
+			<div class="m">
+				<p>订阅有好油，加入我们</p>
+				<div class="rss">
+					<input type="text" placeholder="请输入您的邮箱">
+					<input type="button" value="发送">
+				</div>
+			</div>
+			<div class="r">
+				<p>扫一扫有惊喜</p>
+				<img id="site_2dcode" src="img/2dcode.jpg" alt="code">
+				<div class="site">UHAOU.CN</div>
+				<div class="cr" id="site_record">
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		var shopId = [];
+		var credittotal = 0;
+		var pricetotal = 0;
+		var offtotal = 0;
+		
+		if (loginData) {
+			if (loginData.success != 0) {
+				window.location.href = "login.html";
+			}else{
+				getaddr();
+				getcart();
+			}
+		}else{
+			window.location.href = "login.html";
+		}
+		
+		$(".addrbtn").click(function(){
+			if ($(this).hasClass("fold")){
+				$(".addrbook").removeClass("active");
+				$(this).removeClass("fold");
+			}else{
+				$(".addrbook").addClass("active");
+				$(this).addClass("fold");
+			}
+		});
+		
+		function getcart(){
+			$.ajax({
+				type:"get",
+				data:"",
+				url:"./sale/cart/settle",
+				cache:false,
+				async:false,
+				success:function(data){
+					if (data.success == 0) {
+						if(data.datas.length == 0){
+							window.location.href="error.html";
+						}
+						
+						$(".block7 .cart tbody").empty();
+						for (var i = 0; i < data.datas.length; i++) {
+							$(".block7 .cart tbody").append('<tr data-quantt="'+data.datas[i].quantity+'" data-price="'+(parseFloat(data.datas[i].saleItemSpec.discountPrice)*parseFloat(data.datas[i].quantity))+'" data-cartid="'+data.datas[i].id+'" data-itemid="'+data.datas[i].lightItem.id+'" data-specid="'+data.datas[i].saleItemSpec.id+'"><td class="d1"><img src="'+data.datas[i].lightItem.avatar+'" alt="cart"><p><span class="b">'+data.datas[i].lightItem.brand+'</span><br>'+data.datas[i].lightItem.name+'<br><span class="s">'+data.datas[i].saleItemSpec.specName+'</span></p></td><td class="d2"><div>&yen;<span>'+data.datas[i].saleItemSpec.discountPrice+'</span></div></td><td class="d3"><div>'+data.datas[i].quantity+'</div></td><td class="d4"></td><td class="d5"><div>&yen;<span>'+(parseFloat(data.datas[i].saleItemSpec.discountPrice)*parseFloat(data.datas[i].quantity))+'</span></div></td></tr>');
+						}
+
+						for (var i = 0; i < data.datas.length; i++) {
+							var p = 1;
+							for (var j = 0; j < shopId.length; j++) {
+								if (data.datas[i].lightItem.shopId == shopId[j]) {
+									p = 0;
+								}
+							}
+							if (p != 0) {
+								shopId[shopId.length] = data.datas[i].lightItem.shopId;
+							}
+						}
+
+						var tprice = 0;
+						var item = $(".block7 .cart tbody tr");
+						for (var i = 0; i < item.length; i++) {
+							tprice += parseFloat($(item[i]).attr("data-price"));
+						}
+						$(".block7 .price>span>span").text(tprice);
+						$("#pricetotal").text(tprice);
+						pricetotal = tprice;
+					}else{
+						window.location.href="login.html";
+					}
+				}
+			});
+		}
+
+		//addr
+		function loadData(id, parent_id) {
+			$.ajax({
+				type:"GET",
+				url: './regions/get',
+				data: {parent_id: parent_id},
+				cache:false,
+				async: false,
+				success: function(data) {
+					for(var i=0; i<data.length; i++) {
+						$(id).html();
+						if(data[i]){
+							$(id).append('<option value="'+data[i].region_id+'">'+ data[i].region_name +'</option>');
+						}
+					}
+				}
+			});
+		}
+
+		function getaddr(){
+			$.ajax({
+				type:"get",
+				data:{accountId:accountid},
+				async:false,
+				cache:false,
+				url:"./passport/address",
+				success:function(data){
+					if (data.success == 0) {
+						$(".addrbook").empty();
+						
+						$(".newaddress .form .error, .newaddress .addrerror, .newaddress .form").hide();
+						$(".block1 .nextstep").show();
+						if (data.length != 8) {
+							$(".block1 .setnewaddr").html('<div class="checkbox icon-checkmark"></div><p>设置新地址</p>');
+						}else{
+							$(".block1 .setnewaddr").remove();
+						}
+						for (var i = 0; i < data.length; i++) {
+							var tel = data.datas[i].telephone;
+							var telinfo = tel.substring(0,3)+"-"+tel.substring(3,7)+"-"+tel.substring(7,11);
+							var regionName = "";
+							if(data.datas[i].region){
+								regionName = data.datas[i].region.region_name;
+							}
+							$(".addrbook").append('<div class="addr" data-addrid="'+data.datas[i].id+'"><div class="checkbox icon-checkmark"></div><p class="recinfo">'+data.datas[i].recipient+' '+telinfo+'</p><p class="address">'+data.datas[i].nation.region_name + data.datas[i].province.region_name + data.datas[i].city.region_name + regionName + data.datas[i].address+'</p><p class="oper"><input type="button" name="default" value="默认地址" disabled="disabled"><input type="button" name="setdefault" value="设为默认地址"><input type="button" name="edit" value="编辑"></p></div>');
+							if (data.datas[i].isDefault == 1){
+								$(".addr[data-addrid="+data.datas[i].id+"]").addClass("default").children(".checkbox").addClass("checked");
+							}
+						}
+					}
+				}
+			});
+		}
+
+		$("#logout").live("click",function(){
+			$.ajax({
+				type:"GET",
+				data:"",
+				dataType: 'json',
+				async:false,
+				cache:false,
+				url:"./passport/logout",
+				success:function(data){
+					if (data.success == 0) {
+						$.cookie("cartlist","");
+						window.location.href="index.html";
+					}
+				}
+			});
+		});
+
+		//block1
+		$('#city').live('change',function() {
+			var parent_id = $('#city').val();
+			$('#region>option').remove();
+			loadData('#region', parent_id);
+		});
+
+		$('#province').live('change',function() {
+			var parent_id = $('#province').val();
+			$('#city>option').remove();
+			$('#region>option').remove();
+			loadData('#city', parent_id);
+			loadData("#region", $("#city").val());
+		});
+
+		$(".addrbook .addr .checkbox").live("click",function(){
+			$(".addrbook .addr .checkbox, .newaddress .setnewaddr .checkbox").removeClass("checked");
+			$(".addrbook .addr").removeClass("selected");
+			$(this).addClass("checked");
+			$(this).parents(".addr").addClass("selected");
+			$(".newaddress .form").hide();
+			$(".block1 .nextstep").show();
+		});
+
+		$(".newaddress .setnewaddr .checkbox").live("click",function(){
+			$(".addrbook .addr .checkbox").removeClass("checked");
+			$(this).addClass("checked");
+			$(".newaddress .error, .newaddress .addrerror").hide();
+			$(".newaddress .form input[type=text], .newaddress .form textarea").val("");
+			$(".newaddress .form input[name=newaddr]").removeAttr("data-addrid").removeAttr("disabled");
+			loadData('#province', '1');
+			$("#province").change();
+			$("#city").change();
+			$(".newaddress .form").show();
+			$(".block1 .nextstep").hide();
+		});
+
+		$(".addr .oper input[name=setdefault]").removeAttr("disabled");
+		$(".addr .oper input[name=setdefault]").live('click',function(){
+			$(this).attr("disabled","disabled");
+			var addressid = $(this).parents(".addr").attr("data-addrid");
+			$.ajax({
+				type:"put",
+				data:{
+					addressId: addressid,
+				},
+				async:false,
+				cache:false,
+				url:"./passport/address/setDefault",
+				success:function(data){
+					if (data.success == 0) {
+						$(".addr").removeClass("default");
+						$(".addr[data-addrid="+addressid+"]").addClass("default");
+					}
+				}
+			});
+			$(this).removeAttr("disabled");
+		});
+
+		$(".addr .oper input[name=edit]").removeAttr("disabled");
+		$(".addr .oper input[name=edit]").live('click',function(){
+			$(this).attr("disabled","disabled");
+			var addressid = $(this).parents(".addr").attr("data-addrid");
+			loadData('#province', '1');
+
+			$.ajax({
+				type:"get",
+				data:{accountId:accountid},
+				url:"./passport/address",
+				cache:false,
+				async:false,
+				success:function(data){
+					if (data.success == 0) {
+						for (var i = 0; i <= data.length - 1; i++) {
+							if (data.datas[i].id == addressid) {
+								$("#addrre").val(data.datas[i].recipient);
+								$("#addrte").val(data.datas[i].telephone);
+								$("#addrph").val(data.datas[i].phone);
+								$("#addrpc").val(data.datas[i].postcode);
+								$("#addrad").text(data.datas[i].address);
+
+								$("#province").val(data.datas[i].province.region_id);
+								$('#province').change();
+								$("#city").val(data.datas[i].city.region_id);
+								$('#city').change();
+								$("#region").val(data.datas[i].region.region_id);
+
+								$(".newaddress .form input[name=newaddr]").attr("data-addrid",addressid).removeAttr("disabled");
+							}
+						}
+						$(".newaddress .form").show();
+					}
+				}
+			});
+			$(this).removeAttr("disabled");
+		});
+		
+		function naerrortip(input,tip){
+			if(tip){
+				$(input).siblings(".error").text(tip).show();
+				block2suc = 0;
+			}else{
+				$(input).siblings(".error").hide();
+			}
+		}
+		
+		var block2suc = 1;
+		$(".newaddress .form .input input[type=text], .newaddress .form .input textarea").blur(function(){
+			var input = $(this);
+			var v = input.val();
+			var tip = "";
+			
+			switch(input.attr("id")){
+				case "addrre":
+					if (!v) {
+						tip = "收货人姓名必填";
+					}else if(!$().fnamevalidate(v)){
+						tip = "请不要使用特殊符号并不少于两个字符";
+					}
+			  	break;
+			  	
+				case "addrad":
+					if (!v) {
+						tip = "详细地址必填";
+					}else if(!$().addrvalidate(v)){
+						tip = "请不要使用特殊符号并不少于两个字符";
+					}
+			  	break;
+			  	
+				case "addrte":
+					if (!v) {
+						tip = "手机号码必填";
+					}else if(!$().telvalidate(v)){
+						tip = "手机号格式不正确";
+					}
+				break;
+				
+				case "addrpc":
+					if (v) {
+						if(!$().postvalidate(v)){
+							tip = "邮政编码格式不正确";
+						}
+					}
+				break;
+				
+				case "addrph":
+					if (v) {
+						if(!$().phonevalidate(v)){
+							tip = "固定电话格式不正确，示例：01012345678";
+						}
+					}
+				break;
+			}
+			naerrortip(input,tip);
+		});
+
+		$(".newaddress .form input[name=newaddr]").removeAttr("disabled");
+		$(".newaddress .form input[name=newaddr]").live('click',function(){
+			$(this).attr("disabled","disabled");
+			block2suc = 1;
+			$(".newaddress .form .input input[type=text],.newaddress .form .input textarea").blur();
+
+			if (($("#province").val() > 0)&&($("#city").val() > 0)) {
+				$(".locationerror").hide();
+			}else{
+				block2suc = 0;
+				$(".locationerror").show();
+			}
+			
+			if (block2suc == 1) {
+				if ($(this).attr("data-addrid")) {
+					var addrid = $(this).attr("data-addrid");
+					$.ajax({
+						type:"put",
+						data:{
+							addressId:addrid,
+							nation:"",
+							province:$("#province").val(),
+							city:$("#city").val(),
+							region:$("#region").val(),
+							address:$("#addrad").val(),
+							postcode:$("#addrpc").val(),
+							recipient:$("#addrre").val(),
+							telephone:$("#addrte").val(),
+							phone:$("#addrph").val(),
+							email:""
+						},
+						cache:false,
+						async:false,
+						url:"./passport/address",
+						error:function(){
+							$(".newaddress .addrerror").text("网络连接错误，请重试").show();
+						},
+						success:function(data){
+							if (data.success == 0) {
+								getaddr();
+							}else if (data.error == 201) {
+								$(".newaddress .addrerror").text("格式错误").show();
+							}else{
+								window.location.href="error.html";
+							}
+						}
+					});
+				}else{
+					$.ajax({
+						type:"post",
+						data:{
+							accountId:accountid,
+							nation:"",
+							province:$("#province").val(),
+							city:$("#city").val(),
+							region:$("#region").val(),
+							address:$("#addrad").val(),
+							postcode:$("#addrpc").val(),
+							recipient:$("#addrre").val(),
+							telephone:$("#addrte").val(),
+							phone:$("#addrph").val(),
+							email:""
+						},
+						cache:false,
+						async:false,
+						url:"./passport/address",
+						error:function(){
+							$(".newaddress .addrerror").text("网络连接错误，请重试").show();
+						},
+						success:function(data){
+							if (data.success == 0) {
+								getaddr();
+							}else if (data.error == 201) {
+								$(".newaddress .addrerror").text("格式错误").show();
+							}else{
+								window.location.href="error.html";
+							}
+						}
+					});
+				}
+			}
+			$(this).removeAttr("disabled");
+		});
+		
+		//block2
+		$.ajax({
+			type:'get',
+			data:"",
+			url: './passport/getTicketListByAccountId?passportId='+accountid,
+			cache:false,
+			async:false,
+			success:function(data){
+				console.log(data);
+				if(data.success == 0){
+					if(data.datas){
+						var str = "<option data-couponid='-1' data-couponvalue='0'>不使用现金券</option>";
+						for(var i = 0; i<data.datas.length; i++){
+							str += "<option data-couponid="+data.datas[i].id+" data-couponvalue="+data.datas[i].ticketValue+">"+data.datas[i].ticketName+"</option>";
+						}
+						$("#cashcouponlist").html("").append(str);
+					}else{
+						$("#cashcouponlist").html("<option data-couponid='-1' data-couponvalue='0'>暂无现金券</option>")
+					}
+				}
+			}
+		});
+		
+		$.ajax({
+			type:"GET",
+			data:"",
+			cache:false,
+			async:false,
+			url:"./passport/getCreditCountByAccountId?passportId="+accountid,
+			success:function(data){
+				console.log(data);
+				if(data.success == 0){
+					$("#credittotal").text(data.total);
+					credittotal = data.total;
+					if(credittotal < 10){
+						$("#credituse").val(0);
+						$("#crvalue").text(0);
+					}else{
+						$("#credituse").val(10);
+						$("#crvalue").text(1);
+					}
+					updateofftotal();
+				}
+			}
+		});
+		
+		function updateofftotal(){
+			var p1 = Number($("#ccvalue").text());
+			$("#couponoff").text(p1);
+			var p2 = Number($("#crvalue").text());
+			$("#creditoff").text(p2);
+			$("#offtotal").text(p1+p2);
+			offtotal = p1+p2;
+			$("#orderprice").text(pricetotal-p1-p2);
+		}
+		
+		$("#cashcouponlist").change(function(){
+			var v = $(this).children(":checked").attr("data-couponvalue");
+			$("#ccvalue").text(v);
+			updateofftotal();
+		});
+		
+		$("#credituse").blur(function(){
+			var v = $(this).val();
+			if(credittotal < 10){
+				$("#credituse").val(0);
+				$("#crvalue").text(0);
+			}else{
+				if(isNaN(v)){
+					$("#credituse").val(10);
+					$("#crvalue").text(1);
+				}else if(v < 10){
+					$("#credituse").val(0);
+					$("#crvalue").text(0);
+				}else{
+					$("#credituse").val(v - (v%10));
+					var vfloor = String(Math.floor(v));
+					var totalPrice_half = Math.floor($('#pricetotal').text()/2);
+					if(vfloor > totalPrice_half) {
+						alert('优惠金额不可超过：' + totalPrice_half + "元");
+					}
+					$("#crvalue").text(vfloor.substr(0,(vfloor.length-1)));
+				}
+			}
+			updateofftotal();
+		});
+		
+		function stepvalidate(block){
+			if(block == "block1"){
+				if($(".addrbook .addr .checkbox.checked").length == 1){
+					return 0;
+				}else{
+					return 1;
+				}
+			}else if(block == "block2"){
+				$("#credituse").blur();
+				if($("#credituse").val()>credittotal){
+					alert("使用积分不能超过总积分数");
+					return 1;
+				}else if(offtotal >= pricetotal/2){
+					alert("优惠金额不能超过总价的50%");
+					return 1;
+				}else{
+					return 0;
+				}
+			}else{
+				return 0;
+			}
+		}
+		
+		$(".nextstep input[type=button]").click(function(){
+			var stepvali = $(this).attr("data-vali");
+			var nextstep = $(this).attr("data-nextstep");
+			if(stepvalidate(stepvali) == 0){
+				$("."+stepvali).removeClass("active");
+				$("."+nextstep).addClass("active");
+			}
+		});
+		
+		$(".block h2").click(function(){
+			var stepvali = $(this).attr("data-vali");
+			var sus = 0;
+			if(stepvali){
+				stepvali = stepvali.split(" ");
+				for(var i = 0; i<stepvali.length; i++){
+					if(stepvalidate(stepvali[i]) != 0){
+						sus = 1;
+					}
+				}
+			}
+			if(sus == 0){
+				$(".block").removeClass("active");
+				$(this).parent(".block").addClass("active");
+			}
+			
+		});
+
+
+		$(".block7 .btn input[name=cancel]").click(function(){
+			if(confirm('确定要取消订单？')) {
+				window.location.href = 'item_list.html';
+			}
+		});
+
+		//submit
+		$(".block7 .btn input[name=submit]").click(function(){
+
+			var credit_t = parseInt($('#credittotal').text());
+			var credit_u = parseInt($('#credituse').val());
+
+			if(credit_u > credit_t) {
+				$("#credituse").text(0);
+				alert('积分数量不足，无法使用');
+				return;
+			}
+
+
+			$(this).attr('disabled', 'true');
+			var speclist = [];
+			var item = $(".block7 .cart tbody tr");
+			for (var i = item.length - 1; i >= 0; i--) {
+				speclist.push({
+					"id": $(item[i]).attr("data-specid"),
+					"quantity": $(item[i]).attr("data-quantt"),
+					"itemId": $(item[i]).attr("data-itemid"),
+				});
+			};
+			
+			var tlist = [];
+			var tval = $(".coupon li.checked").attr("data-ticketid");
+
+			if(tval>0){
+				tlist.push({"id":tval});
+			}
+
+			var ordersubmit = {
+					"addressId": $(".block1 .addr .checkbox.checked").parents(".addr").attr("data-addrid"),
+					//"invoiceTitle": receiptTitle,
+					"remarks": $(".memo textarea").val(),
+					"specList":speclist,
+					//"delivery": $(".block5 .checkbox.checked").attr("data-id"),//配送方式
+					//"invoiceType": receiptType,//发票类型
+					//"ticketList":tlist,
+					"ticket":{"id": $("#cashcouponlist option:checked").attr("data-couponid")},
+					"credits": $("#credituse").val()//积分
+				};
+
+			$.ajax({
+				type:"post",
+				dataType: "json",      
+				contentType : 'application/json',
+				data: JSON.stringify(ordersubmit),
+				url:"./sale/order",
+				error:function(){
+
+				},
+				success:function(data){
+					console.log(data);
+					if (data.success == 0) {
+						var orderNo = data.orderNo;
+						window.location.href = "ordersuccess.html?val=" + orderNo;
+						//window.location.href="c_orderlist.html";
+					}else{
+						$(this).attr('disabled', 'false');
+						alert("提交失败");
+					}
+				}
+			});
+		});
+	});
+	</script>
+</body>
+</html>

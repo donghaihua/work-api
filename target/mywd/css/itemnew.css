@@ -1,0 +1,744 @@
+.shadow{
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 3300px;
+	background-color: #000;
+	opacity: 0.4;
+	z-index: 1;
+}
+
+.newcert{
+	display: none;
+	position: fixed;
+	width: 800px;
+	height: 250px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	margin: auto;
+	padding: 36px 30px 58px 30px;
+	background-color: #fff;
+	border-top: 4px solid #303134;
+	box-shadow: 5px 5px 1px 1px rgba(0,0,0,0.1);
+	z-index: 1;
+}
+
+.newcert .failuremsg, .newcert .nullmsg{
+	position: absolute;
+	color: #a04545;
+	display: none;
+}
+
+.newcert .uploadingmsg{
+	position: absolute;
+	color: #87aa66;
+	display: none;
+}
+
+.newcert .certtitle{
+	color: #2b2b2b;
+
+}
+
+.newcert .certt{
+	width: 780px;
+	height: 44px;
+	margin-top: 10px;
+	padding: 0 10px;
+	border: 1px solid #cacaca;
+	font-size: 18px;
+}
+
+.newcert .certf{
+	display: none;
+}
+
+.newcert .certb{
+	position: relative;
+	width: 670px;
+	height: 44px;
+	line-height: 44px;
+	margin: 30px 0px 60px 0px;
+	padding: 0px 120px 0px 10px;
+	background-color: #f3f3f3;
+	border: 1px solid #f3f3f3;
+}
+
+.newcert .certb input{
+	position: absolute;
+	right: 12px;
+	top: 7px;
+	width: 94px;
+	height: 30px;
+	border: 1px solid #e36655;
+	background-color: #e36655;
+	color: #fff;
+
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.newcert .certb input:hover{
+	background-color: #ce4836;
+}
+
+.newcert .certsubmit, .newcert .certcancel{
+	position: absolute;
+	width: 134px;
+	height: 44px;
+	color:#fff;
+	font-size: 20px;
+	background-color: #e36655;
+	border: 1px solid #e36655;
+	cursor: pointer;
+}
+
+.newcert .certsubmit{
+	right: 196px;
+}
+
+.newcert .certcancel{
+	right: 30px;
+}
+
+.newcert .certsubmit:hover, .newcert .certcancel:hover{
+	background-color: #ce4836;
+}
+
+/*#nav{
+	margin: 0px -50px 0px -30px;
+	height: 66px;
+	line-height: 66px;
+	background-color: #fff;
+	border: 1px solid #d4d4d4;
+	border-left: none;
+}
+
+#nav>span{
+	padding: 0px 8px
+}
+
+#nav>ul>li{
+	display: inline;
+	float: left;
+	width: 104px;
+	height: 66px;
+	line-height: 66px;
+	text-align: center;
+	border-right: 1px solid #d4d4d4;
+}
+
+#nav>ul>li.active>div{
+	position: relative;
+	left: -1px;
+	width: 106px;
+	border-bottom: 5px solid #000;
+}*/
+
+#edit{
+	padding-top: 30px;
+}
+
+input[type=text]:disabled{
+	background-color: #fff;
+}
+
+.board table{
+	border-collapse: collapse;
+}
+
+.board th{
+	position: relative;
+	padding-top: 20px;
+	padding-left: 5px;
+	height: 35px;
+	line-height: 35px;
+	text-align: left;
+	color: #2b2b2b;
+	overflow: visible;
+}
+
+.board td{
+	position: relative;
+}
+
+.board input{
+	width: 819px;
+	padding: 0px 10px;
+	height: 46px;
+	line-height: 46px;
+	font-size: 18px;
+}
+
+#edit .board .addbtn{
+	position: absolute;
+	top: 22px;
+	right: 44px;
+	width: 77px;
+	height: 30px;
+	line-height: 24px;
+	border-radius: 15px;
+	color: #fff;
+	background-color: #427ac0;
+	border: 3px solid #c2d4eb;
+	cursor: pointer;
+}
+
+#edit .board .addbtn:hover{
+	background-color: #2c60a2;
+}
+
+#edit .board .forhr{
+	margin-top: 30px;
+	background-color: #d4d4d4;
+	width: 100%;
+	height: 2px;
+}
+
+#edit .editt1{
+	padding: 38px 40px;
+}
+
+#edit .editt1>div{
+	position: relative;
+	height: 72px;
+	line-height: 72px;
+	border-top: 1px solid #d4d4d4;
+}
+
+#edit .editt1>div.toppro{
+	border-bottom: 1px solid #d4d4d4;
+}
+
+#edit .editt1>div>span.topt{
+	padding: 8px 54px 8px 18px;
+	color: #fff;
+	border-top-left-radius: 18px;
+	border-bottom-left-radius: 18px;
+
+}
+
+#edit .editt1>div.topbran>span.topt{
+	background-color: #ed9e33;
+}
+
+#edit .editt1>div.toptit>span.topt{
+	background-color: #617589;
+}
+
+#edit .editt1>div.topser>span.topt{
+	background-color: #9ba59d;
+}
+
+#edit .editt1>div.toppro>span.topt{
+	background-color: #c35817;
+}
+
+#edit .editt1>div.topbran>span.toptitle{
+	border-left: 1px solid #d4d4d4;
+	padding: 27px 20px;
+}
+
+#edit .editt1>div>input{
+	position: relative;
+	padding: 0px 20px;
+	width: 580px;
+	top: 0px;
+	height: 72px;
+	border-left: 1px solid #d4d4d4;
+
+}
+
+#edit .editt1>div.topser>.sersel{
+	float: right;
+	width: 735px;
+	border-left: 1px solid #d4d4d4;
+}
+
+#edit .editt1>div.topser>.sersel>select{
+	width: 90%;
+	height: 70px;
+	background-color: #fff;
+	border: 1px solid #d4d4d4;
+	padding: 0 20px;
+}
+
+#edit .editt1>div>textarea{
+	position: absolute;
+
+	padding: 10px 20px;
+	width: 580px;
+	height: 52px;
+	resize:none;
+	border-left: 1px solid #d4d4d4;
+}
+
+.board .editt2 input, .board .editt3 input{
+	width: 97%;
+	padding: 0;
+	height: 46px;
+	line-height: 46px;
+	font-size: 18px;
+}
+
+.t2td1, .t3td1{
+	width: 27%;
+	padding: 0 1%;
+	border: 1px solid #d4d4d4;
+	border-right: none;
+}
+
+.t2td2, .t2td3, .t2td4, .t2td5{
+	width: 18%;
+	padding: 0 1%;
+	border: 1px solid #d4d4d4;
+	border-right: none;
+}
+.t3td2 {
+	width: 23%;
+	padding: 0 1%;
+	border: 1px solid #d4d4d4;
+	border-right: none;
+}
+.t2td5{
+	width: 18%;
+	border-right: 1px solid #d4d4d4;
+}
+
+.t2td5 div{
+	color: #d4d4d4;
+	height: 46px;
+	line-height: 46px;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.t2td5 div:before{
+	margin-left: 12px;
+}
+
+.t2td5 div:hover{
+	color: #e36756;
+}
+
+.board table tr td.t2td6{
+	width: 0px;
+	position: relative;
+	overflow: visible;
+}
+
+.editt2 tr .t2td6 .t2deltip{
+	visibility: hidden;
+	position: absolute;
+	top: -52px;
+	right: -14px;
+	width: 129px;
+	height: 38px;
+	background-color: #000;
+	color: #fff;
+
+	border-radius: 3px;
+}
+
+.editt2 tr .t2td6 .t2deltip span{
+	position: absolute;
+	margin-top: 7px;
+	height: 24px;
+	line-height: 24px;
+	padding: 0px 16px;
+	cursor: pointer;
+}
+
+.editt2 tr .t2td6 .t2deltip span:hover{
+	color: #e36756;
+}
+
+.editt2 tr .t2td6 .t2deltip span.dele{
+	left: 0px;
+}
+
+.editt2 tr .t2td6 .t2deltip span.canc{
+	right: 0px;
+	border-left: 1px solid #474747
+}
+
+.editt2 tr .t2td6 .t2deltip .tipdec{
+	position: absolute;
+	left: 60px;
+	bottom: -5px;
+	width: 1px;
+	height: 0px;
+	border-top: 5px solid #000;
+	border-left: 4px solid #fff;
+	border-right: 4px solid #fff;
+}
+
+.t3td3{
+	width: 51%;
+	padding: 0 1%;
+	border: 1px solid #d4d4d4;
+}
+
+.editt4 tr td, .editt7 tr td{
+	border: 1px solid #d4d4d4;
+}
+
+#volume, #weight{
+	width: 84%;
+	text-align: right;
+	font-size: 20px;
+}
+
+.t3td1:after, .t3td2:after{
+	content:"ML";
+	position: absolute;
+	margin-left: 6px;
+	margin-top: 14px;
+}
+
+#weight{
+	width: 80%;
+}
+
+.t3td2:after{
+	content: "KG";
+}
+
+.editt3 tr th .eg, .editt4 tr th .eg, .editt7 tr th .eg{
+	font-size: 12px;
+	color: #ababab;
+	padding-left: 10px;
+}
+
+.editt5{
+	padding-top: 10px;
+}
+
+.editt5 .cert{
+	position: relative;
+	width: 100%;
+	height: 38px;
+	margin-top: 20px;
+	line-height: 38px;
+	background-color: #f3f3f3;
+}
+
+.editt5 .cert span{
+	margin-left: 14px;
+	color: #5e5e5e;
+}
+
+.editt5 .cert .icon-delete, .editt5 .cert .icon-undo{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 38px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	color: #fff;
+	background-color: #e36655;
+	border-left: #cacaca;
+	font-size: 22px;
+	cursor: pointer;
+}
+
+.editt5 .cert .icon-undo{
+	background-color: #a1a1a1;
+}
+
+.editt5 .cert .icon-delete:hover{
+	background-color: #ce4836;
+}
+
+.editt5 .cert .icon-undo:hover{
+	background-color: #979797;
+}
+
+.editt5 .cert.inactive span{
+	color: #acacac;
+}
+
+.editt5 .cert .icon-undo{
+	display: none;
+}
+
+.editt5 .cert.inactive .icon-undo{
+	display: block;
+	font-size: 18px;
+}
+
+.editt5 .cert.inactive .icon-delete{
+	display: none;
+}
+
+.editt6{
+	margin-top: 30px;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+.editt6 tr td{
+	position: relative;
+	width: 172px;
+}
+
+.editt6 tr td input{
+	display: none;
+}
+
+.editt6 tr td .itemimg{
+	position: relative;
+	width: 163px;
+	margin: 0 auto;
+	height: 182px;
+	text-align: center;
+	border: 1px solid #cacaca;
+	line-height: 182px;
+	overflow: hidden;
+}
+
+.editt6 tr td .itemimg img{
+	display: none;
+	max-width: 100%;
+	max-height: 100%;
+	vertical-align: middle;
+}
+
+.editt6 tr td .oper{
+	position: absolute;
+	top: 76px;
+	left: 32px;
+	min-width: 100px;
+	color: #427ac0;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+}
+
+.editt6 tr td .oper .addimg{
+	float: left;
+	padding: 0 34px;
+	border-radius: 15px;
+	border: 1px solid #427ac0;
+	cursor: pointer;
+}
+
+.editt6 tr td .oper .editimg{
+	float: left;
+	padding: 0px 10px;
+	background-color: #fff;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border: 1px solid #427ac0;
+	cursor: pointer;
+	display: none;
+}
+
+.editt6 tr td .oper .deleteimg{
+	float: left;
+	padding: 0px 10px;
+	background-color: #fff;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border: 1px solid #427ac0;
+	border-left: none;
+	cursor: pointer;
+	display: none;
+}
+
+.editt6 tr td .oper .uploading:before{
+	content: "正在上传...";
+	position: absolute;
+	top: 40px;
+	left: 12px;
+}
+
+.editt6 tr td .oper .uploadfailure[name=unknown]:before{
+	content: "上传失败";
+	position: absolute;
+	top: 40px;
+	left: 18px;
+	color: #a04545;
+}
+
+.editt6 tr td .oper .uploadfailure[name=toobig]:before{
+	content: "上传失败，图片超过2M";
+	position: absolute;
+	top: 40px;
+	left: 0px;
+	color: #a04545;
+}
+
+.editt6 tr td .oper .addimg:hover, .editt6 tr td .oper .editimg:hover, .editt6 tr td .oper .deleteimg:hover{
+	color: #fff;
+	background-color: #427ac0;
+}
+
+.editt6 tr td .itemimg.upload .oper .addimg{
+	display: none;
+}
+
+.editt6 tr td .itemimg.upload .oper .editimg, .editt6 tr td .itemimg.upload .oper .deleteimg{
+	display: none;
+}
+
+.editt6 tr td .itemimg.upload:hover .oper{
+	display: block;
+	cursor: pointer;
+}
+
+.editt6 tr td .itemimg.upload:hover .oper .editimg, .editt6 tr td .itemimg.upload:hover .oper .deleteimg{
+	display: inline;
+}
+
+.editt7 textarea{
+	font-size: 18px;
+	resize: none;
+	width: 819px;
+	height: 94px;
+	padding: 10px;
+}
+
+.detaildesc{
+	margin-top: 30px;
+}
+
+#detail_desc{
+	width: 100%;
+	height: 300px;
+}
+
+.submit{
+	float: right;
+	width: 98px;
+	height: 44px;
+	background-color: #f3f3f3;
+	color: #303134;
+	font-size: 18px;
+	border: 1px solid #cacaca;
+	cursor: pointer;
+}
+
+.release{
+	float: right;
+	margin-left: 20px;
+	width: 136px;
+	height: 44px;
+	font-size: 18px;
+	color: #fff;
+	background-color: #e36655;
+	cursor: pointer;
+}
+
+.submit:hover{
+	border-color: #303134;
+}
+.release:hover{
+	background-color: #ce4836;
+}
+
+.board table tr td .errormsg, .editt1 .errormsg{
+	position: absolute;
+	width: 90%;
+	max-width: 200px;
+	top: 42px;
+	line-height: 28px;
+	color: #fff;
+	font-size: 14px;
+	background-color: #c25546;
+	border-radius: 3px;
+	text-align: center;
+	z-index: 1;
+	display: none;
+}
+
+.board table tr td .errormsg .msgdec, .editt1 .errormsg .msgdec{
+	position: absolute;
+	margin-left: 45%;
+	top: -8px;
+	border-bottom: 8px solid #c25546;
+	border-left: 8px solid #fff;
+	border-right: 8px solid #fff;
+}
+
+.board table tr td .empmsg, .editt1 .empmsg{
+	position: absolute;
+	line-height: 46px;
+	color: #c25546;
+	display: none;
+	margin-left: 10px;
+}
+
+.board table tr td .empmsg:before, .editt1 .empmsg:before{
+	margin-right: 6px;
+}
+
+.editt1 .errormsg{
+	top: 60px;
+	left: 120px;
+}
+
+.editt1 .empmsg{
+	top: 13px;
+	left: 120px;
+}
+
+.releasemsg, .releasesuccess, .submitmsg, .submitsuccess, .releasemsg, .formatmsg{
+	position: absolute;
+	margin-top: 14px;
+	margin-left: 180px;
+	color: #a04545;
+	display: none;
+}
+
+.btn{
+	margin-bottom: 30px;
+}
+
+.releasesuccess, .submitsuccess{
+	color: #87aa66;
+}
+
+.sersel .tag {
+  display: inline;
+}
+
+.sersel .tag input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sersel .tag span {
+  vertical-align: middle;
+}
+.expertFee {
+	width: 819px;
+	height: 46px;
+	line-height: 46px;
+	marigin: 0;
+	position: relative;
+}
+.board  .expertFee .expertFee_prepend {
+	font-size: 18px;
+	height: 46px;
+	line-height: 46px;
+	width: 46px;
+	text-align: center;
+	border-right: 1px solid #d4d4d4;
+	display: inline-block;
+}
+
+.board .expertFee input {
+	width: 746px;
+	padding: 0px 10px;
+	height: 46px;
+	line-height: 46px;
+	font-size: 18px;
+	display: inline-block;
+	cursor: pointer;
+}

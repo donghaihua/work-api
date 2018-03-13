@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<link href="../icomoon/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/global.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<script src="../js/jquery-1.11.0.min.js"></script>
+	</head>
+
+	<body>
+		<!--<div class="md">
+			<div class="header">个人中心</div>
+			<div class="tab-nav">
+				<ul class="tab-nav-menu">
+					<li class="active">订单管理</li>
+					<li>分销中心</li>
+				</ul>
+			</div>
+
+			<div class="order-list">
+				<div class="order-head">
+					<span>订单编号：142345234232342</span><span class="pullright order-status-success">已发货</span>
+				</div>
+				<div class="order-head">
+					<span><i class="fa fa-clock-o"></i></span>
+					<span class="order-date">2016-05-06 08:00:10</span>
+					<span class="pullright order-price">￥1060</span>
+				</div>
+				<div class="order-body">
+					<ul class="order-list-ul">
+						<li>
+							<div class="good-img">
+								<img src="../images/u01.jpg" alt="" />
+							</div>
+							<div class="good-info">
+								<p class="good-name">贵族油500ml</p>
+								<p class="good-guige">规格：500ml</p>
+							</div>
+							<p class="good-price"><b>￥460 x 1</b></P>
+						</li>
+						<li>
+							<div class="good-img">
+								<img src="../images/u01.jpg" alt="" />
+							</div>
+							<div class="good-info">
+								<p class="good-name">贵族油500ml</p>
+								<p class="good-guige">规格：500ml</p>
+							</div>
+							<p class="good-price"><b>￥460 x 1</b></P>
+						</li>
+					</ul>
+				</div>
+				<div class="order-footer">
+					<button class="btn btn-sm btn-default">查看物流</button>
+					<button class="btn btn-sm btn-orange">&nbsp;&nbsp;评价&nbsp;&nbsp;</button>
+				</div>
+			</div>
+			<div class="order-list">
+				<div class="order-head">
+					<span>订单编号：142345234232342</span><span class="pullright order-status-info">退款中</span>
+				</div>
+				<div class="order-head">
+					<span><i class="fa fa-clock-o"></i></span>
+					<span class="order-date">2016-05-06 08:00:10</span>
+					<span class="pullright order-price">￥1060</span>
+				</div>
+				<div class="order-body">
+					<ul class="order-list-ul">
+						<li>
+							<div class="good-img">
+								<img src="../images/u01.jpg" alt="" />
+							</div>
+							<div class="good-info">
+								<p class="good-name">贵族油500ml</p>
+								<p class="good-guige">规格：500ml</p>
+							</div>
+							<p class="good-price"><b>￥460 x 1</b></P>
+						</li>
+						<li>
+							<div class="good-img">
+								<img src="../images/u01.jpg" alt="" />
+							</div>
+							<div class="good-info">
+								<p class="good-name">贵族油500ml</p>
+								<p class="good-guige">规格：500ml</p>
+							</div>
+							<p class="good-price"><b>￥460 x 1</b></P>
+						</li>
+					</ul>
+				</div>
+				<div class="order-footer">
+					<button class="btn btn-sm btn-default">查看物流</button>
+					<button class="btn btn-sm btn-orange">&nbsp;&nbsp;评价&nbsp;&nbsp;</button>
+				</div>
+			</div>
+
+		</div>
+		<footer class="footer">
+			<div class="menu">
+				<ul class="menu-nav">
+					<li>
+						<a href="shop-index.html" id="a_shop_index">
+							<p class="icon-p"><i class="icon-home"></i></p>
+							<p>首页</P>
+						</a>
+					</li>
+					<li>
+						<a href="shop-list.html" id="a_shop_list">
+							<p class="icon-p"><i class="icon-goods"></i></p>
+							<p>商品</P>
+						</a>
+					</li>
+					<li>
+						<a href="shop-cart.html" id="a_shop_cart">
+							<p class="icon-p"><i class="icon-cart"></i></p>
+							<p>购物车</P>
+						</a>
+					</li>
+					<li class="active">
+						<a href="user-center.html" id="a_shop_center">
+							<p class="icon-p"><i class="icon-user"></i></p>
+							<p>个人中心</P>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</footer>-->
+	</body>
+	<script>
+		$(document).ready(function () {
+			var url = window.location.search;
+			var shopId;
+			if(url.match('shopId=')) {
+				shopId = url.split('shopId=')[1];
+				$.ajax({
+					type: 'get',
+					url: '../../uiserver/distribution/isMaster',
+					data: {'shopId': shopId},
+					async: false,
+					cache: false,
+					success: function (res) {
+						if(res.success == 0) {
+							window.location.href = 'sale-center.html?shopId=' + shopId;
+						} else {
+							window.location.href = "../../m/c_orderlist.html";
+						}
+					}
+				});
+				/*$('#a_shop_index').attr('href', 'shop-index.html?shopId=' + shopId);
+				$('#a_shop_list').attr('href', 'shop-list.html?shopId=' + shopId);
+				$('#a_shop_cart').attr('href', '../../m/cart.html?shopId=' + shopId);
+				$('#a_shop_center').attr('href', 'user-center.html?shopId=' + shopId);*/
+			} else {
+				window.location.href = "../../m/c_orderlist.html";
+			}
+		});
+	</script>
+</html>

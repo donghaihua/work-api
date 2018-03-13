@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>处理退款</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/console.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/breturn.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body>
+	<div class="cover"></div>
+	<header>
+		<div class="wrapper">
+			<div class="logo">
+				<img src="img/uhaoulogo.png" alt="logo">
+			</div>
+			<div class="breadcrumb">
+			</div>
+			<div class="userinfo">
+				<img src="img/avatar_preview_default.png" alt="avatar">
+				<span class="username"><span class="un"></span><span class="icon-arrow-down"></span></span>
+			</div>
+			<span class="icon-notif new"><span class="icon-dot"></span></span>
+			<span class="icon-mail new"><span class="icon-dot"></span></span>
+			<ul class="ddlist">
+			</ul>
+		</div>
+	</header>
+	<div class="wrapper">
+		<div class="popup" id="popup1">
+			<h3>
+				<span class="icon-square">拒绝原因</span>
+				<div class="error"></div>
+			</h3>
+			<textarea name="reject_reason"></textarea><br>
+			<input type="button" id="r_comfirmReject" value="拒绝">
+			<input type="button" id="r_close" value="关闭">
+		</div>
+		<div class="popup" id="popup2">
+			<h3>
+				<span class="icon-square">实退金额<span>（元）</span></span>
+				<div class="error"></div>
+			</h3>
+			<input type="text" name="amount_true">
+			<br>
+			<input type="button" id="r_comfirmRefund" value="确认退款">
+			<input type="button" id="r_cancel" value="取消退款">
+		</div>
+		<div id="sidebar" data-index="nav21">
+		</div>
+		<div id="content">
+			<div class="block block1">
+				<div class="otitle">
+					<span>
+						<span class="icon-dot"></span>
+						订单编号:
+						<span class="on"></span>
+						订单总额:
+						<span class="op"></span>
+						退款时间:
+						<span class="ot"></span>
+						<input type="button" value="同意" name="agree" id="r_agree">
+						<input type="button" value="拒绝" name="refuse" id="r_reject">
+					</span>
+				</div>
+				<h3><span>退款详情</span></h3>
+				<table name="r_table">
+					<tr>
+						<th><div>是否退货</div></th>
+						<td name="r_type"></td>
+					</tr>
+					<tr>
+						<th><div>退款金额</div></th>
+						<td class="td2"><span name="r_amount"></span>元</td>
+					</tr>
+					<tr>
+						<th><div>退款原因</div></th>
+						<td class="td3">
+							<p name="r_reason"></p>
+							<p name="r_reason_detail"></p>
+							<ul>
+								<li>
+									<img name="r_img1" src="img/listitem.png" alt="img">
+								</li>
+								<li>
+									<img name="r_img2" src="img/listitem.png" alt="img">
+								</li>
+								<li>
+									<img name="r_img3" src="img/listitem.png" alt="img">
+								</li>
+							</ul>
+							<div class="clear"></div>
+						</td>
+					</tr>
+					<tr>
+						<th><div>退货物流</div></th>
+						<td class="td4">
+							<p>
+								<span name="r_express" class="exp"></span>
+								运单编号:
+								<span name="r_express_no" class="expn"></span>
+							</p>
+							<div class="exps">
+								<iframe name="kuaidi100" src="" width="600" height="380" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="sidebarb">
+			<div class="up">
+				<div class="icon-arrow-up"></div>
+			</div>
+			<div class="copyright" id="site_record">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/a_general.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		var url = window.location.search;
+		var paramArray = url.split('?val=');
+		var orderNo = paramArray[1];
+		var refund_id = null;
+		var amount = 0;
+		
+		setRefundHtml();
+		
+		$('#r_agree').hide();
+		$('#r_reject').hide();
+		
+		$('#r_agree').click(function() {
+			//console.log(11);
+			$('#popup2').show();
+			$('div.cover').show();
+		});
+		
+		$('#r_cancel').click(function() {
+			$('#popup2').hide();
+			$('div.cover').hide();
+		});
+		
+		$('#r_reject').click(function() {
+			$('#popup1').show();
+			$('div.cover').show();
+		});
+		$('#r_close').click(function() {
+			$('#popup1').hide();
+			$('div.cover').hide();
+		});
+		//拒绝
+		$('#r_comfirmReject').click(function() {
+			var r_reason = $(this).parent().find('textarea[name=reject_reason]').val();
+			if(r_reason.trim().length == 0) {
+				$(this).parent().find('.error').text('请输入拒绝原因!');
+				return;
+			} else {
+				$.ajax({
+					type: 'PUT',
+					url: './sale/order/refund',
+					data: {'id': refund_id, 'reject_reason': r_reason, 'state': 2},
+					success: function(data) {
+						window.location.reload();
+					}
+				});
+			}
+		});
+		//同意
+		$('#r_comfirmRefund').click(function() {
+			var r_amount_true = $(this).parent().find('input[name=amount_true]').val();
+			if(/^\d+\.\d+$/.test(r_amount_true) == false && /^\d+$/.test(r_amount_true) == false) {
+				$(this).parent().find('.error').text('请输入正确的数字!');
+				return;
+			} else if(r_amount_true > amount) {
+				$(this).parent().find('.error').text('最大退款金额不能超过'+amount+'元!');
+				return;
+			} else {
+				$.ajax({
+					type: 'POST',
+					url: './sale/order/alipay/refund',
+					data: {'id': refund_id, 'amount_true': r_amount_true},
+					success: function(data) {
+						if(data.payType == 1){
+							$('#popup2').hide();
+							$('div.cover').hide();
+							alert(data.msg);
+							window.location.reload();
+						}else{
+							$('#r_comfirmRefund').after(data.datas);
+						}
+					}
+				});
+			}
+			
+		});
+		
+		function setRefundHtml() {
+			//加载退款单
+			$.ajax({
+				type: 'GET',
+				url: './sale/order/refund',
+				data: {
+					'orderNo': orderNo,
+					'back': 0,
+				},
+				success: function(data) {
+					if(data.success == 0) {
+						if(data.datas) {
+							amount = data.datas.amount;
+							$('#popup2').find('#amount_true').val(amount);
+							setBlock1(data.datas, data.orderData);
+							var delivery_name = data.datas.logistics_name;
+							var delivery_no = data.datas.logistics_no;
+							loadDelivery(orderNo, delivery_name, delivery_no);
+						} else {
+							$('table[name=r_table]').html('<tr><td>该订单暂无退款</td></tr>');
+						}
+					}
+					
+				}
+			});
+		}
+		
+		//加载物流信息
+		function loadDelivery(orderNo, delivery_name, nu) {
+			$.ajax({
+				type: 'GET',
+				url: './sale/order/delivery',
+				data: {"orderNo": orderNo, "kd_no": nu},
+				async:false,
+				success: function(data) {
+					//console.log(data);
+					if(delivery_name) {
+						$('span[name=r_express]').text(delivery_name);
+					}
+					if(nu) {
+						$('span[name=r_express_no]').text(nu);
+					}
+					
+					$('iframe[name=kuaidi100]').attr('src', data.datas);
+				}
+			});
+		}
+		
+		function setBlock1(refund, orderData) {
+			refund_id = refund.id;
+			var div_refund = $('div.block1');
+			div_refund.find('span.on:eq(0)').text(orderNo);
+			div_refund.find('span.op:eq(0)').html('&yen;<span>'+ orderData.totalPrice + '</span>');
+			div_refund.find('span.ot:eq(0)').text(refund.apply_date);
+			
+			if(refund.state == 0) {
+				$('#r_agree').show();
+				$('#r_reject').show();
+			} else if(refund.state == 2) {
+				$('#r_agree').show();
+				$('#r_agree').attr('value', '已被拒绝');
+				$('#r_agree').attr('disabled', 'true');
+				$('#r_agree').unbind('click');
+			} else if(refund.state == 1) {
+				$('#r_agree').show();
+				$('#r_agree').attr('value', '已退款');
+				$('#r_agree').attr('disabled', 'true');
+				$('#r_agree').unbind('click');
+			}
+			
+			if(refund.refund_type == 1) {
+				div_refund.find('td[name=r_type]').html('退货退款');
+			} else if(refund.refund_type == 2) {
+				div_refund.find('td[name=r_type]').html('仅退款');
+			}
+			
+			div_refund.find('span[name=r_amount]').text(refund.amount);
+			div_refund.find('p[name=r_reason]').html(refund.reason);
+			div_refund.find('p[name=r_reason_detail]').html(refund.reason_detail);
+			if(refund.img1) {
+				div_refund.find('img[name=r_img1]').attr('src', refund.img1);
+			} else {
+				div_refund.find('img[name=r_img1]').parent().hide();
+			}
+			if(refund.img2) {
+				div_refund.find('img[name=r_img2]').attr('src', refund.img2);
+			} else {
+				div_refund.find('img[name=r_img2]').parent().hide();
+			}
+			if(refund.img3) {
+				div_refund.find('img[name=r_img3]').attr('src', refund.img3);
+			} else {
+				div_refund.find('img[name=r_img3]').parent().hide();
+			}
+			if(refund.logistics_name){
+				div_refund.find('span[name=r_express]').text(refund.logistics_name);
+			}else{
+				div_refund.find('span[name=r_express]').text("空");
+			}
+			if(refund.logistics_no){
+				div_refund.find('span[name=r_express_no]').text(refund.logistics_no);
+			}else{
+				div_refund.find('span[name=r_express_no]').text("空");
+			}
+			
+		}
+	});
+	</script>
+</body>
+</html>

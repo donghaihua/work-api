@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+        <appender-ref ref="TEMP"/>
+        <appender-ref ref="CONSOLE"/>
+    </appender>
+    <appender name="TEMP" class="org.apache.log4j.FileAppender">
+        <param name="File" value="/tmp/mywilddog.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p [%t] %40.40C (%5L) - %m%n"/>
+        </layout>
+    </appender>
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p [%t] %C (%F:%L) - %m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="org.apache">
+        <level value="INFO" />
+    </logger>
+    <logger name="org.springframework" additivity="true">
+        <level value="WARN" />
+    </logger>
+    <logger name="org.springframework.data.mongodb">
+        <level value="debug" />
+    </logger>
+    <logger name="com.tenmaker.backupwd.controller.shiro">
+        <level value="warn" />
+    </logger>
+    <logger name="org.mongodb.driver">
+        <!-- 控制 com.mongodb.diagnostics.logging 的日志输出 -->
+        <level value="info" />
+    </logger>
+
+    <root>
+        <priority value="debug"/>
+        <appender-ref ref="TEMP"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</log4j:configuration>

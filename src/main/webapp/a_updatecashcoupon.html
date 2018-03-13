@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>修改现金券</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/console.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/bshopweb.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body>
+	<div class="cover">
+	</div>
+	<header>
+		<div class="wrapper">
+			<div class="logo">
+				<img src="img/uhaoulogo.png" alt="logo">
+			</div>
+			<div class="breadcrumb">
+			</div>
+			<div class="userinfo">
+				<img src="img/avatar_preview_default.png" alt="avatar">
+				<span class="username"><span class="un"></span><span class="icon-arrow-down"></span></span>
+			</div>
+			<span class="icon-notif new"><span class="icon-dot"></span></span>
+			<span class="icon-mail new"><span class="icon-dot"></span></span>
+			<ul class="ddlist">
+			</ul>
+		</div>
+	</header>
+	<div class="wrapper">
+		<div id="sidebar" data-index="nav61">
+		</div>
+		<div id="content">
+			<div class="board">
+				<div class="boardt">修改现金券</div>
+				<hr class="boardhr">
+				<div class="infoset">
+						<input type="hidden" name="id">
+						<input type="hidden" name="state">
+						<input type="hidden" name="last_count">
+					<div class="input">
+						<p>名称</p>
+						<input type="text" name="ticketName" data-validate="text">
+						<div class="errortip">网络连接错误，请重试</div>
+					</div>
+					<div class="input">
+						<p>面额</p>
+						<input type="text" name="ticketValue" data-validate="number">
+						<div class="errortip">网络连接错误，请重试</div>
+					</div>
+					<div class="input">
+						<p>描述</p>
+						<input type="text" name="desc" data-validate="text">
+						<div class="errortip">网络连接错误，请重试</div>
+					</div>
+					<div class="input">
+						<p>使用开始时间</p>
+						<input type="text" name="beginTime" data-validate="date">
+						<div class="errortip">网络连接错误，请重试</div>
+					</div>
+					<div class="input">
+						<p>使用截止时间</p>
+						<input type="text" name="endTime" data-validate="date">
+						<div class="errortip">网络连接错误，请重试</div>
+					</div>
+					<div class="input">
+						<p>数量</p>
+						<input type="text" name="count" data-validate="number">
+						<div class="errortip">网络连接错误，请重试</div>
+					</div>
+				</div>
+			</div>
+			<div class="btn">
+				<input class="redl" id="subBtn" type="button" value="保存">
+			</div>
+		</div>
+		<div class="sidebarb">
+			<div class="up">
+				<div class="icon-arrow-up"></div>
+			</div>
+			<div class="copyright" id="site_record">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/a_general.js"></script>
+	<script type="text/javascript">
+	$().ready(function(){
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if (r != null)
+				return unescape(r[2]);
+			return null; //返回参数值
+		}
+		var couponId = getUrlParam('couponId');  
+		$.ajax({
+			type : "get",
+			url : "./s/getTicketById",
+			dataType : "json",	
+			data : {"ticketId": couponId},
+			success : function(data) {
+				if(data.success==0){
+					console.log(data.datas);
+					$("input[name='id']").val(data.datas.id);
+					$("input[name='ticketName']").val(data.datas.ticketName);
+					$("input[name='desc']").val(data.datas.desc);
+					$("input[name='count']").val(data.datas.count);
+					$("input[name='ticketValue']").val(data.datas.ticketValue);
+					$("input[name='beginTime']").val(data.datas.beginTime);
+					$("input[name='endTime']").val(data.datas.endTime);
+					$("input[name='state']").val(data.datas.state);
+					$("input[name='last_count']").val(data.datas.last_count);
+				}
+			}
+		});
+		var sus = 1;
+		$(".infoset input").blur(function(){
+			var tip = "";
+			var v = $(this).val();
+			if(!v){
+				tip = "必填";
+			}else if($(this).attr("data-validate") == "number"){
+				if(isNaN(v)){
+					$(this).val(1);
+					tip = "请填写1-99999的整数";
+				}else{
+					v = Math.floor(Number(v));
+					console.log(v);
+					if(v > 99999){
+						$(this).val(99999);
+						tip = "请填写1-99999的整数";
+					}else if(v<=0){
+						$(this).val(1);
+						tip = "请填写1-99999的整数";
+					}
+				}
+			}else if($(this).attr("data-validate") == "date"){
+				if(!$().datevalidate(v)){
+					tip = "日期格式为1990-12-31";
+				}
+			}
+			
+			if(tip){
+				sus = 0;
+				$(this).siblings(".errortip").text(tip);
+				$(this).parents(".input").addClass("error");
+			}else{
+				$(this).parents(".input").removeClass("error");
+			}
+			
+		});
+		$('#subBtn').click(function(){
+			//注意事项：success 0 或者 1，保存成功或者失败要有提示，
+			//自行添加提示
+			//数据要验证，数字大于0，小于等于99999
+			//其他字段要求不为空即可
+			//此处收集用户填写的数据
+			sus = 1;
+			$(".infoset input").blur();
+			if(sus){
+				var ajaxdata ={
+						"id": $("input[name='id']").val(),
+						"ticketName": $("input[name='ticketName']").val(),
+						"desc": $("input[name='desc']").val(),
+						"count": $("input[name='count']").val(),
+						"ticketValue": $("input[name='ticketValue']").val(),
+						"beginTime": $("input[name='beginTime']").val(),
+						"endTime": $("input[name='endTime']").val(),
+						"state":$("input[name='state']").val(),
+						"last_count":$("input[name='last_count']").val()
+				};
+				console.log(ajaxdata);
+				$.ajax({			
+					type: "PUT",
+					url: "./s/updateSystemTicket",
+					data: JSON.stringify(ajaxdata),
+					contentType: "application/json; charset=utf-8",
+					async: false,
+					cache:false,
+					success:function(data){
+						if(data.success == 0){
+							alert("修改成功!");
+						}
+					}
+				});
+			}
+		});
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+#content{
+	padding-top: 30px;
+}
+
+.counav{
+	background-color: #fff;
+	border-top-left-radius: 5px;
+	position: relative;
+}
+
+.counav ul{
+	width: 920px;
+	height: 64px;
+	border-top-left-radius: 5px;
+	overflow: hidden;
+}
+
+.counav li{
+	float: left;
+	width: 140px;
+	height: 64px;
+	line-height: 64px;
+	text-align: center;
+	background-color: #fff;
+	color: #303134;
+	cursor: pointer;
+}
+
+.counav li[name=dt1].active, .counav li[name=dt1]:hover{
+	background-color: #ed9e33;
+	color: #fff;
+}
+
+.counav .newcoupon,
+.counav .sendcoupon{
+	position: absolute;
+	right: 30px;
+	top: 12px;
+	background-color: #e36655;
+	color: #fff;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+
+.counav .sendcoupon{
+	right: 160px;
+}
+
+.counav .newcoupon:hover,
+.counav .sendcoupon:hover{
+	background-color: #ce4836;
+}
+
+.counav .search{
+	position: absolute;
+	top: 16px;
+	right: 30px;
+}
+
+.counav .send{
+	position: absolute;
+	right: 320px;
+	top: 16px;
+}
+
+.counav .search input,
+.counav .send select{
+	vertical-align: middle;
+	display: inline-block;
+	width: 150px;
+	height: 32px;
+	padding: 0 10px;
+	border: 1px solid #d4d4d4;
+}
+
+.counav .search button,
+.counav .send button{
+	vertical-align: middle;
+	display: inline-block;
+	width: 100px;
+	height: 34px;
+	font-size: 16px;
+}
+
+.counav .send button{
+	width: 180px;
+}
+
+.ccoupon{
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	border-bottom: 1px solid #cacaca;
+	overflow: hidden;
+}
+
+.ccoupon table{
+	border-spacing: 0;
+	background-color: #fff;
+	width: 100%;
+}
+
+.dt1 table{
+	border-top: 4px solid #ed9e33;
+}
+
+.ccoupon table th{
+	text-align: center;
+	height: 50px;
+	padding: 0 30px;
+}
+
+.ccoupon table td{
+	text-align: center;
+	height: 60px;
+	padding: 0 30px;
+	border-top: 1px solid #d4d4d4;
+}
+
+.ccoupon table .td1{
+	text-align: left;
+	max-width: 90px;
+}
+
+.ccoupon table button{
+	background-color: #e36655;
+	color: #fff;
+	padding: 0 10px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.ccoupon table button:hover{
+	background-color: #ce4836;
+}
+
+.infoset>div{
+	
+	margin: 20px 0px 10px 0px;
+}
+
+.infoset input[type=text]{
+	border: 1px solid #d4d4d4;
+	resize: none;
+	padding: 10px;
+	width: 818px;
+	height: 94px;
+}
+
+.infoset input[type=text]{
+	padding: 0px 10px;
+	height: 46px;
+}
+
+.infoset .img{
+	width: 164px;
+	height: 164px;
+	border: 1px solid #d4d4d4;
+}
+
+.infoset .img img{
+	width: 100%;
+	height: 100%;
+}
+
+.infoset .bluer{
+	margin-left: 44px;
+	min-width: 72px;
+	padding: 0px 12px;
+	height: 30px;
+}
+
+.board input.red{
+	display: block;
+	margin: 20px 0 -30px 0;
+	width: 150px;
+	height: 44px;
+}
+

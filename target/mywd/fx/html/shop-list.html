@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>商品列表</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<link href="../icomoon/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/global.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<script src="../js/jquery-1.11.0.min.js"></script>
+	</head>
+
+	<body>
+		<div class="md">
+			<div class="header">商品列表<span class="right-icon" id="list-style-btn" data-type="list1"><i class="icon-goods-list1"></i></span></div>
+			<div class="shop-search">
+				<div class="search-bg">
+					<div class="search-icon"><i class="icon-search"></i></div>
+					<input type="text" value="" />
+				</div>
+			</div>
+
+			<div class="div-list">
+				<ul class="list-2" id="list-ul">
+
+
+				</ul>
+			</div>
+
+		</div>
+		<footer class="footer">
+			<div class="menu">
+				<ul class="menu-nav">
+					<li>
+						<a href="shop-index.html" id="a_shop_index">
+							<p class="icon-p"><i class="icon-home"></i></p>
+							<p>首页</P>
+						</a>
+					</li>
+					<li class="active">
+						<a href="shop-list.html" id="a_shop_list">
+							<p class="icon-p"><i class="icon-goods"></i></p>
+							<p>商品</P>
+						</a>
+					</li>
+					<li>
+						<a href="shop-cart.html" id="a_shop_cart">
+							<p class="icon-p"><i class="icon-cart"></i></p>
+							<p>购物车</P>
+						</a>
+					</li>
+					<li>
+						<a href="user-center.html" id="a_shop_center">
+							<p class="icon-p"><i class="icon-user"></i></p>
+							<p>个人中心</P>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</footer>
+	</body>
+	<script>
+		$(document).ready(function() {
+			//  		商品列表切换效果
+			$("#list-style-btn").click(function() {
+				var liststyle = $(this).attr("data-type");
+				if (liststyle == "list1") {
+					$('html').css("background", "#fff");
+					$(this).attr("data-type", "list2");
+					$(this).html("<i class=\"icon-goods-list02\"></i>");
+					$("#list-ul").removeClass("list-2");
+					$("#list-ul").addClass("list-1");
+				} else {
+					$('html').css("background", "#fafafa");
+					$(this).attr("data-type", "list1");
+					$(this).html("<i class=\"icon-goods-list1\"></i>");
+					$("#list-ul").removeClass("list-1");
+					$("#list-ul").addClass("list-2");
+				}
+			});
+
+
+			var url = window.location.search;
+			var shopId;
+			if(url.match('shopId=')) {
+				shopId = url.split('shopId=')[1];
+				$('#a_shop_index').attr('href', 'shop-index.html?shopId=' + shopId);
+				$('#a_shop_list').attr('href', 'shop-list.html?shopId=' + shopId);
+				$('#a_shop_cart').attr('href', '../../m/cart.html?shopId=' + shopId);
+				$('#a_shop_center').attr('href', 'user-center.html?shopId=' + shopId);
+			} else {
+				window.location.href = 'http://uhaou.cn/m/error.html';
+			}
+			$.ajax({
+				type: 'GET',
+				url: '../../uiserver/distribution/shopIndex',
+				data: {"shopId" : shopId},
+				async: false,
+				cache: false,
+				success: function(res) {
+					if(res.success == 0) {
+						$('div.user-logo').html('<img src="' + res.avatar + '" />');
+						$('div.user-info').find('p.htitle').text(res.shop.name);
+						for(var i = 0; i < res.itemList.length; i++) {
+							var item = res.itemList[i];
+							var resStr = '<li data_id=' + item.id + '>';
+							if(i % 2 != 0) {
+								resStr = '<li class="even" data_id=' + item.id + '>';
+							}
+							resStr += '<div class="list-img"><img src="' + item.avatar + '" alt="" /></div>';
+							resStr += '<div class="list-info"><p class="info-name">' + item.name + '</p>';
+							resStr += '<p class="info-price">￥' + item.minDiscountPrice + '</P></div></li>';
+							$('#list-ul').append(resStr);
+						}
+						$('#list-ul').find('li').click(function () {
+							var itemId = $(this).attr('data_id');
+							//window.location.href = 'http://uhaou.cn/m/item/' + itemId + '.html?shopId=' + shopId;
+							window.location.href = '../../m/item/' + itemId + '.html?shopId=' + shopId;
+						});
+					}
+				}
+
+			});
+		});
+	</script>
+
+</html>

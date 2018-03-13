@@ -1,0 +1,140 @@
+.order{
+	padding-bottom: 1.38rem;
+}
+
+.order .oh{
+	padding: 0 5%;
+	padding-top: 0.3rem;
+	padding-bottom: 0.3rem;
+	position: relative;
+	background-color: #303134;
+	color: #c5c5c5;
+}
+
+.order .oh .no{
+	font-size: 1rem;
+	color: #c5c5c5;
+	line-height: 1.7rem;
+}
+
+.order .oh .date{
+	font-size: 0.77rem;
+	line-height: 1.4rem;
+	color: #c5c5c5;
+}
+
+.order .oh .status{
+	position: absolute;
+	top: 0;
+	right: 5%;
+	text-align: right;
+}
+
+.order .oh .status span{
+	line-height: 3.8rem;
+	color: #abcf58;
+	font-size: 1.07rem;
+}
+
+.oitem{
+	position: relative;
+	margin: 0 5%;
+	border-top: 4px solid #f7f7f7;
+	min-height: 6.6rem;
+}
+
+.ob .oitem:first-child{
+	border-top: none;
+}
+
+.oitem .img{
+	position: absolute;
+	top: 1.15rem;
+	width: 4.6rem;
+	height: 4.6rem;
+}
+
+.oitem .img img{
+	max-width: 100%;
+	max-height: 100%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.oitem p{
+	padding: 1.15rem 8rem 0.6rem 5rem;
+}
+
+.oitem p .s{
+	color: #727272;
+	background-color: #f7f7f7;
+	padding: 0.3rem 0.6rem;
+	font-size: 0.92rem;
+	line-height: 2rem;
+}
+
+.oitem .price{
+	position: absolute;
+	top: 2.42rem;
+	right: 0;
+	text-align: right;
+}
+
+.oitem .price .p{
+	font-size: 1.15rem;
+	font-weight: normal;
+	color: #e36655;
+}
+
+.oitem .price .q{
+	font-weight: normal;
+	font-size: 1.15rem;
+}
+
+.oitem .price .q span{
+	font-size: 1.6rem;
+	font-weight: normal;
+	padding-right: 1.54rem;
+}
+
+.order .btn{
+	position: relative;
+}
+
+.order .btn .tb{
+	width: 100%;
+	background-color: #e36655;
+	height: 3.84rem;
+	text-align: center;
+}
+
+.order .btn .tb input{
+	width: 50%;
+	background-color: #e36655;
+	height: 2.35rem;
+	font-size: 1.23rem;
+	color: #fff;
+	margin-top: 0.75rem;
+}
+
+.order .btn .tb input:nth-child(2){
+	width: 49%;
+	margin-left: -3px;
+	border-left: 2px solid #ce4836;
+}
+
+.order .btn .tp{
+	text-align: right;
+	height: 3.84rem;
+	line-height: 3.84rem;
+	font-size: 1.23rem;
+	margin: 0 5%;
+	border-top: 4px solid #f7f7f7;
+}
+
+.order .btn .tp span{
+	color: #e36655;
+	font-weight: normal;
+	font-size: 1.23rem;
+}
+

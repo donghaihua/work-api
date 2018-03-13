@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>注册</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/reg.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body>
+	<header class="removecart">
+		<div class="stick">
+			<div class="title">
+				<a href="login.html">登录</a>
+				<a class="active">注册</a>
+			</div>
+		</div>
+	</header>
+	<div class="box content main">
+		<div class="rstep">
+			<div class="active"><div>创建账号</div></div>
+			<div><div>验证邮箱</div></div>
+			<div><div>注册成功</div></div>
+		</div>
+		<div class="reg1">
+			<input type="text" placeholder="手机号" id="tel"><br>
+			<input class="red" type="button" value="获取验证码" id="captget">
+			<input type="text" placeholder="短信验证码" id="capt">
+			<br>
+			<input type="password" placeholder="密码" id="pwd1"><br>
+			<input type="password" placeholder="确认密码" id="pwd2"><br>
+			<input type="text" placeholder="邀请码" id="invi">
+			<div class="protc">
+				<img data-val="0" src="img/tick0.png">
+				<img class="active" data-val="1" src="img/tick1.png">
+				我已阅读<a href="agreement.html">《有好油网站会员使用须知》</a>
+			</div>
+		</div>
+		<input class="red btn" type="button" name="reg" value="注册">
+	</div>
+	<footer class="box">
+		<div class="ws">UHAOU.CN</div>
+		<div class="cr">&copy;2015 uhao.cn<br><a href="http://www.miitbeian.gov.cn/">苏ICP备15001958号-1</a></div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$(".protc img").click(function(){
+			$(this).removeClass("active").siblings("img").addClass("active");
+		});
+		
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if (r != null)
+				return unescape(r[2]);
+			return null; //返回参数值
+		}
+		var code = getUrlParam('code');  
+		$('#invi').val(code);
+
+		var captid;
+		$("#captget").click(function(){
+			var sus = 0;
+			var tel = $("#tel").val();
+
+			if (!tel) {
+				alert("手机号必填");
+			}else if(!$().telvalidate(tel)){
+				alert("手机号格式不正确");
+			}else{
+				sus = 1;
+			}
+
+			if (sus) {
+				$(this).attr("disabled","disabled").val("正在发送");
+				$.ajax({
+					type:"post",
+					data:{telephone:tel,type:0},
+					url:"../g/postCaptcha",
+					async:false,
+					error:function(){
+						alert("验证码发送失败，请检查网络并重试");
+						$("#captget").removeAttr("disabled").val("获取验证码");
+					},
+					success:function(data){
+						if (data.success == 0) {
+							$.cookie("captid",data.id);
+							captid = data.id;
+							$("#captget").val("验证码已发送");
+							var sec = 180;
+							function sec180(){
+								if (sec >= 0) {
+									setTimeout(function(){
+										$("#captget").addClass("inactive").attr("value",""+sec+"秒");
+										sec--;
+										sec180();
+									},1000);
+								}else{
+									$("#captget").removeClass("inactive").attr("value","获取验证码").removeAttr("disabled");
+								}
+							}
+							sec180();
+						}else{
+							var errortip;
+							if(data.error == 102){
+								errortip = "手机号已被注册，请直接登录";
+							}else if (data.error == 201){
+								errortip = "手机号格式不正确";
+							}else if (data.error == 202){
+								errortip = "验证码已发送，请等待60秒后重新获取";
+							}else if(data.error == 505){
+								errortip = "验证码发送失败，请检查网络并重试";
+							}
+							alert(errortip);
+							$("#captget").removeAttr("disabled").val("获取验证码");
+						}
+					}
+				});
+			}
+		});
+
+		$("input[name=reg]").removeAttr("disabled");
+		$("input[name=reg]").click(function(){
+			var sus = 0;
+			var tel = $("#tel").val();
+			var capt = $("#capt").val();
+			var pwd1 = $("#pwd1").val();
+			var pwd2 = $("#pwd2").val();
+			var invi = "";
+			if($("#invi").val()){
+				var invi = $("#invi").val();
+			}
+			
+			if (!tel || !capt || !pwd1 || !pwd2) {
+				alert("请填写完整");
+			}else if(!$().telvalidate(tel)){
+				alert("手机号格式不正确");
+				$("#tel").focus();
+			}else if($().check("telephone",tel,"account")){
+				alert("手机号已被注册，请直接登录");
+			}else if(!captid){
+				alert("请先获取验证码");
+			}else if(!$().captvalidate(capt)){
+				alert("验证码格式不正确");
+				$("#capt").focus();
+			}else if(!$().pwdvalidate(pwd1)){
+				alert("密码为不少于6位的数字或字母");
+				$("#pwd1").focus();
+			}else if(pwd1!=pwd2){
+				alert("两次密码输入不一致");
+				$("#pwd2").focus();
+			}else{
+				if(invi){
+					$.ajax({
+						type:"post",
+						data:{"code":invi},
+						url:"../g/verifySpreadCode",
+						async:false,
+						error:function(){
+							alert("网络连接失败，请重试");
+						},
+						success:function(data){
+							if (data.success == 1) {
+								alert("邀请码有误");
+							}else{
+								sus = 1;
+							}
+						}
+					});
+				}else{
+					sus = 1;
+				}
+			}
+			
+			if (sus) {
+				$(this).attr("disabled","disabled").val("正在发送");
+				$.ajax({
+					type:"post",
+					data:{
+						telephone: tel,
+						captchaId:captid,
+						captcha:capt,
+						password:pwd1,
+						code: invi
+					},
+					url:"../passport/account",
+					async:false,
+					error:function(){
+						alert("网络连接失败，请重试");
+					},
+					success:function(data){
+						if (data.success == 0) {
+							$.cookie("captid","");
+							$.cookie("securitykey",data.securityKey);
+							window.location.href="reg_info.html";
+						}else if(data.error == 102){
+							alert("手机号已被注册，请直接登录");
+						}else if(data.error == 201){
+							alert("您输入的手机号格式不正确");
+						}else if(data.error == 301){
+							alert("手机验证码不正确，请重新输入");
+						}else if(data.error == 302){
+							alert("手机验证码已过期，请重新获取验证码");
+						}else{
+							alert("注册失败，请重试");
+						}
+					}
+				});
+			}
+			$(this).removeAttr("disabled").val("注册");
+		});
+	});
+	</script>
+</body>
+</html>
+	

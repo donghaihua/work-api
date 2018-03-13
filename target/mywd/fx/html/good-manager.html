@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>商品管理</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<link href="../icomoon/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/global.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<script src="../js/jquery-1.11.0.min.js"></script>
+	</head>
+
+	<body>
+		<div class="md">
+			<div class="header"><span class="goback"><i class="icon-back"></i></span>商品管理</div>
+		</div>
+		<footer class="footer">
+			
+			<div class="menu pright"  id="good-action">
+				<button class="btn btn-black" type="button" id="edit-btn">编辑</button>
+				<button class="btn btn-orange" type="button" id="addGoods">添加商品</button>
+			</div>
+			<div class="menu pright" style="display: none;" id="good-action-edit">
+				<img src="../images/ticknone.png" data-checked="true" id="check-all" /> <span>全选</span>
+				<button class="btn btn-gray" type="button" id="cancel-btn">取消</button>
+				<button class="btn btn-red" type="button" id="affirm-btn">删除</button>
+			</div>
+		</footer>
+	</body>
+	<script>
+		$(document).ready(function() {
+			$('span.goback').click(function () {
+				window.location.href = 'sale-center.html';
+			});
+
+			//			全选
+			$("#check-all").on("click", function() {
+				var checked = $(this).attr("data-checked");
+				if (checked == "false") {
+					$(this).attr("data-checked", "true");
+					$(this).attr("src", "../images/ticknone.png");
+					$(".cb-box").each(function() {
+						$(this).attr("data-checked", "false");
+						$(this).attr("src", "../images/ticknone.png");
+					});
+				} else {
+					$(this).attr("data-checked", "false");
+					$(this).attr("src", "../images/tick.png");
+					$(".cb-box").each(function() {
+						$(this).attr("data-checked", "true");
+						$(this).attr("src", "../images/tick.png");
+					});
+				}
+			});
+			$("#edit-btn").click(function(){
+				$("#good-action-edit").show();
+				$("#good-action").hide();
+			});
+			$("#cancel-btn").click(function(){
+				$("#good-action-edit").hide();
+				$("#good-action").show();
+			});
+
+
+			/*var url = window.location.search;
+			var shopId;
+			if(url.match('shopId=')) {
+				shopId = url.split('shopId=')[1];
+			} else {
+				window.location.href = 'http://uhaou.cn/m/error.html';
+			}*/
+			$.ajax({
+				type: 'GET',
+				url: '../../uiserver/distribution/shopIndex',
+				//data: {"shopId" : shopId},
+				async: false,
+				cache: false,
+				success: function(res) {
+					if(res.success == 0) {
+						for(var i = 0; i < res.itemList.length; i++) {
+							var item = res.itemList[i];
+							var resStr = '<div class="row margin115">';
+
+							if(i == 0) {
+								resStr = '<div class="row">';
+							}
+							resStr += '<div class="row-content paddding-right"><div class="row-checkbox">';
+							resStr += '<img src="../images/ticknone.png" data-value="'+ item.id +'" data-checked="false" class="cb-box" /></div>';
+							resStr += '<div class="row-good"><img src="' + item.avatar + '" /><div class="goodinfo">';
+							resStr += '<p class="goodname">' + item.name + '</p><p class="goodprice">￥' + item.minDiscountPrice + '</p></div>';
+							resStr += '<span class="deal">成交'+ item.sellCount +'</span></div></div><div class="row-bottom paddding-left">';
+							resStr += '<p class="rowp"><label>一级佣金</label><label>￥'+ item.fxProfitUp +'</label></p>';
+							resStr += '<p class="rowp"><label>二级佣金</label><label>￥'+ item.fxProfitUpUp +'</label></p>';
+							resStr += '<p class="rowp rowprice"><label>销售佣金</label><label>￥'+ item.fxProfit +'</label></p>';
+							resStr += '</div></div>';
+
+							$('div.md').append(resStr);
+						}
+						//	checkbox
+						$(".cb-box").on("click", function() {
+							if ($(this).attr("data-checked") == "false") {
+								$(this).attr("data-checked", "true");
+								$(this).attr("src", "../images/tick.png");
+							} else {
+								$(this).attr("data-checked", "false");
+								$(this).attr("src", "../images/ticknone.png");
+							}
+						});
+					}
+				}
+			});
+			var ids = [];
+			// 删除商品
+			$('#affirm-btn').click(function () {
+				if(confirm("确定要删除该商品吗？")) {
+					$('img.cb-box').each(function () {
+						if ($(this).attr("data-checked") == "true") {
+							ids.push($(this).attr('data-value'));
+						}
+					});
+					if(ids.length == 0) {
+						alert('请选择需要删除的商品');
+					} else {
+						$.ajax({
+							type: 'POST',
+							url: '../../uiserver/distribution/deleteItem',
+							traditional:true,
+							data:{'ids': ids},
+							success: function (res) {
+								if(res.success == 0) {
+									alert('删除成功');
+									window.location.reload();
+								} else {
+									alert(res.errorMsg);
+								}
+							}
+						});
+					}
+				}
+
+			});
+
+			$('#addGoods').click(function () {
+				window.location.href = 'seletor-good.html';
+			});
+		});
+	</script>
+
+</html>

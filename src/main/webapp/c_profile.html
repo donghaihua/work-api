@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>个人信息</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/styleguide.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/profile.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.Jcrop.min.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body class="logoutredirect">
+	<header class="h2">
+		<div class="h2b">
+			<div class="sesearch">
+				<input type="text">
+				<span class="icon-magnifier13"></span>
+			</div>
+			<div class="logo">
+				<img src="img/logo.png" alt="logo">
+			</div>
+			<div class="index">
+				<a href="index.html">首页</a>
+				<div class="dd2">
+					<ul>
+						<li><a href="culture.html">山茶文化</a></li>
+						<li><a href="brand.html">品牌故事</a></li>
+						<li><a href="packagedesign.html">私人定制</a></li>
+						<li><a href="item_list.html">商品系列</a></li>
+						<li><a href="contact.html">联系我们</a></li>
+					</ul>
+					<div class="lan">
+						简
+					</div>
+					<div class="r">
+						<a href="c_orderlist.html">我的订单</a>
+						<a href="login.html">登录</a>|<a href="reg.html">注册</a>
+					</div>
+				</div>
+			</div>
+			<div class="secart">
+				<a href="cart.html">
+					购物车
+					<div class="cartn">0</div>
+				</a>
+			</div>
+		</div>
+	</header>
+	<header class="h1">
+		<div class="box">
+			<div class="logo">
+				<img src="img/logo.png" alt="logo">
+			</div>
+			<div class="ul1">
+				<ul>
+					<!-- <li class="pinfo">
+						<span>130****0000</span>
+						<img src="img/avatar_preview_default.png" alt="avatar">
+						<ul class="dd1">
+							<li><a href="account.html">我的账户</a></li>
+							<li>登出</li>
+						</ul>
+					</li> -->
+					<li class="pinfo"><a href="login.html">登录</a>|<a href="reg.html">注册</a></li>
+					<li><a href="c_orderlist.html">我的订单</a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="bbs"><a href="bbs/forum.html">论坛</a></div>
+			<div class="ul2">
+				<ul>
+					<li><a href="contact.html">联系我们</a></li>
+					<li><a href="item_list.html">商品系列</a></li>
+					<li><a href="packagedesign.html">私人定制</a></li>
+					<li><a href="brand.html">品牌故事</a></li>
+					<li><a href="culture.html">山茶文化</a></li>
+					<li class="active"><a href="index.html">首页</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="boxw se">
+		<div class="box">
+			<ul><li class="active">中</li><li>繁</li><li>JP</li><li>EN</li></ul>
+			<div class="sesearch">
+				<input type="text" name="seinput">
+				<input type="button" name="sebtn" value="搜索">
+			</div>
+			<div class="secart">
+				<a href="cart.html">
+					<div class="cartn">0</div>
+					购物车
+					<span class="icon-arrow-down2"></span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="clear waypoint"></div>
+	<div class="box hcl">
+		<div class="hcartlist">
+			<div class="list">
+				<table>
+					<!-- <tr>
+						<td class="td1">
+							<div class="img">
+								<img src="img/listitem.png" alt="img">
+							</div>
+							<p>
+								<span class="n">红天果冷压榨特级初榨茶籽油</span><br>
+								<span class="s">500ML</span>
+							</p>
+						</td>
+						<td class="td2">1</td>
+						<td class="td3">&yen;200</td>
+						<td class="td4">
+							<span class="icon-cross"></span>
+						</td>
+					</tr> -->
+				</table>
+			</div>
+			<div class="b">
+				<span class="ttn">共<span>0</span>件商品</span>
+				<span class="ttp">总价<span>&yen;0</span></span>
+				<input type="button" id="carthtml" value="结算">
+			</div>
+		</div>
+	</div>
+	<div class="box">
+		<div class="acctmenu" data-index="nav22">
+		</div>
+		<div class="profcont">
+			<div class="profnav">
+				<div class="avatar" id="ava">
+					<img src="img/avatar_preview_default.png" alt="avatar">
+				</div>
+				<div class="un"></div>
+				<ul>
+					<li class="active" name="tab1"><div></div>基本信息</li>
+					<li name="tab2"><div></div>其他个人信息</li>
+					<li name="tab3"><div></div>头像信息</li>
+				</ul>
+			</div>
+			<div class="tab tab1">
+				<table>
+					<tr>
+						<th><div>昵称</div></th>
+						<td>
+							<div class="error"><div></div><span>该昵称已被注册</span></div>
+							<input type="text" name="nickname" maxlength="128">
+						</td>
+					</tr>
+					<tr>
+						<th><div>性别</div></th>
+						<td>
+							<div class="checkdot">
+								<span><span class="icon-dot active" name="gender" value="0"></span>男</span>
+								<span><span class="icon-dot" name="gender" value="1"></span>女</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th><div>真实姓名</div></th>
+						<td>
+							<div class="error"><div></div><span>请不要使用特殊符号</span></div>
+							<input type="text" name="fullname" maxlength="128">
+						</td>
+					</tr>
+					<tr>
+						<th><div>生日</div></th>
+						<td>
+							<div class="error"><div></div><span>格式不正确</span></div>
+							<input type="text" name="birthday" maxlength="10">
+							<span class="tip">输入示例:19000101</span>
+						</td>
+					</tr>
+					<tr>
+						<th><div>所在地</div></th>
+						<td>
+							<select id="province" name="province">
+							</select>
+							<select id="city" name="city">
+							</select>
+							<select id="region" name="region">
+							</select>
+							<div class="clear"></div>
+							<div class="error addre"><div></div><span>格式不正确</span></div>
+							<textarea name="address"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th><div>兴趣爱好</div></th>
+						<td>
+							<div class="hobby">
+								<div class="hobi active" value="0"><div></div>运动</div>
+								<div class="hobi" value="1"><div></div>音乐</div>
+								<div class="hobi" value="2"><div></div>养生</div>
+								<div class="hobi" value="3"><div></div>美食</div>
+								<div class="hobi" value="4"><div></div>美容</div>
+								<div class="hobi" value="5"><div></div>读书</div>
+								<div class="hobi" value="6"><div></div>电影</div>
+								<div class="hobi" value="7"><div></div>互联网</div>
+								<div class="hobi" value="8"><div></div>旅游</div>
+								<div class="hobi" value="9"><div></div>游戏</div>
+								<div class="hobi" value="10"><div></div>电子产品</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<input class="submit" type="button" id="submit1" value="提交">
+				<div class="sbmte sbmte1">网络连接失败，请重试</div>
+			</div>
+			<div class="tab tab2">
+				<table>
+					<tr>
+						<th><div>婚姻状况</div></th>
+						<td>
+							<select name="marriage"></select>
+						</td>
+					</tr>
+					<tr>
+						<th><div>月收入</div></th>
+						<td>
+							<select name="salary"></select>
+						</td>
+					</tr>
+					<tr>
+						<th><div>身份证号</div></th>
+						<td>
+							<div class="error"><div></div><span>格式不正确</span></div>
+							<input type="text" name="idno" maxlength="18">
+						</td>
+					</tr>
+					<tr>
+						<th><div>教育程度</div></th>
+						<td>
+							<select name="education"></select>
+						</td>
+					</tr>
+					<tr>
+						<th><div>所在行业</div></th>
+						<td>
+							<select name="occupation"></select>
+						</td>
+					</tr>
+				</table>
+				<input class="submit" type="button" id="submit2" value="提交">
+				<div class="sbmte sbmte2">网络连接失败，请重试</div>
+			</div>
+			<div class="tab tab3">
+				<form id="form3" action="./passport/account/info/2/avatar" method="POST">
+					<div class="jc-demo-box">
+						<img id="imgShow">
+						<div id="preview-pane">
+							<div id="avatart">预览头像</div>
+							<div class="preview-container">
+								<img id="imgShow-preview" src="" class="jcrop-preview" alt="Preview">
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<input type="hidden" id="x" name="x"> <input type="hidden"
+						id="y" name="y"> <input type="hidden" id="w" name="w">
+					<input type="hidden" id="h" name="h">
+				</form>
+				<form id='formFile' name='formFile' method="post"
+					action="./passport/account/info/avatarTemp" target='frameFile'
+					enctype="multipart/form-data">
+					<hr>
+					<div id="fileUpBox">
+						<input type='button' id='fileUpbtn' value="选择图片">
+						<input type='file' id='fileUp' name='imgFile'>
+					</div>
+					<div id='uploadLog'>仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于2M</div>
+				</form>
+				<input class="submit cxbtn" id="submit3" type="button" value="确认修改">
+				<div class="sbmte sbmte3">网络连接失败，请重试</div>
+				<iframe id='frameFile' name='frameFile' style='display: none;'></iframe>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="box">
+			<div class="l">
+				<p>
+					客户服务<br>
+					<span id="site_phone">025-85703619</span>
+				</p>
+				<p>
+					地址<br>
+					<span id="site_address">江苏省南京市雨花台区长虹路222号<br>
+						德盈国际广场3幢1605室<br>
+						江苏红果文化传播有限公司</span>
+				</p>
+				<p>
+					邮箱<br>
+					<span id="site_email">srv@uhaou.cn</span>
+				</p>
+			</div>
+			<div class="m">
+				<p>订阅有好油，加入我们</p>
+				<div class="rss">
+					<input type="text" placeholder="请输入您的邮箱">
+					<input type="button" value="发送">
+				</div>
+			</div>
+			<div class="r">
+				<p>扫一扫有惊喜</p>
+				<img id="site_2dcode" src="img/2dcode.jpg" alt="code">
+				<div class="site">UHAOU.CN</div>
+				<div class="cr" id="site_record">
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script src="js/jquery.Jcrop.js"></script>
+	<script type="text/javascript">
+		var url = window.location.search;
+		if(url.split('?_tempsg=')[1]) {
+			var tempsg = url.split('?_tempsg=')[1];
+
+			$.ajax({
+				type: 'GET',
+				url: '/g/checkLogin',
+				async: false,
+				cache: false,
+				data: {"tempsg": tempsg},
+				success: function(data){
+
+				}
+			});
+		}
+
+		//avatar
+
+		var jcrop_api, boundx, boundy;
+		var $preview = $('#preview-pane'), 
+			$pcnt = $('#preview-pane .preview-container'), 
+			$pimg = $('#preview-pane .preview-container img'), 
+			xsize = $pcnt.width(),
+			ysize = $pcnt.height();
+		
+		$(function() {
+			initJcrop($('#imgShow'));
+			$('#fileUp').change(function() {
+				$('#uploadLog').html('开始上传中....');
+				$('#formFile').submit();
+			});
+			$("#fileUpbtn").click(function(){
+				$('#uploadLog').html("仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于2M");
+				$("#fileUp").click();
+			});
+		});
+		
+		function uploadSuccess(msg) {
+			if (msg.split('|').length > 1) {
+				if(jcrop_api) {
+					//console.log(11);
+					//jcrop_api.destroy();
+					jcrop_api.setImage(msg.split('|')[1], function() {
+						jcrop_api.setOptions({
+							onChange : updatePreview,
+							onSelect : updatePreview,
+							boxWidth: 300,
+							boxHeight: 300,
+							aspectRatio : xsize / ysize
+						});
+						bounds = jcrop_api.getBounds();
+						boundx = bounds[0];
+						boundy = bounds[1];
+					});
+					jcrop_api.animateTo([ 20, 20, 150, 150 ]);
+					//$('img[alt="[Jcrop Example]"]').attr("src", msg.split('|')[1]);
+				}
+				$('#imgShow').attr("src", msg.split('|')[1]);
+				$('#imgShow-preview').attr('src', msg.split('|')[1]);
+				// $('#uploadLog').html(msg.split('|')[0]);
+				$('#uploadLog').html("上传成功！");
+				$("#imgShow-preview").show();
+			} else {
+				if (msg == 1) {
+					$('#uploadLog').html("上传失败，请重新选择图片");
+				}else if(msg == 2){
+					$('#uploadLog').html("图片大小超出限制，请重新选择图片");
+				}else if(msg == 3){
+					$('#uploadLog').html("格式不符，请重新选择图片");
+				}
+			}
+			return false;
+		};
+
+		function initJcrop(img) {
+			img.Jcrop({
+				onChange : updatePreview,
+				onSelect : updatePreview,
+				boxWidth: 300,
+				boxHeight: 300,
+				aspectRatio : xsize / ysize
+			}, function() {
+				// Store the API in the jcrop_api variable
+				jcrop_api = this;
+				jcrop_api.animateTo([ 20, 20, 150, 150 ]);
+				// Use the API to get the real image size
+				var bounds = this.getBounds();
+				boundx = bounds[0];
+				boundy = bounds[1];
+				// Move the preview into the jcrop container for css positioning
+				$preview.appendTo(jcrop_api.ui.holder);
+
+			});
+		}
+
+		function updatePreview(c) {
+			if (parseInt(c.w) > 0) {
+				var rx = xsize / c.w;
+				var ry = ysize / c.h;
+				
+				$('#x').val(c.x);
+				$('#y').val(c.y);
+				$('#w').val(c.w);
+				$('#h').val(c.h);
+				
+				$pimg.css({
+					width :  Math.round(rx * boundx) + 'px',
+					height : Math.round(ry * boundy) + 'px',
+					marginLeft : '-' + Math.round(rx * c.x) + 'px',
+					marginTop : '-' + Math.round(ry * c.y) + 'px'
+				});
+			}
+		};
+		//avatar
+
+		$(document).ready(function(){
+			if (loginData) {
+				if (loginData.success != 0) {
+					window.location.href = "login.html";
+				}else{
+					$(".profnav .un").text(loginData.userName);
+					$("#ava img").attr("src",loginData.avatar);
+				}
+			}else{
+				//window.location.href = "login.html";
+			}
+			
+			if (!$("#imgShow-preview").attr("src")) {
+				$("#imgShow-preview").hide();
+			}
+
+			function diclist(type,name){
+				$.ajax({
+					type:"get",
+					data:{
+						type:type,
+					},
+					async: false,
+					cache:false,
+					url:"./s/dictionaries",
+					success:function(data){
+						for(var i=0; i<data.length; i++) {
+							$("select[name="+name+"]").append('<option value="'+data.datas[i].id+'">'+ data.datas[i].data_value +'</option>');
+						}
+					}
+				});
+			}
+
+			function loadData(id, parent_id) {
+				$.ajax({
+					url: './regions/get',
+					data: {parent_id: parent_id},
+					cache:false,
+					async: false,
+					success: function(data) {
+						for(var i=0; i<data.length; i++) {
+							$(id).append('<option value="'+data[i].region_id+'">'+ data[i].region_name +'</option>');
+						}
+					}
+				})
+			}
+
+			$(".profnav ul li").click(function(){
+				var n = $(this).attr("name");
+				$(this).siblings("li").removeClass("active");
+				$(this).addClass("active");
+				$(".tab").hide();
+				$(".tab."+n).show();
+			});
+			$(".profnav ul li[name=tab1]").click();
+
+			$('#city').change(function() {
+				var parent_id = $(this).val();
+				$('#region>option').remove();
+				loadData('#region', parent_id);
+			});
+
+			$('#province').change(function() {
+				var parent_id = $(this).val();
+				$('#city>option').remove();
+				$('#region>option').remove();
+				loadData('#city', parent_id);
+				loadData("#region", $("#city").val());
+			});
+
+			$(".checkdot span .icon-dot").click(function(){
+				$(this).parent("span").siblings("span").children(".icon-dot").removeClass("active");
+				$(this).addClass("active");
+			});
+
+			function getinfo(){
+				$.ajax({
+					type:"get",
+					url:"./passport/"+accountid+"/info",
+					cache: false,
+					success:function(data){
+						if (data.success == 0) {
+							infoid = data.datas.id;
+							var inputname = ["nickname","fullname","birthday","address","idNo"];
+							for(var i = 0;i<inputname.length;i++){
+								$("input[name="+(inputname[i]).toLowerCase()+"]").val(data.datas[inputname[i]]);
+							}
+							var selectname = ["marriage","salary","occupation","education"];
+							for(var i = 0;i<selectname.length;i++){
+								var sel_index = selectname[i];
+								if(data.datas[sel_index]) {
+									$("select[name="+selectname[i]+"]").val(data.datas[sel_index].id);
+								}
+							}
+							
+							if (data.datas.nickname) {
+								$.cookie("nickname",data.datas.nickname);
+							}
+							if (data.datas.gender) {
+								$("span[name=gender]").removeClass("active");
+								$("span[name=gender][value="+data.datas.gender+"]").addClass("active");
+							}
+							$("textarea[name=address]").val(data.datas.address);
+							
+							if(data.datas.province) {
+								$("#province").val(data.datas.province.region_id);
+								$('#province').change();
+							}
+							
+							if(data.datas.city) {
+								$("#city").val(data.datas.city.region_id);
+								$('#city').change();
+							}
+							
+							if(data.datas.region) {
+								$("#region").val(data.datas.region.region_id);
+							}
+							
+							$("#ava img").attr("src",data.datas.avatar);
+							$("input.hobi").removeAttr("checked");
+							if (data.datas.hobbies) {
+								var h = data.datas.hobbies.split(",");
+								$(".hobi").removeClass("active");
+								if (h) {
+									for (var i = 0; i < h.length; i++) {
+										$(".hobi[value="+h[i]+"]").addClass("active");
+									};
+								}
+							}
+						}else{
+							window.location.href="login.html";
+						}
+					}
+				});
+			}
+
+			function trim(str){   
+    			return str.replace(/^(\s|\u00A0)+/,'').replace(/(\s|\u00A0)+$/,'');   
+			}
+
+			loadData('#province', '');
+
+			diclist(1,"marriage");
+			diclist(2,"salary");
+			diclist(3,"education");
+			diclist(4,"occupation");
+
+			getinfo();
+
+			$("#submit3").removeAttr("disabled");
+			$("#submit3").click(function() {
+				$(".sbmte3").hide();
+				$(this).attr("disabled","disabled");
+				$.ajax({
+					type: 'POST',
+					url: './passport/account/info/'+ infoid +'/avatar',
+					data: {
+						x: $('#x').val(),
+						y: $('#y').val(),
+						w: $('#w').val(),
+						h: $('#h').val()
+					},
+					async:false,
+					cache:false,
+					error:function(){
+						$("#s3tip").text("修改失败，请重试").show();
+					},
+					success: function(data) {
+						if (data.success == 0) {
+							$(".sbmte3").text("修改成功").show();
+							getinfo();
+						}else if(data.error == 101){
+							window.location.href = "error.html";
+						}else if(data.error == 401){
+							window.location.href = "error.html";
+						}else{
+							$("#s3tip").text("修改失败，请重试").show();
+						}
+					}
+				});
+				$(this).removeAttr("disabled");
+			});
+
+			$(".hobi").click(function(){
+				if ($(this).hasClass("active")) {
+					$(this).removeClass("active");
+				}else{
+					$(this).addClass("active");
+				}
+			});
+
+			var sus = 1;
+			function tipDisplay(tip,e){
+				if (tip) {
+					sus = 0;
+					e.show().children("span").text(tip);
+				}else{
+					e.hide();
+				}
+			}
+
+			$("input[name=nickname]").blur(function(){
+				var e = $(this).siblings(".error");
+				var v = $.trim($(this).val());
+				var tip = "";
+				if (v) {
+					if (v != $.cookie("nickname")) {
+						if (!$().nnamevalidate(v)) {
+							tip = "格式不正确，请不要使用特殊符号并不少于2个字符";
+						}else if($().check("nickname",v,"info")){
+							tip = "昵称已被占用";
+						}
+					}
+				}
+				tipDisplay(tip,e);
+			});
+
+			$("input[name=fullname]").blur(function(){
+				var e = $(this).siblings(".error");
+				var v = $.trim($(this).val());
+				var tip = "";
+				if (v) {
+					if (!$().fnamevalidate(v)) {
+						tip = "格式不正确，请不要使用特殊符号并不少于2个字符";
+					}
+				}
+
+				tipDisplay(tip,e);
+			});
+
+			$("input[name=birthday]").focus(function(){
+				$(this).siblings(".tip").show();
+				var v = $(this).val();
+				if (v) {
+					if (v.length >= 6){
+						$(this).val(v.substring(0,4)+v.substring(5,7)+v.substring(8,10));
+					}else if(v.length >= 4){
+						$(this).val(v.substring(0,4)+v.substring(5,7));
+					}
+				}
+			});
+
+			$("input[name=birthday]").blur(function(){
+				var e = $(this).siblings(".error");
+				$(this).siblings(".tip").hide();
+				var v = $(this).val();
+				var tip = "";
+				if (v) {
+					if (v.length >= 6){
+						$(this).val(v.substring(0,4)+"-"+v.substring(4,6)+"-"+v.substring(6,8));
+					}else if(v.length >= 4){
+						$(this).val(v.substring(0,4)+"-"+v.substring(4,6));
+					}
+
+					v = $(this).val();
+					if (!$().birthvalidate(v)) {
+						tip = "格式不正确，请重新输入";
+					}
+				}
+
+				tipDisplay(tip,e);
+			});
+
+			$("input[name=idno]").blur(function(){
+				var e = $(this).siblings(".error");
+				var v = $(this).val();
+				var tip = "";
+				if (v) {
+					if (!$().idnumbervalidate(v)) {
+						tip = "格式不正确，请重新输入";
+					}
+				}
+				
+				tipDisplay(tip,e);
+			});
+
+			$("textarea[name=address]").blur(function(){
+				var e = $(this).siblings(".error");
+				var v = $(this).val();
+				var tip = "";
+				if (v && (!$().addrvalidate(v))) {
+					tip = "格式不正确，请不要使用特殊符号";
+				}
+				tipDisplay(tip,e);
+			});
+
+			$("#submit1, #submit2").removeAttr("disabled");
+			$("#submit1").click(function(){
+				$("this").attr("disabled","disabled");
+				$(".sbmte").hide();
+				sus = 1;
+
+				var b = $("input[name=birthday]");
+				if (b.val()) {
+					if (!$().birthvalidate(b.val())) {
+						sus = 0;
+						b.siblings(".error").children("span").text("格式不正确，请重新输入");
+						b.siblings(".error").show();
+					}else{
+						b.siblings(".error").hide();
+					}
+				}
+
+				$("input[name=nickname], input[name=fullname], textarea[name=address]").blur();
+				if (sus) {
+					var gender = $("span.active[name=gender]").attr("value");
+
+					var h = ",";
+					var ihobi = $("div.hobi.active");
+					for (var j = ihobi.length - 1; j >= 0; j--) {
+						h = h+$(ihobi[j]).attr("value")+",";
+					};
+					h = h.substring(1,h.length-1);
+
+					$.ajax({
+						type:"put",
+						data:{
+							infoId:infoid,
+							nickname:$("input[name=nickname]").val(),
+							fullname:$("input[name=fullname]").val(),
+							gender:gender,
+							birthday:$("input[name=birthday]").val(),
+							nation:1,
+							province:$("select[name=province]").val(),
+							city:$("select[name=city]").val(),
+							region:$("select[name=region]").val(),
+							address:$("textarea[name=address]").val(),
+							hobbies: h,
+							tab: 1,
+						},
+						url:"./passport/info/basic",
+						error:function(){
+							$(".sbmte1").text("修改失败，请重新提交").show();
+						},
+						success:function(data){
+							if (data.success == 0) {
+								$(".sbmte1").text("修改成功").show();
+								getinfo();
+							}else{
+								window.location.href="error.html";
+							}
+						}
+					});
+				}
+				$("#submit1").removeAttr("disabled");
+			});
+
+			$("#submit2").click(function(){
+				$("#submit2").attr("disabled","disabled");
+				$(".sbmte").hide();
+				sus = 1;
+
+				$("input[name=idno]").blur();
+				if (sus) {
+					$.ajax({
+						type:"put",
+						data:{
+							infoId:infoid,
+							marriage:$("select[name=marriage]").val(),
+							salary:$("select[name=salary]").val(),
+							idNo:$("input[name=idno]").val(),
+							education:$("select[name=education]").val(),
+							occupation:$("select[name=occupation]").val(),
+							tab: 2,
+						},
+						url:"./passport/info/basic",
+						error:function(){
+							$(".sbmte2").text("修改失败，请重新提交").show();
+						},
+						success:function(data){
+							if (data.success == 0) {
+								$(".sbmte2").text("修改成功").show();
+								getinfo();
+							}else{
+								window.location.href="error.html";
+							}
+						}
+					});
+				}
+				$("#submit2").removeAttr("disabled");
+			});
+		});
+	</script>
+</body>
+</html>

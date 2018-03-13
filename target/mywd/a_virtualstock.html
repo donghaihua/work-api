@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>虚拟股设定</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/console.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/cashcoupon.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body>
+	<div class="cover">
+	</div>
+	<header>
+		<div class="wrapper">
+			<div class="logo">
+				<img src="img/uhaoulogo.png" alt="logo">
+			</div>
+			<div class="breadcrumb">
+			</div>
+			<div class="userinfo">
+				<img src="img/avatar_preview_default.png" alt="avatar">
+				<span class="username"><span class="un"></span><span class="icon-arrow-down"></span></span>
+			</div>
+			<span class="icon-notif new"><span class="icon-dot"></span></span>
+			<span class="icon-mail new"><span class="icon-dot"></span></span>
+			<ul class="ddlist">
+			</ul>
+		</div>
+	</header>
+	<div class="wrapper">
+		<div id="sidebar" data-index="nav71">
+		</div>
+		<div id="content">
+			<div class="board">
+				<div class="boardt">虚拟股设定</div>
+				<hr class="boardhr">
+				<div class="infoset">
+					<div>年度利润(元)</div>
+					<input type="text" id="netProfit" value="0">
+					<div>分红比率(%)<span style="font-size: 14px; color: #ababab; margin-left: 20px;">请填写百分数的数字部分，比如填写100，代表100%</span></div>
+					<input type="text" id="ratioProfit" value="0">
+					<div>每股收益（元）</div>
+					<input type="text" readonly="readonly" id="epsProfit" value="0">
+				</div>
+				<input class="red" id="subBtn" type="button" value="保存">
+			</div>
+		</div>
+		<div class="sidebarb">
+			<div class="up">
+				<div class="icon-arrow-up"></div>
+			</div>
+			<div class="copyright" id="site_record">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/a_general.js"></script>
+	<script type="text/javascript">
+	$().ready(function(){
+		var stockId;
+		var issueNumber = 0;
+		$.ajax({
+			type : "GET",
+			url : "./s/stock/getCurrData",
+			async: false,
+			cache: false,
+			success : function(data){
+				console.log(data.datas);
+				if(data.success == 0){
+					stockId = data.datas.id;
+					$("#netProfit").val(data.datas.netProfit);
+					$("#ratioProfit").val(data.datas.ratioProfit);
+					issueNumber = data.datas.issueNumber;
+					if(!issueNumber || issueNumber<=0){
+						issueNumber = 0;
+					}
+					$("#epsProfit").val(data.datas.epsProfit);
+				}
+			}
+		});
+		
+		function updateEpsProfit(){
+			var netProfit = $("#netProfit").val();
+			var ratioProfit = $("#ratioProfit").val();
+			var epsProfit = 0;
+			if(isNaN(netProfit)){
+				$("#netProfit").val(0);
+			}else if(isNaN(ratioProfit)){
+				$("#ratioProfit").val(0);
+			}else if(issueNumber == 0){
+				$("#epsProfit").val("暂无流通数，无法计算每股收益");
+				return 0;
+			}else{
+				epsProfit = (Number(netProfit)*Number(ratioProfit)/100)/issueNumber;
+				$("#epsProfit").val(epsProfit.toFixed(2));
+				console.log(epsProfit);
+				return 0;
+			}
+			return 1;
+		}
+		$("#netProfit, #ratioProfit").blur(function(){
+			updateEpsProfit();
+		});
+		$("#subBtn").click(function(){
+			if(!updateEpsProfit()){
+				$.ajax({
+					type:"POST",
+					data:{
+						stockId:stockId,
+						netProfit:$("#netProfit").val(),
+						ratioProfit:$("#ratioProfit").val()
+						},
+					url:"./s/stock/update",
+					async: false,
+					cache: false,
+					success:function(data){
+						if(data.success == 0){
+							alert("保存成功!");
+						}else{
+							alert("保存失败!");
+						}
+					}
+				});
+			}else{
+				alert("请检查数据格式");
+			}
+		});
+		
+		 /* $.ajax({
+             type: 'get',
+             url: './s/stock/getPastData',
+             success: function (data) {
+               console.log(data);
+             }
+         }); */
+	});
+	</script>
+</body>
+</html>

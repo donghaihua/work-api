@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>登录88</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/styleguide.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/reg.css">
+
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+	<script type="text/javascript">
+        var url = window.location.href;
+        var url_array = url.split('cn');
+        var final_url = url_array[1];
+        console.log(url_array);
+        //平台、设备和操作系统
+        var system ={
+            win : false,
+            mac : false,
+            xll : false
+        };
+        //检测平台
+        var p = navigator.platform;
+        //console.log(p);
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句
+        if(system.win || system.mac || system.xll) { //转向电脑端
+            if(final_url.length == 0) {
+                console.log(url_array[0] + "cn/m/index.html");
+                window.location.href = url_array[0] + "cn/m/index.html";
+            } else if(final_url.indexOf("/m/") == 0) {
+                final_url = final_url.split('m/')[1];
+                console.log(url_array[0] + "cn/" + final_url);
+                window.location.href = url_array[0] + "cn/" + final_url;
+            }
+        } else {  // 转向手机端
+            if(final_url.indexOf("/m/") == -1) {
+                console.log(url_array[0] + "cn/m" + final_url);
+                window.location.href = url_array[0] + "cn/m" + final_url;
+            }
+        }
+	</script>
+</head>
+<body>
+<header class="h2">
+	<div class="h2b">
+		<div class="sesearch">
+			<input type="text">
+			<span class="icon-magnifier13"></span>
+		</div>
+		<div class="logo">
+			<img src="img/kmlogo.png" alt="logo">
+		</div>
+		<div class="index">
+			<a href="index.html">首页</a>
+			<div class="dd2">
+				<ul>
+					<li><a href="culture.html">山茶文化</a></li>
+					<li><a href="brand.html">品牌故事</a></li>
+					<li><a href="packagedesign.html">私人定制</a></li>
+					<li><a href="item_list.html">商品系列</a></li>
+					<li><a href="contact.html">联系我们</a></li>
+				</ul>
+				<div class="lan">
+					简
+				</div>
+				<div class="r">
+					<a href="c_orderlist.html">我的订单</a>
+					<a href="login.html">登录</a>|<a href="reg.html">注册</a>
+				</div>
+			</div>
+		</div>
+		<div class="secart">
+			<a href="cart.html">
+				购物车
+				<div class="cartn">0</div>
+			</a>
+		</div>
+	</div>
+</header>
+<header class="h1">
+	<div class="box">
+		<div class="logo">
+			<img src="img/kmlogo.png" alt="logo">
+		</div>
+		<div class="ul1">
+			<ul>
+				<!-- <li class="pinfo">
+                    <span>130****0000</span>
+                    <img src="img/avatar_preview_default.png" alt="avatar">
+                    <ul class="dd1">
+                        <li><a href="account.html">我的账户</a></li>
+                        <li>登出</li>
+                    </ul>
+                </li> -->
+				<li class="pinfo"><a href="login.html">登录</a>|<a href="reg.html">注册</a></li>
+				<li><a href="c_orderlist.html">我的订单</a></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div class="bbs"><a href="bbs/forum.html">论坛</a></div>
+		<div class="ul2">
+			<ul>
+				<li><a href="contact.html">联系我们</a></li>
+				<li><a href="item_list.html">商品系列</a></li>
+				<li><a href="packagedesign.html">私人定制</a></li>
+				<li><a href="brand.html">品牌故事</a></li>
+				<li><a href="culture.html">山茶文化</a></li>
+				<li class="active"><a href="index.html">首页</a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<div class="boxw se">
+	<div class="box">
+		<ul><li class="active">中</li><li>繁</li><li>JP</li><li>EN</li></ul>
+		<div class="sesearch">
+			<input type="text" name="seinput">
+			<input type="button" name="sebtn" value="搜索">
+		</div>
+		<div class="secart">
+			<a href="cart.html">
+				购物车
+				<div class="cartn">0</div>
+				<span class="icon-arrow-down2"></span>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="clear waypoint"></div>
+<div class="box hcl">
+	<div class="hcartlist">
+		<div class="list">
+			<table>
+				<!-- <tr>
+                    <td class="td1">
+                        <div class="img">
+                            <img src="img/listitem.png" alt="img">
+                        </div>
+                        <p>
+                            <span class="n">红天果冷压榨特级初榨茶籽油</span><br>
+                            <span class="s">500ML</span>
+                        </p>
+                    </td>
+                    <td class="td2">1</td>
+                    <td class="td3">&yen;200</td>
+                    <td class="td4">
+                        <span class="icon-cross"></span>
+                    </td>
+                </tr> -->
+			</table>
+		</div>
+		<div class="b">
+			<span class="ttn">共<span>0</span>件商品</span>
+			<span class="ttp">总价<span>&yen;0</span></span>
+			<input type="button" id="carthtml" value="结算">
+		</div>
+	</div>
+</div>
+<div class="boxw login">
+	<div class="box">
+		<div class="lr">
+			<h3>没有账号</h3>
+			<p>注册成为我们的会员，享受更多优惠！</p>
+			<a href="reg.html"><input type="button" value="注册"></a>
+		</div>
+		<div class="ll">
+			<div class="lb"></div>
+			<p>用户名/手机号/邮箱<span class="icon-dot"></span></p>
+			<div class="error lpe"><div></div><span>必填</span></div>
+			<input type="text" maxlength="128" id="lp">
+			<p>密码<span class="icon-dot"></span></p>
+			<div class="error pwde"><div></div><span>必填</span></div>
+			<input type="password" maxlength="128" id="pwd">
+			<div class="captcha">
+				<p>验证码<span class="icon-dot"></span></p>
+				<div class="error capte"><div></div><span>必填</span></div>
+				<input type="text" maxlength="4" id="capt" name="capt">
+				<img id="captimg" src="./g/getKaptchaImage">
+				<br>
+			</div>
+			<div class="checkbox icon-checkmark checked"></div>
+			<span class="rem">记住登录名</span>
+			<a href="forget_tel.html" class="forget">忘记密码</a>
+			<input type="button" id="login" value="登录">
+			<div class="loginerror">网络连接错误，请重试</div>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="box">
+		<div class="l">
+			<p>
+				客户服务<br>
+				<span id="site_phone">025-85703619</span>
+			</p>
+			<p>
+				地址<br>
+				<span id="site_address">江苏省南京市雨花台区长虹路222号<br>
+						德盈国际广场3幢1605室<br>
+						江苏红果文化传播有限公司</span>
+			</p>
+			<p>
+				邮箱<br>
+				<span id="site_email">srv@uhaou.cn</span>
+			</p>
+		</div>
+		<div class="m">
+			<p>订阅有好油，加入我们</p>
+			<div class="rss">
+				<input type="text" placeholder="请输入您的邮箱">
+				<input type="button" value="发送">
+			</div>
+		</div>
+		<div class="r">
+			<p>扫一扫有惊喜</p>
+			<img id="site_2dcode" src="img/2dcode.jpg" alt="code">
+			<div class="site">UHAOU.CN</div>
+			<div class="cr" id="site_record">
+			</div>
+		</div>
+	</div>
+</footer>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/general.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function($){
+        $(".ll .checkbox").click(function(){
+            if ($(this).hasClass("checked")) {
+                $(this).removeClass("checked");
+            }else{
+                $(this).addClass("checked");
+            }
+        });
+
+        var loginparam = $.cookie("logparam");
+        if (loginparam) {
+            $("#lp").val(loginparam);
+        }
+
+        var captistatus = 0;
+        var sus = 1;
+        /*$("#lp").blur(function(){
+            $(".ll .lpe").hide();
+            var tip = "";
+            var v = $(this).val();
+            if (!v) {
+                tip = "必填";
+            }else{
+                $.ajax({
+                    type:"post",
+                    data:{loginParam:v},
+                    url:"./passport/security/loginCheck",
+                    async:false,
+                    success:function(data){
+                        if (data.success == 0) {
+                            $(".captcha").show();
+                            captistatus = 1;
+                        }
+                    }
+                });
+           }
+
+            if (tip) {
+                sus = 0;
+                $(".ll .lpe span").text(tip);
+                $(".ll .lpe").show();
+            }
+        });
+*/
+        $("#pwd").blur(function(){
+            $(".ll .pwde").hide();
+            var tip = "";
+            var v = $(this).val();
+            if (!v) {
+                tip = "必填";
+            }
+
+            if (tip) {
+                sus = 0;
+                $(".ll .pwde span").text(tip);
+                $(".ll .pwde").show();
+            }
+        });
+
+        $("#captimg").click(function(){
+            $().captimg();
+            $("#capt").val("");
+            $(".ll .capte").hide();
+        });
+
+        $("#capti").blur(function(){
+            var tip = "";
+            var v = $(this).val();
+            $(".ll .capte").hide();
+            if (!v) {
+                tip = "必填";
+            }else if(!$().captimgvalidate(v)){
+                tip = "验证码格式不正确";
+            }else if($().vcaptimg(v)){
+                tip = "验证码错误";
+            }
+
+            if (tip) {
+                sus = 0;
+                $(".ll .capte span").text(tip);
+                $(".ll .capte").show();
+            }
+        });
+
+        $("#login").removeAttr("disabled");
+        $("#login").click(function(){
+            sus = 1;
+            $(this).attr("disabled","disabled");
+            $(".ll .error, .ll .loginerror").hide();
+            $("#lp, #pwd").blur();
+            if (captistatus) {
+                $("#capt").blur();
+            }
+
+
+            if (sus) {
+                $.ajax({
+                    type:"post",
+                    data:{
+                        loginParam:$("#lp").val(),
+                        password:$("#pwd").val(),
+                        captchaImg:$("#capt").val(),
+                    },
+                    url:"./passport/login",
+                    async:false,
+                    error:function(){
+                        $(".ll .loginerror").text("网络连接错误，请重试").show();
+                        $("#captimg").click();
+                    },
+                    success:function(data){
+                        if (data.success == 0) {
+                            if ($(".ll .checkbox").hasClass("checked")) {
+                                $.cookie("logparam",$("#lp").val());
+                            }else{
+                                $.cookie("logparam","");
+                            }
+                            var url = location.search; //获取url中"?"符后的字串
+                            if (url.indexOf("?") != -1) {
+                                var str = url.substr(1);
+                                var strArray = str.split("&");
+                                for(var i = 0; i < strArray.length; i ++) {
+                                    var url_param = strArray[i].split("=")[0];
+                                    if(url_param == 'callback') {
+                                        window.location.href = decodeURIComponent(strArray[0].split("=")[1]);
+                                    }
+                                }
+                            } else {
+                                window.location.href="a_stock.html";
+                            }
+                        }else{
+                            $("#captimg").click();
+                            var errort = "";
+                            if (data.error == 101){
+                                errort = "该账户尚未注册，请注册后登录";
+                            }else if(data.error == 203){
+                                errort = "密码不正确";
+                            }else if(data.error == 301){
+                                errort = "验证码错误";
+                            }else if(data.error == 1){
+                                errort = "您的账户已被冻结";
+                            }else if(data.error == 201){
+                                $("#lp, #pwd").blur();
+                                errort = "输入格式错误";
+                            }
+                            $(".ll .loginerror").text(errort).show();
+                        }
+                    }
+                });
+            }
+            $(this).removeAttr("disabled");
+        });
+
+        $(document).keydown(function(event){
+            if(event.keyCode==13){
+                $("#login").click();
+            }
+        });
+    });
+</script>
+</body>
+</html>

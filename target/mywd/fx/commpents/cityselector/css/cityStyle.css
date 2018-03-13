@@ -1,0 +1,117 @@
+/*城市*/
+/*蒙版*/
+
+.cityback {
+	width: 100%;
+	position: fixed;
+	z-index: 998;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	display: none;
+}
+
+.cityback .cityback-content {
+	background: rgba(0, 0, 0, 0.7);
+	min-width: 320px;
+	max-width: 640px;
+	margin: 0 auto;
+	height: 100%;
+}
+
+.citybox {
+	width: 100%;
+	position: fixed;
+	z-index: 999;
+	bottom: 0px;
+	left: 0px;
+	display: none;
+	bottom: 0;
+}
+
+.citybox .citybox-content {
+	margin: 0 auto;
+	min-width: 320px;
+	max-width: 640px;
+	background: #fff;
+	position: relative;
+	min-height: 4rem;
+}
+
+.citybox .citybox-content .city-seletor-content ul {
+	min-height: 20rem;
+	list-style: none;
+}
+
+.citybox .citybox-content h3 {
+	text-align: center;
+	padding: 0.76rem 0px;
+}
+
+.citybox .citybox-content .city-close {
+	position: absolute;
+	top: -2rem;
+	right: 0px;
+	width: 2rem;
+	height: 2rem;
+	background: #B1B1B1;
+	color: #fff;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	line-height: 2rem;
+	text-align: center;
+}
+
+.citybox .citybox-content .city-seletor-nav ul {
+	list-style: none;
+	height: 3.3rem;
+	background: #fafafa;
+	border-top: #F3F3F3 solid 2px;
+	border-bottom: #F3F3F3 solid 2px;
+}
+
+.citybox .citybox-content .city-seletor-nav ul li {
+	float: left;
+	width: 33.3%;
+	height: 3.3rem;
+	text-align: center;
+	line-height: 3.3rem;
+	color: #8F8F8F;
+}
+
+.citybox .citybox-content .city-seletor-nav ul li.active {
+	color: #585858;
+	border-bottom: #EA7744 solid 4px;
+}
+
+.citybox .citybox-content .city-seletor-content {
+	height: 20.5rem;
+	width: 100%;
+}
+.citybox .citybox-content .city-seletor-content div {
+	height: 20rem;
+	display: none;
+	overflow-y: auto;
+	float: left;
+	width: 100%;
+}
+.citybox .citybox-content .city-seletor-content div.open {
+	display: block;
+}
+.citybox .citybox-content .city-seletor-content ul {
+	min-height: 20rem;
+	list-style: none;
+	width: 100%;
+}
+
+.citybox .citybox-content .city-seletor-content ul li {
+	height: 2.5rem;
+	line-height: 2.5rem;
+	width: 97.4%;
+	padding-left: 2.6%;
+	float: left;
+}
+
+.citybox .citybox-content .city-seletor-content ul li.active {
+	background: #F2F2F2;
+}

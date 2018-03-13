@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="css/styleguide.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+<link rel="stylesheet" type="text/css" href="js/src/kkpager_blue.css" />
+<style type="text/css">
+	.bor{border-collapse:collapse;}
+	.bor th,.bor td{height:50px;text-align:left;padding: 0 10px;border:1px dashed #ababab;}
+	.bor td input[type=button]{height:20px; margin-right: 10px;}
+</style>
+</head>
+<body>
+	<table class="bor">
+		账户名：<input type="text" name="userName"> <input type="button" value="查询">
+		<tr><th>主键</th><th>用户名</th><th>手机号</th><th>邮箱</th><th>账号状态</th><th>操作</th></tr>
+	</table>
+	<div id="kkpager"></div>
+	<script src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/src/kkpager.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		function userlist(lastPage){
+			var userName;
+			userName = $('input[name="userName"]').val();
+			$.ajax({
+			   	url:'./passport/userlist',
+				type:'get',
+				dataType : 'json',
+				data:{lastPage: lastPage, limit: 10, userName: userName},
+				success : function(data){
+					var _html="";
+					if(data.success==0){
+						for(var i=0;i<data.datas.length;i++){
+							_html = "<tr><td>"+data.datas[i].id+"</td><td>"+data.datas[i].userName+"</td><td>"+data.datas[i].telephone+"</td><td>"+data.datas[i].email+"</td>";
+							if(data.datas[i].state == 0){
+								_html += "<td>正常</td>";
+							}else{
+								_html += "<td>被冻结</td>";
+							}
+							_html += "<td><input type='button' value='密码重置' onclick='reset("+data.datas[i].id+")'><input type='button' value='冻结' onclick='forzen("+data.datas[i].id+")'><input type='button' value='解冻' onclick='unForzen("+data.datas[i].id+")'></td></tr>";
+							$("table.bor").append(_html);
+						}
+						//生成分页控件  
+						kkpager.generPageHtml({
+						    pno : data.lastPage,
+						    mode : 'click', //设置为click模式
+						    //总页码  
+						    total : (data.totalCount/10)+1,  
+						    //总数据条数  
+						    totalRecords : data.totalCount,
+						    //点击页码、页码输入框跳转、以及首页、下一页等按钮都会调用click
+						    //适用于不刷新页面，比如ajax
+						    click : function(n){
+						        //这里可以做自已的处理
+						        userlist(n)
+						    	$("table.bor tr").next().remove();
+						        //处理完后可以手动条用selectPage进行页码选中切换
+						        this.selectPage(n);
+						    },
+						    //getHref是在click模式下链接算法，一般不需要配置，默认代码如下
+						    getHref : function(n){
+						        return '#';
+						    }
+
+						});
+					}
+				} 
+		   });
+		}
+		userlist(1);
+		$('input[type="button"]').on("click",function(){
+			$("table.bor tr").next().remove();
+			userlist(1);
+		});
+	});
+
+	//重置密码
+	function reset(accountId){
+		$.ajax({
+		   	url:'./passport/password/reset',
+			type:'PUT',
+			dataType : 'json',
+			data:{passportId: accountId},
+			success : function(data){
+				if(data.success == 0){
+					alert("重置成功");
+					window.location.reload();
+				}else if(data.error == 301){
+					alert("无权限");
+				}
+			} 
+	   });
+	}
+	//冻结
+	function forzen(accountId){
+		$.ajax({
+		   	url:'./passport/user/forzen',
+			type:'PUT',
+			dataType : 'json',
+			data:{passportId: accountId},
+			success : function(data){
+				if(data.success == 0){
+					alert("已冻结");
+					window.location.reload();
+				}else if(data.error == 301){
+					alert("无权限");
+				}
+			} 
+	   });
+	}
+	//解冻
+	function unForzen(accountId){
+		$.ajax({
+		   	url:'./passport/user/unForzen',
+			type:'PUT',
+			dataType : 'json',
+			data:{passportId: accountId},
+			success : function(data){
+				if(data.success == 0){
+					alert("已解冻");
+					window.location.reload();
+				}else if(data.error == 301){
+					alert("无权限");
+				}
+			} 
+	   });
+	}
+	</script>
+</body>
+</html>

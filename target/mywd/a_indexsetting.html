@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>首页设置</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/console.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/bshopweb.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body>
+	<iframe id='frameFilec' name='frameFilec' style='display: none;'></iframe>
+	<header>
+		<div class="wrapper">
+			<div class="logo">
+				<img src="img/kmlogo_white.png" alt="logo">
+			</div>
+			<div class="breadcrumb">
+			</div>
+			<div class="userinfo">
+				<img src="img/avatar_preview_default.png" alt="avatar">
+				<span class="username"><span class="un"></span><span class="icon-arrow-down"></span></span>
+			</div>
+			<span class="icon-notif new"><span class="icon-dot"></span></span>
+			<span class="icon-mail new"><span class="icon-dot"></span></span>
+			<ul class="ddlist">
+			</ul>
+		</div>
+	</header>
+	<div class="wrapper">
+		<div id="sidebar" data-index="nav41">
+		</div>
+		<div id="content">
+			<div class="board">
+				<div class="boardt">图片</div>
+				<!-- <input class="addbtn bluer" type="button" value="添加"> -->
+				<hr class="boardhr">
+				<div class="indexslider">
+					<section class="editsection" style="display:none;">
+						<h4>修改<span>第一张轮播图</span></h4>
+						<dl>
+							<dt>
+								图片链接<span class="imgselect">选择图片</span>
+								<form id="uploadform" method="post" action="./s/index/upload" enctype="multipart/form-data" target='frameFilec'>
+									<input type="file" name="file">
+								</form>
+							</dt>
+							<dd><span id="uploadpath">请选择图片后上传</span><div class="imgupload">上传</div></dd>	
+						</dl>
+						<dl class="editurl">
+							<dt>超链接</dt>
+							<dd><input type="text" id="bannerhref"></dd>
+						</dl>
+						<input type="button" class="save" value="保存">
+						<input type="button" class="cancel" value="取消">
+					</section>
+					<!--<section>-->
+						<!--<h3>PC版第一张轮播图&nbsp;尺寸&nbsp;1920px&nbsp;X&nbsp;503px</h3>-->
+						<!--<input type="button" class="edit" value="修改">-->
+						<!--<input type="button" class="delete" value="删除">-->
+						<!--<p class="picdata" data-device="1" data-type="1" data-index="0">图片链接:<a href="" target="_blank"></a></p>-->
+						<!--<p class="hrefdata" data-device="1" data-type="1" data-index="0">超链接:<a href="" target="_blank"></a></p>-->
+					<!--</section>-->
+					<!--<section>-->
+						<!--<h3>PC版第二张轮播图&nbsp;尺寸&nbsp;1920px&nbsp;X&nbsp;503px</h3>-->
+						<!--<input type="button" class="edit" value="修改">-->
+						<!--<input type="button" class="delete" value="删除">-->
+						<!--<p class="picdata" data-device="1" data-type="1" data-index="1">图片链接:<a href="" target="_blank"></a></p>-->
+						<!--<p class="hrefdata" data-device="1" data-type="1" data-index="1">超链接:<a href="" target="_blank"></a></p>-->
+					<!--</section>-->
+					<!--<section>-->
+						<!--<h3>PC版第三张轮播图&nbsp;尺寸&nbsp;1920px&nbsp;X&nbsp;503px</h3>-->
+						<!--<input type="button" class="edit" value="修改">-->
+						<!--<input type="button" class="delete" value="删除">-->
+						<!--<p class="picdata" data-device="1" data-type="1" data-index="2">图片链接:<a href="" target="_blank"></a></p>-->
+						<!--<p class="hrefdata" data-device="1" data-type="1" data-index="2">超链接:<a href="" target="_blank"></a></p>-->
+					<!--</section>-->
+					<section>
+						<h3>手机版第一张轮播图&nbsp;尺寸&nbsp;750px&nbsp;X&nbsp;428px</h3>
+						<input type="button" class="edit" value="修改">
+						<input type="button" class="delete" value="删除">
+						<p class="picdata" data-device="2" data-type="1" data-index="0">图片链接:<a href="" target="_blank"></a></p>
+						<p class="hrefdata" data-device="2" data-type="1" data-index="0">超链接:<a href="" target="_blank"></a></p>
+					</section>
+					<section>
+						<h3>手机版第二张轮播图&nbsp;尺寸&nbsp;750px&nbsp;X&nbsp;428px</h3>
+						<input type="button" class="edit" value="修改">
+						<input type="button" class="delete" value="删除">
+						<p class="picdata" data-device="2" data-type="1" data-index="1">图片链接:<a href="" target="_blank"></a></p>
+						<p class="hrefdata" data-device="2" data-type="1" data-index="1">超链接:<a href="" target="_blank"></a></p>
+					</section>
+					<section>
+						<h3>手机版第三张轮播图&nbsp;尺寸&nbsp;750px&nbsp;X&nbsp;428px</h3>
+						<input type="button" class="edit" value="修改">
+						<input type="button" class="delete" value="删除">
+						<p class="picdata" data-device="2" data-type="1" data-index="2">图片链接:<a href="" target="_blank"></a></p>
+						<p class="hrefdata" data-device="2" data-type="1" data-index="2">超链接:<a href="" target="_blank"></a></p>
+					</section>
+					<!--<section>-->
+						<!--<h3>新品上市PC版&nbsp;尺寸&nbsp;1920px&nbsp;X&nbsp;552px</h3>-->
+						<!--<input type="button" class="edit" value="修改">-->
+						<!--<input type="button" class="delete" value="删除">-->
+						<!--<p class="picdata" data-device="1" data-type="2">图片链接:<a href="" target="_blank"></a></p>-->
+						<!--<p class="hrefdata" data-device="1" data-type="2">超链接:<a href="" target="_blank"></a></p>-->
+					<!--</section>-->
+					<section>
+						<h3>新品上市手机版&nbsp;尺寸&nbsp;750px&nbsp;X&nbsp;368px</h3>
+						<input type="button" class="edit" value="修改">
+						<input type="button" class="delete" value="删除">
+						<p class="picdata" data-device="2" data-type="2">图片链接:<a href="" target="_blank"></a></p>
+						<p class="hrefdata" data-device="2" data-type="2">超链接:<a href="" target="_blank"></a></p>
+					</section>
+					<!--<section>-->
+						<!--<h3>每日推荐PC版&nbsp;尺寸&nbsp;1920px&nbsp;X&nbsp;536px</h3>-->
+						<!--<input type="button" class="edit" value="修改">-->
+						<!--<input type="button" class="delete" value="删除">-->
+						<!--<p class="picdata" data-device="1" data-type="3">图片链接:<a href="" target="_blank"></a></p>-->
+						<!--<p class="hrefdata" data-device="1" data-type="3">超链接:<a href="" target="_blank"></a></p>-->
+					<!--</section>-->
+					<!--<section>-->
+						<!--<h3>每日推荐手机版&nbsp;尺寸&nbsp;750px&nbsp;X&nbsp;416px</h3>-->
+						<!--<input type="button" class="edit" value="修改">-->
+						<!--<input type="button" class="delete" value="删除">-->
+						<!--<p class="picdata" data-device="2" data-type="3">图片链接:<a href="" target="_blank"></a></p>-->
+						<!--<p class="hrefdata" data-device="2" data-type="3">超链接:<a href="" target="_blank"></a></p>-->
+					<!--</section>-->
+					<!--<section>-->
+						<!--<h3>品牌故事背景图片PC版&nbsp;尺寸&nbsp;1840px&nbsp;X&nbsp;341px</h3>-->
+						<!--<input type="button" class="edit" value="修改">-->
+						<!--<input type="button" class="delete" value="删除">-->
+						<!--<p class="picdata" data-device="1" data-type="6">图片链接:<a href="" target="_blank"></a></p>-->
+						<!--<p class="hrefdata" data-device="1" data-type="6">超链接:<a href="" target="_blank"></a></p>-->
+					<!--</section>-->
+					<!--<section>-->
+						<!--<h3>品牌故事手机版&nbsp;尺寸&nbsp;750px&nbsp;X&nbsp;381px</h3>-->
+						<!--<input type="button" class="edit" value="修改">-->
+						<!--<input type="button" class="delete" value="删除">-->
+						<!--<p class="picdata" data-device="2" data-type="6">图片链接:<a href="" target="_blank"></a></p>-->
+						<!--<p class="hrefdata" data-device="2" data-type="6">超链接:<a href="" target="_blank"></a></p>-->
+					<!--</section>-->
+					<!--<section data-nourl="nourl">-->
+						<!--<h3>山茶文化背景图片PC版&nbsp;尺寸&nbsp;1920px&nbsp;X&nbsp;548px</h3>-->
+						<!--<input type="button" class="edit" value="修改">-->
+						<!--<input type="button" class="delete" value="删除">-->
+						<!--<p class="picdata" data-device="1" data-type="7" data-index="0">图片链接:<a href="" target="_blank"></a></p>-->
+					<!--</section>-->
+					<!--<section>-->
+						<!--<h3>山茶文化小图PC版&nbsp;尺寸&nbsp;356px&nbsp;X&nbsp;483px</h3>-->
+						<!--<input type="button" class="edit" value="修改">-->
+						<!--<input type="button" class="delete" value="删除">-->
+						<!--<p class="picdata" data-device="1" data-type="7" data-index="1">图片链接:<a href="" target="_blank"></a></p>-->
+						<!--<p class="hrefdata" data-device="1" data-type="7" data-index="1">超链接:<a href="" target="_blank"></a></p>-->
+					<!--</section>-->
+					<!--<section>-->
+						<!--<h3>山茶文化小图手机版&nbsp;尺寸&nbsp;750px&nbsp;X&nbsp;410px</h3>-->
+						<!--<input type="button" class="edit" value="修改">-->
+						<!--<input type="button" class="delete" value="删除">-->
+						<!--<p class="picdata" data-device="2" data-type="7">图片链接:<a href="" target="_blank"></a></p>-->
+						<!--<p class="hrefdata" data-device="2" data-type="7">超链接:<a href="" target="_blank"></a></p>-->
+					<!--</section>-->
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="sidebarb">
+			<div class="up">
+				<div class="icon-arrow-up"></div>
+			</div>
+			<div class="copyright" id="site_record">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/a_general.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		var imgDetail = function getImg(type,device){
+			$.ajax({
+				type: "GET",
+				url: './s/index',
+				async: false,
+				cache: false,
+				data: {type: type,device: device},
+				success: function(data) {
+					if(data.success == "0"){
+						if(type == 1 && (device == 1 || device == 2)){
+							for(var i = 0; i < data.datas.length;i++){
+								var picSlider = $(".picdata[data-device=" + device + "][data-type=1][data-index=" + i + "] a");
+								var urlSlider = $(".hrefdata[data-device=" + device + "][data-type=1][data-index=" + i + "] a");
+								if(!data.datas[i].item_bg){
+									picSlider.attr("href","");
+									picSlider.text("暂无图片");
+								}else{
+									picSlider.attr("href",data.datas[i].item_bg);
+									picSlider.text(data.datas[i].item_bg);
+								}
+								if(!data.datas[i].item_url){
+									urlSlider.attr("href","");
+									urlSlider.text("暂无链接");
+								}else{
+									urlSlider.attr("href",data.datas[i].item_url);
+									urlSlider.text(data.datas[i].item_url);
+								}
+								picSlider.parents("section").attr("data-imgid",data.datas[i].id);
+							}
+						} else if (type == 7 && device == 1){
+							for(var i = 0; i < data.datas.length;i++){
+								var picSlider = $(".picdata[data-device=1][data-type=7][data-index="+i+"] a");
+								if (i == 1){
+									var urlSlider = $(".hrefdata[data-device=1][data-type=7][data-index="+i+"] a");
+									if(!data.datas[i].item_url){
+										urlSlider.attr("href","");
+										urlSlider.text("暂无链接");
+									}else{
+										urlSlider.attr("href",data.datas[i].item_url);
+										urlSlider.text(data.datas[i].item_url);
+									}
+								}
+								if(!data.datas[i].item_bg){
+									picSlider.attr("href","");
+									picSlider.text("暂无图片");
+								}else{
+									picSlider.attr("href",data.datas[i].item_bg);
+									picSlider.text(data.datas[i].item_bg);
+								}
+								picSlider.parents("section").attr("data-imgid",data.datas[i].id);
+							}
+						}else{
+							var pic = $(".picdata[data-device="+device+"][data-type="+type+"] a");
+							var url = $(".hrefdata[data-device="+device+"][data-type="+type+"] a");
+							//console.log(data.datas[0].item_bg, device, type);
+							if(!data.datas[0].item_bg){
+								pic.attr("href","");
+								pic.text("暂无图片");
+							}else{
+								pic.attr("href",data.datas[0].item_bg);
+								pic.text(data.datas[0].item_bg);
+							}
+							if(!data.datas[0].item_url){
+								url.attr("href","");
+								url.text("暂无链接");
+							}else{
+								url.attr("href",data.datas[0].item_url);
+								url.text(data.datas[0].item_url);
+							}
+							pic.parents("section").attr("data-imgid",data.datas[0].id);
+						}
+					}
+				}
+			});
+		}
+		var typeGet = [1,2,3,6,7];
+		var deviceGet = [1,2];
+		for(var i in typeGet){
+			for(var j in deviceGet){
+				imgDetail(typeGet[i],deviceGet[j]);
+			}
+		}
+		
+		$(".imgselect").click(function(){
+			$("#uploadform input").click();
+		});
+		
+		$("#uploadform input").change(function(){
+			$(".imgupload").text("上传");
+			$("#uploadpath").text($(this).val());
+		});
+		
+		$(".imgupload").click(function(){
+			$("#uploadform").submit();
+		});
+		
+		$("section .edit").click(function(){
+			var section = $(this).parents("section");
+			var imgId = section.attr("data-imgid");
+			if(section.attr("data-nourl") == "nourl"){
+				$(".editsection .editurl").hide();
+			}else{
+				$(".editsection .editurl").show();
+				$("#bannerhref").val(section.children(".hrefdata").children("a").text());
+			}
+			$("#uploadpath").text(section.children(".picdata").children("a").text());
+			$(".editsection .save").attr("data-imgid",imgId);
+			$(".editsection h4").html("修改"+section.children("h3").html());
+			$(".editsection").show();
+		});
+
+		/*$("section .delete").click(function(){
+			var section = $(this).parents("section");
+			var imgId = section.attr("data-imgid");
+
+		});*/
+		
+		function changeBgUrl(id,url,bg){
+			var targetBg = $("section[data-imgid="+id+"] .picdata a");
+			var targetUrl = $("section[data-imgid="+id+"] .hrefdata a");
+			if(!bg){
+				targetBg.attr("href","");
+				targetBg.text("暂无图片");
+			}else{
+				targetBg.attr("href",bg);
+				targetBg.text(bg);
+			}
+			
+			if(!url){
+				targetBg.attr("href","");
+				targetBg.text("暂无链接");
+			}else{
+				targetBg.attr("href",url);
+				targetBg.text(url);
+			}
+		}
+		
+		$(".editsection .save").click(function(){
+			var imgId = $(this).attr("data-imgid");
+			var imgUrl = $("#bannerhref").val()||"";
+			var imgBg = $("#uploadpath").text()||"";
+			if(imgUrl == "暂无链接") {
+				imgUrl = "";
+			}
+			$.ajax({
+				type:"PUT",
+				url: './s/index',
+				async: false,
+				cache: false,
+				data: {id: imgId, item_bg: imgBg, item_url: imgUrl},
+				success:function(data){
+					console.log(data);
+					if(data.success == 0){
+						changeBgUrl(imgId,imgUrl,imgBg);
+						$(".editsection").hide();
+					}else{
+						alert("修改失败");
+					}
+				}
+			});
+		});
+	});
+	$(".editsection .cancel").click(function(){
+		$(".editsection").hide();
+	});
+	
+	function imgUploadSuccess(msg) {
+		if (msg.split('|')[0] == 0) {
+			$(".imgupload").text("上传成功");
+			$("#uploadpath").text(msg.split('|')[1]);
+		}else if(msg.split('|')[0] == 2){
+			alert("图片过大，请上传不超过1M的图片");
+		}else{
+			alert("未知错误，请重试");
+		}
+	}
+	</script>
+</body>
+</html>

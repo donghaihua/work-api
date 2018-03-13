@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>提现记录</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<link href="../icomoon/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/global.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<script src="../js/jquery-1.11.0.min.js"></script>
+	</head>
+
+	<body>
+		<div class="md">
+			<div class="header"><span class="goback"><a href="sale-center.html"><i class="icon-back"></i></a></span>提现记录</div>
+
+			<div class="content nopadding">
+				<ul class="rercod-ul">
+
+
+				</ul>
+			</div>
+
+		</div>
+	</body>
+	<script>
+		$(document).ready(function() {
+
+			$.ajax({
+				type: 'GET',
+				url: '../../uiserver/distribution/getFundsRecord',
+				async: false,
+				cache: false,
+				success: function(res) {
+					if(res.success == 0) {
+						setData(res.datas);
+					}
+				}
+			});
+
+			function setData(recordList) {
+				var li_html = '<li>';
+
+				for(var i = 0; i < recordList.length; i++) {
+					var record = recordList[i];
+					li_html += '<p class="p-name"><span>提现金额：</span><span>￥'+ record.amount +'</span></p>';
+					li_html += '<p class="p-date"><i class="fa  fa-clock-o"></i> '+ record.applyTime +'</p>';
+					var state;
+					if(record.state == 0) {
+						state = '正在审核';
+						li_html += '<span class="p-state warning">'+ state +'</span></li>';
+					} else if(record.state == 1) {
+						state = '已到账';
+						li_html += '<span class="p-state success">'+ state +'</span></li>';
+					} else if(record.state == 2) {
+						state = '提现失败';
+						li_html += '<span class="p-state info">'+ state +'</span><p class="p-state-mess">请联系客服QQ3311628518</p></li>';
+					} else if(record.state == 9) {
+						state = '已作废';
+						li_html += '<span class="p-state warning">'+ state +'</span></li>';
+					}
+
+					$('ul.rercod-ul').append(li_html);
+				}
+			}
+
+		});
+	</script>
+</html>

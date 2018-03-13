@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tenmaker.backupwd.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.tenmaker.backupwd.model.User" >
+    <id column="uuid" property="uuid" jdbcType="CHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="domain" property="domain" jdbcType="VARCHAR" />
+    <result column="mail" property="mail" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="role" property="role" jdbcType="INTEGER" />
+    <result column="createdAt" property="createdat" jdbcType="TIMESTAMP" />
+    <result column="updatedAt" property="updatedat" jdbcType="TIMESTAMP" />
+    <result column="subcompanyId" property="subcompanyid" jdbcType="INTEGER" />
+    <result column="accessPassword" property="accesspassword" jdbcType="VARCHAR" />
+    <result column="wechatId" property="wechatid" jdbcType="CHAR" />
+    <result column="isPasswordChanged" property="ispasswordchanged" jdbcType="INTEGER" />
+    <result column="sid" property="sid" jdbcType="VARCHAR" />
+    <result column="mailLoginId" property="mailloginid" jdbcType="VARCHAR" />
+    <result column="noAccess" property="noaccess" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uuid, username, password, name, domain, mail, sex, avatar, title, department,
+    state, role, createdAt, updatedAt, subcompanyId, accessPassword, wechatId, isPasswordChanged, 
+    sid, mailLoginId, noAccess
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from `USER`
+    where uuid = #{uuid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from `USER`
+    where uuid = #{uuid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tenmaker.backupwd.model.User" >
+    insert into `USER` (uuid, username, password,
+      name, domain, mail,
+      sex, avatar, title, 
+      department, state, role, 
+      createdAt, updatedAt, subcompanyId, 
+      accessPassword, wechatId, isPasswordChanged, 
+      sid, mailLoginId, noAccess
+      )
+    values (#{uuid,jdbcType=CHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{domain,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR},
+      #{sex,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{role,jdbcType=INTEGER}, 
+      #{createdat,jdbcType=TIMESTAMP}, #{updatedat,jdbcType=TIMESTAMP}, #{subcompanyid,jdbcType=INTEGER}, 
+      #{accesspassword,jdbcType=VARCHAR}, #{wechatid,jdbcType=CHAR}, #{ispasswordchanged,jdbcType=INTEGER}, 
+      #{sid,jdbcType=VARCHAR}, #{mailloginid,jdbcType=VARCHAR}, #{noaccess,jdbcType=VARCHAR}
+      );
+		<selectKey resultType="long" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.tenmaker.backupwd.model.User" >
+    insert into `USER`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="domain != null" >
+        domain,
+      </if>
+      <if test="mail != null" >
+        mail,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="avatar != null" >
+        avatar,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="createdat != null" >
+        createdAt,
+      </if>
+      <if test="updatedat != null" >
+        updatedAt,
+      </if>
+      <if test="subcompanyid != null" >
+        subcompanyId,
+      </if>
+      <if test="accesspassword != null" >
+        accessPassword,
+      </if>
+      <if test="wechatid != null" >
+        wechatId,
+      </if>
+      <if test="ispasswordchanged != null" >
+        isPasswordChanged,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="mailloginid != null" >
+        mailLoginId,
+      </if>
+      <if test="noaccess != null" >
+        noAccess,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null" >
+        #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="createdat != null" >
+        #{createdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedat != null" >
+        #{updatedat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subcompanyid != null" >
+        #{subcompanyid,jdbcType=INTEGER},
+      </if>
+      <if test="accesspassword != null" >
+        #{accesspassword,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatid != null" >
+        #{wechatid,jdbcType=CHAR},
+      </if>
+      <if test="ispasswordchanged != null" >
+        #{ispasswordchanged,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="mailloginid != null" >
+        #{mailloginid,jdbcType=VARCHAR},
+      </if>
+      <if test="noaccess != null" >
+        #{noaccess,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    
+		<selectKey resultType="long" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tenmaker.backupwd.model.User" >
+    update `USER`
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null" >
+        domain = #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        mail = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="avatar != null" >
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=INTEGER},
+      </if>
+      <if test="createdat != null" >
+        createdAt = #{createdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedat != null" >
+        updatedAt = #{updatedat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subcompanyid != null" >
+        subcompanyId = #{subcompanyid,jdbcType=INTEGER},
+      </if>
+      <if test="accesspassword != null" >
+        accessPassword = #{accesspassword,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatid != null" >
+        wechatId = #{wechatid,jdbcType=CHAR},
+      </if>
+      <if test="ispasswordchanged != null" >
+        isPasswordChanged = #{ispasswordchanged,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null" >
+        sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="mailloginid != null" >
+        mailLoginId = #{mailloginid,jdbcType=VARCHAR},
+      </if>
+      <if test="noaccess != null" >
+        noAccess = #{noaccess,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tenmaker.backupwd.model.User" >
+    update `USER`
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      domain = #{domain,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      role = #{role,jdbcType=INTEGER},
+      createdAt = #{createdat,jdbcType=TIMESTAMP},
+      updatedAt = #{updatedat,jdbcType=TIMESTAMP},
+      subcompanyId = #{subcompanyid,jdbcType=INTEGER},
+      accessPassword = #{accesspassword,jdbcType=VARCHAR},
+      wechatId = #{wechatid,jdbcType=CHAR},
+      isPasswordChanged = #{ispasswordchanged,jdbcType=INTEGER},
+      sid = #{sid,jdbcType=VARCHAR},
+      mailLoginId = #{mailloginid,jdbcType=VARCHAR},
+      noAccess = #{noaccess,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=CHAR}
+  </update>
+
+  <select id="queryByPhone" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from `USER`
+    where domain = #{domain}
+  </select>
+</mapper>

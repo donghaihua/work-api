@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>新增商品</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/console.css">
+	<link rel="stylesheet" type="text/css" href="css/font.css">
+	<link rel="stylesheet" type="text/css" href="css/itemnew.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body>
+	<iframe id='frameFilec' name='frameFilec' style='display: none;'></iframe>
+	<div class="shadow"></div>
+	<div class="newcert">
+		<form id="certupload" method="post" action="./sale/shop/cert" enctype="multipart/form-data" target='frameFilec'>
+			<div class="certtitle">证书名称</div>
+			<input class="certt" type="text" name="name" maxlength="20">
+			<div class="certb"><span></span><input class="certs" type="button" value="选择文件"></div>
+			<input class="certf" type="file" name="img">
+			<div class="uploadingmsg">正在上传，请稍候...</div>
+			<div class="failuremsg">上传失败，请重试</div>
+			<div class="nullmsg">请先选择证书并填写证书名称</div>
+			<input class="certsubmit" type="button" value="确认">
+			<input class="certcancel" type="button" value="取消">
+		</form>
+	</div>
+	<header>
+		<div class="wrapper">
+			<div class="logo">
+				<img src="img/kmlogo_white.png" alt="logo">
+			</div>
+			<div class="breadcrumb">
+			</div>
+			<div class="userinfo">
+				<img src="img/avatar_preview_default.png" alt="avatar">
+				<span class="username"><span class="un"></span><span class="icon-arrow-down"></span></span>
+			</div>
+			<span class="icon-notif new"><span class="icon-dot"></span></span>
+			<span class="icon-mail new"><span class="icon-dot"></span></span>
+			<ul class="ddlist">
+			</ul>
+		</div>
+	</header>
+	<div class="wrapper">
+		<div id="sidebar">
+		</div>
+		<div id="content">
+			<div id="edit">
+				<div class="board editt1">
+					<!--<div class="topbran"><span class="topt">品牌</span><span class="toptitle"></span></div>-->
+					<div class="toptit"><span class="topt">名称</span><input type="text" name="item_name" maxlength="20">
+						<div class="empmsg icon-cancel">不能为空</div>
+						<div class="errormsg">
+							<div class="msgdec"></div>
+							<span>请不要使用特殊符号</span>
+						</div>
+					</div>
+					<div class="topser">
+						<span class="topt">系列</span>
+						<div class="sersel">
+							<select name="item_series">
+								<!-- <option value="1">红天果-食-系列</option>
+								<option value="2">红天果-身-系列</option>
+								<option value="3">红天果-家-系列</option>
+								<option value="4">红天果-礼-系列</option> -->
+							</select>
+						</div>
+					</div>
+					<div class="topser">
+						<span class="topt">类别</span>
+						<div class="sersel">
+							<select name="item_type">
+								<option value="0">商品</option>
+								<option value="1">服务</option>
+								<option value="2">礼品</option>
+								<option value="3">兑换券</option>
+							</select>
+						</div>
+					</div>
+					<div class="toppro"><span class="topt">卖点</span><textarea name="item_sellingPoint" maxlength="100"></textarea>
+						<div class="empmsg icon-cancel">不能为空</div>
+						<div class="errormsg">
+							<div class="msgdec"></div>
+							<span>请不要使用特殊符号</span>
+						</div>
+					</div>
+					<div class="topser">
+						<span class="topt">标签</span>
+						<div class="sersel tag-wrapper">
+						</div>
+					</div>
+				</div>
+				<div class="board">
+					<div class="boardt">规格</div>
+					<input class="addbtn" id="addprop" type="button" value="添加">
+					<hr class="boardhr">
+					<table class="editt2">
+						<tr>
+							<th>规格名称</th>
+							<th>积分价</th>
+							<th>价格(元)</th>
+							<th>优惠价(元)</th>
+							<th>库存</th>
+						</tr>
+						<tr>
+							<td class="t2td1">
+								<div class="empmsg icon-cancel">不能为空</div>
+								<input type="text" name="spec_name" maxlength="10">
+								<div class="errormsg">
+									<div class="msgdec"></div>
+									<span>请不要使用特殊符号</span>
+								</div>
+							</td>
+							<td class="t2td2">
+								<div class="empmsg icon-cancel">不能为空</div>
+									<input type="text" name="spec_creditPrice" maxlength="10">
+									<div class="errormsg">
+										<div class="msgdec"></div>
+										<span>请使用数字~或.</span>
+									</div>
+							</td>
+							<td class="t2td3">
+								<div class="empmsg icon-cancel">不能为空</div>
+								<input type="text" name="spec_originalPrice" maxlength="10">
+								<div class="errormsg">
+									<div class="msgdec"></div>
+									<span>请使用数字~或.</span>
+								</div>
+							</td>
+							<td class="t2td4">
+								<div class="empmsg icon-cancel">不能为空</div>
+								<input type="text" name="spec_discount" maxlength="10">
+								<div class="errormsg">
+									<div class="msgdec"></div>
+									<span>请使用数字~或.</span>
+								</div>
+							</td>
+							<td class="t2td5">
+								<div class="empmsg icon-cancel">不能为空</div>
+								<input type="text" name="spec_inventory" maxlength="10">
+								<div class="errormsg">
+									<div class="msgdec"></div>
+									<span>请使用数字并大于零</span>
+								</div>
+							</td>
+							<td class="t2td6">
+								<div class="icon-cancel"></div>
+							</td>
+							<td class="t2td6">
+								<div class="t2deltip">
+									<span class="dele">确定</span>
+									<span class="canc">取消</span>
+									<div class="tipdec"></div>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<hr class="forhr">
+					<table class="editt3">
+						<tr>
+							<th>体积<span class="eg">示例:700~1500</span></th>
+							<th>重量<span class="eg">示例:0.7~1.5</span></th>
+							<th>产地</th>
+						</tr>
+						<tr>
+							<td class="t3td1">
+								<div class="empmsg icon-cancel">不能为空</div>
+								<input id="volume" type="text" name="detail_volume" maxlength="30">
+								<div class="errormsg">
+									<div class="msgdec"></div>
+									<span>请使用数字~或.</span>
+								</div>
+							</td>
+							<td class="t3td2">
+								<div class="empmsg icon-cancel">不能为空</div>
+								<input id="weight" type="text" name="detail_weight" maxlength="30">
+								<div class="errormsg">
+									<div class="msgdec"></div>
+									<span>请使用数字~或.</span>
+								</div>
+							</td>
+							<td class="t3td3">
+								<div class="empmsg icon-cancel">不能为空</div>
+								<input type="text" name="detail_producingArea" maxlength="30">
+								<div class="errormsg">
+									<div class="msgdec"></div>
+									<span>请不要使用特殊符号</span>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<table class="editt4">
+						<!-- <tr>
+							<th>产品标准号</th>
+						</tr>
+						<tr>
+							<td><input type="text" name="detail_standardCode"></td>
+						</tr> -->
+						<tr>
+							<th>材料</th>
+						</tr>
+						<tr>
+							<td>
+								<div class="empmsg icon-cancel">不能为空</div>
+								<input type="text" name="item_rawMaterial" maxlength="100">
+								<div class="errormsg">
+									<div class="msgdec"></div>
+									<span>请不要使用特殊符号</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>生产日期<span class="eg">示例:2015-01-01</span></th>
+						</tr>
+						<tr>
+							<td>
+								<div class="empmsg icon-cancel">不能为空</div>
+								<input type="text" name="detail_productionDate">
+								<div class="errormsg">
+									<div class="msgdec"></div>
+									<span>日期格式为YYYY-MM-DD</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>保质期<span class="eg">示例:12个月</span></th>
+						</tr>
+						<tr>
+							<td>
+								<div class="empmsg icon-cancel">不能为空</div>
+								<input type="text" name="detail_shelfLife">
+								<div class="errormsg">
+									<div class="msgdec"></div>
+									<span>请不要使用特殊符号</span>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<!--<div class="board">-->
+					<!--<div class="boardt">产品证书</div>-->
+					<!--<hr class="boardhr">-->
+					<!--<div class="editt5">-->
+						<!--&lt;!&ndash; <div class="cert">-->
+							<!--<span>证书1</span>-->
+							<!--<div class="icon-undo"></div>-->
+							<!--<div class="icon-delete"></div>-->
+						<!--</div>-->
+						<!--<div class="cert">-->
+							<!--<span>证书2</span>-->
+							<!--<div class="icon-undo"></div>-->
+							<!--<div class="icon-delete"></div>-->
+						<!--</div>-->
+						<!--<div class="cert inactive">-->
+							<!--<span>证书3</span>-->
+							<!--<div class="icon-undo"></div>-->
+							<!--<div class="icon-delete"></div>-->
+						<!--</div>-->
+						<!--<div class="cert">-->
+							<!--<span>证书4</span>-->
+							<!--<div class="icon-undo"></div>-->
+							<!--<div class="icon-delete"></div>-->
+						<!--</div> &ndash;&gt;-->
+					<!--</div>-->
+					<!--<input class="addbtn" name="addcert" type="button" value="添加">-->
+					<!--<div class="clear"></div>-->
+				<!--</div>-->
+				<div class="board">
+					<div class="boardt">产品图片</div>
+					<hr class="boardhr">
+					<table class="editt6">
+						<tr>
+							<td>
+								<div class="itemimg">
+									<img src="" alt="" id="itemimg1">
+									<div class="oper">
+										<form class="imgupload" method="post" action="./sale/item/upload" enctype="multipart/form-data" target='frameFilec'>
+											<input type="file" name="file1">
+										</form>
+										<span class="addimg">上传</span>
+										<span class="editimg">编辑</span>
+										<span class="deleteimg">删除</span>
+										<div class="itemimgmsg"></div>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="itemimg">
+									<img src="" alt="" id="itemimg2">
+									<div class="oper">
+										<form class="imgupload" method="post" action="./sale/item/upload" enctype="multipart/form-data" target='frameFilec'>
+											<input type="file" name="file2">
+										</form>
+										<span class="addimg">上传</span>
+										<span class="editimg">编辑</span>
+										<span class="deleteimg">删除</span>
+										<div class="itemimgmsg"></div>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="itemimg">
+									<img src="" alt="" id="itemimg3">
+									<div class="oper">
+										<form class="imgupload" method="post" action="./sale/item/upload" enctype="multipart/form-data" target='frameFilec'>
+											<input type="file" name="file3">
+										</form>
+										<span class="addimg">上传</span>
+										<span class="editimg">编辑</span>
+										<span class="deleteimg">删除</span>
+										<div class="itemimgmsg"></div>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="itemimg">
+									<img src="" alt="" id="itemimg4">
+									<div class="oper">
+										<form class="imgupload" method="post" action="./sale/item/upload" enctype="multipart/form-data" target='frameFilec'>
+											<input type="file" name="file4">
+										</form>
+										<span class="addimg">上传</span>
+										<span class="editimg">编辑</span>
+										<span class="deleteimg">删除</span>
+										<div class="itemimgmsg"></div>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="itemimg">
+									<img src="" alt="" id="itemimg5">
+									<div class="oper">
+										<form class="imgupload" method="post" action="./sale/item/upload" enctype="multipart/form-data" target='frameFilec'>
+											<input type="file" name="file5">
+										</form>
+										<span class="addimg">上传</span>
+										<span class="editimg">编辑</span>
+										<span class="deleteimg">删除</span>
+										<div class="itemimgmsg"></div>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="board">
+					<div class="boardt">商品详情</div>
+					<hr class="boardhr">
+					<div class="detaildesc">
+						<textarea id="detail_desc" name="content">
+
+						</textarea>
+					</div>
+				</div>
+				<div class="board">
+					<div class="boardt">SEO信息</div>
+					<hr class="boardhr">
+					<table class="editt7">
+						<tr>
+							<th>标题</th>
+						</tr>
+						<tr>
+							<td>
+								<div class="empmsg icon-cancel">不能为空</div>
+								<input type="text" name="seotitle" maxlength="100">
+								<div class="errormsg">
+									<div class="msgdec"></div>
+									<span>请不要使用特殊符号</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>描述</th>
+						</tr>
+						<tr>
+							<td>
+								<div class="empmsg icon-cancel">不能为空</div>
+								<textarea name="seodesc" maxlength="500"></textarea>
+								<div class="errormsg">
+									<div class="msgdec"></div>
+									<span>请不要使用特殊符号</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>关键词<span class="eg">关键词之间请用英文逗号隔开</span></th>
+						</tr>
+						<tr>
+							<td>
+								<div class="empmsg icon-cancel">不能为空</div>
+								<textarea name="seokeywords" maxlength="100"></textarea>
+								<div class="errormsg">
+									<div class="msgdec"></div>
+									<span>请不要使用特殊符号</span>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="btn">
+					<input class="release" id="itemrelease" type="button" value="发布">
+					<input class="submit" id="itemsubmit" type="button" value="保存">
+					<span class="submitmsg">保存失败，请重试</span>
+					<span class="formatmsg">格式错误或信息不完整</span>
+					<span class="releasemsg">发布失败，请重试</span>
+					<span class="releasesuccess">发布成功</span>
+					<!-- 保存调新增接口 发布调新增接口 然后调发布接口 -->
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="sidebarb">
+			<div class="up">
+				<div class="icon-arrow-up"></div>
+			</div>
+			<div class="copyright" id="site_record">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/a_general.js"></script>
+	<script type="text/javascript" src="js/editor/config.js"></script>
+	<script type="text/javascript" src="js/editor/kindeditor.js"></script>
+	<script type="text/javascript" src="js/editor/lang/zh_CN.js"></script>
+	<script type="text/javascript">
+		var accountid;
+		$(document).ready(function() {
+			$("#nav ul li").click(function(){
+				$("#nav ul li").removeClass("active");
+				if ($(this).hasClass("tab1")) {
+					$("#tab").hide();
+					$("#edit").show();
+					$(this).addClass("active");
+				}else if($(this).hasClass("tab2")){
+					$("#edit").hide();
+					$("#tab").show();
+					$(this).addClass("active");
+				}
+			});
+
+			$(".newcert .certb input").click(function(){
+				$(".newcert .certf").click();
+			});
+
+			$(".newcert .certf").change(function(){
+				$(".newcert .certb span").text($(this).val());
+			});
+
+			$(".userinfo").click(function(){
+				$(".ddlist").toggle();
+			});
+
+			$("#addprop").click(function(){
+				$(".editt2").append('<tr><td class="t2td1"><div class="empmsg icon-cancel">不能为空</div><input type="text" name="spec_name" maxlength="10"><div class="errormsg"><div class="msgdec"></div><span>请不要使用特殊符号</span></div></td><td class="t2td2"><div class="empmsg icon-cancel">不能为空</div><input type="text" name="spec_creditPrice" maxlength="10"><div class="errormsg"><div class="msgdec"></div><span>请使用数字~或.</span></div></td><td class="t2td3"><div class="empmsg icon-cancel">不能为空</div><input type="text" name="spec_originalPrice" maxlength="10"><div class="errormsg"><div class="msgdec"></div><span>请使用数字~或.</span></div></td><td class="t2td4"><div class="empmsg icon-cancel">不能为空</div><input type="text" name="spec_discount" maxlength="10"><div class="errormsg"><div class="msgdec"></div><span>请使用数字~或.</span></div></td><td class="t2td5"><div class="empmsg icon-cancel">不能为空</div><input type="text" name="spec_inventory" maxlength="10"><div class="errormsg"><div class="msgdec"></div><span>请不要使用特殊符号</span></div></td><td class="t2td6"><div class="icon-cancel"></div></td><td class="t2td6"><div class="t2deltip"><span class="dele">确定</span><span class="canc">取消</span><div class="tipdec"></div></div></td></tr>');
+			});
+
+			$(".t2td5 .icon-cancel").live("click",function(){
+				$(".t2td6 .t2deltip").css("visibility","hidden");
+				$(this).parent().siblings(".t2td6").children(".t2deltip").css("visibility","visible");
+			});
+
+			$(".t2deltip .canc").live("click",function(){
+				$(".t2td6 .t2deltip").css("visibility","hidden");
+			});
+
+			$(".t2deltip .dele").live("click",function(){
+				var ancestortr = $(this).parent(".t2deltip").parent(".t2td6").parent("tr");
+				if (ancestortr.siblings("tr").length == 1) {
+					ancestortr.children("td").children("input").val(null);
+					$(this).parent(".t2deltip").css("visibility","hidden");
+				}else{
+					ancestortr.remove();
+				}
+			});
+
+			$(".cert .icon-delete").live("click",function(){
+				$(this).parent(".cert").addClass("inactive");
+			});
+
+			$(".cert .icon-undo").live("click",function(){
+				$(this).parent(".cert").removeClass("inactive");
+			});
+
+			$(".addbtn[name=addcert]").click(function(){
+				$(".newcert .certt").val("");
+				$(".newcert .certb span").text("");
+				$(".newcert .uploadingmsg, .newcert .failuremsg, .newcert .nullmsg").hide();
+				$(".shadow, .newcert").show();
+			});
+
+			$(".newcert .certcancel").click(function(){
+				$(".newcert .certt").val("");
+				$(".newcert .certb span").text("");
+				$(".shadow, .newcert").hide();
+			});
+
+			$(".newcert .certsubmit").click(function(){
+				$(".newcert .uploadingmsg, .newcert .failuremsg, .newcert .nullmsg").hide();
+				if ($(".newcert .certt").val() && $(".newcert .certb span").text()) {
+					$("#certupload").submit();
+					$(".newcert .uploadingmsg").show();
+				}else{
+					$(".newcert .nullmsg").show();
+				}
+			});
+
+			$(".addimg, .editimg").click(function(){
+				$(this).siblings(".imgupload").children("input[type=file]").click();
+			});
+
+			$(".deleteimg").click(function(){
+				$(this).parent(".oper").siblings("img").hide().parent(".itemimg").removeClass("upload");
+			});
+
+			$(".imgupload input[type=file]").change(function(){
+				$(this).parent(".imgupload").submit().siblings(".itemimgmsg").removeClass("uploadfailure").removeAttr("name").addClass("uploading");
+			});
+
+			//focus
+			$(".toptit input[name=item_name], textarea[name=item_sellingPoint]").focus(function(){
+				$(this).siblings(".empmsg, .errormsg").hide();
+			});
+
+			$(".editt2 tr td, .editt3 tr td, .editt4 tr td, .toptit").click(function(){
+				$(this).children("input").focus();
+			});
+
+			$(".editt2 tr td input[type=text], .editt3 tr td input[type=text], .editt4 tr td input[type=text]").focus(function(){
+				$(this).parent("td").children(".empmsg, .errormsg").hide();
+			});
+
+			//blur验证 number
+			$("input[name=spec_creditPrice],input[name=spec_originalPrice],input[name=spec_discount],input[name=spec_inventory],input[name=detail_volume],input[name=detail_weight]").blur(function(){
+				$(this).siblings(".errormsg, .empmsg").hide();
+				$(this).removeClass("wrong");
+				var numv = $(this).val();
+				if (!numv) {
+					$(this).siblings(".empmsg").show();
+					$(this).addClass("wrong");
+				}else if(!$().numbervalidate(numv)){
+					$(this).siblings(".errormsg").show();
+					$(this).addClass("wrong");
+				}else if ($(this).attr("name") == "spec_inventory") {
+					if (numv <= 0) {
+						$(this).siblings(".errormsg").show();
+						$(this).addClass("wrong");
+					}
+				}
+			});
+
+			//blur验证 string
+			$("textarea[name=item_sellingPoint], input[name=item_name], input[name=spec_name], input[name=detail_producingArea], input[name=item_rawMaterial], input[name=detail_shelfLife], input[name=seotitle], textarea[name=seodesc], textarea[name=seokeywords]").blur(function(){
+				$(this).siblings(".errormsg, .empmsg").hide();
+				$(this).removeClass("wrong");
+				var strv = $(this).val();
+				if (!strv) {
+					$(this).siblings(".empmsg").show();
+					$(this).addClass("wrong");
+				}else if(!$().stringvalidate(strv)){
+					$(this).siblings(".errormsg").show();
+					$(this).addClass("wrong");
+				}
+			});
+
+			//blur验证 date
+			$("input[name=detail_productionDate]").blur(function(){
+				$(this).siblings(".errormsg, .empmsg").hide();
+				$(this).removeClass("wrong");
+				var datv = $(this).val();
+				if (!datv) {
+					$(this).siblings(".empmsg").show();
+					$(this).addClass("wrong");
+				}else if(!$().datevalidate(datv)){
+					$(this).siblings(".errormsg").show();
+					$(this).addClass("wrong");
+				}
+			});
+
+			var brand;
+			$.when(
+				$.ajax({
+					type:"GET",
+					data:{"accountId":accountid},
+					cache:false,
+					url:"./sale/shop",
+					error:function(){
+						//window.location.href="error.html";
+					},
+				}),
+                $.ajax({
+                    type: 'GET',
+                    async:false,
+                    cache:false,
+                    url: './sale/shop/labels',
+                    error: function (error) {
+                        //window.location.href="error.html";
+                    }
+                })
+			).done(function(shopRes, labelRes) {
+			    console.log('shopRes', shopRes)
+				let data = shopRes[0]
+                if(data.success == 0){
+                    brand = data.datas.brandName;
+                    // $(".toptitle").text(data.datas.brandName);
+                    // for (var i = 0; i < data.datas.saleShopCerts.length; i++) {
+                    //     $(".editt5").append('<div class="cert" name="'+data.datas.saleShopCerts[i].id+'"><span>'+data.datas.saleShopCerts[i].certName+'</span><div class="icon-undo"></div><div class="icon-delete"></div></div>');
+                    // };
+                    for (var i = 0; i < data.datas.saleShopSeries.length; i++) {
+                        //data.datas.saleShopSeries[i].
+                        $("select[name=item_series]").append('<option value="'+data.datas.saleShopSeries[i].id+'">'+data.datas.saleShopSeries[i].name+'</option>');
+                    };
+                }else{
+                    //window.location.href="error.html";
+                }
+
+                let content = ''
+                if (labelRes[0].success == 0) {
+                    let datas = labelRes[0].datas
+                    let content = ''
+                    for (let i = 0; i < datas.length; i++) {
+                        content += `<div class="tag"><input type="checkbox" value=${datas[i].id} name="tag"><span>${datas[i].name}</span></div>`
+                    }
+                    $('.tag-wrapper').append(content)
+                } else {
+                    window.location.href="error.html"
+                }
+			})
+			
+			var editor;
+			KindEditor.ready(function(K) {
+				editor = K.create('#detail_desc', {
+			        //cssPath : '/css/index.css',
+			        themeType : 'simple',
+			        uploadJson: './sale/item/uploadImg',
+			        //fileManagerJson: './sale/item/fileManager',
+			        items: showItems,
+			        filterMode: false,
+			        allowFileManager: false,
+			        allowImageManager: false
+				});
+			});
+
+			var itemid;			
+			function itemSave(){
+				$(".submitmsg, .submitsuccess, .releasemsg, .releasesuccess, .formatmsg").hide();
+				//同步数据后可以直接取得textarea的value
+				editor.sync();
+				
+				/* html = $('#detail_desc').val();
+				html = html.replace(/"/g,'//"'); */
+				//console.log(html);
+				// var certs = "";
+				// var certsele = $(".editt5 .cert:not(.inactive)");
+				// for (var i = 0; i < certsele.length; i++) {
+				// 	if (i == certsele.length-1) {
+				// 		certs += $(certsele[i]).attr("name");
+				// 	}else{
+				// 		certs += $(certsele[i]).attr("name") + ",";
+				// 	}
+				// };
+
+				//blur验证 number
+				$("input[name=spec_creditPrice],input[name=spec_originalPrice],input[name=spec_discount],input[name=spec_inventory],input[name=detail_volume],input[name=detail_weight]").blur();
+
+				//blur验证 string
+				$("textarea[name=item_sellingPoint], input[name=item_name], input[name=spec_name], input[name=detail_producingArea], input[name=item_rawMaterial], input[name=detail_shelfLife]").blur();
+
+				//blur验证 date
+				$("input[name=detail_productionDate]").blur();
+
+				//是否存在input class="wrong" textarea class="wrong"
+				if (!$(".wrong").length) {
+					var specname = new Array();
+					for (var i = 0; i < $("input[name=spec_name]").length; i++) {
+						specname[i] = $("input[name=spec_name]:eq("+i+")").val();
+					};
+
+                    var creditprice = new Array();
+                    for (var i = 0; i < $("input[name=spec_creditPrice]").length; i++) {
+                        creditprice[i] = $("input[name=spec_creditPrice]:eq("+i+")").val();
+                    };
+
+					var originalprice = new Array();
+					for (var i = 0; i < $("input[name=spec_originalPrice]").length; i++) {
+						originalprice[i] = $("input[name=spec_originalPrice]:eq("+i+")").val();
+					};
+
+					var discount = new Array();
+					for (var i = 0; i < $("input[name=spec_discount]").length; i++) {
+						discount[i] = $("input[name=spec_discount]:eq("+i+")").val();
+					};
+
+					var inventory = new Array();
+					for (var i = 0; i < $("input[name=spec_inventory]").length; i++) {
+						inventory[i] = $("input[name=spec_inventory]:eq("+i+")").val();
+					};
+
+					var speclist = [];
+					for (var i = 0; i < specname.length; i++) {
+						speclist.push({
+							"specName": specname[i],
+							"avatar": $("#itemimg1").attr("src"),
+							'creditPrice': originalprice[i],
+							"originalPrice": originalprice[i],
+							"discountPrice": discount[i],
+							"inventory": inventory[i],
+							"operation":1
+						});
+					};
+
+
+                    let tagArr = []
+                    let tagCheckbox = $('input[name="tag"]')
+                    for (i = 0; i < tagCheckbox.length; i++) {
+                        if (tagCheckbox[i].checked) {
+                            // let label = $(tagCheckbox[i]).attr('label')
+                            let value = $(tagCheckbox[i]).attr('value')
+                            tagArr.push({"id": value})
+                        }
+                    }
+
+					var item = {
+						//"item_brand": brand,
+						"item_series": $("select[name='item_series']").val(),
+						"item_name": $("input[name='item_name']").val(),
+                        "type": $("select[name='item_type']").val(),
+                        'labelList': tagArr,
+						"item_sellingPoint": $("textarea[name='item_sellingPoint']").val(),
+						"item_rawMaterial": $("input[name='item_rawMaterial']").val(),
+						// "certs": certs,
+						//"specList":[{"specName":1, "avatar":1, "originalPrice": 99, "discount": 0.8, "inventory": 100}, {"specName":2, "avatar":2, "originalPrice":299, "discount": 0.8, "inventory": 200}],
+						"specList":speclist,
+						"detail_img1": $("#itemimg1").attr("src"),
+						"detail_img2": $("#itemimg2").attr("src"),
+						"detail_img3": $("#itemimg3").attr("src"),
+						"detail_img4": $("#itemimg4").attr("src"),
+						"detail_img5": $("#itemimg5").attr("src"),
+						"detail_desc": $('#detail_desc').val(),
+						"detail_volume": $("input[name='detail_volume']").val(),
+						"detail_weight": $("input[name='detail_weight']").val(),
+						"detail_producingArea": $("input[name='detail_producingArea']").val(),
+						"detail_productionDate": $("input[name='detail_productionDate']").val(),
+						"detail_shelfLife": $("input[name='detail_shelfLife']").val(),
+						"item_seoTitle": $("input[name='seotitle']").val(),
+						"item_seoDescription": $("textarea[name='seodesc']").val(),
+						"item_seoKeywords": $("textarea[name='seokeywords']").val()
+					};
+					
+					$.ajax({
+						type: "POST",
+						dataType: "json",      
+						contentType : 'application/json',
+						url: './sale/item',
+						async:false,
+						cache:false,
+						data: JSON.stringify(item),
+						error:function(){
+							window.location.href="error.html";
+						},
+						success:function(data){
+							//console.log(11);
+							if(data.success == 0){
+								itemid = data.id;
+							}else if(data.error == 201){
+								$(".releasemsg").show();
+							}else{
+								window.location.href="error.html";
+							}
+						}
+					});
+				}else{
+					$(".formatmsg").show();
+				}
+			}
+
+			$("#itemrelease, #itemsubmit").removeAttr("disabled");
+
+			$("#itemsubmit").click(function() {
+				$(this).attr("disabled","disabled");
+				$.when(
+					itemSave()
+				).done(
+					function(){
+						if (itemid) {
+							window.location.href="a_item_edit.html?itemid="+itemid;
+						}else{
+							$("#itemsubmit").removeAttr("disabled");
+						}
+					}
+				);
+			});
+
+			$("#itemrelease").click(function(){
+				$(this).attr("disabled","disabled");
+				$.when(
+					itemSave()
+				).done(
+					function(){
+						if (itemid) {
+							$.ajax({
+								type:"post",
+								url:"./sale/item/release",
+								data:{"itemId":itemid},
+								async:false,
+								cache:false,
+								error:function(){
+									window.location.href="a_item_edit.html?itemid="+itemid;
+								},
+								success:function(data){
+									//console.log(22);
+									if (data.success === 0) {
+										window.location.href="a_item_edit.html?itemid="+itemid;
+									}else{
+										$(".releasesuccess").show();
+									}
+								}
+							});
+						}
+					}
+				);
+				$(this).removeAttr("disabled");
+			});
+		});
+		//submitmsg submitsuccess releasemsg releasesuccess formatmsg
+		function certUploadSuccess(msg) {
+			console.log(msg);
+			$(".newcert .uploadingmsg, .newcert .failuremsg").hide();
+			if (msg.split('|')[0] == 0) {
+				$(".newcert .certcancel").click();
+				// $(".editt5").empty();
+				$.ajax({
+					type:"GET",
+					async:false,
+					cache:false,
+					url:"./sale/shop/certs",
+					error:function(){
+						//error
+					},
+					success:function(data){
+						if(data.success == 0){
+							// for (var i = 0; i < data.length; i++) {
+							// 	$(".editt5").append('<div class="cert" name="'+data.datas[i].id+'"><span>'+data.datas[i].certName+'</span><div class="icon-undo"></div><div class="icon-delete"></div></div>');
+							// }
+						}
+					}
+				});
+			}else{
+				$(".newcert .failuremsg").show();
+			}
+		}
+
+		function imgUploadSuccess(msg) {
+			if (msg.split('|')[0] == 0) {
+				$(".itemimgmsg.uploading").parent(".oper").parent(".itemimg").addClass("upload");
+				$(".itemimgmsg.uploading").parent(".oper").siblings("img").attr("src",msg.split('|')[1]).show();
+				$(".itemimgmsg.uploading").removeClass("uploading");
+			}else if(msg.split('|')[0] == 2){
+				$(".itemimgmsg.uploading").addClass("uploadfailure").attr("name","toobig").removeClass("uploading");
+			}else{
+				$(".itemimgmsg.uploading").addClass("uploadfailure").attr("name","unknown").removeClass("uploading");
+			}
+		}
+	//登录状态 品牌 系列 证书 NS_B2C_M_SALE_SHOP_01
+	//图片至少一张 产品证书无所谓 商品详情必填
+	//库存至少要有1个
+	</script>
+</body>
+</html>

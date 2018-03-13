@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>收货地址</title>
+	<script src="js/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/general.css">
+	<link rel="stylesheet" type="text/css" href="css/address2.css">
+</head>
+<body>
+	<div class="cover"></div>
+	<div class="wrapper">
+		<header>
+			<img class="header_pic" src="img/header.png">
+		</header>
+		<div class="container">
+			<div class="account">
+				<div class="acctnav">
+					<h2 class="navtitle">我的账户</h2>
+					<ul>
+						<li><a href="account.html"><span class="icon-svg1"></span>账户信息</a></li>
+						<li><a href="profile.html"><span class="icon-svg2"></span>个人信息</a></li>
+						<li><a class="active" href="address.html"><span class="icon-svg3"></span>收货地址</a></li>
+						<li><a><span class="icon-wishlist"></span>心愿单</a></li>
+						<li><a href="security.html"><span class="icon-svg6"></span>安全中心</a></li>
+						<li><a><span class="icon-svg7"></span>推广中心</a></li>
+					</ul>
+				</div>
+				<div class="acctcontent">
+					<div class="addresstip">
+						<span class="icon-wrong"></span>
+						<p id="tip">确定要删除此地址吗？</p>
+						<input id="confirmdelete" disabled="disabled" name="confirmdelete" value="确认删除">
+					</div>
+					<div class="contitle"><h3>收货地址</h3></div>
+					<hr>
+					<span class="addrtip">您已创建<span id="now"></span>个收货地址，最多可创建<span id="total">8</span>个</span>
+					<input id="addaddr" type="button" name="addaddr" value="创建新地址">
+					<div class="editaddr">
+						<p><span id="edittitle">新增收货地址</span><span class="tip">带星号为必填项</span><span class="icon-wrong"></span></p>
+						<table>
+							<tr>
+								<td><sup>*</sup>收货人姓名</td>
+								<td>
+									<div class="naddrtip" id="recitip">
+										<div class="icon-arrow-up"></div>
+										<span>收件人姓名必填</span>
+									</div>
+									<input type="text" id="ir" name="recipient" maxlength="128">
+								</td>
+							</tr>
+							<tr>
+								<td><sup>*</sup>所在地</td>
+								<td id="location">
+									<div class="naddrtip" id="locatip">
+										<div class="icon-arrow-up"></div>
+										<span>所在地必填</span>
+									</div>
+									<select id="province" name="province"></select>
+									<select id="city" name="city"></select>
+									<select id="region" name="region"></select>
+								</td>
+							</tr>
+							<tr>
+								<td><sup>*</sup>详细地址</td>
+								<td>
+									<div class="naddrtip" id="addrtip">
+										<div class="icon-arrow-up"></div>
+										<span>详细地址必填</span>
+									</div>
+									<textarea id="ia"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td>邮政编码</td>
+								<td>
+									<div class="naddrtip" id="posttip">
+										<div class="icon-arrow-up"></div>
+										<span>邮编格式不正确</span>
+									</div>
+									<input type="text" id="ipo" name="postcode" maxlength="6">
+								</td>
+							</tr>
+							<tr>
+								<td><sup>*</sup>手机号</td>
+								<td>
+									<div class="naddrtip" id="teletip">
+										<div class="icon-arrow-up"></div>
+										<span>手机号必填</span>
+									</div>
+									<input type="text" id="it" name="telephone" maxlength="11">
+								</td>
+							</tr>
+							<tr>
+								<td>固定电话</td>
+								<td>
+									<div class="naddrtip" id="phontip">
+										<div class="icon-arrow-up"></div>
+										<span>固定电话格式不正确</span>
+									</div>
+									<input type="text" id="iph" name="phone">
+								</td>
+							</tr>
+							<tr>
+								<td>电子邮箱</td>
+								<td>
+									<div class="naddrtip" id="emaitip">
+										<div class="icon-arrow-up"></div>
+										<span>电子邮箱格式不正确</span>
+									</div>
+									<input type="text" id="ie" name="email" max-length="128">
+								</td>
+							</tr>
+						</table>
+						<div id="submtip" class="icon-speech66">网络连接错误，请重试</div>
+						<input id="submit" type="button" name="newaddr" value="保存收货地址">
+					</div>
+					<div id="addrdisplay">
+						<!-- <div class="addr">
+							<h4>地址1</h4>
+							<input class="default" type="button" value="默认地址">
+							<input class="delete" type="button" value="删除">
+							<input class="edit" type="button" value="编辑">
+							<table>
+								<tr>
+									<td>收货人</td>
+									<td><span class="recipient"></span></td>
+								</tr>
+								<tr>
+									<td>收货地址</td>
+									<td><span class="address"></span></td>
+								</tr>
+								<tr>
+									<td>邮政编码</td>
+									<td><span class="postcode"></span></td>
+								</tr>
+								<tr>
+									<td>手机号</td>
+									<td><span class="telephone"></span></td>
+								</tr>
+								<tr>
+									<td>固定电话</td>
+									<td><span class="phone"></span></td>
+								</tr>
+								<tr>
+									<td>电子邮箱</td>
+									<td><span class="email"></span></td>
+								</tr>
+							</table>
+						</div>
+						<div class="addr">
+							<h4>地址2</h4>
+							<input class="setdefault" type="button" value="设为默认地址">
+							<input class="delete" type="button" value="删除">
+							<input class="edit" type="button" value="编辑">
+							<table>
+								<tr>
+									<td>收货人</td>
+									<td><span class="recipient"></span></td>
+								</tr>
+								<tr>
+									<td>收货地址</td>
+									<td><span class="address"></span></td>
+								</tr>
+								<tr>
+									<td>邮政编码</td>
+									<td><span class="postcode"></span></td>
+								</tr>
+								<tr>
+									<td>手机号</td>
+									<td><span class="telephone"></span></td>
+								</tr>
+								<tr>
+									<td>固定电话</td>
+									<td><span class="phone"></span></td>
+								</tr>
+								<tr>
+									<td>电子邮箱</td>
+									<td><span class="email"></span></td>
+								</tr>
+							</table>
+						</div> -->
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var accountid, addrno;
+			$.ajax({
+				type:"get",
+				data:"",
+				cache: false,
+				async: false,
+				url:"./g/loginStatus",
+				success:function(data){
+					if (data.success == 0) {
+						accountid = data.id;
+					}else{
+						window.location.href = "login.html";
+					}
+				}
+			});
+
+			function loadData(id, parent_id) {
+				$.ajax({
+					url: '/uhaou/regions/get',
+					data: {parent_id: parent_id},
+					cache:false,
+					async: false,
+					success: function(data) {
+						for(var i=0; i<data.length; i++) {
+							$(id).html();
+							$(id).append('<option value="'+data[i].region_id+'">'+ data[i].region_name +'</option>');
+						}
+					}
+				});
+			}
+
+			function getaddr(){
+				$.ajax({
+					type:"get",
+					data:{accountId:accountid},
+					async:false,
+					cache:false,
+					url:"./passport/address",
+					success:function(data){
+						if (data.success == 0) {
+							var getaddr = "";
+							$("#now").text(data.length);
+							addrno = data.length;
+							if (data.length == 8) {
+								$("#addaddr").attr("disabled","disabled").addClass("disabled");
+							}else{
+								$("#addaddr").removeAttr("disabled").removeClass("disabled");
+							}
+							$("#addrdisplay").html("");
+							for (var i = 0; i <= data.length - 1; i++) {
+								if (data.datas[i].isDefault == 1){
+									$("#addrdisplay").append('<div class="addr" id="'+data.datas[i].id+'"><h4>地址<span id="addrno">'+(i+1)+'</h4><input class="default" type="button" value="默认地址"><input class="delete" type="button" value="删除"><input class="edit" type="button" value="编辑"><table><tr><td>收货人</td><td><span class="recipient"></span></td></tr><tr><td>收货地址</td><td><span class="address"></span></td></tr><tr><td>邮政编码</td><td><span class="postcode"></span></td></tr><tr><td>手机号</td><td><span class="telephone"></span></td></tr><tr><td>固定电话</td><td><span class="phone"></span></td></tr><tr><td>电子邮箱</td><td><span class="email"></span></td></tr></table></div>');
+								}else{
+									$("#addrdisplay").append('<div class="addr" id="'+data.datas[i].id+'"><h4>地址<span id="addrno">'+(i+1)+'</h4><input class="setdefault" type="button" value="设为默认地址"><input class="delete" type="button" value="删除"><input class="edit" type="button" value="编辑"><table><tr><td>收货人</td><td><span class="recipient"></span></td></tr><tr><td>收货地址</td><td><span class="address"></span></td></tr><tr><td>邮政编码</td><td><span class="postcode"></span></td></tr><tr><td>手机号</td><td><span class="telephone"></span></td></tr><tr><td>固定电话</td><td><span class="phone"></span></td></tr><tr><td>电子邮箱</td><td><span class="email"></span></td></tr></table></div>');
+								}
+
+								$("#"+data.datas[i].id+" .recipient").text(data.datas[i].recipient);
+								$("#"+data.datas[i].id+" .address").text(data.datas[i].nation.region_name + data.datas[i].province.region_name + data.datas[i].city.region_name + data.datas[i].region.region_name + data.datas[i].address);
+								if (data.datas[i].postcode) {
+									$("#"+data.datas[i].id+" .postcode").text(data.datas[i].postcode);
+								}
+								$("#"+data.datas[i].id+" .telephone").text(data.datas[i].telephone);
+								if (data.datas[i].phone) {
+									$("#"+data.datas[i].id+" .phone").text(data.datas[i].phone);
+								}
+								if (data.datas[i].email) {
+									$("#"+data.datas[i].id+" .email").text(data.datas[i].email);
+								}
+							};
+						}
+					}
+				});
+			}
+			//getaddr
+			getaddr();
+
+			$('#city').live('change',function() {
+				var parent_id = $('#city').val();
+				$('#region>option').remove();
+				loadData('#region', parent_id);
+			});
+
+			$('#province').live('change',function() {
+				var parent_id = $('#province').val();
+				$('#city>option').remove();
+				$('#region>option').remove();
+				loadData('#city', parent_id);
+				loadData("#region", $("#city").val());
+			});
+
+			//setdefault
+			$(".setdefault").removeAttr("disabled");
+			$(".setdefault").live('click',function(){
+				$(this).attr("disabled","disabled");
+				var addressid = $(this).parent(".addr").attr("id");
+				$.ajax({
+					type:"put",
+					data:{
+						addressId: addressid,
+					},
+					async:false,
+					cache:false,
+					url:"./passport/address/setDefault",
+					success:function(data){
+						if (data.success == 0) {
+							getaddr();
+						}
+					}
+				});
+				$(this).removeAttr("disabled");
+			});
+
+			// add/edit addr
+			$("#addaddr").click(function(){
+				if(addrno == 8){
+					$(this).addClass("disabled");
+				}else{
+					$(".naddrtip").hide();
+					$(".editaddr input[name=recipient], .editaddr input[name=telephone], .editaddr input[name=phone], .editaddr input[name=email], .editaddr textarea, .editaddr input[name=postcode]").val("");
+					$("#province>option, #city>option, #region>option").remove("");
+					$("#submit").attr("name","newaddr");
+					$("#edittitle").text("新增收货地址");
+					var top = document.documentElement.scrollTop;
+					$(".editaddr").css("top",(top-200));
+					$(".cover, .editaddr").fadeIn(200);
+					$(".editaddr input[name=submit]").attr("name","newaddr");
+					loadData('#province', '');
+					$("#province").change();
+					$("#city").change();
+				}
+			});
+
+			$(".edit").live('click',function(){
+				$(".naddrtip").hide();
+				$(".editaddr input[name=recipient], .editaddr input[name=telephone], .editaddr input[name=phone], .editaddr input[name=email], .editaddr textarea, .editaddr input[name=postcode]").val("");
+				$("#province>option, #city>option, #region>option").remove("");
+				$(this).attr("disabled","disabled");
+				var addressid = $(this).parent().attr("id");
+				loadData('#province', '1');
+				$("#submit").attr("name",addressid);
+				$.ajax({
+					type:"get",
+					data:{accountId:accountid},
+					url:"./passport/address",
+					cache:false,
+					async:false,
+					success:function(data){
+						if (data.success == 0) {
+							for (var i = 0; i <= data.length - 1; i++) {
+								if (data.datas[i].id == addressid) {
+									$(".editaddr input[name=recipient]").val(data.datas[i].recipient);
+									$(".editaddr input[name=telephone]").val(data.datas[i].telephone);
+									$(".editaddr input[name=phone]").val(data.datas[i].phone);
+									$(".editaddr input[name=postcode]").val(data.datas[i].postcode);
+									$(".editaddr input[name=email]").val(data.datas[i].email);
+									$(".editaddr textarea").val(data.datas[i].address);
+									$("#province").val(data.datas[i].province.region_id);
+									$('#province').change();
+									$("#city").val(data.datas[i].city.region_id);
+									$('#city').change();
+									$("#region").val(data.datas[i].region.region_id);
+								}
+							}	
+						}
+					}
+				});
+				$(this).removeAttr("disabled");
+				$("#edittitle").text("编辑收货地址");
+				var top = document.documentElement.scrollTop;
+				if(!top){
+					top = document.body.scrollTop;
+				}
+				$(".editaddr").css("top",(top-200));
+				$(".cover, .editaddr").fadeIn(200);
+			});
+
+			//addr validation
+			$("#ir").blur(function(){
+				var t = $("#recitip");
+				var r = $(this).val();
+				$(this).removeClass("correct");
+				t.hide();
+				if (!r) {
+					t.children("span").text("收件人姓名必填");
+					t.show();
+				}else if(!$().fnamevalidate(r)){
+					t.children("span").text("请不要使用特殊符号并不少于两个字符");
+					t.show();
+				}else{
+					$(this).addClass("correct");
+				}
+			});
+
+			$("#ia").blur(function(){
+				var t = $("#addrtip");
+				var a = $(this).val();
+				$(this).removeClass("correct");
+				t.hide();
+				if (!a) {
+					t.children("span").text("详细地址必填");
+					t.show();
+				}else if(!$().addrvalidate(a)){
+					t.children("span").text("请不要使用特殊符号并不少于两个字符");
+					t.show();
+				}else{
+					$(this).addClass("correct");
+				}
+			});
+
+			$("#ipo").blur(function(){
+				var t = $("#posttip");
+				var p = $(this).val();
+				$(this).removeClass("correct");
+				t.hide();
+				if(p){
+					if(!$().postvalidate(p)){
+						t.children("span").text("邮政编码格式不正确");
+						t.show();
+					}else{
+						$(this).addClass("correct");
+					}
+				}
+			});
+
+			$("#it").blur(function(){
+				var t = $("#teletip");
+				var te = $(this).val();
+				$(this).removeClass("correct");
+				t.hide();
+				if (!te) {
+					t.children("span").text("手机号必填");
+					t.show();
+				}else if(!$().telvalidate(te)){
+					t.children("span").text("手机号格式不正确");
+					t.show();
+				}else{
+					$(this).addClass("correct");
+				}
+			});
+
+			$("#iph").blur(function(){
+				var t = $("#phontip");
+				var p = $(this).val();
+				$(this).removeClass("correct");
+				t.hide();
+				if(p){
+					if(!$().phonevalidate(p)){
+						t.children("span").html("固定电话格式不正确<br>示例：0101234567");
+						t.show();
+					}else{
+						$(this).addClass("correct");
+					}
+				}
+			});
+
+			$("#ie").blur(function(){
+				var t = $("#emaitip");
+				var e = $(this).val();
+				$(this).removeClass("correct");
+				t.hide();
+				if(e){
+					if(!$().emailvalidate(e)){
+						t.children("span").text("电子邮箱格式不正确");
+						t.show();
+					}else{
+						$(this).addClass("correct");
+					}
+				}
+			});
+
+
+			//close window
+			$(".editaddr .icon-wrong").click(function(){
+				$(".cover, .editaddr").hide();
+			});
+
+			$(".addresstip .icon-wrong").click(function(){
+				$(".cover, .addresstip").hide();
+			});
+
+			// add/edit addr
+			$(".editaddr #submit").click(function(){
+				$("#submtip").hide();
+				var success = 1;
+				var valir = ["ir","ia","it"];
+				var valiu = ["ipo","iph","ie"];
+				for (var i = 0; i < valir.length; i++) {
+					if (!$("#"+valir[i]+"").blur().hasClass("correct")) {
+						success = 0;
+					}
+				};
+
+				for (var i = 0; i < valiu.length; i++) {
+					if ($("#"+valiu[i]+"").val()) {
+						if (!$("#"+valiu[i]+"").blur().hasClass("correct")) {
+							success = 0;
+						}
+					}
+				};
+
+				console.log(success);
+				if (success == 1) {
+					if ($(this).attr("name") == "newaddr") {
+						$.ajax({
+							type:"post",
+							data:{
+								accountId:accountid,
+								nation:"",
+								province:$(".editaddr #province").val(),
+								city:$(".editaddr #city").val(),
+								region:$(".editaddr #region").val(),
+								address:$(".editaddr textarea").val(),
+								postcode:$(".editaddr input[name=postcode]").val(),
+								recipient:$(".editaddr input[name=recipient]").val(),
+								telephone:$(".editaddr input[name=telephone]").val(),
+								phone:$(".editaddr input[name=phone]").val(),
+								email:$(".editaddr input[name=email]").val()
+							},
+							url:"./passport/address",
+							error:function(){
+								$("#submtip").text("网络连接错误，请重试").show();
+							},
+							success:function(data){
+								if (data.success == 0) {
+									$(".editaddr .icon-wrong").click();
+									getaddr();
+								}else if (data.error == 201) {
+									$("#submtip").text("格式错误").show();
+								}else{
+									window.location.href="error.html";
+								}
+							}
+						});
+					}else{
+						$.ajax({
+							type:"put",
+							data:{
+								addressId:$(this).attr("name"),
+								nation:"",
+								province:$(".editaddr #province").val(),
+								city:$(".editaddr #city").val(),
+								region:$(".editaddr #region").val(),
+								address:$(".editaddr textarea").val(),
+								postcode:$(".editaddr input[name=postcode]").val(),
+								recipient:$(".editaddr input[name=recipient]").val(),
+								telephone:$(".editaddr input[name=telephone]").val(),
+								phone:$(".editaddr input[name=phone]").val(),
+								email:$(".editaddr input[name=email]").val()
+							},
+							url:"./passport/address",
+							error:function(){
+								$("#submtip").text("网络连接错误，请重试").show();
+							},
+							success:function(data){
+								if (data.success == 0) {
+									$(".editaddr .icon-wrong").click();
+									getaddr();
+								}else if (data.error == 201) {
+									$("#submtip").text("格式错误").show();
+								}else{
+									window.location.href="error.html";
+								}
+							}
+						});
+					}
+				}
+			});
+			
+			var cdaddressid = "";
+			//delete
+			$(".delete").live('click',function(){
+				cdaddressid = $(this).parent().attr("id");
+				if ($(this).prev("input").hasClass("default")) {
+					$(".addresstip p").text("此地址为默认地址，确定要删除吗？");
+				}else{
+					$(".addresstip p").text("确定要删除此地址吗？");
+				}
+				$(".addresstip").show();
+				$(".cover").show();
+				$("#confirmdelete").removeAttr("disabled");
+			});
+
+			$("#confirmdelete").click(function(){
+				$("#confirmdelete").attr("disabled","disabled");
+				if (cdaddressid) {
+					$.ajax({
+						type:"delete",
+						data:{},
+						cache:false,
+						async:false,
+						url:"./passport/address?addressId=" + cdaddressid,
+						error:function(){
+							$("#confirmdelete").removeAttr("disabled");
+						},
+						success:function(data){
+							if (data.success == 0) {
+								getaddr();
+								$(".cover").hide();
+								$(".addresstip").hide();
+							}else{
+								$("#confirmdelete").removeAttr("disabled");
+							}
+						}
+					});
+				}
+			});
+		})
+	</script>
+</body>
+</html>

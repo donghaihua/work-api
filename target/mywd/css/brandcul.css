@@ -1,0 +1,131 @@
+.content h3{
+	text-align: center;
+	padding-top: 36px;
+	padding-bottom: 21px;
+	border-bottom: 2px solid #f3f3f3;
+}
+
+.content h3 span.t{
+	font-size: 36px;
+	padding: 0px 10px 20px 10px;
+	border-bottom: 4px solid #e36655;
+}
+
+.content p{
+	width: 960px;
+	margin: 20px auto;
+	line-height: 40px;
+	font-size: 18px;
+	text-indent: 38px;
+}
+
+.content ol{
+	width: 960px;
+	margin: 20px auto;
+	line-height: 40px;
+	font-size: 18px;
+	text-indent: 38px;
+}
+
+.content.agreement ol,
+.content.agreement p{
+	text-indent: 0px;
+	padding-left: 70px;
+}
+
+.content.agreement ol li{
+	list-style-type: decimal;
+	font-size: 18px;
+}
+.content.agreement ol p{
+padding-left:0px;
+}
+.story1{
+	margin: 36px 0px 30px 0px;
+	width: 100%;
+	height: 304px;
+	background: url(../img/brandbanner1.jpg) top center;
+}
+
+.story2{
+	margin: 36px 0px 30px 0px;
+	width: 100%;
+	height: 400px;
+	background: url(../img/brandbanner2.jpg) top center;
+}
+
+.cul{
+	margin: 36px 0px 30px 0px;
+	width: 100%;
+	height: 226px;
+	background: url(../img/culbanner.jpg) top center;
+}
+
+.treatment, .consumer{
+	width: 960px;
+	margin: 0 auto;
+}
+
+.treatment li{
+	list-style-type: decimal;
+	margin-left: 34px;
+	line-height: 26px;
+}
+
+.consumer li{
+	line-height: 28px;
+}
+
+.consumer li .icon-square{
+	padding-right: 4px;
+	color: #e36655;
+}
+
+h4{
+	width: 960px;
+	margin: 32px auto 16px auto;
+	font-size: 28px;
+}
+
+h5{
+	font-size: 22px;
+	text-align: center;
+}
+
+h6{
+	line-height: 32px;
+	width: 960px;
+	margin: 0 auto;
+	font-size: 20px;
+}
+
+.comparison{
+	margin: 24px auto 14px auto;
+	width: 1008px;
+}
+
+.comparison tr{
+	height: 36px;
+}
+
+.comparison td{
+	width: 160px;
+	text-align: center;
+}
+
+.comparison thead{
+	background-color: #cdcdcd;
+}
+
+.comparison tbody tr.even{
+	background-color: #f9f9f9;
+}
+
+
+
+
+
+
+
+
+

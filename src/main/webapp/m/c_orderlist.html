@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>订单</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/myorder.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		//console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body>
+	<header class="logoutredirect">
+		<div class="stick" data-back="true">
+			<div class="title">
+				订单管理
+			</div>
+		</div>
+	</header>
+	<div class="content main box">
+		<div class="orderlist">
+			<!-- <div class="order">
+				<div class="oh">
+					<div class="no">编号:860185917824494</div>
+					<div class="date">2014-09-14</div>
+					<div class="status">
+						<span>待付款</span>
+					</div>
+				</div>
+				<div class="ob">
+					<div class="oitem">
+						<div class="img">
+							<img src="img/itemimg.png" alt="img">
+						</div>
+						<p>
+							<span class="n">红天果冷压榨特级初榨茶籽油初榨茶籽油</span><br>
+							<span class="s">500ML</span>
+						</p>
+						<div class="price">
+							<span class="p">&yen;200</span><br>
+							<span class="q"><span>&times;</span>16</span>
+						</div>
+					</div>
+					<div class="oitem">
+						<div class="img">
+							<img src="img/itemimg.png" alt="img">
+						</div>
+						<p>
+							<span class="n">红天果冷压榨特级初榨茶籽油初榨茶籽油</span><br>
+							<span class="s">500ML</span>
+						</p>
+						<div class="price">
+							<span class="p">&yen;200</span><br>
+							<span class="q"><span>&times;</span>16</span>
+						</div>
+					</div>
+				</div>
+				<div class="btn">
+					<div class="tp">总价<span>&yen;20000</span></div>
+					<div class="tb">
+						<input type="button" value="查看">
+						<input type="button" value="付款">
+					</div>
+				</div>
+			</div>
+			<div class="order">
+				<div class="oh">
+					<div class="no">编号:860185917824494</div>
+					<div class="date">2014-09-14</div>
+					<div class="status">
+						<span>已付款</span>
+						<span>待评价</span>
+					</div>
+				</div>
+				<div class="ob">
+					<div class="oitem">
+						<div class="img">
+							<img src="img/itemimg.png" alt="img">
+						</div>
+						<p>
+							<span class="n">红天果冷压榨特级初榨茶籽油初榨茶籽油</span><br>
+							<span class="s">500ML</span>
+						</p>
+						<div class="price">
+							<span class="p">&yen;200</span><br>
+							<span class="q"><span>&times;</span>16</span>
+						</div>
+					</div>
+					<div class="oitem">
+						<div class="img">
+							<img src="img/itemimg.png" alt="img">
+						</div>
+						<p>
+							<span class="n">红天果冷压榨特级初榨茶籽油初榨茶籽油</span><br>
+							<span class="s">500ML</span>
+						</p>
+						<div class="price">
+							<span class="p">&yen;200</span><br>
+							<span class="q"><span>&times;</span>16</span>
+						</div>
+					</div>
+				</div>
+				<div class="btn">
+					<div class="tp">总价<span>&yen;200</span></div>
+					<div class="tb">
+						<input type="button" value="查看">
+						<input type="button" value="评价">
+					</div>
+				</div>
+			</div> -->
+		</div>
+		<div class="nextpage">
+			<button name="pageBtn">点击加载下一页</button>
+		</div>
+	</div>
+	<footer class="box">
+		<div class="ws">UHAOU.CN</div>
+		<div class="cr">&copy;2015 uhao.cn<br><a href="http://www.miitbeian.gov.cn/">苏ICP备15001958号-1</a></div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+		var url = window.location.search;
+		if(url.split('?_tempsg=')[1]) {
+			var tempsg = url.split('?_tempsg=')[1];
+
+			$.ajax({
+				type: 'GET',
+				url: urlprefix_l +'g/checkLogin',
+				async: false,
+				cache: false,
+				data: {"tempsg": tempsg},
+				success: function(data){
+
+				}
+			});
+		}
+
+		var curr_page = 1;
+		var limit_order = 3;
+		var data_search;
+		var index = -1;
+		
+		if (loginData) {
+			if (loginData.success != 0) {
+				window.location.href = "login.html";
+			}
+		}else{
+			window.location.href = "login.html";
+		}
+		
+		getOrderData(1);
+		
+		$('button[name=pageBtn]').click(function() {
+			curr_page = curr_page + 1;
+			getOrderData(curr_page);
+		});
+
+		function getOrderData(page) {
+			if(!data_search) {
+				data_search = {'page': page, 'limit': limit_order};
+			} else {
+				data_search.page = page
+			}
+			
+			$.ajax({
+				type: 'GET',
+				url: '../sale/order',
+				data: data_search,
+				success: function(data) {
+					if(data.datas) {
+						setOrderData(data, page);
+					}
+				}
+			});
+		}
+		
+		function setOrderData(data, page) {
+			//clearContent();
+			var orderArray = data.datas;
+			if(!orderArray || orderArray.length ==0) {
+				$('.nextpage').hide();
+			}
+			
+			for(var i = 0; i < orderArray.length; i++) {
+				var inner_html = '';
+				var order = orderArray[i];
+				var state_word = getStateWord(order.state);
+				inner_html += '<div class="order"><div class="oh">';
+				inner_html += '<div class="no">编号:' + order.orderNo + '</div>';
+				inner_html += '<div class="date">' + order.dealDate + '</div>';
+				inner_html += '<div class="status"><span>' + state_word + '</span></div></div>';
+				inner_html += '<div class="ob">';
+						
+				for(var j = 0; j < order.saleOrderDetails.length; j++) {
+					var orderDetail = order.saleOrderDetails[j];
+					var spec = orderDetail.saleItemSpec;
+					inner_html += '<div class="oitem"><div class="img"><img src=' + orderDetail.lightItem.avatar + ' alt="img"></div>';
+					inner_html += '<p><span class="n">' + orderDetail.lightItem.name + '</span><br>';
+					inner_html += '<span class="s">' + orderDetail.saleItemSpec.specName + '</span></p>';
+					inner_html += '<div class="price"><span class="p">&yen;' + orderDetail.unitPrice + '</span><br>';
+					inner_html += '<span class="q"><span>&times;</span>' + orderDetail.quantity + '</span></div></div>';
+					
+				}
+				inner_html += '</div>';
+				
+				inner_html += '<div class="btn"><div class="tp">总价<span>&yen;' + order.totalPrice + '</span></div><div class="tb">';
+				inner_html += '<input type="button" name="orderView" data_orderNo="' + order.orderNo + '" value="查看"><input type="button" name="orderEval"></div></div></div>';
+			
+				$('div.orderlist').append(inner_html);
+				index++;
+				
+				$('div.order:eq('+index+')').find('input[name=orderView]:eq(0)').click(function() {
+					var orderNo = $(this).attr('data_orderNo');
+					window.location.href='./c_orderdetail.html?val=' + orderNo;
+				});
+				$('div.order:eq('+index+')').find('input[name=orderEval]:eq(0)').each(function() {
+					var this_btn = $(this);
+					var state = parseInt(order.state);
+					
+					if(state == 0) {
+						//console.log(state);
+					}
+					if(state == 2) {
+// 						bindPayClick(this_btn, order.orderNo);
+						bindToPayClick(this_btn, order.orderNo);
+					} else if(state == 3 || state == 1) {
+						//bindRefundClick(this_btn, order.orderNo);
+						this_btn.remove();
+					} else if(state == 0) { //有查看，评价，申请退款
+						bindEvalClick(this_btn, order.orderNo);
+						
+						/* this_btn.after(this_btn.clone());
+						var clone_btn = this_btn.next();
+						bindRefundClick(clone_btn, order.orderNo); */
+					} else if(state == 5 || state == 6) {
+						//this_btn.attr('value', '申请退款');
+						//bindRefundView(this_btn, order.orderNo);
+						this_btn.remove();
+					} else if(state == 4) {
+						this_btn.remove();
+					} 
+				});
+			}
+		}
+		
+		function bindToPayClick(btn, orderNo){
+			btn.attr('value', '付款');
+			btn.click(function () {
+				window.location.href='./c_orderdetail.html?val=' + orderNo;
+			});
+		}
+		function bindPayClick(btn, orderNo) {
+			btn.attr('value', '付款');
+			btn.click(function () {
+				$.ajax({
+					url: '../uiserver/wxPay/getCode',
+					success: function (data) {
+						if(data.success == 0){
+							window.location.href='./pay.html?val=' + orderNo;
+						}
+					}
+				});
+			});
+			/*btn.click(function() {
+				$.ajax({
+	                url: '../g/wx_visit',
+	                success: function (data) {
+	                	if(data.success == 0){
+	                		$.ajax({
+	        	                url: '../uiserver/wxPay/getCode',
+	        	                success: function (data) {
+	        	                	if(data.success == 0){
+	        	                		window.location.href='./pay.html?val=' + orderNo ;
+	        	                	}
+	        	                }
+	        	            });
+	                	}
+	                }
+	            });
+			});*/
+				//付款操作
+				/* $.ajax({
+					type: 'POST',
+					url: '../sale/order/alipay/pay',
+					data: {'orderNo': orderNo, 'isPhone': 0},
+					success: function(data) {
+						//console.log(this_btn);
+						if(data.success == 1 && data.error == 302) {
+							alert('由于超过下单时间30分钟未支付，订单自动取消');
+						} else {
+							btn.after(data.datas);
+						}
+					}
+				}) */
+		}
+		
+		function bindEvalClick(btn, orderNo) {
+			btn.attr('value', '评价');
+			btn.click(function() {
+				window.location.href='./c_orderdetail.html?val=' + orderNo + '&tab=3';
+			});
+		}
+		
+		function bindRefundClick(btn, orderNo) {
+			btn.attr('value', '申请退款');
+			btn.click(function() {
+				window.location.href='./refund.html?val=' + orderNo;
+			});
+		}
+		
+		function bindRefundView(btn, orderNo) {
+			btn.attr('value', '查看退款');
+			btn.click(function() {
+				window.location.href='./refund.html?val=' + orderNo;
+			});
+		}
+		
+		function getStateWord(state) {
+			if(parseInt(state) == 0) {
+				return '已发货';
+			} else if(parseInt(state) == 1) {
+				return '已评价';
+			} else if(parseInt(state) == 2) {
+				return '待付款';
+			} else if(parseInt(state) == 3) {
+				return '等待发货';
+			} else if(parseInt(state) == 4) {
+				return '已取消';
+			} else if(parseInt(state) == 5) {
+				return '待退款';
+			} else if(parseInt(state) == 6) {
+				return '已退款';
+			}
+		}
+	});
+	</script>
+</body>
+</html>

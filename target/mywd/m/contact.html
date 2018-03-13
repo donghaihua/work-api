@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>联系我们</title>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="css/culbrand.css">
+	
+	<!-- ICON Files -->
+	<link rel="shortcut icon" href="ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+	<script type="text/javascript">
+		var url = window.location.href;
+		var url_array = url.split('cn');
+		var final_url = url_array[1];
+		console.log(url_array);
+		//平台、设备和操作系统   
+		var system ={  
+			win : false,  
+			mac : false,  
+			xll : false  
+		};  
+		//检测平台   
+		var p = navigator.platform;  
+		//console.log(p);  
+		system.win = p.indexOf("Win") == 0;
+		system.mac = p.indexOf("Mac") == 0;
+		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);  
+		//跳转语句
+		if(system.win || system.mac || system.xll) { //转向电脑端
+			if(final_url.length == 0) {
+				console.log(url_array[0] + "cn/m/index.html");
+				window.location.href = url_array[0] + "cn/m/index.html";
+			} else if(final_url.indexOf("/m/") == 0) {
+				final_url = final_url.split('m/')[1];
+				console.log(url_array[0] + "cn/" + final_url);
+				window.location.href = url_array[0] + "cn/" + final_url;
+			}
+		} else {  // 转向手机端
+			if(final_url.indexOf("/m/") == -1) {
+				console.log(url_array[0] + "cn/m" + final_url);
+				window.location.href = url_array[0] + "cn/m" + final_url;
+			}
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<div class="stick">
+			<div class="title">
+				联系我们
+			</div>
+		</div>
+	</header>
+	<div class="box content main">
+		<h4 id="website">uhaou.cn</h4>
+		<table class="contact">
+			<tr><th>公司名</th><td>江苏红果文化传播有限公司</td></tr>
+			<tr><th>客户服务</th><td id="site_phone2">025-85703619</td></tr>
+			<tr><th>邮箱</th><td id="site_email2">3311628518@qq.com</td></tr>
+			<tr><th>新浪微博</th><td><a href="http://weibo.com/u/5417976975" target="_blank">weibo.com/u/5417976975</a></td></tr>
+			<tr><th>公司地址</th><td id="site_address2">江苏省南京市雨花台区长虹路222号德盈国际广场3幢1605室</td></tr>
+		</table>
+	</div>
+	<footer class="box">
+		<div class="ws">UHAOU.CN</div>
+		<div class="cr">&copy;2015 uhao.cn<br><a href="http://www.miitbeian.gov.cn/">苏ICP备15001958号-1</a></div>
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/general.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.ajax({
+				type: 'GET',
+				url: urlprefix_l + 's/info',
+				success: function(data) {
+					var address_array = data.datas.address.split('$');
+					var address_html = '';
+					for(var i = 0; i < address_array.length; i++) {
+						if(i < (address_array.length - 1)) {
+							address_html += address_array[i] + '<br>';
+						} else {
+							address_html += address_array[i];
+						}
+					}
+					$('#site_phone2').text(data.datas.phone);
+					$('#site_address2').html(address_html);
+					$('#site_email2').text(data.datas.email);
+				}
+			});
+		})
+	</script>
+</body>
+</html>

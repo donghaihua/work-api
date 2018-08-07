@@ -23,7 +23,6 @@ import java.io.IOException;
  * @date 2018/3/13 0013  12:57
  */
 @Controller
-
 public class LoginController {
     @Autowired
     private PassportAccountService accountService;
